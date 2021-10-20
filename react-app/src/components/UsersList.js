@@ -9,6 +9,7 @@ function UsersList() {
       const response = await fetch('/api/users/');
       const responseData = await response.json();
       setUsers(responseData.users);
+
     }
     fetchData();
   }, []);
