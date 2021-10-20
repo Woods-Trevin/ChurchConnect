@@ -25,6 +25,21 @@ const UserNavBar = ({ loggedIn, setLoggedIn }) => {
                         Home
                     </NavLink>
                 </li>
+                <li className="userNav_CreateEvent_ctnr">
+                    <NavLink to='/event' className='userNav_CreateEvent' >
+                        Create Event
+                    </NavLink>
+                </li>
+                <li className="userNav_CreateAnnouncement_ctnr">
+                    <NavLink to='/announcement' className='userNav_CreateAnnouncement' >
+                        Create Announcement
+                    </NavLink>
+                </li>
+                <li className="userNav_Profile_ctnr">
+                    <NavLink to='/profile' className='userNav_Profile' >
+                        Profile
+                    </NavLink>
+                </li>
                 <li className="userNav_logout_ctnr">
                     <LogoutButton setLoggedIn={setLoggedIn} className='userNav_logout' />
                 </li>
