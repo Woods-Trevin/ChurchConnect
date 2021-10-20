@@ -1,0 +1,43 @@
+.body {
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.userNav_outmost_ctnr {
+    border: 2px solid red;
+    /* width: 100%; */
+}
+
+.userNav_innermost_ctnr {
+    border: 2px solid blue;
+    display: flex;
+    /* width: 100%; */
+    
+}
+
+/*-------------------------------------------------------*/
+
+.userNav_home_ctnr {
+    list-style: none;
+    
+}
+
+.userNav_Home {
+    text-decoration: none;
+}
+
+/*-------------------------------------------------------*/
+
+.userNav_logout_ctnr {
+    list-style: none;
+    position: relative;
+    left: 90%;
+    
+}
+
+.userNav_logout {
+
+}
+
+/*------------------------------------------------------*/

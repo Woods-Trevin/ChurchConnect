@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
-const LoginForm = () => {
+const LoginForm = ({ setLoggedIn }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +16,8 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
+    setLoggedIn(true);
+
   };
 
   const updateEmail = (e) => {
