@@ -1,0 +1,51 @@
+.navbar_outmost_ctnr {
+    border: 2px solid red;
+    height: 65px;
+}
+
+.navbar_innermost_ctnr {
+    border: 2px solid blue;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-top: 0px;
+}
+
+/*----------------------------------------------*/
+
+.navbar_home_ctnr {
+    list-style: none;
+    position: absolute;
+    left: 2%;
+}
+
+.navbar_Home {
+    text-decoration: none;
+    color: black;
+}
+
+/*----------------------------------------------*/
+
+.navbar_login_ctnr {
+    list-style: none;
+    position: absolute;
+    right: 10%;
+}
+
+.navbar_Login {
+    text-decoration: none;
+    color: black;
+}
+
+/*----------------------------------------------*/
+
+.navbar_signup_ctnr {
+    list-style: none;
+    position: absolute;
+    right: 3%;
+}
+
+.navbar_Signup {
+    text-decoration: none;
+    color: black;
+}

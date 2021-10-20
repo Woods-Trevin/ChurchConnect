@@ -19,34 +19,24 @@ const NavBar = ({ loggedIn, setLoggedIn }) => {
 
 
   return (
-    <nav>
-      {!loggedIn &&
-        <ul>
-          <li>
-            <NavLink to='/' exact={true} activeClassName='active'>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/login' exact={true} activeClassName='active'>
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/sign-up' exact={true} activeClassName='active'>
-              Sign Up
-            </NavLink>
-          </li>
-          {/* <li>
-            <NavLink to='/users' exact={true} activeClassName='active'>
-              Users
-            </NavLink>
-          </li> */}
-          {/* <li>
-            <LogoutButton setLoggedIn={setLoggedIn} />
-          </li> */}
-        </ul>
-      }
+    <nav className="navbar_outmost_ctnr" >
+      <ul className="navbar_innermost_ctnr" >
+        <li className="navbar_home_ctnr" >
+          <NavLink to='/' exact={true} activeClassName='active' className="navbar_Home" >
+            Home
+          </NavLink>
+        </li>
+        <li className="navbar_login_ctnr" >
+          <NavLink to='/login' exact={true} activeClassName='active' className="navbar_Login" >
+            Login
+          </NavLink>
+        </li>
+        <li className="navbar_signup_ctnr" >
+          <NavLink to='/sign-up' exact={true} activeClassName='active' className="navbar_Signup" >
+            Sign Up
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 }

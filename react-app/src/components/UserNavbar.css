@@ -1,18 +1,20 @@
-.body {
+body {
     min-width: 100%;
     margin: 0;
     padding: 0;
 }
 
 .userNav_outmost_ctnr {
-    border: 2px solid red;
-    /* width: 100%; */
+    border: 2px solid black;
+    height: 65px;
 }
 
 .userNav_innermost_ctnr {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     display: flex;
-    /* width: 100%; */
+    align-items: center;
+    margin-top: 0px;
+    height: 100%;
     
 }
 
@@ -20,19 +22,50 @@
 
 .userNav_home_ctnr {
     list-style: none;
+    position: absolute;
+    left: 2%;
     
 }
 
 .userNav_Home {
     text-decoration: none;
+    color: black;
+
+}
+
+/*-------------------------------------------------------*/
+
+.userNav_CreateEvent_ctnr {
+    list-style: none;
+    position: absolute;
+    margin-left: 10%;
+}
+
+.userNav_CreateEvent {
+    text-decoration: none;
+    color: black;
+
+}
+
+/*-------------------------------------------------------*/
+
+.userNav_CreateAnnouncement_ctnr {
+    list-style: none;
+    position: absolute;
+    margin-left: 24%;
+}
+
+.userNav_CreateAnnouncement {
+    text-decoration: none;
+    color: black;
 }
 
 /*-------------------------------------------------------*/
 
 .userNav_logout_ctnr {
     list-style: none;
-    position: relative;
-    left: 90%;
+    position: absolute;
+    right: 10%;
     
 }
 
@@ -41,3 +74,14 @@
 }
 
 /*------------------------------------------------------*/
+
+.userNav_Profile_ctnr {
+    list-style: none;
+    position: absolute;
+    right: 3%;
+}
+
+.userNav_Profile {
+    text-decoration: none;
+    color: black;
+}
