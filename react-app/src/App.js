@@ -11,6 +11,9 @@ import UserNavbar from './components/UserNavbar';
 import { authenticate } from './store/session';
 import DashboardComponent from './components/DashboardComponent';
 import Footer from './components/Footer';
+import CreateEventComponent from './components/CreateEventComponent';
+import CreateAnnouncementComponent from './components/CreateAnnouncementComponent';
+import Profile from './components/Profile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +62,18 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <DashboardComponent />
+          <Footer />
+        </Route>
+        <Route path='/event' exact={true} >
+          <CreateEventComponent />
+          <Footer />
+        </Route>
+        <Route path='/announcement' exact={true} >
+          <CreateAnnouncementComponent />
+          <Footer />
+        </Route>
+        <Route path='/profile' exact={true} >
+          <Profile />
           <Footer />
         </Route>
       </Switch>
