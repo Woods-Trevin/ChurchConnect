@@ -1,0 +1,18 @@
+from .db import db
+
+class Profile(db.Model):
+    __tablename__ ='profiles'
+
+    id = db.Column(db.Integer, primary_key=True)
+    profilePicture = db.Column(db.String(500), default='')
+    location = db.Column(db.String(100), nullable=False)
+    home_church = db.Column(db.String(100), nullable=False)
+    bio = db.Column(db.String(500), nullable=False)
+
+
+    #Foreign keys
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    #Relationships
+    user = db.relationship('User', back_populates='profile')
+
