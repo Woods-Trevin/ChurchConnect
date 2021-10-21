@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 class Profile(db.Model):
     __tablename__ ='profiles'
@@ -8,6 +9,7 @@ class Profile(db.Model):
     location = db.Column(db.String(100), nullable=False)
     home_church = db.Column(db.String(100), nullable=False)
     bio = db.Column(db.String(500), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
     #Foreign keys

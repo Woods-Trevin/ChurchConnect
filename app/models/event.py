@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 class Event(db.Model):
     __tablename__ ='events'
@@ -9,10 +10,11 @@ class Event(db.Model):
     imageURLThree = db.Column(db.String(700), default='')
     title = db.Column(db.String(200), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
-    startDate = db.Column(db.DateTime, nullable=False)
-    endDate = db.Column(db.DateTime, nullable=False)
-    startTime = db.Column(db.DateTime, nullable=False)
-    endTime = db.Column(db.DateTime, nullable=False)
+    startDate = db.Column(db.Date, nullable=False)
+    endDate = db.Column(db.Date, nullable=False)
+    startTime = db.Column(db.Time, nullable=False)
+    endTime = db.Column(db.Time, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
     #Foreign Keys
@@ -20,5 +22,5 @@ class Event(db.Model):
 
     #Relationships
     user = db.relationship('User', back_populates='events')
-    comments = db.relationship('Comments', back_populates='events')
+    comments = db.relationship('Comment', back_populates='events')
 

@@ -1,10 +1,12 @@
 from .db import db
+from datetime import datetime
 
 class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(400), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
     #Foreign keys
