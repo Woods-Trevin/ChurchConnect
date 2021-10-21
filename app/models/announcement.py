@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 class Announcement(db.Model):
     __tablename__ = 'announcements'
@@ -7,6 +8,7 @@ class Announcement(db.Model):
     imageURL = db.Column(db.String(500), default='')
     title = db.Column(db.String(300), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
     #Foreign keys
@@ -14,4 +16,4 @@ class Announcement(db.Model):
 
     #Relationships
     user = db.relationship('User', back_populates='announcements')
-    comments = db.relationship('Comments', back_populates='comments')
+    comments = db.relationship('Comment', back_populates='announcements')
