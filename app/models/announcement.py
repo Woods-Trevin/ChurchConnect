@@ -22,7 +22,7 @@ class Announcement(db.Model):
         return {
             'id': self.id,
             'imageURL':self.imageURL,
-            'title':self.description,
+            'title':self.title,
             'description':self.description,
             'userId':self.user_id,
         }

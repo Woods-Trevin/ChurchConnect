@@ -36,7 +36,7 @@ export const GetAnnouncements = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data.announcements);
+        // console.log(data.announcements);
         dispatch(get_announcement(data.announcements));
         return response;
     }
