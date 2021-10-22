@@ -34,7 +34,7 @@ export default function CreateEventComponent() {
             endDate: eventEndDate,
             startTime: eventStartTime,
             endTime: eventEndTime,
-            userId: user?.id
+            idx: user.id
 
         }
         dispatch(eventActions.CreateEvent(payload))

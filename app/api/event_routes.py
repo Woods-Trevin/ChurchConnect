@@ -8,19 +8,19 @@ event_routes = Blueprint('events', __name__)
 
 @event_routes.route('/', methods=['GET', 'POST'])
 @login_required
-def get_all_events():
+def events():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data['imageURL'], '----------------------------------------------------------------')
-    print(form.data['imageURLTwo'], '----------------------------------------------------------------')
-    print(form.data['imageURLThree'], '----------------------------------------------------------------')
-    print(form.data['title'], '----------------------------------------------------------------')
-    print(form.data['description'], '----------------------------------------------------------------')
-    print(form.data['startDate'], '----------------------------------------------------------------')
-    print(form.data['endDate'], '----------------------------------------------------------------')
-    print(form.data['startTime'], '----------------------------------------------------------------')
-    print(form.data['endTime'], '----------------------------------------------------------------')
-    print(request.json['userId'], '----------------------------------------------------------------')
+    # print(form.data['imageURL'], '----------------------------------------------------------------')
+    # print(form.data['imageURLTwo'], '----------------------------------------------------------------')
+    # print(form.data['imageURLThree'], '----------------------------------------------------------------')
+    # print(form.data['title'], '----------------------------------------------------------------')
+    # print(form.data['description'], '----------------------------------------------------------------')
+    # print(form.data['startDate'], '----------------------------------------------------------------')
+    # print(form.data['endDate'], '----------------------------------------------------------------')
+    # print(form.data['startTime'], '----------------------------------------------------------------')
+    # print(form.data['endTime'], '----------------------------------------------------------------')
+    # print(request.json['idx'], '----------------------------------------------------------------')
     if request.method == 'GET':
         events = Event.query.all()
         return {'events': [event.to_dict() for event in events]}
@@ -36,8 +36,10 @@ def get_all_events():
                 endDate=form.data['endDate'],
                 startTime=form.data['startTime'],
                 endTime=form.data['endTime'],
-                # user_id=request.json['userId']
+                user_id=request.json['idx']
             )
             db.session.add(created_event)
             db.session.commit()
-            return jsonify('')
+            return jsonify('Created New Event')
+        else:
+            return jsonify('Bad Data')
