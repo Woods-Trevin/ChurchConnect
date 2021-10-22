@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import * as announcementActions from '../../store/announcement'
 import * as eventActions from '../../store/event'
 import './DashboardComponent.css';
@@ -25,28 +26,34 @@ export default function DashboardComponent() {
                     <h1>Announcements</h1>
                 </div>
                 {announcements?.map((announcement) =>
-                    <div>
+                    <Link to={`/announcement/${announcement.id}`}>
                         <li>{announcement.imageURL}</li>
                         <li>{announcement.title}</li>
                         <li>{announcement.description}</li>
                         <p>-------------------------------------------</p>
-                    </div>
+                    </Link>
                 )}
             </div>
             <div className="Dashboard_event_ctnr" >
-                <div>
+                <div className="DashboardEvents_title_ctnr">
                     <h1>Events</h1>
                 </div>
-                {events?.map(event =>
-                    <div>
-                        <li>{event.imageURL}</li>
-                        <li>{event.imageURLTwo}</li>
-                        <li>{event.imageURLThree}</li>
-                        <li>{event.title}</li>
-                        <li>{event.description}</li>
-                        <p>------------------------------------------</p>
-                    </div>
-                )}
+                <div className="DashboardEvents_items_ctnr" >
+                    {events?.map(event =>
+                        <Link to={`/event/${event.id}`}>
+                            <li>{event.imageURL}</li>
+                            <li>{event.imageURLTwo}</li>
+                            <li>{event.imageURLThree}</li>
+                            <li>{event.title}</li>
+                            <li>{event.description}</li>
+                            <li>{event.startDate}</li>
+                            <li>{event.endDate}</li>
+                            <li>{event.startTime}</li>
+                            <li>{event.endTime}</li>
+                            <p>------------------------------------------</p>
+                        </Link>
+                    )}
+                </div>
             </div>
         </div>
     )

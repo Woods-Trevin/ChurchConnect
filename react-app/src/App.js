@@ -14,6 +14,8 @@ import Footer from './components/Footer';
 import CreateEventComponent from './components/CreateEventComponent';
 import CreateAnnouncementComponent from './components/CreateAnnouncementComponent';
 import Profile from './components/Profile';
+import EventDisplay from './components/EventDisplay';
+import AnnouncementDisplay from './components/AnnouncementDisplay';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -74,6 +76,14 @@ function App() {
         </Route>
         <Route path='/profile' exact={true} >
           <Profile />
+          <Footer />
+        </Route>
+        <Route path='/event/:eventId' exact={true} >
+          <EventDisplay />
+          <Footer />
+        </Route>
+        <Route path='/announcement/:announcementId' exact={true} >
+          <AnnouncementDisplay />
           <Footer />
         </Route>
       </Switch>
