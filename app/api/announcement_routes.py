@@ -3,13 +3,18 @@ from flask_login import login_required
 from app.models import Announcement, db
 from app.forms import AnnouncementForm
 
-announcement_routes = Blueprint('annoucements', __name__)
+announcement_routes = Blueprint('announcements', __name__)
 
 @announcement_routes.route('/', methods=['GET', 'POST'])
 @login_required
 def announcements():
     form = AnnouncementForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    
+    if request.method == "GET":
+        allAnnouncements = Announcement.query.all()
+        print([announcement.to_dict() for announcement in allAnnouncements])
+        return {'announcements':[announcement.to_dict() for announcement in allAnnouncements]}
 
     if request.method == 'POST':
         if form.validate_on_submit():

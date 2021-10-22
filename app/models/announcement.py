@@ -17,3 +17,12 @@ class Announcement(db.Model):
     #Relationships
     user = db.relationship('User', back_populates='announcements')
     comments = db.relationship('Comment', back_populates='announcements')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'imageURL':self.imageURL,
+            'title':self.description,
+            'description':self.description,
+            'userId':self.user_id,
+        }

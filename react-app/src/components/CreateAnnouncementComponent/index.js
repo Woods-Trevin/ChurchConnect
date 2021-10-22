@@ -1,17 +1,20 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import * as announcementActions from '../../store/announcement'
 import './CreateAnnouncementComponent.css'
 
 export default function CreateAnnouncementComponent() {
-    const [imageURL, setImageURL] = useState()
-    const [announcementTitle, setAnnouncementTitle] = useState()
-    const [announcementDescription, setAnnouncementDescription] = useState()
+    const [imageURL, setImageURL] = useState("")
+    const [announcementTitle, setAnnouncementTitle] = useState("")
+    const [announcementDescription, setAnnouncementDescription] = useState("")
 
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
+    const history = useHistory()
 
-    function handleAnnouncementCreation() {
+    function handleAnnouncementCreation(e) {
+        e.preventDefault()
         const payload = {
             imageURL: imageURL,
             title: announcementTitle,
@@ -19,6 +22,7 @@ export default function CreateAnnouncementComponent() {
             idx: user.id
         }
         dispatch(announcementActions.CreateAnnouncement(payload))
+        history.push('/')
 
     }
 
