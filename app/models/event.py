@@ -32,10 +32,10 @@ class Event(db.Model):
             'imageURLThree': self.imageURLThree,
             'title': self.title,
             'description': self.description,
-            'startDate': self.startDate,
-            'endDate': self.endDate,
-            'startTime': self.startTime,
-            'endTime': self.endTime,
+            'startDate': str(self.startDate),
+            'endDate': str(self.endDate),
+            'startTime': str(self.startTime),
+            'endTime': str(self.endTime),
             'userId': self.user_id,
         }
 

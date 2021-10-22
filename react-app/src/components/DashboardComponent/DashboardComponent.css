@@ -1,4 +1,20 @@
 .Dashboard_outmost_ctnr {
-    height: 700px;
+    height: 100%;
     border-bottom: 2px solid black;
+    display: flex;
+}
+
+/*---------------------------------------------*/
+
+.Dashboard_announcement_ctnr {
+    border: 2px solid black;
+}
+
+
+
+
+/*----------------------------------------------*/
+
+.Dashboard_event_ctnr {
+    border: 2px solid black;
 }

@@ -42,7 +42,7 @@ export const GetAnnouncements = () => async (dispatch) => {
     }
 }
 
-const initialState = { announcement: null }
+const initialState = { announcements: null }
 export default function announcementReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
@@ -52,7 +52,7 @@ export default function announcementReducer(state = initialState, action) {
             return newState;
         case GET_ANNOUNCEMENTS:
             newState = Object.assign({}, state);
-            newState.announcement = action.payload;
+            newState.announcements = action.payload;
             return newState;
         default:
             return state;
