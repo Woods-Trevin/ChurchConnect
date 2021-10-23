@@ -51,7 +51,7 @@ export const GetAnnouncements = () => async (dispatch) => {
 }
 
 export const GetOneAnnouncement = (id) => async (dispatch) => {
-    const response = await fetch(`/api/announcement/${id}/`)
+    const response = await fetch(`/api/announcement/${id}`)
 
     if (response.ok) {
         const data = await response.json();
