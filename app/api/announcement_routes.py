@@ -29,3 +29,7 @@ def announcements():
             return jsonify('Created Announcement')
         else:
             return jsonify('Bad Data')
+
+@announcement_routes.route('/<int:id>', methods=['PATCH'])
+def update_announcement():
+    

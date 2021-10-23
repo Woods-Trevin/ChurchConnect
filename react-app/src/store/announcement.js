@@ -1,5 +1,6 @@
 const CREATE_ANNOUNCEMENT = 'announcement/CREATE_ANNOUNCEMENT'
 const GET_ANNOUNCEMENTS = 'announcement/GET_ANNOUNCEMENTS'
+const GET_ONE_ANNOUNCEMENT = 'announcement/GET_ONE_ANNOUNCEMENT'
 
 
 const create_announcement = (announcement) => {
@@ -13,6 +14,13 @@ const get_announcement = (announcements) => {
     return {
         type: GET_ANNOUNCEMENTS,
         payload: announcements
+    }
+}
+
+const get_one_announcement = (announcement) => {
+    return {
+        type: GET_ONE_ANNOUNCEMENT,
+        payload: announcement
     }
 }
 
@@ -42,6 +50,17 @@ export const GetAnnouncements = () => async (dispatch) => {
     }
 }
 
+export const GetOneAnnouncement = (id) => async (dispatch) => {
+    const response = await fetch(`/api/announcement/${id}/`)
+
+    if (response.ok) {
+        const data = await response.json();
+        // console.log(data.announcements);
+        dispatch(get_one_announcement(data.announcement));
+        return response;
+    }
+}
+
 const initialState = { announcements: null }
 export default function announcementReducer(state = initialState, action) {
     let newState;
@@ -53,6 +72,10 @@ export default function announcementReducer(state = initialState, action) {
         case GET_ANNOUNCEMENTS:
             newState = Object.assign({}, state);
             newState.announcements = action.payload;
+            return newState;
+        case GET_ONE_ANNOUNCEMENT:
+            newState = Object.assign({}, state);
+            newState.current_announcement = action.payload;
             return newState;
         default:
             return state;
