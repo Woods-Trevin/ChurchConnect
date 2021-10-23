@@ -47,7 +47,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
             endDate: updateEventEndDate,
             startTime: updateEventStartTime,
             endTime: updateEventEndTime,
-            idx: eventId,
+            idx: eventId
         }
         dispatch(eventActions.PatchEvent(payload))
     }
