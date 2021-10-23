@@ -1,6 +1,7 @@
 const CREATE_EVENT = 'event/CREATE_EVENT';
 const GET_EVENTS = 'event/GET_EVENTS';
 const GET_ONE_EVENT = 'event/GET_ONE_EVENT';
+const PATCH_EVENT = 'event/PATCH_EVENT';
 const DELETE_EVENT = 'event/DELETE_EVENT';
 
 export const get_events = (events) => {
@@ -21,6 +22,13 @@ export const create_event = (events) => {
     return {
         type: CREATE_EVENT,
         payload: events
+    }
+}
+
+export const patch_event = (event) => {
+    return {
+        type: PATCH_EVENT,
+        payload: event
     }
 }
 
@@ -66,6 +74,21 @@ export const CreateEvent = (payload) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(create_event(data));
+        return response
+    }
+
+};
+
+export const PatchEvent = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/event/${payload.idx}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(patch_event(data));
         return response
     }
 
