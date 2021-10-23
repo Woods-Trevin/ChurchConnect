@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/event'
@@ -10,10 +10,19 @@ export default function EventDisplay() {
     const event = useSelector(state => state.event.currentevent)
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(eventActions.GetOneEvent(eventId))
     }, [dispatch, eventId])
+
+
+    function handleDelete(e) {
+        e.preventDefault()
+        dispatch(eventActions.DeleteEvent(eventId))
+        history.push('/')
+    }
+
 
     return (
         <div className="EventDisplay_outmost_container">
@@ -50,7 +59,7 @@ export default function EventDisplay() {
                         {event?.endTime}
                     </div>
                 </div>
-                <li></li>
+                <li className="eventDisplay_delete_btn" onClick={(e) => handleDelete(e)}>Delete</li>
             </div>
         </div>
     )

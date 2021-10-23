@@ -1,6 +1,7 @@
 const CREATE_EVENT = 'event/CREATE_EVENT';
 const GET_EVENTS = 'event/GET_EVENTS';
 const GET_ONE_EVENT = 'event/GET_ONE_EVENT';
+const DELETE_EVENT = 'event/DELETE_EVENT';
 
 export const get_events = (events) => {
     return {
@@ -20,6 +21,13 @@ export const create_event = (events) => {
     return {
         type: CREATE_EVENT,
         payload: events
+    }
+}
+
+export const delete_event = (event) => {
+    return {
+        type: DELETE_EVENT,
+        payload: event
     }
 }
 
@@ -63,6 +71,19 @@ export const CreateEvent = (payload) => async (dispatch) => {
 
 };
 
+export const DeleteEvent = (id) => async (dispatch) => {
+    const response = await fetch(`/api/event/${id}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(delete_event(data));
+        return response
+    }
+
+};
+
 
 const initialState = { events: null }
 export default function eventReducer(state = initialState, action) {
@@ -80,6 +101,8 @@ export default function eventReducer(state = initialState, action) {
             newState = Object.assign({}, state);
             newState.currentevent = action.payload;
             return newState;
+        case DELETE_EVENT:
+            return state;
         default:
             return state;
     }

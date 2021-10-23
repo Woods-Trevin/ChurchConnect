@@ -50,3 +50,11 @@ def get_one_event(id):
     currentEvent = Event.query.get(id)
     print(currentEvent.to_dict())
     return {'event': currentEvent.to_dict()}
+
+
+@event_routes.route('/<int:id>', methods=['DELETE'])
+def delete_event(id):
+    currentEvent = Event.query.filter(Event.id == id).delete()
+    db.session.commit()
+    # print(currentEvent.to_dict())
+    return jsonify('Deleted event')
