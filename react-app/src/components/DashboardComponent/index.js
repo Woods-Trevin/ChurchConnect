@@ -16,6 +16,7 @@ export default function DashboardComponent() {
     useEffect(() => {
         dispatch(announcementActions.GetAnnouncements())
         dispatch(eventActions.GetEvents())
+
     }, [dispatch])
 
 

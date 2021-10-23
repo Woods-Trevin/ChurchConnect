@@ -1,10 +1,18 @@
 const CREATE_EVENT = 'event/CREATE_EVENT';
 const GET_EVENTS = 'event/GET_EVENTS';
+const GET_ONE_EVENT = 'event/GET_ONE_EVENT';
 
 export const get_events = (events) => {
     return {
         type: GET_EVENTS,
         payload: events
+    }
+}
+
+export const get_one_event = (event) => {
+    return {
+        type: GET_ONE_EVENT,
+        payload: event
     }
 }
 
@@ -16,12 +24,25 @@ export const create_event = (events) => {
 }
 
 
+
+
 export const GetEvents = () => async (dispatch) => {
     const response = await fetch('/api/event/');
 
     if (response.ok) {
         const data = await response.json();
         dispatch(get_events(data.events));
+        return response
+    }
+
+};
+
+export const GetOneEvent = (id) => async (dispatch) => {
+    const response = await fetch(`/api/event/${id}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(get_one_event(data.event));
         return response
     }
 
@@ -54,6 +75,10 @@ export default function eventReducer(state = initialState, action) {
         case GET_EVENTS:
             newState = Object.assign({}, state);
             newState.events = action.payload;
+            return newState;
+        case GET_ONE_EVENT:
+            newState = Object.assign({}, state);
+            newState.currentevent = action.payload;
             return newState;
         default:
             return state;

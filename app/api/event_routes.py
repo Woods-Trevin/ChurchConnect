@@ -43,3 +43,10 @@ def events():
             return jsonify('Created New Event')
         else:
             return jsonify('Bad Data')
+
+
+@event_routes.route('/<int:id>', methods=['GET'])
+def get_one_event(id):
+    currentEvent = Event.query.get(id)
+    print(currentEvent.to_dict())
+    return {'event': currentEvent.to_dict()}
