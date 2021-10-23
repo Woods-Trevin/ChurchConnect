@@ -1,0 +1,21 @@
+.EventDisplay_outmost_container {
+    height: 700px;
+    border: 2px solid black;
+}
+
+/*-----------------------------------------*/
+
+.eventDisplay_img_one {
+    height: 200px;
+    width: 300px;
+}
+
+.eventDisplay_img_two {
+    height: 200px;
+    width: 300px;
+}
+
+.eventDisplay_img_three {
+    height: 200px;
+    width: 300px;
+}

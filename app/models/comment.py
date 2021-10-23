@@ -19,3 +19,10 @@ class Comment(db.Model):
     announcements = db.relationship('Announcement', back_populates='comments')
     events = db.relationship('Event', back_populates='comments')
     replies = db.relationship('Reply', back_populates='comments')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'text': self.text,
+            'userId': self.user_id,
+        }

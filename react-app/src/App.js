@@ -14,25 +14,23 @@ import Footer from './components/Footer';
 import CreateEventComponent from './components/CreateEventComponent';
 import CreateAnnouncementComponent from './components/CreateAnnouncementComponent';
 import Profile from './components/Profile';
+import EventDisplay from './components/EventDisplay';
+import AnnouncementDisplay from './components/AnnouncementDisplay';
+import UpdateEventComponent from './components/UpdateEventComponent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [updateEvent, setUpdateEvent] = useState(false);
+
   const dispatch = useDispatch();
-  // const user = useSelector(state => state.session.user)
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-    // if (!user) {
-    //   setLoggedIn(false)
-    //   console.log(loggedIn)
-    // } else {
-    //   setLoggedIn(true)
-    //   console.log(loggedIn)
-    // }
+
   }, [dispatch]);
 
 
@@ -74,6 +72,15 @@ function App() {
         </Route>
         <Route path='/profile' exact={true} >
           <Profile />
+          <Footer />
+        </Route>
+        <Route path='/event/:eventId' exact={true} >
+          {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} />}
+          {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} />}
+          <Footer />
+        </Route>
+        <Route path='/announcement/:announcementId' exact={true} >
+          <AnnouncementDisplay />
           <Footer />
         </Route>
       </Switch>

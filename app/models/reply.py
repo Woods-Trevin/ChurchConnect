@@ -16,3 +16,10 @@ class Reply(db.Model):
     #Relationships
     user = db.relationship('User', back_populates='replies')
     comments = db.relationship('Comment', back_populates='replies')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'text': self.text,
+            'userId': self.user_id,
+        }

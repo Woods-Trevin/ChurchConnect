@@ -13,9 +13,7 @@ function User({ setLoggedIn }) {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user);
-      // if (user) {
-      //   setLoggedIn(true);
-      // }
+
     })();
   }, [userId, setLoggedIn]);
 

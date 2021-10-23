@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import * as eventActions from '../../store/event'
 import './CreateEventComponent.css'
 
@@ -19,6 +20,7 @@ export default function CreateEventComponent() {
 
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
 
     function handleEventSubmit(e) {
@@ -34,10 +36,11 @@ export default function CreateEventComponent() {
             endDate: eventEndDate,
             startTime: eventStartTime,
             endTime: eventEndTime,
-            userId: user?.id
+            idx: user.id
 
         }
         dispatch(eventActions.CreateEvent(payload))
+        history.push('/')
     }
 
 

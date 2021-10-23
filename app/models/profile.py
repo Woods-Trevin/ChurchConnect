@@ -18,3 +18,13 @@ class Profile(db.Model):
     #Relationships
     user = db.relationship('User', back_populates='profile')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'profilePicture':self.profilePicture,
+            'location':self.location,
+            'homeChurch':self.home_church,
+            'bio':self.bio,
+            'userId':self.user_id,
+        }
+

@@ -24,3 +24,18 @@ class Event(db.Model):
     user = db.relationship('User', back_populates='events')
     comments = db.relationship('Comment', back_populates='events')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'imageURL': self.imageURL,
+            'imageURLTwo': self.imageURLTwo,
+            'imageURLThree': self.imageURLThree,
+            'title': self.title,
+            'description': self.description,
+            'startDate': str(self.startDate),
+            'endDate': str(self.endDate),
+            'startTime': str(self.startTime),
+            'endTime': str(self.endTime),
+            'userId': self.user_id,
+        }
+
