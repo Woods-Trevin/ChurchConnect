@@ -5,7 +5,7 @@ import * as announcementActions from '../../store/announcement'
 import * as eventActions from '../../store/event'
 import './DashboardComponent.css';
 
-export default function DashboardComponent() {
+export default function DashboardComponent({ setUpdateAnnouncement }) {
     const dispatch = useDispatch()
 
     const announcements = useSelector(state => state.announcement.announcements)
@@ -27,7 +27,7 @@ export default function DashboardComponent() {
                     <h1>Announcements</h1>
                 </div>
                 {announcements?.map((announcement) =>
-                    <Link to={`/announcement/${announcement.id}`}>
+                    <Link to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
                         <li>{announcement.imageURL}</li>
                         <li>{announcement.title}</li>
                         <li>{announcement.description}</li>

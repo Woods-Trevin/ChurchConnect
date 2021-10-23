@@ -61,7 +61,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <DashboardComponent />
+          <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
           <Footer />
         </Route>
         <Route path='/event' exact={true} >

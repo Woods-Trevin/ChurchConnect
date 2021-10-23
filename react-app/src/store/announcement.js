@@ -1,6 +1,8 @@
-const CREATE_ANNOUNCEMENT = 'announcement/CREATE_ANNOUNCEMENT'
-const GET_ANNOUNCEMENTS = 'announcement/GET_ANNOUNCEMENTS'
-const GET_ONE_ANNOUNCEMENT = 'announcement/GET_ONE_ANNOUNCEMENT'
+const CREATE_ANNOUNCEMENT = 'announcement/CREATE_ANNOUNCEMENT';
+const GET_ANNOUNCEMENTS = 'announcement/GET_ANNOUNCEMENTS';
+const GET_ONE_ANNOUNCEMENT = 'announcement/GET_ONE_ANNOUNCEMENT';
+const PATCH_ANNOUNCEMENT = 'announcement/PATCH_ANNOUNCEMENT';
+const DELETE_ANNOUNCEMENT = 'announcement/DELETE_ANNOUNCEMENT';
 
 
 const create_announcement = (announcement) => {
@@ -20,6 +22,20 @@ const get_announcement = (announcements) => {
 const get_one_announcement = (announcement) => {
     return {
         type: GET_ONE_ANNOUNCEMENT,
+        payload: announcement
+    }
+}
+
+const patch_announcement = (announcement) => {
+    return {
+        type: PATCH_ANNOUNCEMENT,
+        payload: announcement
+    }
+}
+
+const delete_announcement = (announcement) => {
+    return {
+        type: DELETE_ANNOUNCEMENT,
         payload: announcement
     }
 }
@@ -61,6 +77,35 @@ export const GetOneAnnouncement = (id) => async (dispatch) => {
     }
 }
 
+export const PatchAnnouncement = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/announcement/${payload.idx}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+
+
+    if (response.ok) {
+        const data = await response.json();
+        // console.log(data.announcements);
+        dispatch(patch_announcement(data));
+        return response;
+    }
+}
+
+export const DeleteAnnouncement = (id) => async (dispatch) => {
+    const response = await fetch(`/api/announcement/${id}`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        // console.log(data.announcements);
+        dispatch(delete_announcement(data));
+        return response;
+    }
+}
+
 const initialState = { announcements: null }
 export default function announcementReducer(state = initialState, action) {
     let newState;
@@ -77,6 +122,10 @@ export default function announcementReducer(state = initialState, action) {
             newState = Object.assign({}, state);
             newState.current_announcement = action.payload;
             return newState;
+        case PATCH_ANNOUNCEMENT:
+            return state;
+        case DELETE_ANNOUNCEMENT:
+            return state;
         default:
             return state;
     }

@@ -15,12 +15,18 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
 
     useEffect(() => {
         dispatch(announcementActions.GetOneAnnouncement(announcementId))
-        setUpdateAnnouncement(false);
+        // setUpdateAnnouncement(false);
     }, [dispatch])
 
     function handleAnnouncementUpdate(e) {
         e.preventDefault();
         setUpdateAnnouncement(true);
+    }
+
+    function handleAnnouncementDeletion(e) {
+        e.preventDefault();
+        dispatch(announcementActions.DeleteAnnouncement(announcementId));
+        // console.log('This Works!!!')
     }
 
 
@@ -31,7 +37,7 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
             </h1>
 
             <div>
-                {/* <img src={current_announcement?.imageURL} /> */}
+                {/* <img className="announcementDisplay_img" src={current_announcement?.imageURL} /> */}
                 {current_announcement?.imageURL}
             </div>
             <div>
@@ -40,12 +46,16 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
             <div>
                 {current_announcement?.description}
             </div>
-            <li onClick={(e) => handleAnnouncementUpdate(e)} >
-                Update
-            </li>
-            <li>
-                Delete
-            </li>
+            <div>
+                <li onClick={(e) => handleAnnouncementUpdate(e)} >
+                    Update
+                </li>
+            </div>
+            <div>
+                <li onClick={(e) => handleAnnouncementDeletion(e)} >
+                    Delete
+                </li>
+            </div>
         </div>
     )
 }

@@ -44,15 +44,35 @@ def get_one_announcement(id):
 
 
 @announcement_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
 def update_announcement(id):
     form = AnnouncementForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    # print(form.data['imageURL'],'--------------------------')
+    # print(form.data['title'],'--------------------------')
+    # print(form.data['description'],'--------------------------')
+
     announcement_to_patch = Announcement.query.get(id)
     if request.method == 'PATCH':
         if form.validate_on_submit():
-        # announcement_to_patch.imageURL = form.data['imageURL']
-        # announcement_to_patch.title = form.data['title']
-        # announcement_to_patch.description = form.data['description']
-        # db.session.commit()
+            announcement_to_patch.imageURL = form.data['imageURL']
+            announcement_to_patch.title = form.data['title']
+            announcement_to_patch.description = form.data['description']
+            db.session.commit()
             return jsonify('announcement patched')
+    else:
+        return jsonify('Bad Data')
+
+
+@announcement_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_announcement(id):
+    current_announcement = Announcement.query.filter(Announcement.id == id).delete()
+    db.session.commit()
+    if current_announcement:
+        return jsonify('Successfully Deleted Announcement')
+    else:
+        return jsonify('Invalid ID')
+
+        
