@@ -31,38 +31,40 @@ export default function EventDisplay({ setUpdateEvent }) {
 
     return (
         <div className="EventDisplay_outmost_container">
-            <h1>
-                Event Display Component
-            </h1>
-            <div>
-                <div>
-                    <div>
+            <div className="EventDisplay_inner_container">
+                <div className="EventDisplay_item_container" >
+                    <div className="EventDisplay_image_container" >
                         {/* {event?.imageURL} */}
                         <img className="eventDisplay_img_one" src={event?.imageURL} alt="alt" />
                         <img className="eventDisplay_img_two" src={event?.imageURLTwo} alt="alt" />
                         <img className="eventDisplay_img_three" src={event?.imageURLThree} alt="alt" />
                     </div>
-                    <div>
+                    <div className="eventDisplay_title" >
                         {event?.title}
                     </div>
-                    <div>
+                    <div className="eventDisplay_description" >
                         {event?.description}
                     </div>
-                    <div>
+                    <div className="eventDisplay_startDate" >
                         {event?.startDate}
                     </div>
-                    <div>
+                    <div className="eventDisplay_endDate">
                         {event?.endDate}
                     </div>
-                    <div>
+                    <div className="eventDisplay_startTime">
                         {event?.startTime}
                     </div>
-                    <div>
+                    <div className="eventDisplay_endTime" >
                         {event?.endTime}
                     </div>
                 </div>
-                <li className="eventDisplay_delete_btn" onClick={(e) => handleDelete(e)}>Delete</li>
-                <li className="eventDisplay_update_btn" onClick={(e) => handleUpdate(e)}>Update</li>
+                <div className="eventDisplay_btn_ctnr">
+                    <li className="eventDisplay_delete_btn" onClick={(e) => handleDelete(e)}>Delete</li>
+                    <li className="eventDisplay_update_btn" onClick={(e) => handleUpdate(e)}>Update</li>
+                </div>
+            </div>
+            <div className="eventDisplay_commentreply_ctnr">
+                <h1>Comments/Replies</h1>
             </div>
         </div>
     )

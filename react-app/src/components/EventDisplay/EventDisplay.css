@@ -1,9 +1,26 @@
 .EventDisplay_outmost_container {
-    height: 700px;
-    border: 2px solid black;
+    height: 100%;
+    /* border: 4px solid red; */
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid black;
+}
+
+
+.EventDisplay_inner_container {
+    border: 4px solid black;
+    width: 800px;
+}
+
+.EventDisplay_item_container {
+    /* border: 4px solid yellow; */
 }
 
 /*-----------------------------------------*/
+
+.EventDisplay_image_container {
+
+}
 
 .eventDisplay_img_one {
     height: 200px;
@@ -19,3 +36,74 @@
     height: 200px;
     width: 300px;
 }
+
+/*-----------------------------------------*/
+
+.eventDisplay_title {
+
+}
+
+.eventDisplay_description {
+
+}
+
+.eventDisplay_startDate {
+
+}
+
+.eventDisplay_endDate {
+
+}
+
+.eventDisplay_startTime {
+
+}
+
+.eventDisplay_endTime {
+
+}
+
+
+/*-----------------------------------------*/
+
+.eventDisplay_btn_ctnr {
+    /* border: 6px solid green; */
+    display: flex;
+    gap: 50px;
+}
+
+.eventDisplay_delete_btn {
+    border: 2px solid black;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+}
+
+.eventDisplay_update_btn {
+    border: 2px solid black;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+
+}
+
+/*-----------------------------------------*/
+
+.eventDisplay_commentreply_ctnr {
+    border: 2px solid black;
+    width: 400px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------*/

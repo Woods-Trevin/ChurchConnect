@@ -5,7 +5,7 @@ import * as announcementActions from '../../store/announcement'
 import * as eventActions from '../../store/event'
 import './DashboardComponent.css';
 
-export default function DashboardComponent() {
+export default function DashboardComponent({ setUpdateAnnouncement }) {
     const dispatch = useDispatch()
 
     const announcements = useSelector(state => state.announcement.announcements)
@@ -27,31 +27,32 @@ export default function DashboardComponent() {
                     <h1>Announcements</h1>
                 </div>
                 {announcements?.map((announcement) =>
-                    <Link to={`/announcement/${announcement.id}`}>
-                        <li>{announcement.imageURL}</li>
-                        <li>{announcement.title}</li>
-                        <li>{announcement.description}</li>
-                        <p>-------------------------------------------</p>
+                    <Link className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
+                        <div className='DashboardAnnouncements_items_wrapper'>
+                            {/* <li className='DashboardAnnouncement_item url'>{announcement.imageURL}</li> */}
+                            <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />
+                            <li className='DashboardAnnouncement_item title'>{announcement.title}</li>
+                            <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
+                        </div>
                     </Link>
                 )}
             </div>
             <div className="Dashboard_event_ctnr" >
                 <div className="DashboardEvents_title_ctnr">
-                    <h1>Events</h1>
+                    <h1 className="DashboardEvents_title">Events</h1>
                 </div>
-                <div className="DashboardEvents_items_ctnr" >
+                <div className="DashboardEvents_items_outter_ctnr" >
                     {events?.map(event =>
-                        <Link to={`/event/${event.id}`}>
-                            <li>{event.imageURL}</li>
-                            <li>{event.imageURLTwo}</li>
-                            <li>{event.imageURLThree}</li>
-                            <li>{event.title}</li>
-                            <li>{event.description}</li>
-                            <li>{event.startDate}</li>
-                            <li>{event.endDate}</li>
-                            <li>{event.startTime}</li>
-                            <li>{event.endTime}</li>
-                            <p>------------------------------------------</p>
+                        <Link className="DashboardEvents_items_wrapper" to={`/event/${event.id}`}>
+                            <img className="DashboardEvents_item imgOne" src={event.imageURL} />
+                            <img className="DashboardEvents_item imgTwo" src={event.imageURLTwo} />
+                            <img className="DashboardEvents_item imgThree" src={event.imageURLThree} />
+                            <li className="DashboardEvents_item title" >{event.title}</li>
+                            <li className="DashboardEvents_item description" >{event.description}</li>
+                            <li className="DashboardEvents_item startDate" >{event.startDate}</li>
+                            <li className="DashboardEvents_item endDate" >{event.endDate}</li>
+                            <li className="DashboardEvents_item startTime" >{event.startTime}</li>
+                            <li className="DashboardEvents_item endTime" >{event.endTime}</li>
                         </Link>
                     )}
                 </div>

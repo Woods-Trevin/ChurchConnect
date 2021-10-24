@@ -1,30 +1,124 @@
 .Dashboard_outmost_ctnr {
     height: 700px;
-    border-bottom: 2px solid black;
+    border-bottom: 5px solid red;
     display: flex;
+    gap: 20px;
 }
 
 /*---------------------------------------------*/
 
 .Dashboard_announcement_ctnr {
-    border: 2px solid black;
+    border: 4px solid orange;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 580px;
+    overflow: scroll;
 }
 
+.DashboardAnnouncements_link {
+    text-decoration: none;
+}
+
+.DashboardAnnouncements_items_wrapper {
+    border: 2px solid black;
+    width: 400px;
+    color: black;
+    
+}
+
+.DashboardAnnouncement_item.img {
+    height: 200px;
+    width: 100%;
+    
+}
+
+.DashboardAnnouncement_item.title {
+    list-style: none;
+    font-size:20px;
+    width: 100%;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+
+
+.DashboardAnnouncement_item.description {
+    list-style: none;
+
+}
 
 
 
 /*----------------------------------------------*/
 
 .Dashboard_event_ctnr {
-    border: 2px solid black;
+    border: 6px solid yellow;
     /* display: flex; */
+    width: 100%;
 }
+
+/*----------------------------------------------*/
 
 .DashboardEvents_title_ctnr {
 
 }
 
-.DashboardEvents_items_ctnr {
-    /* border: 2px solid red; */
+.DashboardEvents_title {
+
+}
+
+/*----------------------------------------------*/
+
+.DashboardEvents_items_outter_ctnr {
+    border: 2px solid black;
     display: flex;
+    width: 600px;
+}
+
+.DashboardEvents_items_wrapper {
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+
+.DashboardEvents_item.imgOne {
+    width: 200px;
+    height: 100px;
+}
+
+.DashboardEvents_item.imgTwo {
+    width: 200px;
+    height: 100px;
+}
+
+.DashboardEvents_item.imgThree {
+    width: 200px;
+    height: 100px;
+}
+
+.DashboardEvents_item.title {
+    font-size: 20px;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+.DashboardEvents_item.description {
+
+}
+
+.DashboardEvents_item.startDate {
+
+}
+
+.DashboardEvents_item.endDate {
+
+}
+
+.DashboardEvents_item.startTime {
+
+}
+
+.DashboardEvents_item.endTime {
+
 }

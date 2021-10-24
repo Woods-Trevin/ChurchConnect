@@ -17,11 +17,13 @@ import Profile from './components/Profile';
 import EventDisplay from './components/EventDisplay';
 import AnnouncementDisplay from './components/AnnouncementDisplay';
 import UpdateEventComponent from './components/UpdateEventComponent';
+import UpdateAnnouncementComponent from './components/UpdateAnnouncementComponent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [updateEvent, setUpdateEvent] = useState(false);
+  const [updateAnnouncement, setUpdateAnnouncement] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -59,7 +61,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <DashboardComponent />
+          <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
           <Footer />
         </Route>
         <Route path='/event' exact={true} >
@@ -80,7 +82,8 @@ function App() {
           <Footer />
         </Route>
         <Route path='/announcement/:announcementId' exact={true} >
-          <AnnouncementDisplay />
+          {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />}
+          {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />}
           <Footer />
         </Route>
       </Switch>
