@@ -4,12 +4,12 @@
 
 
 .comments_view {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     height: 600px;
 }
 
 .comment_textField_wrapper {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     display: flex;
     height: 100%;
 }

@@ -7,6 +7,8 @@ import './CommentComponent.css';
 export default function CommentComponent() {
     const dispatch = useDispatch()
     const currentEvent = useSelector(state => state.event.currentevent)
+    const currentEventComments = useSelector(state => state.event.currentevent?.comments)
+    console.log(typeof (currentEventComments))
     const user = useSelector(state => state.session.user)
     console.log(currentEvent)
 
@@ -36,14 +38,16 @@ export default function CommentComponent() {
     return (
         <div className="comments_outmost_ctnr">
             <div className="comments_view">
-
+                {currentEventComments?.map(comment =>
+                    <li>{comment?.text}</li>
+                )}
             </div>
             <form onSubmit={handleCommentCreation}>
                 <div className="comment_textField_wrapper">
                     <textarea
                         name='commentTextField'
                         value={commentTextFieldVal}
-                        rows="5"
+                        rows="4"
                         columns="30"
                         placeholder="Write a comment"
                         className="comment_textField"
