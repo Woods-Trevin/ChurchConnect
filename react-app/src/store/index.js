@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import announcementReducer from './announcement';
 import eventReducer from './event';
+import commentReducer from './comment';
 
 const rootReducer = combineReducers({
   session,
   announcement: announcementReducer,
   event: eventReducer,
+  comment: commentReducer,
 
 });
 

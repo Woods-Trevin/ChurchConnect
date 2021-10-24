@@ -37,5 +37,6 @@ class Event(db.Model):
             'startTime': str(self.startTime),
             'endTime': str(self.endTime),
             'userId': self.user_id,
+            'comments': [comment.to_dict() for comment in self.comments]
         }
 

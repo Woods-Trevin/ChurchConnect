@@ -25,4 +25,5 @@ class Comment(db.Model):
             'id': self.id,
             'text': self.text,
             'userId': self.user_id,
+            'replies': [reply.to_dict() for reply in self.replies]
         }
