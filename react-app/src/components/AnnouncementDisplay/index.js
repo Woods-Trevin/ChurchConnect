@@ -31,30 +31,33 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
 
 
     return (
-        <div className="announcementDisplay_outmost_ctnr">
-            <h1>
-                Announcement Display Component
-            </h1>
-
-            <div>
-                {/* <img className="announcementDisplay_img" src={current_announcement?.imageURL} /> */}
-                {current_announcement?.imageURL}
+        <div className="announcementDisplay_outmost_ctnr" >
+            <div className="announcementDisplay_inner_ctnr" >
+                <div className="announcementDisplay_img_ctnr" >
+                    <img className="announcementDisplay_img" src={current_announcement?.imageURL} />
+                    {/* {current_announcement?.imageURL} */}
+                </div>
+                <div className="announcementDisplay_title" >
+                    {current_announcement?.title}
+                </div>
+                <div className="announcementDisplay_description" >
+                    {current_announcement?.description}
+                </div>
+                <div className="announcementDisplay_btn_ctnr">
+                    <div className="announcementDisplay_update_btn" >
+                        <li className="announcementDisplay_btn" onClick={(e) => handleAnnouncementUpdate(e)} >
+                            Update
+                        </li>
+                    </div>
+                    <div className="announcementDisplay_delete_btn" >
+                        <li className="announcementDisplay_btn" onClick={(e) => handleAnnouncementDeletion(e)} >
+                            Delete
+                        </li>
+                    </div>
+                </div>
             </div>
-            <div>
-                {current_announcement?.title}
-            </div>
-            <div>
-                {current_announcement?.description}
-            </div>
-            <div>
-                <li onClick={(e) => handleAnnouncementUpdate(e)} >
-                    Update
-                </li>
-            </div>
-            <div>
-                <li onClick={(e) => handleAnnouncementDeletion(e)} >
-                    Delete
-                </li>
+            <div className="announcementDisplay_commentreplies_ctnr">
+                <h1>Comments/Replies</h1>
             </div>
         </div>
     )
