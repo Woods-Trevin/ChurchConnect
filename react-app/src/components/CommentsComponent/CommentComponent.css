@@ -1,0 +1,26 @@
+.comments_outmost_ctnr {
+    background-color: silver;
+}
+
+
+.comments_view {
+    border: 2px solid black;
+    height: 600px;
+}
+
+.comment_textField_wrapper {
+    border: 2px solid black;
+    display: flex;
+    height: 100%;
+}
+
+.comment_textField {
+    width: 100%;
+    height: 100%;
+}
+
+.post_comment_btn {
+    /* border: 3px solid green; */
+    height: 100%;
+    width: 60px;
+}

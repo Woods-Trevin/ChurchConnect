@@ -34,8 +34,10 @@ export default function CommentComponent() {
 
 
     return (
-        <div>
-            <h1>Comment Component</h1>
+        <div className="comments_outmost_ctnr">
+            <div className="comments_view">
+
+            </div>
             <form onSubmit={handleCommentCreation}>
                 <div className="comment_textField_wrapper">
                     <textarea
@@ -47,9 +49,9 @@ export default function CommentComponent() {
                         className="comment_textField"
                         onChange={(e) => setCommentTextFieldVal(e.target.value)}
                     />
-                </div>
-                <div>
-                    <button className="" type="submit">Submit</button>
+                    <div>
+                        <button className="post_comment_btn" type="submit">Post</button>
+                    </div>
                 </div>
             </form>
         </div>
