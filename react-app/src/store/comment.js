@@ -1,10 +1,26 @@
 const CREATE_COMMENT = 'comment/CREATE_COMMENT';
+const UPDATE_COMMENT = 'comment/UPDATE_COMMENT';
+const DELETE_COMMENT = 'comment/DELETE_COMMENT';
 
 
 export const create_comment = (comments) => {
     return {
         type: CREATE_COMMENT,
         payload: comments
+    }
+}
+
+export const update_comment = (comment) => {
+    return {
+        type: UPDATE_COMMENT,
+        payload: comment
+    }
+}
+
+export const delete_comment = (comment) => {
+    return {
+        type: DELETE_COMMENT,
+        payload: comment
     }
 }
 
@@ -24,12 +40,48 @@ export const CreateComment = (payload) => async (dispatch) => {
     }
 }
 
+export const UpdateComment = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/comment/${payload.idx}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+
+    });
+
+    if (response.ok) {
+        const data = response.json();
+        dispatch(update_comment(data));
+        return response;
+    }
+}
+
+export const DeleteComment = (id) => async (dispatch) => {
+    console.log(id)
+    const response = await fetch(`/api/comment/${id}`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        const data = response.json();
+        dispatch(delete_comment(data.comments));
+        return response;
+    }
+}
+
 
 const initialState = { comments: null };
 export default function commentReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case CREATE_COMMENT:
+            newState = Object.assign({}, state);
+            newState.comments = action.payload;
+            return newState;
+        case UPDATE_COMMENT:
+            newState = Object.assign({}, state);
+            newState.updatedComment = action.payload;
+            return newState;
+        case DELETE_COMMENT:
             newState = Object.assign({}, state);
             newState.comments = action.payload;
             return newState;

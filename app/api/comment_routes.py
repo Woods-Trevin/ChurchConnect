@@ -32,3 +32,27 @@ def create_comment():
             db.session.add(created_comment)
             db.session.commit()
             return jsonify("COMMENT POST VALID")
+
+
+@comment_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def update_comment(id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if request.method == 'PATCH':
+        comment_to_change = Comment.query.get(id)
+        if form.validate_on_submit():
+            comment_to_change.text = form.data['text']
+            db.session.commit()
+            return jsonify("Updated Comment")
+
+
+@comment_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+    comment_to_delete = Comment.query.filter(Comment.id == id).delete()
+    db.session.commit()
+    comments = Comment.query.all()
+    return {'comments': [comment.to_dict() for comment in comments]}
+

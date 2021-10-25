@@ -2,11 +2,38 @@
     background-color: silver;
 }
 
+/*----------------------------------------------------------------*/
+
 
 .comments_view {
     /* border: 2px solid black; */
     height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
+
+.comments_in_view_ctnr {
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+.comments_in_view {
+    list-style: none;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+
+}
+
+
+/*----------------------------------------------------------------*/
 
 .comment_textField_wrapper {
     /* border: 2px solid black; */
