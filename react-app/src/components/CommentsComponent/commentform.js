@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import * as commentActions from '../../store/comment'
 import './CommentComponent.css'
 
 export default function CommentForm({ commentId, commentText }) {
     const [updateCommentVal, setUpdateCommentVal] = useState(commentText)
+    const [reload, setReload] = useState(false)
     console.log(commentId)
 
     const dispatch = useDispatch()
@@ -16,7 +17,17 @@ export default function CommentForm({ commentId, commentText }) {
             idx: commentId,
         }
         dispatch(commentActions.UpdateComment(payload))
+
+        setReload(true)
+
     }
+
+    useEffect(() => {
+        if (reload) {
+            window.location.reload()
+            setReload(false)
+        }
+    }, [dispatch, reload])
 
     return (
         <div>

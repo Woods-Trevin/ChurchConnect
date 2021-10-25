@@ -53,6 +53,9 @@ def update_comment(id):
 def delete_comment(id):
     comment_to_delete = Comment.query.filter(Comment.id == id).delete()
     db.session.commit()
-    comments = Comment.query.all()
+    print('----------------------------------------------------------------', request.json['eventId'])
+    comments = Comment.query.filter(Comment.event_id == request.json['eventId']).all()
+    print([comment.to_dict() for comment in comments])
     return {'comments': [comment.to_dict() for comment in comments]}
+    # return jsonify('Delete comments')
 

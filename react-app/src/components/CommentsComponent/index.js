@@ -16,9 +16,10 @@ export default function CommentComponent() {
 
     const [commentTextFieldVal, setCommentTextFieldVal] = useState()
     const [hide, setHide] = useState(false);
-    const [commentId, setCommentId] = useState(0)
-    const [commentText, setCommentText] = useState(0)
+    const [commentId, setCommentId] = useState()
+    const [commentText, setCommentText] = useState()
     // const [commentEventId, setCommentEventId] = useState()
+    const [reload, setReload] = useState(false)
 
     // console.log(commentTextFieldVal)
     function handleCommentCreation(e) {
@@ -31,6 +32,7 @@ export default function CommentComponent() {
         }
         console.log(payload, "CREATE ACTION")
         dispatch(commentActions.CreateComment(payload))
+        setReload(true)
     }
 
     // function handleCommentDeletion(e) {
@@ -41,7 +43,11 @@ export default function CommentComponent() {
 
     useEffect(() => {
         setHide(true)
-    }, [dispatch])
+        if (reload) {
+            window.location.reload()
+            setReload(false)
+        }
+    }, [dispatch, reload])
     // console.log(commentId)
     // console.log(commentText)
 
@@ -55,7 +61,8 @@ export default function CommentComponent() {
                             user?.id === comment.userId &&
                             <div className="comments_btns">
                                 <li onClick={(e) => {
-                                    dispatch(commentActions.DeleteComment(comment?.id))
+                                    dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
+                                    setReload(true)
                                 }}>
                                     delete
                                 </li>

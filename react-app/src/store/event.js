@@ -1,8 +1,12 @@
+import { DELETE_COMMENT } from './comment'
+
+
 const CREATE_EVENT = 'event/CREATE_EVENT';
 const GET_EVENTS = 'event/GET_EVENTS';
 const GET_ONE_EVENT = 'event/GET_ONE_EVENT';
 const PATCH_EVENT = 'event/PATCH_EVENT';
 const DELETE_EVENT = 'event/DELETE_EVENT';
+
 
 export const get_events = (events) => {
     return {
@@ -108,7 +112,7 @@ export const DeleteEvent = (id) => async (dispatch) => {
 };
 
 
-const initialState = { events: null }
+const initialState = { events: null, currentevent: null };
 export default function eventReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
@@ -126,6 +130,10 @@ export default function eventReducer(state = initialState, action) {
             return newState;
         case DELETE_EVENT:
             return state;
+        case DELETE_COMMENT:
+            newState = Object.assign({}, state);
+            newState.currentevent = action.payload;
+            return newState;
         default:
             return state;
     }
