@@ -5,7 +5,6 @@ import './CommentComponent.css'
 
 export default function CommentForm({ commentId, commentText }) {
     const [updateCommentVal, setUpdateCommentVal] = useState(commentText)
-    const [reload, setReload] = useState(false)
     console.log(commentId)
 
     const dispatch = useDispatch()
@@ -18,16 +17,13 @@ export default function CommentForm({ commentId, commentText }) {
         }
         dispatch(commentActions.UpdateComment(payload))
 
-        setReload(true)
+
 
     }
 
     useEffect(() => {
-        if (reload) {
-            window.location.reload()
-            setReload(false)
-        }
-    }, [dispatch, reload])
+
+    }, [dispatch])
 
     return (
         <div>

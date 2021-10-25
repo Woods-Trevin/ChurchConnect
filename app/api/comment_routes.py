@@ -12,14 +12,15 @@ def create_comment():
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print(form.data['text'], '--------------------------')
-    print(request.json['eventId'], '--------------------------')
-    print(request.json['announcementId'], '--------------------------')
-    print(request.json['userId'], '--------------------------')
+    # print(form.data['text'], '--------------------------')
+    # print(request.json['eventId'], '--------------------------')
+    # print(request.json['announcementId'], '--------------------------')
+    # print(request.json['userId'], '--------------------------')
 
 
     if request.method == "GET":
-        return jsonify('GET COMMENTS')
+        comments = Comment.query.all()
+        return {'comments': [comment.to_dict() for comment in comments]}
     
     elif request.method == "POST":
         if form.validate_on_submit():
@@ -31,7 +32,8 @@ def create_comment():
             )
             db.session.add(created_comment)
             db.session.commit()
-            return jsonify("COMMENT POST VALID")
+            comments = Comment.query.all()
+            return {'comments': [comment.to_dict() for comment in comments]}
 
 
 @comment_routes.route('/<int:id>', methods=['PATCH'])
@@ -45,7 +47,8 @@ def update_comment(id):
         if form.validate_on_submit():
             comment_to_change.text = form.data['text']
             db.session.commit()
-            return jsonify("Updated Comment")
+            comments = Comment.query.all()
+            return {'comments': [comment.to_dict() for comment in comments]}
 
 
 @comment_routes.route('/<int:id>', methods=['DELETE'])
@@ -54,7 +57,7 @@ def delete_comment(id):
     comment_to_delete = Comment.query.filter(Comment.id == id).delete()
     db.session.commit()
     print('----------------------------------------------------------------', request.json['eventId'])
-    comments = Comment.query.filter(Comment.event_id == request.json['eventId']).all()
+    comments = Comment.query.all()
     print([comment.to_dict() for comment in comments])
     return {'comments': [comment.to_dict() for comment in comments]}
     # return jsonify('Delete comments')

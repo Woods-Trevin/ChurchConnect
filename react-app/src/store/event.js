@@ -130,10 +130,10 @@ export default function eventReducer(state = initialState, action) {
             return newState;
         case DELETE_EVENT:
             return state;
-        case DELETE_COMMENT:
-            newState = Object.assign({}, state);
-            newState.currentevent = action.payload;
-            return newState;
+        // case DELETE_COMMENT:
+        //     newState = Object.assign({}, state);
+        //     newState.currentevent = action.payload;
+        //     return newState;
         default:
             return state;
     }

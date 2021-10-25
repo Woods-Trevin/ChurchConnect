@@ -65,7 +65,7 @@ export default function EventDisplay({ setUpdateEvent }) {
                 </div>
             </div>
             <div className="eventDisplay_commentreply_ctnr">
-                <CommentComponent />
+                <CommentComponent eventId={eventId} />
             </div>
         </div>
     )
