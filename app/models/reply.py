@@ -22,4 +22,5 @@ class Reply(db.Model):
             'id': self.id,
             'text': self.text,
             'userId': self.user_id,
+            'comment_id': self.comment_id,
         }

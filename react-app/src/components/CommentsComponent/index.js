@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import * as commentActions from '../../store/comment'
+import * as replyActions from '../../store/reply'
 import './CommentComponent.css';
 import CommentForm from "./commentform";
 import Modal from '../Modal'
@@ -8,6 +9,17 @@ import Modal from '../Modal'
 
 export default function CommentComponent({ eventId, announcementId }) {
     const dispatch = useDispatch()
+    const [commentTextFieldVal, setCommentTextFieldVal] = useState("")
+    const [hideCommentModal, setHideCommentModal] = useState(false);
+    const [commentId, setCommentId] = useState()
+    const [replyCommentId, setReplyCommentId] = useState()
+    const [commentText, setCommentText] = useState("")
+    const [replyText, setReplyText] = useState("")
+    const [allowReply, setAllowReply] = useState(false)
+    const [viewReplies, setViewReplies] = useState(false)
+    // const [viewReplyLabel, setViewReplyLabel] = useState(true)
+
+
     console.log(eventId, '---------------EVENT ID----------')
     console.log(announcementId, '---------------Announcement ID----------')
     const currentEvent = useSelector(state => state.event.currentevent)
@@ -21,15 +33,15 @@ export default function CommentComponent({ eventId, announcementId }) {
 
     const user = useSelector(state => state.session.user)
 
+    const replies = useSelector(state => state.reply.replies)
+    console.log(replies)
+    const currentCommentReplies = replies?.filter(reply => reply.comment_id === replyCommentId)
+    console.log(currentCommentReplies, '---------------current comment replies')
 
-    const [commentTextFieldVal, setCommentTextFieldVal] = useState("")
-    const [hide, setHide] = useState(false);
-    const [commentId, setCommentId] = useState()
-    const [commentText, setCommentText] = useState()
-    const [replyText, setReplyText] = useState()
-    const [allowReply, setAllowReply] = useState(false)
-    const [viewReplies, setViewReplies] = useState(false)
 
+
+
+    console.log(replyCommentId)
 
     function handleEventCommentCreation(e) {
         e.preventDefault();
@@ -63,15 +75,23 @@ export default function CommentComponent({ eventId, announcementId }) {
 
     function handleReplyCreation(e) {
         e.preventDefault();
+        const payload = {
+            text: replyText,
+            commentId: replyCommentId,
+            userId: user?.id,
+        }
+        dispatch(replyActions.CreateReply(payload))
         setAllowReply(false);
+
     }
 
 
 
     useEffect(() => {
-        setHide(true)
+        setHideCommentModal(true)
 
         dispatch(commentActions.GetComments())
+        dispatch(replyActions.GetReplies())
     }, [dispatch])
     // console.log(commentId)
     // console.log(commentText)
@@ -95,7 +115,7 @@ export default function CommentComponent({ eventId, announcementId }) {
                                             Delete
                                         </li>
                                         <li className="eventComment_edit_btn" onClick={() => {
-                                            setHide(false)
+                                            setHideCommentModal(false)
                                             setCommentId(comment?.id)
                                             setCommentText(comment?.text)
                                         }} >
@@ -106,34 +126,51 @@ export default function CommentComponent({ eventId, announcementId }) {
 
                             </div>
                             <div className="replies_outmost_ctnr">
-                                {!viewReplies && <li className="viewReplies_text" onClick={() => { setViewReplies(true) }}> View Replies </li>}
-                                {viewReplies &&
-                                    <div className="replies_inner_ctnr">
-                                        <li className="hideReplies_text" onClick={() => { setViewReplies(false) }}> Hide Replies </li>
-                                        <div className="replyItems_ctnr" >
-
-                                        </div>
-                                        <div className="allowReply_ctnr">
-                                            <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
-                                                Reply
+                                <li className="viewReplies_text" onClick={() => {
+                                    setViewReplies(true)
+                                    setReplyCommentId(comment?.id)
+                                    // setViewReplyLabel(false)
+                                }}>
+                                    View Replies
+                                </li>
+                                {replyCommentId === comment?.id && <div>
+                                    {viewReplies &&
+                                        <div className="replies_inner_ctnr">
+                                            <div className="replyItems_ctnr" >
+                                                {currentCommentReplies?.map((reply, idx) =>
+                                                    <div key={idx}>
+                                                        <li> {reply?.text} </li>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <li className="hideReplies_text" onClick={() => {
+                                                setViewReplies(false)
+                                                // setViewReplyLabel(true)
+                                            }}>
+                                                Hide Replies
                                             </li>
+                                            <div className="allowReply_ctnr">
+                                                <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
+                                                    Reply
+                                                </li>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                                <div>
-                                    {allowReply &&
-                                        <form onSubmit={handleReplyCreation}>
-                                            <input
-                                                type="text"
-                                                name="reply_textField"
-                                                value={replyText}
-                                                onChange={(e) => { setReplyText(e.target.value) }}
-                                            />
-                                            <button type="submit" > submit </button>
-                                        </form>
                                     }
-                                </div>
+                                    <div>
+                                        {allowReply &&
+                                            <form onSubmit={handleReplyCreation}>
+                                                <input
+                                                    type="text"
+                                                    name="reply_textField"
+                                                    value={replyText}
+                                                    onChange={(e) => { setReplyText(e.target.value) }}
+                                                />
+                                                <button type="submit" > submit </button>
+                                            </form>
+                                        }
+                                    </div>
+                                </div>}
 
                             </div>
                         </div>
@@ -156,7 +193,7 @@ export default function CommentComponent({ eventId, announcementId }) {
                                             Delete
                                         </li>
                                         <li className="eventComment_edit_btn" onClick={() => {
-                                            setHide(false)
+                                            setHideCommentModal(false)
                                             setCommentId(comment?.id)
                                             setCommentText(comment?.text)
                                         }} >
@@ -167,34 +204,51 @@ export default function CommentComponent({ eventId, announcementId }) {
 
                             </div>
                             <div className="replies_outmost_ctnr">
-                                {!viewReplies && <li className="viewReplies_text" onClick={() => { setViewReplies(true) }}> View Replies </li>}
-                                {viewReplies &&
-                                    <div className="replies_inner_ctnr">
-                                        <li className="hideReplies_text" onClick={() => { setViewReplies(false) }}> Hide Replies </li>
-                                        <div className="replyItems_ctnr" >
-
-                                        </div>
-                                        <div className="allowReply_ctnr">
-                                            <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
-                                                Reply
+                                <li className="viewReplies_text" onClick={() => {
+                                    setViewReplies(true)
+                                    setReplyCommentId(comment?.id)
+                                    // setViewReplyLabel(false)
+                                }}>
+                                    View Replies
+                                </li>
+                                {replyCommentId === comment?.id && <div>
+                                    {viewReplies &&
+                                        <div className="replies_inner_ctnr">
+                                            <div className="replyItems_ctnr" >
+                                                {currentCommentReplies?.map((reply, idx) =>
+                                                    <div key={idx}>
+                                                        <li> {reply?.text} </li>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <li className="hideReplies_text" onClick={() => {
+                                                setViewReplies(false)
+                                                // setViewReplyLabel(true)
+                                            }}>
+                                                Hide Replies
                                             </li>
+                                            <div className="allowReply_ctnr">
+                                                <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
+                                                    Reply
+                                                </li>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                                <div>
-                                    {allowReply &&
-                                        <form onSubmit={handleReplyCreation}>
-                                            <input
-                                                type="text"
-                                                name="reply_textField"
-                                                value={replyText}
-                                                onChange={(e) => { setReplyText(e.target.value) }}
-                                            />
-                                            <button type="submit" > submit </button>
-                                        </form>
                                     }
-                                </div>
+                                    <div>
+                                        {allowReply &&
+                                            <form onSubmit={handleReplyCreation}>
+                                                <input
+                                                    type="text"
+                                                    name="reply_textField"
+                                                    value={replyText}
+                                                    onChange={(e) => { setReplyText(e.target.value) }}
+                                                />
+                                                <button type="submit" > submit </button>
+                                            </form>
+                                        }
+                                    </div>
+                                </div>}
 
                             </div>
                         </div>
@@ -202,8 +256,8 @@ export default function CommentComponent({ eventId, announcementId }) {
                     </div>
                 )}
 
-                <Modal title='Edit This Comment' onClose={() => setHide(true)} hide={hide} >
-                    <CommentForm commentId={commentId} commentText={commentText} setHide={setHide} />
+                <Modal title='Edit This Comment' onClose={() => setHideCommentModal(true)} hideCommentModal={hideCommentModal} >
+                    <CommentForm commentId={commentId} commentText={commentText} setHideCommentModal={setHideCommentModal} />
                 </Modal>
             </div>
             {eventId && <form onSubmit={handleEventCommentCreation}>
