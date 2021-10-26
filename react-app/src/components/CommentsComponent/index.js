@@ -26,8 +26,9 @@ export default function CommentComponent({ eventId, announcementId }) {
     const [hide, setHide] = useState(false);
     const [commentId, setCommentId] = useState()
     const [commentText, setCommentText] = useState()
-    const [allowReplies, setAllowReplies] = useState(false)
-    const [showReplies, setShowReplies] = useState(false)
+    const [replyText, setReplyText] = useState()
+    const [allowReply, setAllowReply] = useState(false)
+    const [viewReplies, setViewReplies] = useState(false)
 
 
     function handleEventCommentCreation(e) {
@@ -58,6 +59,11 @@ export default function CommentComponent({ eventId, announcementId }) {
         console.log(payload, "CREATE ACTION")
         dispatch(commentActions.CreateComment(payload))
         setCommentTextFieldVal("")
+    }
+
+    function handleReplyCreation(e) {
+        e.preventDefault();
+        setAllowReply(false);
     }
 
 
@@ -97,14 +103,37 @@ export default function CommentComponent({ eventId, announcementId }) {
                                         </li>
                                     </div>
                                 }
-                                <div className="allowReply_ctnr">
-                                    <li className="allowReply_text" onClick={() => { setAllowReplies(true) }}>
-                                        Reply
-                                    </li>
-                                </div>
+
                             </div>
                             <div className="replies_outmost_ctnr">
-                                <li className="viewReplies_text" > View Replies</li>
+                                {!viewReplies && <li className="viewReplies_text" onClick={() => { setViewReplies(true) }}> View Replies </li>}
+                                {viewReplies &&
+                                    <div className="replies_inner_ctnr">
+                                        <li className="hideReplies_text" onClick={() => { setViewReplies(false) }}> Hide Replies </li>
+                                        <div className="replyItems_ctnr" >
+
+                                        </div>
+                                        <div className="allowReply_ctnr">
+                                            <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
+                                                Reply
+                                            </li>
+
+                                        </div>
+                                    </div>
+                                }
+                                <div>
+                                    {allowReply &&
+                                        <form onSubmit={handleReplyCreation}>
+                                            <input
+                                                type="text"
+                                                name="reply_textField"
+                                                value={replyText}
+                                                onChange={(e) => { setReplyText(e.target.value) }}
+                                            />
+                                            <button type="submit" > submit </button>
+                                        </form>
+                                    }
+                                </div>
 
                             </div>
                         </div>
@@ -112,33 +141,69 @@ export default function CommentComponent({ eventId, announcementId }) {
                     </div>
                 )}
                 {announcementId && currentAnnouncementComments?.map((comment, idx) =>
-                    <div key={idx} className="comments_in_view_ctnr">
-                        <li className="comments_in_view" >{comment?.text}</li>
-                        {
-                            user?.id === comment.userId &&
-                            <div className="comments_btns">
-                                <li className='eventComment' onClick={(e) => {
-                                    dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
-                                }}>
-                                    delete
-                                </li>
-                                <li onClick={() => {
-                                    setHide(false)
-                                    setCommentId(comment?.id)
-                                    setCommentText(comment?.text)
-                                }} >
-                                    edit
-                                </li>
+                    <div>
+                        <div key={idx} className="comments_in_view_ctnr">
+                            <div>
+                                <li className="comments_in_view" >{comment?.text}</li>
                             </div>
-                        }
+                            <div className="accessory_btn_ctnr" >
+                                {
+                                    user?.id === comment.userId &&
+                                    <div className="comments_btns">
+                                        <li className="eventComment_delete_btn" onClick={(e) => {
+                                            dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
+                                        }}>
+                                            Delete
+                                        </li>
+                                        <li className="eventComment_edit_btn" onClick={() => {
+                                            setHide(false)
+                                            setCommentId(comment?.id)
+                                            setCommentText(comment?.text)
+                                        }} >
+                                            Edit
+                                        </li>
+                                    </div>
+                                }
+
+                            </div>
+                            <div className="replies_outmost_ctnr">
+                                {!viewReplies && <li className="viewReplies_text" onClick={() => { setViewReplies(true) }}> View Replies </li>}
+                                {viewReplies &&
+                                    <div className="replies_inner_ctnr">
+                                        <li className="hideReplies_text" onClick={() => { setViewReplies(false) }}> Hide Replies </li>
+                                        <div className="replyItems_ctnr" >
+
+                                        </div>
+                                        <div className="allowReply_ctnr">
+                                            <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
+                                                Reply
+                                            </li>
+
+                                        </div>
+                                    </div>
+                                }
+                                <div>
+                                    {allowReply &&
+                                        <form onSubmit={handleReplyCreation}>
+                                            <input
+                                                type="text"
+                                                name="reply_textField"
+                                                value={replyText}
+                                                onChange={(e) => { setReplyText(e.target.value) }}
+                                            />
+                                            <button type="submit" > submit </button>
+                                        </form>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 )}
 
                 <Modal title='Edit This Comment' onClose={() => setHide(true)} hide={hide} >
                     <CommentForm commentId={commentId} commentText={commentText} setHide={setHide} />
-                </Modal>
-                <Modal title='Edit This Comment' onClose={() => setHide(true)} hide={hide} >
-                    <
                 </Modal>
             </div>
             {eventId && <form onSubmit={handleEventCommentCreation}>

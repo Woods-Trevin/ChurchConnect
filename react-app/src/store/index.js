@@ -4,12 +4,14 @@ import session from './session';
 import announcementReducer from './announcement';
 import eventReducer from './event';
 import commentReducer from './comment';
+import replyReducer from './reply';
 
 const rootReducer = combineReducers({
   session,
   announcement: announcementReducer,
   event: eventReducer,
   comment: commentReducer,
+  reply: replyReducer,
 
 });
 
