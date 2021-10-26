@@ -26,6 +26,8 @@ export default function CommentComponent({ eventId, announcementId }) {
     const [hide, setHide] = useState(false);
     const [commentId, setCommentId] = useState()
     const [commentText, setCommentText] = useState()
+    const [allowReplies, setAllowReplies] = useState(false)
+    const [showReplies, setShowReplies] = useState(false)
 
 
     function handleEventCommentCreation(e) {
@@ -72,25 +74,41 @@ export default function CommentComponent({ eventId, announcementId }) {
         <div className="comments_outmost_ctnr">
             <div className="comments_view">
                 {eventId && currentEventComments?.map((comment, idx) =>
-                    <div key={idx} className="comments_in_view_ctnr">
-                        <li className="comments_in_view" >{comment?.text}</li>
-                        {
-                            user?.id === comment.userId &&
-                            <div className="comments_btns">
-                                <li onClick={(e) => {
-                                    dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
-                                }}>
-                                    delete
-                                </li>
-                                <li onClick={() => {
-                                    setHide(false)
-                                    setCommentId(comment?.id)
-                                    setCommentText(comment?.text)
-                                }} >
-                                    edit
-                                </li>
+                    <div>
+                        <div key={idx} className="comments_in_view_ctnr">
+                            <div>
+                                <li className="comments_in_view" >{comment?.text}</li>
                             </div>
-                        }
+                            <div className="accessory_btn_ctnr" >
+                                {
+                                    user?.id === comment.userId &&
+                                    <div className="comments_btns">
+                                        <li className="eventComment_delete_btn" onClick={(e) => {
+                                            dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
+                                        }}>
+                                            Delete
+                                        </li>
+                                        <li className="eventComment_edit_btn" onClick={() => {
+                                            setHide(false)
+                                            setCommentId(comment?.id)
+                                            setCommentText(comment?.text)
+                                        }} >
+                                            Edit
+                                        </li>
+                                    </div>
+                                }
+                                <div className="allowReply_ctnr">
+                                    <li className="allowReply_text" onClick={() => { setAllowReplies(true) }}>
+                                        Reply
+                                    </li>
+                                </div>
+                            </div>
+                            <div className="replies_outmost_ctnr">
+                                <li className="viewReplies_text" > View Replies</li>
+
+                            </div>
+                        </div>
+
                     </div>
                 )}
                 {announcementId && currentAnnouncementComments?.map((comment, idx) =>
@@ -99,7 +117,7 @@ export default function CommentComponent({ eventId, announcementId }) {
                         {
                             user?.id === comment.userId &&
                             <div className="comments_btns">
-                                <li onClick={(e) => {
+                                <li className='eventComment' onClick={(e) => {
                                     dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
                                 }}>
                                     delete
@@ -118,6 +136,9 @@ export default function CommentComponent({ eventId, announcementId }) {
 
                 <Modal title='Edit This Comment' onClose={() => setHide(true)} hide={hide} >
                     <CommentForm commentId={commentId} commentText={commentText} setHide={setHide} />
+                </Modal>
+                <Modal title='Edit This Comment' onClose={() => setHide(true)} hide={hide} >
+                    <
                 </Modal>
             </div>
             {eventId && <form onSubmit={handleEventCommentCreation}>
