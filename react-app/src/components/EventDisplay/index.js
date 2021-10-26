@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/event'
 import './EventDisplay.css';
+import CommentComponent from '../CommentsComponent';
 
 export default function EventDisplay({ setUpdateEvent }) {
     const { eventId } = useParams()
@@ -64,7 +65,7 @@ export default function EventDisplay({ setUpdateEvent }) {
                 </div>
             </div>
             <div className="eventDisplay_commentreply_ctnr">
-                <h1>Comments/Replies</h1>
+                <CommentComponent eventId={eventId} />
             </div>
         </div>
     )

@@ -1,0 +1,127 @@
+.comments_outmost_ctnr {
+    background-color: white;
+}
+
+/*----------------------------------------------------------------*/
+
+
+.comments_view {
+    /* border: 2px solid black; */
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comments_in_view_ctnr {
+    /* border: 2px solid red; */
+    /* display: flex; */
+    /* align-items: center; */
+    gap: 20px;
+    margin-left: 20px;
+}
+
+.comments_in_view {
+    list-style: none;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 20px;
+    /* margin-bottom: 15px; */
+    width: 200px;
+    height: 100%;
+
+}
+/*----------------------------------------------------------------*/
+
+.accessory_btn_ctnr {
+    margin-top: 10px;
+    /* border: 2px solid red; */
+    display: flex;
+
+}
+
+
+.comments_btns {
+    list-style: none;
+    /* border: 2px solid blue; */
+    /* position: relative; */
+    bottom: 50px;
+    left: 20px;
+    display: flex;
+    /* flex-direction: column; */
+    color: grey;
+    font-weight: 700;
+    width: 100px;
+    gap: 14px;
+}
+
+.eventComment_delete_btn {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.eventComment_delete_btn:hover {
+    cursor: pointer;
+    /* border: 1px solid black; */
+}
+
+.eventComment_edit_btn {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eventComment_edit_btn:hover {
+    cursor: pointer;
+    /* border: 1px solid black; */
+}
+/*----------------------------------------------------------------*/
+
+.allowReply_ctnr {
+    list-style: none;
+    /* border: 1px solid black; */
+    color: grey;
+}
+
+.allowReply_text {
+    font-weight: 700;
+}
+
+
+.replies_outmost_ctnr {
+
+}
+
+
+.viewReplies_text {
+    list-style: none;
+    margin-top: 10px;
+    color: grey;
+    font-weight: 700;
+}
+
+/*----------------------------------------------------------------*/
+
+.comment_textField_wrapper {
+    /* border: 2px solid black; */
+    display: flex;
+    height: 100%;
+}
+
+.comment_textField {
+    width: 100%;
+    height: 100%;
+}
+
+.post_comment_btn {
+    /* border: 3px solid green; */
+    height: 100%;
+    width: 60px;
+}

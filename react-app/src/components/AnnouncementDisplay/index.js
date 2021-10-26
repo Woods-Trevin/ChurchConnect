@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as announcementActions from '../../store/announcement'
 import './AnnouncementDisplay.css';
+import CommentComponent from '../CommentsComponent';
 
 
 export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
@@ -57,7 +58,7 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
                 </div>
             </div>
             <div className="announcementDisplay_commentreplies_ctnr">
-                <h1>Comments/Replies</h1>
+                <CommentComponent announcementId={announcementId} />
             </div>
         </div>
     )
