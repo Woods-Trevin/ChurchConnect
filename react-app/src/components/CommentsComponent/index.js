@@ -5,13 +5,16 @@ import * as replyActions from '../../store/reply'
 import './CommentComponent.css';
 import CommentForm from "./commentform";
 import Modal from '../Modal'
+import ReplyForm from "./ReplyForm";
 
 
 export default function CommentComponent({ eventId, announcementId }) {
     const dispatch = useDispatch()
     const [commentTextFieldVal, setCommentTextFieldVal] = useState("")
     const [hideCommentModal, setHideCommentModal] = useState(false);
+    const [hideReplyModal, setHideReplyModal] = useState(false);
     const [commentId, setCommentId] = useState()
+    const [replyId, setReplyId] = useState()
     const [replyCommentId, setReplyCommentId] = useState()
     const [commentText, setCommentText] = useState("")
     const [replyText, setReplyText] = useState("")
@@ -140,6 +143,16 @@ export default function CommentComponent({ eventId, announcementId }) {
                                                 {currentCommentReplies?.map((reply, idx) =>
                                                     <div key={idx}>
                                                         <li> {reply?.text} </li>
+                                                        <li onClick={() => { }}>
+                                                            delete
+                                                        </li>
+                                                        <li onClick={() => {
+                                                            setHideReplyModal(false)
+                                                            setReplyId(reply?.id)
+                                                            setReplyText(reply?.text)
+                                                        }}>
+                                                            edit
+                                                        </li>
                                                     </div>
                                                 )}
                                             </div>
@@ -218,6 +231,12 @@ export default function CommentComponent({ eventId, announcementId }) {
                                                 {currentCommentReplies?.map((reply, idx) =>
                                                     <div key={idx}>
                                                         <li> {reply?.text} </li>
+                                                        <li onClick={() => { }}>
+                                                            delete
+                                                        </li>
+                                                        <li onClick={() => { }}>
+                                                            edit
+                                                        </li>
                                                     </div>
                                                 )}
                                             </div>
@@ -258,6 +277,9 @@ export default function CommentComponent({ eventId, announcementId }) {
 
                 <Modal title='Edit This Comment' onClose={() => setHideCommentModal(true)} hideCommentModal={hideCommentModal} >
                     <CommentForm commentId={commentId} commentText={commentText} setHideCommentModal={setHideCommentModal} />
+                </Modal>
+                <Modal title='Edit This Reply' onClose={() => setHideReplyModal(true)} hideReplyModal={hideReplyModal} >
+                    <ReplyForm replyId={replyId} replyText={replyText} />
                 </Modal>
             </div>
             {eventId && <form onSubmit={handleEventCommentCreation}>

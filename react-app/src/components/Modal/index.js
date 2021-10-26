@@ -8,6 +8,12 @@ export default function Modal({ hideCommentModal, hideReplyModal, onClose, title
         return null;
     }
 
+    if (hideReplyModal) {
+        return null;
+    }
+
+
+
     return createPortal(
         <div className="modal_outmost_container" onClick={onClose} >
             <div className="modal_content" onClick={(e) => e.stopPropagation()}>
