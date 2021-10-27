@@ -32,12 +32,12 @@ export default function CommentComponent({ eventId, announcementId }) {
     const comments = useSelector(state => state.comment.comments)
     const currentEventComments = comments?.filter(comment => comment.eventId === currentEvent?.id)
     const currentAnnouncementComments = comments?.filter(comment => comment.announcementId === currentAnnouncement?.id)
-    console.log(comments)
+    console.log(comments, "--------------------All Comments")
 
     const user = useSelector(state => state.session.user)
 
     const replies = useSelector(state => state.reply.replies)
-    console.log(replies)
+    console.log(replies, "--------------------------------------------------------All Replies")
     const currentCommentReplies = replies?.filter(reply => reply.comment_id === replyCommentId)
     console.log(currentCommentReplies, '---------------current comment replies')
 
@@ -85,6 +85,7 @@ export default function CommentComponent({ eventId, announcementId }) {
         }
         dispatch(replyActions.CreateReply(payload))
         setAllowReply(false);
+        setReplyText("")
 
     }
 
@@ -92,7 +93,7 @@ export default function CommentComponent({ eventId, announcementId }) {
 
     useEffect(() => {
         setHideCommentModal(true)
-
+        setHideReplyModal(true)
         dispatch(commentActions.GetComments())
         dispatch(replyActions.GetReplies())
     }, [dispatch])
@@ -143,7 +144,9 @@ export default function CommentComponent({ eventId, announcementId }) {
                                                 {currentCommentReplies?.map((reply, idx) =>
                                                     <div key={idx}>
                                                         <li> {reply?.text} </li>
-                                                        <li onClick={() => { }}>
+                                                        <li onClick={() => {
+                                                            dispatch(replyActions.DeleteReply(reply?.id))
+                                                        }}>
                                                             delete
                                                         </li>
                                                         <li onClick={() => {
@@ -279,7 +282,7 @@ export default function CommentComponent({ eventId, announcementId }) {
                     <CommentForm commentId={commentId} commentText={commentText} setHideCommentModal={setHideCommentModal} />
                 </Modal>
                 <Modal title='Edit This Reply' onClose={() => setHideReplyModal(true)} hideReplyModal={hideReplyModal} >
-                    <ReplyForm replyId={replyId} replyText={replyText} />
+                    <ReplyForm replyId={replyId} replyText={replyText} setHideReplyModal={setHideReplyModal} />
                 </Modal>
             </div>
             {eventId && <form onSubmit={handleEventCommentCreation}>

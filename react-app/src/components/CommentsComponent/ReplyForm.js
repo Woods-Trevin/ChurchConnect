@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import * as replyActions from '../../store/reply'
 import './CommentComponent.css';
 
-export default function ReplyForm({ replyId, replyText }) {
+export default function ReplyForm({ replyId, replyText, setHideReplyModal }) {
 
     const [updateReplyVal, setUpdateReplyVal] = useState(replyText)
     console.log(replyId, replyText)
@@ -15,8 +15,9 @@ export default function ReplyForm({ replyId, replyText }) {
         const payload = {
             text: updateReplyVal,
             idx: replyId,
-        }
-        // dispatch(commentActions.UpdateComment(payload))
+        };
+        dispatch(replyActions.UpdateReply(payload));
+        setHideReplyModal(true);
     }
 
     useEffect(() => {
@@ -38,7 +39,7 @@ export default function ReplyForm({ replyId, replyText }) {
                             onChange={(e) => setUpdateReplyVal(e.target.value)}
                         />
                         <div>
-                            <button className="post_comment_btn" type="submit">update</button>
+                            <button className="post_comment_btn" type="submit"> Update </button>
                         </div>
                     </div>
                 </form>
