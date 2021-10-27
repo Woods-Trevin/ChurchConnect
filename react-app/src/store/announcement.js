@@ -93,9 +93,11 @@ export const PatchAnnouncement = (payload) => async (dispatch) => {
     }
 }
 
-export const DeleteAnnouncement = (id) => async (dispatch) => {
-    const response = await fetch(`/api/announcement/${id}`, {
-        method: 'DELETE'
+export const DeleteAnnouncement = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/announcement/${payload.announcementId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
     })
 
     if (response.ok) {
