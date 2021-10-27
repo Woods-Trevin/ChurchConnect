@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Announcement, db
+from app.models import Announcement, Reply, Comment, db
 from app.forms import AnnouncementForm
 
 announcement_routes = Blueprint('announcements', __name__)
@@ -68,8 +68,22 @@ def update_announcement(id):
 @announcement_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_announcement(id):
+    print('current comments for event-------------------', request.json['comments'])
+    print('current replies for event comments-------------------', request.json['replies'])
+    replies = request.json['replies']
+    comments = request.json['comments']
+
+    for reply in replies:
+        Reply.query.filter(Reply.id == reply['id']).delete()
+    db.session.commit()
+
+    for comment in comments:
+        Comment.query.filter(Comment.id == comment['id']).delete()
+    db.session.commit()
+
     current_announcement = Announcement.query.filter(Announcement.id == id).delete()
     db.session.commit()
+    
     if current_announcement:
         return jsonify('Successfully Deleted Announcement')
     else:

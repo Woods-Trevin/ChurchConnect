@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as announcementActions from '../../store/announcement'
+import * as commentActions from '../../store/comment'
+import * as replyActions from '../../store/reply'
 import './AnnouncementDisplay.css';
 import CommentComponent from '../CommentsComponent';
 
@@ -9,15 +11,39 @@ import CommentComponent from '../CommentsComponent';
 export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
     const { announcementId } = useParams()
     const dispatch = useDispatch()
-    console.log(announcementId)
+    useEffect(() => {
+        dispatch(announcementActions.GetOneAnnouncement(announcementId))
+        dispatch(commentActions.GetComments())
+        dispatch(replyActions.GetReplies())
+    }, [dispatch, announcementId])
+
 
     const current_announcement = useSelector(state => state.announcement.current_announcement)
     console.log(current_announcement)
 
-    useEffect(() => {
-        dispatch(announcementActions.GetOneAnnouncement(announcementId))
-        // setUpdateAnnouncement(false);
-    }, [dispatch])
+    const comments = useSelector(state => state.comment.comments)
+
+    const replies = useSelector(state => state.reply.replies)
+
+    console.log(comments, '---------------COMMENTS')
+    console.log(replies, '---------------REPLIES')
+
+    const currentAnnouncementComments = comments?.filter(comment => comment?.announcementId === current_announcement?.id)
+    console.log('current announcement comments---------', currentAnnouncementComments)
+
+    const currentAnnouncementCommentsReplies = [];
+    for (let i = 0; i < currentAnnouncementComments?.length; i++) {
+        const currentElement = currentAnnouncementComments[i];
+        for (let i = 0; i < replies?.length; i++) {
+            if (replies[i].comment_id === currentElement.id) {
+                currentAnnouncementCommentsReplies.push(replies[i]);
+            }
+        }
+    }
+    console.log(currentAnnouncementCommentsReplies);
+
+
+
 
     function handleAnnouncementUpdate(e) {
         e.preventDefault();
@@ -26,7 +52,12 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
 
     function handleAnnouncementDeletion(e) {
         e.preventDefault();
-        dispatch(announcementActions.DeleteAnnouncement(announcementId));
+        const payload = {
+            announcementId: announcementId,
+            comments: currentAnnouncementComments,
+            replies: currentAnnouncementCommentsReplies
+        }
+        dispatch(announcementActions.DeleteAnnouncement(payload));
         // console.log('This Works!!!')
     }
 
