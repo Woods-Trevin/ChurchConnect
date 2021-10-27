@@ -8,7 +8,7 @@ import Modal from '../Modal'
 import ReplyForm from "./ReplyForm";
 
 
-export default function CommentComponent({ eventId, announcementId }) {
+export default function CommentComponent({ eventId, announcementId, setCurrentEventComments }) {
     const dispatch = useDispatch()
     const [commentTextFieldVal, setCommentTextFieldVal] = useState("")
     const [hideCommentModal, setHideCommentModal] = useState(false);
@@ -23,8 +23,8 @@ export default function CommentComponent({ eventId, announcementId }) {
     // const [viewReplyLabel, setViewReplyLabel] = useState(true)
 
 
-    console.log(eventId, '---------------EVENT ID----------')
-    console.log(announcementId, '---------------Announcement ID----------')
+    // console.log(eventId, '---------------EVENT ID----------')
+    // console.log(announcementId, '---------------Announcement ID----------')
     const currentEvent = useSelector(state => state.event.currentevent)
     const currentAnnouncement = useSelector(state => state.announcement.current_announcement)
     // console.log(currentAnnouncement.id, '---------------Announcement')
@@ -32,19 +32,19 @@ export default function CommentComponent({ eventId, announcementId }) {
     const comments = useSelector(state => state.comment.comments)
     const currentEventComments = comments?.filter(comment => comment.eventId === currentEvent?.id)
     const currentAnnouncementComments = comments?.filter(comment => comment.announcementId === currentAnnouncement?.id)
-    console.log(comments, "--------------------All Comments")
+    // console.log(comments, "--------------------All Comments")
 
     const user = useSelector(state => state.session.user)
 
     const replies = useSelector(state => state.reply.replies)
-    console.log(replies, "--------------------------------------------------------All Replies")
+    // console.log(replies, "--------------------------------------------------------All Replies")
     const currentCommentReplies = replies?.filter(reply => reply.comment_id === replyCommentId)
-    console.log(currentCommentReplies, '---------------current comment replies')
+    // console.log(currentCommentReplies, '---------------current comment replies')
 
 
 
 
-    console.log(replyCommentId)
+    // console.log(replyCommentId)
 
     function handleEventCommentCreation(e) {
         e.preventDefault();
@@ -94,8 +94,9 @@ export default function CommentComponent({ eventId, announcementId }) {
     useEffect(() => {
         setHideCommentModal(true)
         setHideReplyModal(true)
-        dispatch(commentActions.GetComments())
-        dispatch(replyActions.GetReplies())
+        // dispatch(commentActions.GetComments())
+        // dispatch(replyActions.GetReplies())
+        // setCurrentEventComments(currentEventComments)
     }, [dispatch])
     // console.log(commentId)
     // console.log(commentText)
@@ -131,13 +132,20 @@ export default function CommentComponent({ eventId, announcementId }) {
 
                                 </div>
                                 <div className="replies_outmost_ctnr">
-                                    <li className="viewReplies_text" onClick={() => {
-                                        setViewReplies(true)
-                                        setReplyCommentId(comment?.id)
-                                        // setViewReplyLabel(false)
-                                    }}>
-                                        View Replies
-                                    </li>
+                                    <div className="viewRepliesLabel_ctnr">
+                                        <li className="viewReplies_text" onClick={() => {
+                                            setViewReplies(true)
+                                            setReplyCommentId(comment?.id)
+                                            // setViewReplyLabel(false)
+                                        }}>
+                                            View Replies
+                                        </li>
+                                        <div className="repliesCount">
+                                            {`(${comment?.replies.length})`}
+                                        </div>
+                                    </div>
+
+
                                     {replyCommentId === comment?.id && <div>
                                         {viewReplies &&
                                             <div className="replies_inner_ctnr">

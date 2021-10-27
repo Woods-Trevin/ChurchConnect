@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Event, db
+from app.models import Event, Comment, Reply, db
 from app.forms import EventForm
 
 event_routes = Blueprint('events', __name__)
@@ -86,6 +86,19 @@ def update_event(id):
 
 @event_routes.route('/<int:id>', methods=['DELETE'])
 def delete_event(id):
+    print('current comments for event-------------------', request.json['comments'])
+    print('current replies for event comments-------------------', request.json['replies'])
+    replies = request.json['replies']
+    comments = request.json['comments']
+
+    for reply in replies:
+        Reply.query.filter(Reply.id == reply['id']).delete()
+    db.session.commit()
+
+    for comment in comments:
+        Comment.query.filter(Comment.id == comment['id']).delete()
+    db.session.commit()
+
     currentEvent = Event.query.filter(Event.id == id).delete()
     db.session.commit()
     # print(currentEvent.to_dict())

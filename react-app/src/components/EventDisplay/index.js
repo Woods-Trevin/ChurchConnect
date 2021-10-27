@@ -1,26 +1,64 @@
 import { useParams, useHistory } from 'react-router-dom'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/event'
+import * as commentActions from '../../store/comment'
+import * as replyActions from '../../store/reply'
 import './EventDisplay.css';
 import CommentComponent from '../CommentsComponent';
 
 export default function EventDisplay({ setUpdateEvent }) {
     const { eventId } = useParams()
-    console.log(eventId, '---------------')
-    const event = useSelector(state => state.event.currentevent)
-
     const dispatch = useDispatch()
     const history = useHistory()
 
+
     useEffect(() => {
         dispatch(eventActions.GetOneEvent(eventId))
+        dispatch(commentActions.GetComments())
+        dispatch(replyActions.GetReplies())
     }, [dispatch, eventId])
+
+
+    console.log(eventId, '---------------')
+    const event = useSelector(state => state.event.currentevent)
+    // console.log(event?.comments, '---------------')
+    const comments = useSelector(state => state.comment.comments)
+
+    const replies = useSelector(state => state.reply.replies)
+
+    console.log(comments, '---------------COMMENTS')
+    console.log(replies, '---------------REPLIES')
+
+    const currentEventComments = comments?.filter(comment => comment?.eventId === event?.id)
+    console.log('current event comments---------', currentEventComments)
+    // const currentEventReplies = replies?.filter(reply => reply.id === eventId)
+
+    const currentEventCommentsReplies = [];
+    for (let i = 0; i < currentEventComments?.length; i++) {
+        const currentElement = currentEventComments[i];
+        for (let i = 0; i < replies?.length; i++) {
+            if (replies[i].comment_id === currentElement.id) {
+                currentEventCommentsReplies.push(replies[i]);
+            }
+        }
+    }
+    console.log(currentEventCommentsReplies);
+
+    // const [currentEventComments, setCurrentEventComments] = useState([])
+    // console.log(currentEventComments, '---------------CURRENT EVENT COMMENTS')
+
 
 
     function handleDelete(e) {
         e.preventDefault()
-        dispatch(eventActions.DeleteEvent(eventId))
+        const payload = {
+            eventId: eventId,
+            comments: currentEventComments,
+            replies: currentEventCommentsReplies,
+
+        }
+        dispatch(eventActions.DeleteEvent(payload))
         history.push('/')
     }
 

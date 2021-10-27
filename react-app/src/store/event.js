@@ -98,9 +98,11 @@ export const PatchEvent = (payload) => async (dispatch) => {
 
 };
 
-export const DeleteEvent = (id) => async (dispatch) => {
-    const response = await fetch(`/api/event/${id}`, {
-        method: 'DELETE'
+export const DeleteEvent = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/event/${payload.eventId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
     });
 
     if (response.ok) {
