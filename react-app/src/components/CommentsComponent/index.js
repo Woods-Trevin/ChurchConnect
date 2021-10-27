@@ -149,18 +149,36 @@ export default function CommentComponent({ eventId, announcementId }) {
                                                                 <li className="replyText delete" onClick={() => {
                                                                     dispatch(replyActions.DeleteReply(reply?.id))
                                                                 }}>
-                                                                    delete
+                                                                    Delete
                                                                 </li>
                                                                 <li className="replyText edit" onClick={() => {
                                                                     setHideReplyModal(false)
                                                                     setReplyId(reply?.id)
                                                                     setReplyText(reply?.text)
                                                                 }}>
-                                                                    edit
+                                                                    Edit
+                                                                </li>
+                                                                <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
+                                                                    Reply
                                                                 </li>
                                                             </div>
                                                         </div>
                                                     )}
+                                                </div>
+                                                <div className="allowReply_ctnr">
+                                                    <div>
+                                                        {allowReply &&
+                                                            <form onSubmit={handleReplyCreation}>
+                                                                <input
+                                                                    type="text"
+                                                                    name="reply_textField"
+                                                                    value={replyText}
+                                                                    onChange={(e) => { setReplyText(e.target.value) }}
+                                                                />
+                                                                <button type="submit" > submit </button>
+                                                            </form>
+                                                        }
+                                                    </div>
                                                 </div>
                                                 <li className="hideReplies_text" onClick={() => {
                                                     setViewReplies(false)
@@ -168,27 +186,8 @@ export default function CommentComponent({ eventId, announcementId }) {
                                                 }}>
                                                     Hide Replies
                                                 </li>
-                                                <div className="allowReply_ctnr">
-                                                    <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
-                                                        Reply
-                                                    </li>
-
-                                                </div>
                                             </div>
                                         }
-                                        <div>
-                                            {allowReply &&
-                                                <form onSubmit={handleReplyCreation}>
-                                                    <input
-                                                        type="text"
-                                                        name="reply_textField"
-                                                        value={replyText}
-                                                        onChange={(e) => { setReplyText(e.target.value) }}
-                                                    />
-                                                    <button type="submit" > submit </button>
-                                                </form>
-                                            }
-                                        </div>
                                     </div>}
 
                                 </div>
