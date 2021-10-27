@@ -26,3 +26,27 @@ def replies():
             db.session.commit()
             replies = Reply.query.all()
             return {'replies': [reply.to_dict() for reply in replies]}
+
+
+@reply_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def patch_reply(id):
+    form = ReplyForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if request.method == 'PATCH':
+        reply_to_change = Reply.query.get(id)
+        if form.validate_on_submit():
+            reply_to_change.text = form.data['text']
+            db.session.commit()
+            replies = Reply.query.all()
+            return {'replies': [reply.to_dict() for reply in replies]}
+
+
+@reply_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_reply(id):
+    Reply.query.filter(Reply.id == id).delete()
+    db.session.commit()
+    replies = Reply.query.all()
+    return {'replies': [reply.to_dict() for reply in replies]}

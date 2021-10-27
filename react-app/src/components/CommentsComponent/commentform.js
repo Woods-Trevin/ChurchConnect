@@ -3,20 +3,20 @@ import { useDispatch } from 'react-redux'
 import * as commentActions from '../../store/comment'
 import './CommentComponent.css'
 
-export default function CommentForm({ commentId, commentText }) {
+export default function CommentForm({ commentId, commentText, setHideCommentModal }) {
     const [updateCommentVal, setUpdateCommentVal] = useState(commentText)
     console.log(commentId)
 
     const dispatch = useDispatch()
 
     function handleCommentPatch(e) {
-        // e.preventDefault();
+        e.preventDefault();
         const payload = {
             text: updateCommentVal,
             idx: commentId,
-        }
-        dispatch(commentActions.UpdateComment(payload))
-
+        };
+        dispatch(commentActions.UpdateComment(payload));
+        setHideCommentModal(true);
 
 
     }

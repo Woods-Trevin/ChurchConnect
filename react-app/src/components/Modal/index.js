@@ -3,10 +3,16 @@ import { createPortal } from 'react-dom';
 import './Modal.css';
 
 
-export default function Modal({ hide, onClose, title, children }) {
-    if (hide) {
+export default function Modal({ hideCommentModal, hideReplyModal, onClose, title, children }) {
+    if (hideCommentModal) {
         return null;
     }
+
+    if (hideReplyModal) {
+        return null;
+    }
+
+
 
     return createPortal(
         <div className="modal_outmost_container" onClick={onClose} >
