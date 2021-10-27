@@ -39,7 +39,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
     const replies = useSelector(state => state.reply.replies)
     // console.log(replies, "--------------------------------------------------------All Replies")
     const currentCommentReplies = replies?.filter(reply => reply.comment_id === replyCommentId)
-    // console.log(currentCommentReplies, '---------------current comment replies')
+    console.log(currentCommentReplies, '---------------current comment replies')
 
 
 
@@ -116,7 +116,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                         user?.id === comment.userId &&
                                         <div className="comments_btns">
                                             <li className="eventComment_delete_btn" onClick={(e) => {
-                                                dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
+                                                dispatch(commentActions.DeleteComment({ id: comment?.id, replies: currentCommentReplies }))
                                             }}>
                                                 Delete
                                             </li>
@@ -214,7 +214,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                         user?.id === comment.userId &&
                                         <div className="comments_btns">
                                             <li className="eventComment_delete_btn" onClick={(e) => {
-                                                dispatch(commentActions.DeleteComment({ id: comment?.id, eventId: currentEvent?.id }))
+                                                dispatch(commentActions.DeleteComment({ id: comment?.id, replies: currentCommentReplies }))
                                             }}>
                                                 Delete
                                             </li>
@@ -298,7 +298,6 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
 
                                 </div>
                             </div>
-
                         </div>
                     )}
 

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Comment, db
+from app.models import Comment, Reply, db
 from app.forms import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
@@ -54,9 +54,16 @@ def update_comment(id):
 @comment_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_comment(id):
+    print('--------------------------------', request.json['replies'])
+    replies = request.json['replies']
+
+    for reply in replies:
+        Reply.query.filter(Reply.id == reply['id']).delete()
+    db.session.commit()
+
     comment_to_delete = Comment.query.filter(Comment.id == id).delete()
     db.session.commit()
-    print('----------------------------------------------------------------', request.json['eventId'])
+    
     comments = Comment.query.all()
     print([comment.to_dict() for comment in comments])
     return {'comments': [comment.to_dict() for comment in comments]}
