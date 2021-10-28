@@ -5,7 +5,10 @@ import './CommentComponent.css'
 
 export default function CommentForm({ commentId, commentText, setHideCommentModal }) {
     const [updateCommentVal, setUpdateCommentVal] = useState(commentText)
-    console.log(commentId)
+
+    const [validationErrors, setValidationErrors] = useState([])
+
+    // console.log(commentId)
 
     const dispatch = useDispatch()
 
@@ -23,10 +26,22 @@ export default function CommentForm({ commentId, commentText, setHideCommentModa
 
     useEffect(() => {
 
-    }, [dispatch])
+        const errors = [];
+
+        if (!updateCommentVal) errors.push('There was no entry. Please write your comment.')
+        if (updateCommentVal.length > 400) errors.push('Comment is too long.')
+
+        setValidationErrors(errors)
+
+    }, [dispatch, updateCommentVal])
 
     return (
         <div>
+            <ul>
+                {validationErrors.map(error =>
+                    <li>{error}</li>
+                )}
+            </ul>
             <form onSubmit={handleCommentPatch}>
                 <div className="comment_textField_wrapper">
                     <textarea
@@ -39,7 +54,7 @@ export default function CommentForm({ commentId, commentText, setHideCommentModa
                         onChange={(e) => setUpdateCommentVal(e.target.value)}
                     />
                     <div>
-                        <button className="post_comment_btn" type="submit">update</button>
+                        <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} >update</button>
                     </div>
                 </div>
             </form>
