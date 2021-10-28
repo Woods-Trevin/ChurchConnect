@@ -6,6 +6,7 @@ import './CommentComponent.css';
 export default function ReplyForm({ replyId, replyText, setHideReplyModal }) {
 
     const [updateReplyVal, setUpdateReplyVal] = useState(replyText)
+    const [validationErrors, setValidationErrors] = useState([])
     console.log(replyId, replyText)
 
     const dispatch = useDispatch();
@@ -21,12 +22,20 @@ export default function ReplyForm({ replyId, replyText, setHideReplyModal }) {
     }
 
     useEffect(() => {
+        const errors = [];
 
-    }, [dispatch])
+        if (!updateReplyVal) errors.push('There was no entry. Please write your comment.')
+        if (updateReplyVal.length > 400) errors.push('Comment is too long.')
+
+        setValidationErrors(errors)
+    }, [dispatch, updateReplyVal])
 
     return (
         <div>
             <div>
+                {validationErrors.map(error =>
+                    <li>{error}</li>
+                )}
                 <form onSubmit={handleReplyPatch}>
                     <div className="comment_textField_wrapper">
                         <textarea
@@ -39,7 +48,7 @@ export default function ReplyForm({ replyId, replyText, setHideReplyModal }) {
                             onChange={(e) => setUpdateReplyVal(e.target.value)}
                         />
                         <div>
-                            <button className="post_comment_btn" type="submit"> Update </button>
+                            <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} >Update </button>
                         </div>
                     </div>
                 </form>

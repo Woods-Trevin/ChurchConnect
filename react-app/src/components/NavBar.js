@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import LogoutButton from './auth/LogoutButton';
+// import LogoutButton from './auth/LogoutButton';
 import './Navbar.css'
 
 const NavBar = ({ loggedIn, setLoggedIn }) => {

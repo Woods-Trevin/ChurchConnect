@@ -20,6 +20,8 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
     const [replyText, setReplyText] = useState("")
     const [allowReply, setAllowReply] = useState(false)
     const [viewReplies, setViewReplies] = useState(false)
+
+    const [validationErrors, setValidationErrors] = useState([])
     // const [viewReplyLabel, setViewReplyLabel] = useState(true)
 
 
@@ -94,10 +96,15 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
     useEffect(() => {
         setHideCommentModal(true)
         setHideReplyModal(true)
-        // dispatch(commentActions.GetComments())
-        // dispatch(replyActions.GetReplies())
-        // setCurrentEventComments(currentEventComments)
-    }, [dispatch])
+
+        const errors = [];
+
+        if (!commentTextFieldVal) errors.push('There was no entry. Please write your comment.')
+        if (commentTextFieldVal.length > 400) errors.push('Comment is too long.')
+
+        setValidationErrors(errors)
+
+    }, [dispatch, commentTextFieldVal])
     // console.log(commentId)
     // console.log(commentText)
 
@@ -309,22 +316,26 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                     </Modal>
                 </div>
                 {eventId &&
-                    <form onSubmit={handleEventCommentCreation}>
-                        <div className="comment_textField_wrapper">
-                            <textarea
-                                name='commentTextField'
-                                value={commentTextFieldVal}
-                                rows="4"
-                                columns="30"
-                                placeholder="Write a comment"
-                                className="comment_textField"
-                                onChange={(e) => setCommentTextFieldVal(e.target.value)}
-                            />
-                            <div>
-                                <button className="post_comment_btn" type="submit">Post</button>
+                    <div>
+
+                        <form onSubmit={handleEventCommentCreation}>
+                            <div className="comment_textField_wrapper">
+                                <textarea
+                                    name='commentTextField'
+                                    value={commentTextFieldVal}
+                                    rows="4"
+                                    columns="30"
+                                    placeholder="Write a comment"
+                                    className="comment_textField"
+                                    onChange={(e) => setCommentTextFieldVal(e.target.value)}
+                                />
+                                <div>
+                                    <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} >Post</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>}
+                        </form>
+                    </div>
+                }
                 {announcementId &&
                     <form onSubmit={handleAnnouncementCommentCreation}>
                         <div className="comment_textField_wrapper">
@@ -338,10 +349,11 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                 onChange={(e) => setCommentTextFieldVal(e.target.value)}
                             />
                             <div>
-                                <button className="post_comment_btn" type="submit">Post</button>
+                                <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} >Post</button>
                             </div>
                         </div>
-                    </form>}
+                    </form>
+                }
             </div>
         </div>
     )
