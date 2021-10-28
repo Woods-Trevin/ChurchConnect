@@ -1,3 +1,6 @@
+## Heroku Link
+https://churchconnect.herokuapp.com/
+
 ## ChurchConnect at a Glance
 
 ChurchConnect is a fullstack (Postgres, Flask, React.js, Node.js) app that lets a user from a church community communicate with other members that log onto the website through the creation of Events and Announcements
