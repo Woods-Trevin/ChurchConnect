@@ -55,7 +55,7 @@
 /*----------------------------------------------*/
 
 .Dashboard_event_ctnr {
-    border: 6px solid yellow;
+    /* border: 6px solid yellow; */
     display: flex;
     /* flex-direction: column; */
     align-items: center;
@@ -67,8 +67,8 @@
 /*----------------------------------------------*/
 
 .NavLink_ctnr {
-    border: 2px solid red;
-    height: 500px;
+    border: 2px solid black;
+    /* height: 100%; */
     width: 700px;
     text-decoration: none;
     color: black;
