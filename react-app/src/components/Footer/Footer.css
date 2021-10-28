@@ -1,0 +1,63 @@
+.Footer_ctnr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ================================================================= */
+
+.aboutMe_container {
+    /* border: 2px solid red; */
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.ownerName {
+    list-style: none;
+    /* margin-bottom: 10px; */
+}
+
+.github {
+    position: relative;
+    text-decoration: none;
+    color: black;
+}
+
+.linkedIn {
+    position: relative;
+    text-decoration: none;
+    color: black;
+
+}
+
+/* ================================================================= */
+
+.quickNav_container {
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.createEvent_footer_link {
+    text-decoration: none;
+    color: black;
+    margin-top: 10px;
+}
+
+.createAnnouncement_footer_link {
+    text-decoration: none;
+    color: black;
+    
+}
+
+.home_footer_link {
+    text-decoration: none;
+    color: black;
+
+}
