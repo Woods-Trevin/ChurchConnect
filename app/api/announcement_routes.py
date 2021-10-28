@@ -15,17 +15,20 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@announcement_routes.route('/', methods=['GET', 'POST'])
-@login_required
-def announcements():
-    form = AnnouncementForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    
+@announcement_routes.route('/', methods=['GET'])
+def get_announcements():
     if request.method == "GET":
         allAnnouncements = Announcement.query.all()
         # print([announcement.to_dict() for announcement in allAnnouncements])
         return {'announcements':[announcement.to_dict() for announcement in allAnnouncements]}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+
+@announcement_routes.route('/', methods=['POST'])
+@login_required
+def post_announcements():
+    form = AnnouncementForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if request.method == 'POST':
         if form.validate_on_submit():
             created_announcement = Announcement(
@@ -40,8 +43,6 @@ def announcements():
         else:
             return jsonify('Bad Data')
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-
 
 
 @announcement_routes.route('/<int:id>', methods=['GET'])

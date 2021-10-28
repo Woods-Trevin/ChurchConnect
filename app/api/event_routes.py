@@ -15,11 +15,20 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@event_routes.route('/', methods=['GET', 'POST'])
+@event_routes.route('/', methods=['GET'])
+def get_events():
+    if request.method == 'GET':
+        events = Event.query.all()
+        return {'events': [event.to_dict() for event in events]}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@event_routes.route('/', methods=['POST'])
 @login_required
-def events():
+def post_events():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     # print(form.data['imageURL'], '----------------------------------------------------------------')
     # print(form.data['imageURLTwo'], '----------------------------------------------------------------')
     # print(form.data['imageURLThree'], '----------------------------------------------------------------')
@@ -30,9 +39,6 @@ def events():
     # print(form.data['startTime'], '----------------------------------------------------------------')
     # print(form.data['endTime'], '----------------------------------------------------------------')
     # print(request.json['idx'], '----------------------------------------------------------------')
-    if request.method == 'GET':
-        events = Event.query.all()
-        return {'events': [event.to_dict() for event in events]}
     if request.method == 'POST':
         if form.validate_on_submit():
             created_event = Event(
@@ -92,8 +98,7 @@ def update_event(id):
         db.session.commit()
         currentEvents = Event.query.all()
         return {"events": [event.to_dict() for event in currentEvents]}
-        
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 @event_routes.route('/<int:id>', methods=['DELETE'])

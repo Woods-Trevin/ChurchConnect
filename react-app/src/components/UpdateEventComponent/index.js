@@ -21,18 +21,30 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
     const [updateEventStartTime, setUpdateEventStartTime] = useState(event?.startTime)
     const [updateEventEndTime, setUpdateEventEndTime] = useState(event?.endTime)
 
-    console.log(updateEventStartTime, updateEventEndTime)
+    const [validationErrors, setValidationErrors] = useState([])
+    // console.log(updateEventStartTime, updateEventEndTime)
 
     const dispatch = useDispatch()
     const history = useHistory()
 
     useEffect(() => {
         dispatch(eventActions.GetOneEvent(eventId))
-    }, [dispatch, eventId])
+        const errors = [];
 
-    useEffect(() => {
+        if (updateImageOne.length > 700) errors.push('Image url is too long');
+        if (updateImageTwo.length > 700) errors.push('Image url is too long');
+        if (updateImageThree.length > 700) errors.push('Image url is too long');
+        if (!updateEventTitle) errors.push('Event must include a Title');
+        if (updateEventTitle.length > 200) errors.push('Event title is too long');
+        if (!updateEventDescription) errors.push('Event must include a Description');
+        if (updateEventDescription.length > 1000) errors.push('Event description is too long');
+        if (!updateEventStartDate) errors.push('Event must include a Start Date')
+        if (!updateEventEndDate) errors.push('Event must include a End Date')
+        if (!updateEventStartTime) errors.push('Event must include a Start Time')
+        if (!updateEventEndTime) errors.push('Event must include a End Time')
 
-    }, [])
+        setValidationErrors(errors)
+    }, [dispatch, eventId, updateImageOne, updateImageTwo, updateImageThree, updateEventTitle, updateEventDescription, updateEventStartDate, updateEventEndDate, updateEventStartTime, updateEventEndTime])
 
 
     function UpdateEventHandler(e) {
@@ -49,14 +61,17 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
             endTime: updateEventEndTime,
             idx: eventId
         }
-        dispatch(eventActions.PatchEvent(payload))
+        const errors = dispatch(eventActions.PatchEvent(payload))
+        console.log(errors)
     }
 
     return (
         <div>
-            <h1>
-                Update Event Component
-            </h1>
+            <ul>
+                {validationErrors.map(error =>
+                    <li>{error}</li>
+                )}
+            </ul>
             <div>
                 <form onSubmit={UpdateEventHandler}>
                     <div>
@@ -161,7 +176,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
                                 />
                             </label>
                         </div>
-                        <button type="submit" className="eventForm_Btn">
+                        <button type="submit" className="eventForm_Btn" disabled={validationErrors.length > 0}>
                             Submit
                         </button>
                     </div>

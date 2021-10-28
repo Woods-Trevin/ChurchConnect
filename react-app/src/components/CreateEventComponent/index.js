@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import * as eventActions from '../../store/event'
@@ -14,6 +14,8 @@ export default function CreateEventComponent() {
     const [eventEndDate, setEventEndDate] = useState('')
     const [eventStartTime, setEventStartTime] = useState('')
     const [eventEndTime, setEventEndTime] = useState('')
+
+    const [validationErrors, setValidationErrors] = useState([])
 
     const user = useSelector(state => state.session.user)
     // console.log(user.id)
@@ -43,10 +45,34 @@ export default function CreateEventComponent() {
         history.push('/')
     }
 
+    useEffect(() => {
+        const errors = [];
+
+        if (imageURLOne.length > 700) errors.push('Image url is too long');
+        if (imageURLTwo.length > 700) errors.push('Image url is too long');
+        if (imageURLThree.length > 700) errors.push('Image url is too long');
+        if (!eventTitle) errors.push('Event must include a Title');
+        if (eventTitle.length > 200) errors.push('Event title is too long');
+        if (!eventDescription) errors.push('Event must include a Description');
+        if (eventDescription.length > 1000) errors.push('Event description is too long');
+        if (!eventStartDate) errors.push('Event must include a Start Date')
+        if (!eventEndDate) errors.push('Event must include a End Date')
+        if (!eventStartTime) errors.push('Event must include a Start Time')
+        if (!eventEndTime) errors.push('Event must include a End Time')
+
+        setValidationErrors(errors)
+
+
+    }, [dispatch, imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime])
+
 
     return (
         <div>
-            <h1>Create Event Component</h1>
+            <ul>
+                {validationErrors.map(error =>
+                    <li>{error}</li>
+                )}
+            </ul>
             <form onSubmit={handleEventSubmit}>
                 <div>
                     <div>
@@ -150,7 +176,7 @@ export default function CreateEventComponent() {
                             />
                         </label>
                     </div>
-                    <button type="submit" className="eventForm_Btn">
+                    <button type="submit" className="eventForm_Btn" disabled={validationErrors.length > 0} >
                         Submit
                     </button>
                 </div>

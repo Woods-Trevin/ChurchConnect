@@ -92,8 +92,7 @@ export const PatchEvent = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        if (data.events)
-            dispatch(patch_event(data.events));
+        dispatch(patch_event(data.events));
         return response
     }
 
