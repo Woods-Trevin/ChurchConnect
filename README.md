@@ -65,9 +65,9 @@ The backend serves the frontend by responding to frontend requests, and fetching
 ## Frontend Overview
 ChurchConnect has alot going on in the front end that help to make it such a useful app. It makes extensive use of the backend I designed with Flask to create a dynamic and data-rich experience. Below are the frontend technologies that make this application possible.
 
-# Frontend Tech Used:
+### Frontend Tech Used:
 
-# React
+#### React
 At its core, RappaMappa is a React application. It uses very little of the core React library besides passing a few props, but makes extensive use of the technologies and libraries of the React ecosystem. Without the robust and well-documented React ecosystem, creating RappaMappa would have been a substantially more challenging enterprise.
 
 
