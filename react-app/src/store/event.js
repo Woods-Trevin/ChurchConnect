@@ -92,7 +92,8 @@ export const PatchEvent = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(patch_event(data));
+        if (data.events)
+            dispatch(patch_event(data.events));
         return response
     }
 
@@ -107,7 +108,7 @@ export const DeleteEvent = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(delete_event(data));
+        dispatch(delete_event(data.events));
         return response
     }
 
@@ -130,12 +131,14 @@ export default function eventReducer(state = initialState, action) {
             newState = Object.assign({}, state);
             newState.currentevent = action.payload;
             return newState;
+        case PATCH_EVENT:
+            newState = Object.assign({}, state);
+            newState.events = action.payload;
+            return newState;
         case DELETE_EVENT:
-            return state;
-        // case DELETE_COMMENT:
-        //     newState = Object.assign({}, state);
-        //     newState.currentevent = action.payload;
-        //     return newState;
+            newState = Object.assign({}, state);
+            newState.events = action.payload;
+            return newState;
         default:
             return state;
     }

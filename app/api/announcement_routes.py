@@ -5,6 +5,16 @@ from app.forms import AnnouncementForm
 
 announcement_routes = Blueprint('announcements', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 @announcement_routes.route('/', methods=['GET', 'POST'])
 @login_required
 def announcements():
@@ -29,6 +39,7 @@ def announcements():
             return jsonify('Created Announcement')
         else:
             return jsonify('Bad Data')
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 
@@ -63,6 +74,8 @@ def update_announcement(id):
             return jsonify('announcement patched')
     else:
         return jsonify('Bad Data')
+    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @announcement_routes.route('/<int:id>', methods=['DELETE'])

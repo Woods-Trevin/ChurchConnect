@@ -5,6 +5,15 @@ from app.forms import EventForm
 
 event_routes = Blueprint('events', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @event_routes.route('/', methods=['GET', 'POST'])
 @login_required
@@ -43,6 +52,7 @@ def events():
             return jsonify('Created New Event')
         else:
             return jsonify('Bad Data')
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @event_routes.route('/<int:id>', methods=['GET'])
@@ -80,8 +90,10 @@ def update_event(id):
         event_to_change.startTime = request.json['startTime']
         event_to_change.endTime = request.json['endTime']
         db.session.commit()
-
-    return jsonify('Updated Event')
+        currentEvents = Event.query.all()
+        return {"events": [event.to_dict() for event in currentEvents]}
+        
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @event_routes.route('/<int:id>', methods=['DELETE'])
@@ -101,5 +113,6 @@ def delete_event(id):
 
     currentEvent = Event.query.filter(Event.id == id).delete()
     db.session.commit()
-    # print(currentEvent.to_dict())
-    return jsonify('Deleted event')
+
+    currentEvents = Event.query.all()
+    return {"events": [event.to_dict() for event in currentEvents]}
