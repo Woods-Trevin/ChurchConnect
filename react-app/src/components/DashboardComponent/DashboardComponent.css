@@ -55,85 +55,85 @@
 /*----------------------------------------------*/
 
 .Dashboard_event_ctnr {
-    /* border: 6px solid yellow; */
-    /* display: flex; */
-    width: 100%;
-    overflow: scroll;
-}
-
-/*----------------------------------------------*/
-
-.DashboardEvents_title_ctnr {
-
-}
-
-.DashboardEvents_title {
-
-}
-
-/*----------------------------------------------*/
-
-.DashboardEvents_items_outter_ctnr {
-    /* border: 2px solid red; */
+    border: 6px solid yellow;
     display: flex;
-    gap: 30px;
-    /* overflow: scroll; */
-    /* width: 100%; */
-    /* height: 600px; */
+    /* flex-direction: column; */
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+    overflow-x: scroll;
 }
 
-.DashboardEvents_inner_ctnr {
-    /* border: 2px solid black; */
-    /* height: 300px; */
-    list-style: none;
+/*----------------------------------------------*/
+
+.NavLink_ctnr {
+    border: 2px solid red;
+    height: 500px;
+    width: 700px;
     text-decoration: none;
     color: black;
 }
 
-.DashboardEvents_items_wrapper{
-    border: 2px solid black;
+.eventImage_ctnr {
+    /* width: 400px;
+    text-align: center;
+    overflow: scroll;
     display: flex;
-    flex-direction: column;
-    /* height: 300px; */
+    gap: 20px;
+    scroll-snap-type: x mandatory; */
+
+    /* overflow: auto;
+    outline: 1px dashed lightgray;
+    flex: none;
+    width: 100%;
+    flex-flow: row nowrap;
+    scroll-snap-type: x mandatory; */
+
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-.DashboardEvents_item.imgOne {
-    width: 200px;
-    height: 100px;
+.eventImage_ctnr > img {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 300px;
+    height: 300px;
+    /* margin-right: 50px; */
+    /* border-radius: 10px; */
+    background: #eee;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.DashboardEvents_item.imgTwo {
-    width: 200px;
-    height: 100px;
+.EventImage.one {
+    width: 700px;
+    height: 400px;
 }
 
-.DashboardEvents_item.imgThree {
-    width: 200px;
-    height: 100px;
+.EventImage.two {
+    width: 700px;
+    height: 400px;
 }
 
-.DashboardEvents_item.title {
-    font-size: 20px;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
+.EventImage.three {
+    width: 700px;
+    height: 400px;
 }
 
-.DashboardEvents_item.description {
-
+.DashboardEvent_items_ctnr {
+    list-style: none;
 }
 
-.DashboardEvents_item.startDate {
-
-}
-
-.DashboardEvents_item.endDate {
-
-}
-
-.DashboardEvents_item.startTime {
-
-}
-
-.DashboardEvents_item.endTime {
+.DashboardEvent_items {
+    
 
 }
