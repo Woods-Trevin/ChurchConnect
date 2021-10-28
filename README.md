@@ -50,4 +50,25 @@
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
 
+## ChurchConnect at a Glance
+
+ChurchConnect is a fullstack (Postgres, Flask, React.js, Node.js) app that lets a user from a church community communicate with other members that log onto the website through the creation of Events and Announcements
+
+Users can also comment and reply to comments on Events and Announcements adding a higher level of communication between users.
+
+## Application Architecture
+
+As stated previous, ChurchConnect is a fullstack  (Postgres, Flask, React.js, Node.js) application. The majority of the application logic occurs within front end's Redux store and its interactions with the users and their actions when creating, updating, or deleting their creations.
+
+The backend serves the frontend by responding to frontend requests, and fetching data from the Postgres database.
+
+## Frontend Overview
+ChurchConnect has alot going on in the front end that help to make it such a useful app. It makes extensive use of the backend I designed with Flask to create a dynamic and data-rich experience. Below are the frontend technologies that make this application possible.
+
+# Frontend Tech Used:
+
+# React
+At its core, RappaMappa is a React application. It uses very little of the core React library besides passing a few props, but makes extensive use of the technologies and libraries of the React ecosystem. Without the robust and well-documented React ecosystem, creating RappaMappa would have been a substantially more challenging enterprise.
+
+
 
