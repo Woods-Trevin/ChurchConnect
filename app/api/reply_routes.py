@@ -6,6 +6,16 @@ from app.forms import ReplyForm
 
 reply_routes = Blueprint('replies', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 @reply_routes.route('/', methods=['GET', 'POST'])
 @login_required
 def replies():
@@ -27,6 +37,8 @@ def replies():
             replies = Reply.query.all()
             return {'replies': [reply.to_dict() for reply in replies]}
 
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 @reply_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
@@ -41,6 +53,8 @@ def patch_reply(id):
             db.session.commit()
             replies = Reply.query.all()
             return {'replies': [reply.to_dict() for reply in replies]}
+            
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @reply_routes.route('/<int:id>', methods=['DELETE'])

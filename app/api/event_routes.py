@@ -5,12 +5,30 @@ from app.forms import EventForm
 
 event_routes = Blueprint('events', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
-@event_routes.route('/', methods=['GET', 'POST'])
+@event_routes.route('/', methods=['GET'])
+def get_events():
+    if request.method == 'GET':
+        events = Event.query.all()
+        return {'events': [event.to_dict() for event in events]}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@event_routes.route('/', methods=['POST'])
 @login_required
-def events():
+def post_events():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     # print(form.data['imageURL'], '----------------------------------------------------------------')
     # print(form.data['imageURLTwo'], '----------------------------------------------------------------')
     # print(form.data['imageURLThree'], '----------------------------------------------------------------')
@@ -21,9 +39,6 @@ def events():
     # print(form.data['startTime'], '----------------------------------------------------------------')
     # print(form.data['endTime'], '----------------------------------------------------------------')
     # print(request.json['idx'], '----------------------------------------------------------------')
-    if request.method == 'GET':
-        events = Event.query.all()
-        return {'events': [event.to_dict() for event in events]}
     if request.method == 'POST':
         if form.validate_on_submit():
             created_event = Event(
@@ -43,6 +58,7 @@ def events():
             return jsonify('Created New Event')
         else:
             return jsonify('Bad Data')
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @event_routes.route('/<int:id>', methods=['GET'])
@@ -80,8 +96,9 @@ def update_event(id):
         event_to_change.startTime = request.json['startTime']
         event_to_change.endTime = request.json['endTime']
         db.session.commit()
+        currentEvents = Event.query.all()
+        return {"events": [event.to_dict() for event in currentEvents]}
 
-    return jsonify('Updated Event')
 
 
 @event_routes.route('/<int:id>', methods=['DELETE'])
@@ -101,5 +118,6 @@ def delete_event(id):
 
     currentEvent = Event.query.filter(Event.id == id).delete()
     db.session.commit()
-    # print(currentEvent.to_dict())
-    return jsonify('Deleted event')
+
+    currentEvents = Event.query.all()
+    return {"events": [event.to_dict() for event in currentEvents]}

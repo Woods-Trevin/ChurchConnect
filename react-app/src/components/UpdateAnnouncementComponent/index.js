@@ -12,6 +12,8 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
     const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
     const [updateAnnouncementDescription, setUpdateAnnouncementDescription] = useState(current_announcement?.description)
 
+    const [validationErrors, setValidationErrors] = useState([])
+
 
     const dispatch = useDispatch()
 
@@ -31,12 +33,25 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
     useEffect(() => {
         setUpdateAnnouncement(true);
-    }, [dispatch])
+        const errors = [];
+
+        if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
+        if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
+        if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
+        if (!updateAnnouncementDescription) errors.push('Announcement must include a Description');
+        if (updateAnnouncementDescription.length > 1000) errors.push('Announcement Description is too long');
+
+        setValidationErrors(errors);
+    }, [dispatch, updateAnnouncementURL, updateAnnouncementTitle, updateAnnouncementDescription])
 
 
     return (
         <div>
-            <h1> Update Announcement Component </h1>
+            <ul>
+                {validationErrors.map(error =>
+                    <li>{error}</li>
+                )}
+            </ul>
             <form onSubmit={handleAnnouncementPatch}>
                 <div>
                     <div>
@@ -74,7 +89,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                             />
                         </label>
                     </div>
-                    <button type="submit" >
+                    <button type="submit" disabled={validationErrors.length > 0} >
                         Submit
                     </button>
                 </div>

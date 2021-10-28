@@ -1,6 +1,7 @@
 .Dashboard_outmost_ctnr {
     height: 700px;
     border-bottom: 2px solid black;
+    background-color: #f1f5f7;
     display: flex;
     gap: 20px;
 }
@@ -21,9 +22,10 @@
 }
 
 .DashboardAnnouncements_items_wrapper {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: 400px;
     color: black;
+    background-color: white;
     
 }
 
@@ -71,15 +73,27 @@
 /*----------------------------------------------*/
 
 .DashboardEvents_items_outter_ctnr {
-    border: 2px solid black;
+    /* border: 2px solid red; */
     display: flex;
-    width: 600px;
+    gap: 30px;
+    overflow: scroll;
+    width: 100%;
+    height: 600px;
 }
 
-.DashboardEvents_items_wrapper {
+.DashboardEvents_inner_ctnr {
+    /* border: 2px solid black; */
+    /* height: 300px; */
     list-style: none;
     text-decoration: none;
     color: black;
+}
+
+.DashboardEvents_items_wrapper{
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    /* height: 300px; */
 }
 
 .DashboardEvents_item.imgOne {

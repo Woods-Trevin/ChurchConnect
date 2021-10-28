@@ -43,16 +43,18 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                 </div>
                 <div className="DashboardEvents_items_outter_ctnr" >
                     {events?.map(event =>
-                        <Link className="DashboardEvents_items_wrapper" to={`/event/${event.id}`}>
-                            <img className="DashboardEvents_item imgOne" src={event.imageURL} />
-                            <img className="DashboardEvents_item imgTwo" src={event.imageURLTwo} />
-                            <img className="DashboardEvents_item imgThree" src={event.imageURLThree} />
-                            <li className="DashboardEvents_item title" >{event.title}</li>
-                            <li className="DashboardEvents_item description" >{event.description}</li>
-                            <li className="DashboardEvents_item startDate" >{event.startDate}</li>
-                            <li className="DashboardEvents_item endDate" >{event.endDate}</li>
-                            <li className="DashboardEvents_item startTime" >{event.startTime}</li>
-                            <li className="DashboardEvents_item endTime" >{event.endTime}</li>
+                        <Link className="DashboardEvents_inner_ctnr" to={`/event/${event.id}`}>
+                            <div className="DashboardEvents_items_wrapper" >
+                                <img className="DashboardEvents_item imgOne" src={event.imageURL} />
+                                <img className="DashboardEvents_item imgTwo" src={event.imageURLTwo} />
+                                <img className="DashboardEvents_item imgThree" src={event.imageURLThree} />
+                                <li className="DashboardEvents_item title" >{event.title}</li>
+                                <li className="DashboardEvents_item description" >{event.description}</li>
+                                <li className="DashboardEvents_item startDate" >{event.startDate}</li>
+                                <li className="DashboardEvents_item endDate" >{event.endDate}</li>
+                                <li className="DashboardEvents_item startTime" >{event.startTime}</li>
+                                <li className="DashboardEvents_item endTime" >{event.endTime}</li>
+                            </div>
                         </Link>
                     )}
                 </div>
