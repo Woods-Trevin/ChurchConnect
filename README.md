@@ -31,6 +31,10 @@ ChurchConnect uses Flask for its backend interacting with Postgres as database f
 
 ### Backend Tech Used
 
+#### Flask
+Flask was an easy choice for the backend part of my application. The associations are straightforward and you can include those associations on the models you are querying and sending back to the backend. The class structure for models and forms were a nice change of pace since most of what I have done before was in Express using functional programming.
+Querying the database was easier than with Express.
+
 #### Postgres
 Postgres was an easy choice for ChurchConnect server-side framework. Postgres allows easy communication between database and the backend server. I found it very straightforward to use.
 
