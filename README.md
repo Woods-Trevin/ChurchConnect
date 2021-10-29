@@ -25,8 +25,6 @@ ChurchConnect uses React to its fullest extent. It uses very little of the core 
 #### Redux
 The ReactRedux library was used to manage this applications state as the users perform the actions they are allowed, make fetch requests to the server for data, and to change the state to create a seemless updating functionality when a user makes any core actions (create, update, delete).
 
-All artist information is fetched on page load and kept in the Redux store. While this expensive operation lengthens the initial load time, it also allows for a snappy experience after that load.
-
 Redux sets and holds information about all Events and Announcements, as well as the comments and replies users may make as they explore this site. By managing this state in Redux, it provides easy access to information from the database across all components on this application. There were so many components in the application that this helped to bring my vision across smoothly with little to no headache. The examples of redux being very useful start when the user logs in and sees all events and announcements that other users made that is requested from the backend and stored in state, and extend to the many components and conditional renders implemented to give the user a more dynamic experience. Redux provided an intuitive method to manage all the complexity of this application.
 
 ## Backend Overview
