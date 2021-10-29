@@ -22,7 +22,7 @@ const UserNavBar = ({ loggedIn, setLoggedIn }) => {
             <ul className="userNav_innermost_ctnr">
                 <li className="userNav_home_ctnr">
                     <NavLink to='/' exact={true} activeClassName='active' className='userNav_Home'>
-                        Home
+                        ChurchConnect
                     </NavLink>
                 </li>
                 <li className="userNav_CreateEvent_ctnr">

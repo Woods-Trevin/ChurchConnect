@@ -11,10 +11,6 @@ export default function Footer() {
                 <span><a className='linkedIn' href='https://www.linkedin.com/in/trevinwoods4778661aa/' target="_blank" rel="noreferrer">LinkedIn</a></span>
             </div>
             <div className="quickNav_container">
-                <NavLink className="createEvent_footer_link" to="/event" > Create an Event </NavLink>
-                <NavLink className="createAnnouncement_footer_link" to="/announcement" > Create an Announcement </NavLink>
-                <NavLink className="home_footer_link" to="/" > Home </NavLink>
-
             </div>
         </div>
     )
