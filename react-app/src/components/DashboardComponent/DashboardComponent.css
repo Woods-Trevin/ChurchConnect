@@ -1,3 +1,10 @@
+
+.Dashboard {
+    /* border: 5px solid red; */
+    height: 900px;
+}
+
+/*---------------------------------------------*/
 .Dashboard_titles {
     display: flex;
     /* justify-content: space-between; */
@@ -9,21 +16,36 @@
 /*---------------------------------------------*/
 
 .Dashboard_outmost_ctnr {
-    height: 700px;
+    /* height: 700px; */
     /* border-bottom: 2px solid black; */
-    background-color: #f1f5f7;
-    display: flex;
-    gap: 20px;
+    /* background-color: #f1f5f7; */
+    /* display: flex; */
+    /* gap: 20px; */
 }
+
+
+@media only screen and (min-height: 601px) {
+    .Dashboard_outmost_ctnr {
+        height: 1000px;
+        /* border-bottom: 2px solid black; */
+        background-color: #f1f5f7;
+        display: flex;
+        gap: 20px;
+    }
+}
+
 
 /*---------------------------------------------*/
 
 .Dashboard_announcement_ctnr {
     /* border: 2px solid orange; */
+    
     display: flex;
     flex-direction: column;
+    position: relative;
     gap: 20px;
     width: 600px;
+    /* height: 1000px; */
     overflow: scroll;
     font-family: 'Didot', serif;
     border-right: 1px solid black;
@@ -31,20 +53,31 @@
 
 .DashboardAnnouncements_link {
     text-decoration: none;
+    /* border: 2px solid grey; */
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+}
+.DashboardAnnouncements_link:hover {
+    font-size: 20px;
 }
 
 .DashboardAnnouncements_items_wrapper {
     /* border: 2px solid black; */
-    width: 400px;
+    width: 100%;
     color: black;
     background-color: white;
+    border-radius: 10px;
     
 }
 
 .DashboardAnnouncement_item.img {
+    margin: 0 auto;
     height: 200px;
     width: 100%;
-    
+    display: block;
+    background-clip: content-box;
+    border-radius: 10px 10px 0px 0px;
+    /* border: 5px solid red; */
 }
 
 .DashboardAnnouncement_item.title {
@@ -91,10 +124,12 @@
 /*----------------------------------------------*/
 
 .NavLink_ctnr {
-    border: 2px solid black;
+    border: 2px solid grey;
     background-color: white;
     border-radius: 10px;
+    box-shadow: 0 0 10px black;
     /* height: 100%; */
+    margin-left: 10px;
     width: 700px;
     text-decoration: none;
     color: black;
@@ -172,14 +207,40 @@
 }
 
 .startDateTime_ctnr {
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 .endDateTime_ctnr {
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 .DashboardEvent_items {
     
 
+}
+
+.DashboardEvent_items.startDate {
+
+}
+
+.DashboardEvent_items.startTime {
+
+}
+
+.DashboardEvent_items.endDate {
+
+}
+
+.DashboardEvent_items.endTime {
+
+}
+
+/*-----------------------------------------------------------*/
+
+
+.Footer_ctnr {
+    position:relative;
+        left:0px;
+        bottom:0px;
+        right:0px;
 }

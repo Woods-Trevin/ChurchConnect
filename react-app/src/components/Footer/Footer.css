@@ -1,13 +1,25 @@
 .Footer_ctnr {
     display: flex;
-    position: absolute;
-    bottom: 0px;
+    /* position: relative; */
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    right:0px;
     width: 100%;
     justify-content: center;
     align-items: center;
     background-color: black;
     height: 130px;
 }
+
+/* @media screen and (min-height: 600px) {
+    .Footer_ctnr {
+        position:absolute;
+        left:0px;
+        bottom:0px;
+        right:0px;
+    }
+} */
 
 /* ================================================================= */
 

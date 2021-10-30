@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import * as announcementActions from '../../store/announcement'
 import * as eventActions from '../../store/event'
+import Footer from '../Footer'
 import './DashboardComponent.css';
 
 export default function DashboardComponent({ setUpdateAnnouncement }) {
@@ -21,20 +22,12 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
     return (
-        <div>
-            {/* <div className="Dashboard_titles">
-                <div>
-                    <h2>Announcements</h2>
-                </div>
-                <div>
-                    <h2>Events</h2>
-                </div>
-            </div> */}
+        <div className="Dashboard">
             <div className="Dashboard_outmost_ctnr">
-                <div>
-                    <h2>Select an Announcement</h2>
-                </div>
                 <div className="Dashboard_announcement_ctnr">
+                    <div>
+                        <h2>Select an Announcement</h2>
+                    </div>
                     {announcements?.map((announcement) =>
                         <NavLink className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
                             <div className='DashboardAnnouncements_items_wrapper'>
@@ -61,18 +54,23 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             </div>}
                             <div className="DashboardEvent_items_ctnr">
                                 <div className="startDateTime_ctnr">
-                                    <li className="DashboardEvent_items" >{event?.startDate}</li>
-                                    <li className="DashboardEvent_items" >{event?.startTime}</li>
+                                    <p>Event Starts: </p>
+                                    <li className="DashboardEvent_items startDate" >{event?.startDate}</li>
+                                    <li className="DashboardEvent_items startTime" >{event?.startTime}</li>
                                 </div>
                                 <div className="endDateTime_ctnr">
-                                    <li className="DashboardEvent_items" >{event?.endDate}</li>
-                                    <li className="DashboardEvent_items" >{event?.endTime}</li>
+                                    <p>Event Ends: </p>
+                                    <li className="DashboardEvent_items endDate" >{event?.endDate}</li>
+                                    <li className="DashboardEvent_items endTime" >{event?.endTime}</li>
                                 </div>
                             </div>
                         </NavLink>
 
                     )}
                 </div>
+            </div>
+            <div className="Footer_ctnr">
+                <Footer />
             </div>
         </div>
     )
