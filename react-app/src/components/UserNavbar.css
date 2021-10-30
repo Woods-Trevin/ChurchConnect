@@ -24,17 +24,24 @@ body {
 /*-------------------------------------------------------*/
 
 .userNav_home_ctnr {
+    /* border: 2px solid red; */
+    background-color: skyblue;
+    display: flex;
+    align-items: center;
+    height: 65px;
     list-style: none;
     position: absolute;
-    left: 2%;
+    left: 0%;
     
 }
 
 .userNav_Home {
     text-decoration: none;
     /* color: black; */
-    color: skyblue;
-    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    color: black;
+    font-size: 24px;
     font-weight:bolder;
 
 }

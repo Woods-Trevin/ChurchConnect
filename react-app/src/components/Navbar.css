@@ -22,17 +22,24 @@ body {
 /*----------------------------------------------*/
 
 .navbar_home_ctnr {
+    background-color: skyblue;
+    display: flex;
+    align-items: center;
+    height: 65px;
     list-style: none;
     position: absolute;
-    left: 2%;
+    left: 0%;
     
 
 }
 
 .navbar_Home {
     text-decoration: none;
-    color: skyblue;
-    font-size: 20px;
+    /* color: black; */
+    margin-right: 10px;
+    margin-left: 10px;
+    color: black;
+    font-size: 24px;
     font-weight:bolder;
 }
 
