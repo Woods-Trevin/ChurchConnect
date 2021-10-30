@@ -24,7 +24,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
     return (
         <div className="Dashboard">
             <div className="Dashboard_intro_ctnr">
-                <img src="https://www.gardnerfbc.org/cms/wp-content/uploads/2013/03/Slide-Connected.jpg" alt="alt" className="splashPage_img" />
+                <img src="https://community-impact-website.s3.amazonaws.com/uploads/wpengine/uploads/2019/01/concert-photo.jpg" alt="alt" className="splashPage_img" />
                 <div className="CCBlurb_ctnr" >
                     <p className="CCBlurb">
                         ChurchConnect was made to bring members of a church community together by allowing communication between one another through the creation of Events and Announcements...
