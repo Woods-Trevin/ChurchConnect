@@ -7,10 +7,22 @@
 }
 
 .createEvent_instructions {
-    /* float: left; */
+    /* border: 5px solid purple; */
+    border-top: 1px solid skyblue;
+    background-color: black
+    
 }
 
 .createEvent_text_label {
+    /* border: 2px solid red; */
+    font-size: 30px;
+    color: skyblue;
+}
+
+.createEvent_text {
+    /* border: 2px solid red; */
+    font-size: 30px;
+    color: skyblue;
     
 }
 /*----------------------------------------------------------------*/
@@ -19,6 +31,7 @@
     border: 5px solid green;
     display: flex;
     /* height: 900px; */
+    background-color: #f1f5f7;
 }
 
 .createEvent_errors {

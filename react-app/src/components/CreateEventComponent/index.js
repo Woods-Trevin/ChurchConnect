@@ -75,7 +75,7 @@ export default function CreateEventComponent() {
         <div className="createEvent_outmost_ctnr">
             <div className="createEvent_instructions">
                 <h3 className="createEvent_text_label" >Create an Announcement</h3>
-                <p>Events are integral for community members to communicate with each other. Events can be anything from a garage sale to a wedding. The Youth are welcome to post their events here as well so they can coordinate with other youth members and plan upcoming. Complete the form fully and share with everyone what you have going on in life..</p>
+                <p className="createEvent_text">Events are integral for community members to communicate with each other. Events can be anything from a garage sale to a wedding. The Youth are welcome to post their events here as well so they can coordinate with other youth members to plan their gatherings. Complete the form fully and share with everyone what you have going on in life.</p>
             </div>
             <div className="createEvent_inner_ctnr" >
                 <ul className="createEvent_errors">
