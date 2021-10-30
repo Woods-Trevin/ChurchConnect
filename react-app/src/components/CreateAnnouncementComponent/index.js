@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import * as announcementActions from '../../store/announcement'
+import Footer from '../Footer'
 import './CreateAnnouncementComponent.css'
 
 export default function CreateAnnouncementComponent() {
@@ -41,53 +42,62 @@ export default function CreateAnnouncementComponent() {
 
     return (
         <div className="announcement_outmost_ctnr">
-            <ul>
-                {validationErrors.map(error =>
-                    <li>{error}</li>
-                )}
-            </ul>
-            <form onSubmit={handleAnnouncementCreation}>
-                <div>
-                    <div>
-                        <label>
-                            <div>
+            <div className="createAnnouncement_instructions">
+                <h1>Create Announcement Instruction</h1>
+            </div>
+            <div className="announcement_inner_ctnr">
+                <ul>
+                    {validationErrors.map(error =>
+                        <li>{error}</li>
+                    )}
+                </ul>
+                <form onSubmit={handleAnnouncementCreation}>
+                    <div className="announcementForm_ctnr">
+                        <label className="announcementImageURL_ctnr">
+                            <div className="announcementImageURL_label">
                                 Image URL:
                             </div>
                             <input
                                 type='text'
                                 name='imageURL'
                                 value={imageURL}
+                                className='announcementURL_input'
                                 onChange={(e) => setImageURL(e.target.value)}
                             />
                         </label>
-                        <label>
-                            <div>
+                        <label className="announcementTitle_ctnr" >
+                            <div className="announcementTitle_label" >
                                 Title:
                             </div>
                             <input
                                 type='text'
                                 name='announcementTitle'
                                 value={announcementTitle}
+                                className="announcementTitle_input"
                                 onChange={(e) => setAnnouncementTitle(e.target.value)}
                             />
                         </label>
-                        <label>
-                            <div>
+                        <label className="announcementDescription_ctnr">
+                            <div className="announcementDescription_label" >
                                 Description:
                             </div>
                             <input
                                 type='text'
                                 name='announcementDescription'
                                 value={announcementDescription}
+                                className="announcementDescription_input"
                                 onChange={(e) => setAnnouncementDescription(e.target.value)}
                             />
                         </label>
                     </div>
-                    <button type="submit" disabled={validationErrors.length > 0} >
+                    <button className="announcementForm_btn" type="submit" disabled={validationErrors.length > 0} >
                         Submit
                     </button>
-                </div>
-            </form>
+                </form>
+            </div>
+            <div className="announcementFooter_ctnr">
+                <Footer />
+            </div>
         </div>
     )
 }

@@ -1,8 +1,25 @@
 .Footer_ctnr {
     display: flex;
+    /* position: relative; */
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    width: 100%;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    height: 130px;
 }
+
+/* @media screen and (min-height: 600px) {
+    .Footer_ctnr {
+        position:absolute;
+        left:0px;
+        bottom:0px;
+        right:0px;
+    }
+} */
 
 /* ================================================================= */
 
@@ -14,23 +31,28 @@
     margin-left: 50px;
     margin-top: 10px;
     gap: 10px;
+   
 }
 
 .ownerName {
     list-style: none;
     /* margin-bottom: 10px; */
+    color: skyblue;
+    font-weight: 700;
 }
 
 .github {
     position: relative;
     text-decoration: none;
-    color: black;
+    color: skyblue;
+    font-weight: 700;
 }
 
 .linkedIn {
     position: relative;
     text-decoration: none;
-    color: black;
+    color: skyblue;
+    font-weight: 700;
 
 }
 

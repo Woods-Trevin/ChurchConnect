@@ -62,29 +62,29 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
-          <Footer />
+          {/* <Footer /> */}
         </Route>
-        <Route path='/event' exact={true} >
+        <ProtectedRoute path='/event' exact={true} >
           <CreateEventComponent />
-          <Footer />
-        </Route>
-        <Route path='/announcement' exact={true} >
+          {/* <Footer /> */}
+        </ProtectedRoute>
+        <ProtectedRoute path='/announcement' exact={true} >
           <CreateAnnouncementComponent />
-          <Footer />
-        </Route>
+          {/* <Footer /> */}
+        </ProtectedRoute>
         <Route path='/profile' exact={true} >
           <Profile />
-          <Footer />
+          {/* <Footer /> */}
         </Route>
         <Route path='/event/:eventId' exact={true} >
           {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} />}
           {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} />}
-          <Footer />
+          {/* <Footer /> */}
         </Route>
         <Route path='/announcement/:announcementId' exact={true} >
           {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />}
           {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />}
-          <Footer />
+          {/* <Footer /> */}
         </Route>
       </Switch>
     </BrowserRouter>

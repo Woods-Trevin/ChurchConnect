@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import * as eventActions from '../../store/event'
+import Footer from '../Footer'
 import './CreateEventComponent.css'
 
 export default function CreateEventComponent() {
@@ -181,6 +182,9 @@ export default function CreateEventComponent() {
                     </button>
                 </div>
             </form>
+            <div>
+                <Footer />
+            </div>
         </div>
     )
 }

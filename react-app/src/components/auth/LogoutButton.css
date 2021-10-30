@@ -1,4 +1,8 @@
 .logoutBtn {
     border: none;
-    background-color: white;
+    background-color: black;
+    color: skyblue;
+    font-weight: 700;
+    font-family: 'Didot', serif;
+    font-size: 20px;
 }
