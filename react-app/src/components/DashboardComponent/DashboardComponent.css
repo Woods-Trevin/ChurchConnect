@@ -1,23 +1,70 @@
+body {
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 .Dashboard {
     /* border: 5px solid red; */
     height: 900px;
 }
 
-/*---------------------------------------------*/
-.Dashboard_titles {
-    display: flex;
-    /* justify-content: space-between; */
-    gap: 500px;
+.Dashboard_intro_ctnr {
+    background-color: #f1f5f7;
+    border-bottom: 1px solid black;
+    
 }
 
+.splashPage_img {
+    width: 100%;
+    height: 600px;
+}
 
+.CCBlurb_ctnr {
+    /* border: 2px solid red; */
+    height: 100%;
+    font-family: 'Didot', serif;
+    /* float: left; */
+    /* display: flex; */
+    
+}
+
+.CCBlurb {
+    font-size: 50px;
+    
+
+}
+
+.CCStarter_btn_ctnr {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: flex-end;
+    font-family: 'Didot', serif;
+    /* height: 200px; */
+    
+}
+
+.CCStarter_btn {
+    list-style: none;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: skyblue;
+    color: black;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    width: 400px;
+    height: 100px;
+    text-decoration: none;
+}
 
 /*---------------------------------------------*/
 
 .Dashboard_outmost_ctnr {
     /* height: 700px; */
-    /* border-bottom: 2px solid black; */
+    /* border-bottom: 5px solid red; */
     /* background-color: #f1f5f7; */
     /* display: flex; */
     /* gap: 20px; */
@@ -49,6 +96,8 @@
     overflow: scroll;
     font-family: 'Didot', serif;
     border-right: 1px solid black;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .DashboardAnnouncements_link {
@@ -127,13 +176,19 @@
     border: 2px solid grey;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px black;
+    /* box-shadow: 0 0 10px black; */
     /* height: 100%; */
     margin-left: 10px;
     width: 700px;
     text-decoration: none;
     color: black;
     font-family: 'Didot', serif;
+}
+
+.NavLink_ctnr:hover {
+    box-shadow: 0 0 10px black;
+
+    
 }
 
 .Dashboard_event_title {
@@ -146,34 +201,17 @@
 }
 
 .eventImage_ctnr {
-    /* width: 400px;
-    text-align: center;
-    overflow: scroll;
-    display: flex;
-    gap: 20px;
-    scroll-snap-type: x mandatory; */
-
-    /* overflow: auto;
-    outline: 1px dashed lightgray;
-    flex: none;
-    width: 100%;
-    flex-flow: row nowrap;
-    scroll-snap-type: x mandatory; */
-
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    
 }
 
 .eventImage_ctnr > img {
     scroll-snap-align: start;
     flex-shrink: 0;
-    width: 300px;
-    height: 300px;
-    /* margin-right: 50px; */
-    /* border-radius: 10px; */
     background: #eee;
     transform-origin: center center;
     transform: scale(1);
