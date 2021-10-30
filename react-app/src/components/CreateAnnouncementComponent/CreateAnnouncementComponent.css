@@ -1,74 +1,134 @@
-.announcement_outmost_ctnr {
+.outmost_ctnr {
     /* border: 5px solid green; */
+    font-family: 'Didot', serif;
+    /* background-color: black; */
+    
 }
 
 
 .createAnnouncement_instructions {
+    /* border: 2px solid yellow; */
+    position: relative;
     float: left;
+    width: 500px;
+    height: 700px;
+    font-size: 40px;
+    margin-top: 100px;
+    margin-left:100px;
+    margin-right:100px;
 }
+
 
 /*-------------------------------------------*/
 
 .announcement_inner_ctnr {
     /* border: 2px solid red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 700px;
+    /* border-left: 2px solid black; */
+    /* position: relative; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 700px; */
+    
+}
+
+@media only screen and (min-height: 601px) {
+    .announcement_inner_ctnr {
+        border-left: 2px solid black;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 1000px;
+    }
+}
+
+.announcement_errors_ctnr {
+    font-size: 30px;
 }
 
 /*-------------------------------------------*/
+.announcementForm_outer_ctnr {
+    /* border: 5px solid green; */
+    width: 100%;
+    height: 100%;
+    /* display: flex; */
+
+}
 
 .announcementForm_ctnr {
-    
-}
+    /* width: 100%; */
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap:20px;
+}   
 
 /*-------------------------------------------*/
 
 .announcementImageURL_ctnr {
-    
+    width: 90%;
 }
 
 .announcementImageURL_label {
-    
+    font-size: 40px;
 }
 
 .announcementURL_input {
-    
+    height: 50px;
+    width: 100%
 }
 /*-------------------------------------------*/
 
 .announcementTitle_ctnr {
-    
+    width: 90%;
 }
 
 .announcementTitle_label {
-
+    font-size: 40px;
 }
 
 .announcementTitle_input {
-
+    height: 50px;
+    width: 100%
 }
 
 
 /*-------------------------------------------*/
 .announcementDescription_ctnr {
-
+    width: 90%;
 }
 
 .announcementDescription_label {
-
+    font-size: 40px;
 }
 
 .announcementDescription_input {
-
+    height: 300px;
+    width: 100%
 }
 
 /*-------------------------------------------*/
 
 .announcementForm_btn {
+    width: 100%;
+    height: 90px;
+    font-size: 20px;
+    background-color: skyblue;
+    color: black;
+    font-family: 'Didot', serif;
+    font-weight: 900;
+}
 
+.announcementForm_btn:hover {
+    cursor: pointer;
+    background-color: rgb(76, 186, 230);
 }
 
 
