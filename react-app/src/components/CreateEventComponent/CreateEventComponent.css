@@ -1,0 +1,51 @@
+.createEvent_outmost_ctnr {
+    /* border: 5px solid green; */
+    display: flex;
+    flex-direction: column;
+    font-family: 'Didot', serif;
+    
+}
+
+.createEvent_instructions {
+    /* border: 5px solid purple; */
+    border-top: 1px solid skyblue;
+    background-color: black
+    
+}
+
+.createEvent_text_label {
+    /* border: 2px solid red; */
+    font-size: 30px;
+    color: skyblue;
+}
+
+.createEvent_text {
+    /* border: 2px solid red; */
+    font-size: 30px;
+    color: skyblue;
+    
+}
+/*----------------------------------------------------------------*/
+
+.createEvent_inner_ctnr {
+    border: 5px solid green;
+    display: flex;
+    /* height: 900px; */
+    background-color: #f1f5f7;
+}
+
+.createEvent_errors {
+    font-size: 30px;
+}
+
+/*----------------------------------------------------------------*/
+
+
+.eventForm_ctnr {
+    border: 10px solid red;
+    height: 700px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -41,62 +41,67 @@ export default function CreateAnnouncementComponent() {
 
 
     return (
-        <div className="announcement_outmost_ctnr">
-            <div className="createAnnouncement_instructions">
-                <h1>Create Announcement Instruction</h1>
-            </div>
-            <div className="announcement_inner_ctnr">
-                <ul>
-                    {validationErrors.map(error =>
-                        <li>{error}</li>
-                    )}
-                </ul>
-                <form onSubmit={handleAnnouncementCreation}>
-                    <div className="announcementForm_ctnr">
-                        <label className="announcementImageURL_ctnr">
-                            <div className="announcementImageURL_label">
-                                Image URL:
-                            </div>
-                            <input
-                                type='text'
-                                name='imageURL'
-                                value={imageURL}
-                                className='announcementURL_input'
-                                onChange={(e) => setImageURL(e.target.value)}
-                            />
-                        </label>
-                        <label className="announcementTitle_ctnr" >
-                            <div className="announcementTitle_label" >
-                                Title:
-                            </div>
-                            <input
-                                type='text'
-                                name='announcementTitle'
-                                value={announcementTitle}
-                                className="announcementTitle_input"
-                                onChange={(e) => setAnnouncementTitle(e.target.value)}
-                            />
-                        </label>
-                        <label className="announcementDescription_ctnr">
-                            <div className="announcementDescription_label" >
-                                Description:
-                            </div>
-                            <input
-                                type='text'
-                                name='announcementDescription'
-                                value={announcementDescription}
-                                className="announcementDescription_input"
-                                onChange={(e) => setAnnouncementDescription(e.target.value)}
-                            />
-                        </label>
-                    </div>
-                    <button className="announcementForm_btn" type="submit" disabled={validationErrors.length > 0} >
-                        Submit
-                    </button>
-                </form>
-            </div>
-            <div className="announcementFooter_ctnr">
-                <Footer />
+        <div>
+
+            <div className="outmost_ctnr">
+                <div className="createAnnouncement_instructions">
+                    <h3 className="createAnnouncement_text_label" >Create an Announcement</h3>
+                    <p>Announcements are integral for leaders to communicate with the congregation. Choose your words wisely.</p>
+                </div>
+                <div className="announcement_inner_ctnr">
+                    <ul className="announcement_errors_ctnr">
+                        {validationErrors.map(error =>
+                            <li>{error}</li>
+                        )}
+                    </ul>
+                    <form className="announcementForm_outer_ctnr" onSubmit={handleAnnouncementCreation}>
+                        <div className="announcementForm_ctnr">
+                            <label className="announcementImageURL_ctnr">
+                                <div className="announcementImageURL_label">
+                                    Image URL:
+                                </div>
+                                <input
+                                    type='text'
+                                    name='imageURL'
+                                    value={imageURL}
+                                    className='announcementURL_input'
+                                    onChange={(e) => setImageURL(e.target.value)}
+                                />
+                            </label>
+                            <label className="announcementTitle_ctnr" >
+                                <div className="announcementTitle_label" >
+                                    Title:
+                                </div>
+                                <input
+                                    type='text'
+                                    name='announcementTitle'
+                                    value={announcementTitle}
+                                    className="announcementTitle_input"
+                                    onChange={(e) => setAnnouncementTitle(e.target.value)}
+                                />
+                            </label>
+                            <label className="announcementDescription_ctnr">
+                                <div className="announcementDescription_label" >
+                                    Description:
+                                </div>
+                                <textarea
+                                    name='announcementDescription'
+                                    value={announcementDescription}
+                                    rows="10"
+                                    cols="50"
+                                    className="announcementDescription_input"
+                                    onChange={(e) => setAnnouncementDescription(e.target.value)}
+                                />
+                            </label>
+                        </div>
+                        <button className="announcementForm_btn" type="submit" disabled={validationErrors.length > 0} >
+                            Submit
+                        </button>
+                    </form>
+                </div>
+                <div className="announcementFooter_ctnr">
+                    <Footer />
+                </div>
             </div>
         </div>
     )
