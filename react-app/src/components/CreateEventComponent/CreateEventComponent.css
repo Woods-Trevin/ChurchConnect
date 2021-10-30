@@ -1,3 +1,8 @@
+div {
+    margin: 0;
+    padding: 0;
+}
+
 .createEvent_outmost_ctnr {
     /* border: 5px solid green; */
     display: flex;
@@ -28,7 +33,7 @@
 /*----------------------------------------------------------------*/
 
 .createEvent_inner_ctnr {
-    border: 5px solid green;
+    /* border: 5px solid green; */
     display: flex;
     /* height: 900px; */
     background-color: #f1f5f7;
@@ -42,10 +47,370 @@
 
 
 .eventForm_ctnr {
-    border: 10px solid red;
-    height: 700px;
+    /* border: 10px solid red; */
+    height: 800px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.conditionalRender_wrapper {
+    /* border: 2px solid green; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conditionalRender_btns_ctnr {
+    /* border: 2px solid red; */
+    position: relative;
+    left: 60px;
+    top: 55px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.conditionalRender_save {
+    /* border: 2px solid white; */
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: skyblue;
+}
+
+.conditionalRender_save:hover {
+    background-color: rgb(84, 187, 228);
+    cursor: pointer;
+}
+
+
+/* ================================================================= */
+.eventImgURL_outer_ctnr {
+    /* border: 3px solid pink; */
+    width: 90%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+
+}
+
+.eventImg_instruction {
+    /* border: 2px solid red; */
+    margin: 0 auto;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.eventImgURLOne_ctnr {
+    width: 80%;
+}
+
+.eventImgURLOne_label {
+    font-size: 30px;
+}
+
+.eventImgURLOne_input {
+    height: 50px;
+    width: 100%;
+    font-size: 26px;
+    font-family: 'Didot', serif;
+}
+
+/* ================================================================= */
+
+.eventImgURLTwo_ctnr {
+    width: 80%;
+}
+
+.eventImgURLTwo_label {
+    font-size: 30px;
+}
+
+.eventImgURLTwo_input {
+    height: 50px;
+    width: 100%;
+    font-size: 26px;
+    font-family: 'Didot', serif;
+}
+
+/* ================================================================= */
+
+.eventImgURLThree_ctnr {
+    width: 80%;
+}
+
+.eventImgURLThree_label {
+    font-size: 30px;
+}
+
+.eventImgURLThree_input {
+    height: 50px;
+    width: 100%;
+    font-size: 26px;
+    font-family: 'Didot', serif;
+}
+
+/* ================================================================= */
+.createEvent_titleDescription_ctnr {
+    /* border: 2px solid green; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.createEvent_btns_ctnr {
+    /* border: 2px solid red; */
+    position: relative;
+    /* top: 55px; */
+    width: 100%;
+    height: 50px;
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.createEvent_btn_back {
+    border-right: 2px solid #f1f5f7;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: skyblue;
+}
+
+.createEvent_btn_back:hover {
+    background-color: rgb(84, 187, 228);
+    cursor: pointer;
+}
+
+.createEvent_btn_save {
+    /* border: 2px solid white; */
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: skyblue;
+}
+
+.createEvent_btn_save:hover {
+    background-color: rgb(84, 187, 228);
+    cursor: pointer;
+}
+
+/* ================================================================= */
+
+.createEvent_inputs_ctnr {
+    /* border: 4px solid purple; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.eventDescription_instruction {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+
+.createEventTitle_ctnr {
+    /* border: 2px solid red; */
+    width: 90%;
+    margin-right: 15px;
+}
+
+.createEventTitle_label {
+    font-size: 30px;
+}
+
+.createEventTitle_input {
+    height: 50px;
+    width: 100%;
+}
+
+/* ================================================================= */
+
+.createEventDescription_ctnr {
+    /* border: 2px solid red; */
+    width: 90%;
+    height: 300px;
+    margin-right: 15px;
+}
+
+
+.createEventDescription_label {
+    font-size: 30px;
+}
+
+
+.createEventDescription_input {
+    height: 250px;
+    width: 100%;
+}
+
+/* ================================================================= */
+
+.createEvent_datetime_ctnr {
+    /* border: 2px solid purple; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dateTime_instruction {
+    /* border: 2px solid black; */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.createEvent_input_ctnr {
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 20px;
+}
+
+/* ================================================================= */
+ .createEvent_startDate_wrapper {
+    /* border: 5px solid yellow; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ .createEvent_startDate_label {
+    font-size: 30px;
+    font-weight: 700;
+ }
+
+
+ .createEvent_startDate_input {
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+ }
+
+
+ /* ================================================================= */
+
+.createEvent_endDate_wrapper {
+    /* border: 5px solid yellow; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createEvent_endDate_label {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.createEvent_endDate_input {
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+}
+
+
+/* ================================================================= */
+
+.createEvent_startTime_wrapper {
+    /* border: 5px solid yellow; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createEvent_startTime_label {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.createEvent_startTime_input {
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+}
+
+
+/* ================================================================= */
+
+.createEvent_endTime_wrapper {
+    /* border: 5px solid yellow; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createEvent_endTime_label {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.createEvent_endTime_input {
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+}
+
+
+
+/* ================================================================= */
+
+.eventForm_Btn_ctnr {
+    /* border: 2px solid purple; */
+    /* margin-top: px; */
+    /* margin-bottom: 40px; */
+    width: 100%;
+    height: 100px;
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+
+.eventForm_Btn {
+    width: 100%;
+}
+
+
+/* ================================================================= */
+
+

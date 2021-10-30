@@ -21,6 +21,7 @@ export default function CreateEventComponent() {
     const [imageURLView, setImageURLView] = useState(true)
     const [titleDescriptionView, setTitleDescriptionView] = useState(false)
     const [dateTimeView, setDateTimeView] = useState(false)
+    const [endOfForm, setEndOfForm] = useState(false)
 
     const user = useSelector(state => state.session.user)
     // console.log(user.id)
@@ -28,6 +29,7 @@ export default function CreateEventComponent() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
 
 
     function handleEventSubmit(e) {
@@ -70,6 +72,7 @@ export default function CreateEventComponent() {
 
     }, [dispatch, imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime])
 
+    console.log(imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime)
 
     return (
         <div className="createEvent_outmost_ctnr">
@@ -84,119 +87,182 @@ export default function CreateEventComponent() {
                     )}
                 </ul>
                 <form className="eventForm_ctnr" onSubmit={handleEventSubmit}>
-                    <div>
+                    <div className="conditionalRender_wrapper">
                         {imageURLView &&
-                            <div>
-                                <label>
-                                    <div>
-                                        imageURL:
+                            <div className="eventImgURL_outer_ctnr" >
+                                <div className="conditionalRender_btns_ctnr">
+                                    <li className="conditionalRender_save" onClick={() => {
+                                        setImageURLView(false);
+                                        setTitleDescriptionView(true);
+                                        setDateTimeView(false);
+                                    }} >
+                                        Save
+                                    </li>
+                                </div>
+                                <p className="eventImg_instruction">
+                                    You can add up to 3 images
+                                </p>
+                                <label className="eventImgURLOne_ctnr">
+                                    <div className="eventImgURLOne_label">
+                                        Image URL:
                                     </div>
                                     <input
                                         type="text"
                                         name="imageURLOne"
                                         value={imageURLOne}
+                                        className="eventImgURLOne_input"
                                         onChange={(e) => setImageURLOne(e.target.value)}
                                     />
                                 </label>
-                                <label>
-                                    <div>
+                                <label className="eventImgURLTwo_ctnr" >
+                                    <div className="eventImgURLTwo_label" >
                                         imageURLTwo:
                                     </div>
                                     <input
                                         type="text"
                                         name="imageURLTwo"
                                         value={imageURLTwo}
+                                        className="eventImgURLTwo_input"
                                         onChange={(e) => setImageURLTwo(e.target.value)}
                                     />
                                 </label>
-                                <label>
-                                    <div>
+                                <label className="eventImgURLThree_ctnr" >
+                                    <div className="eventImgURLThree_label" >
                                         imageURLThree:
                                     </div>
                                     <input
                                         type="text"
                                         name="imageURLThree"
                                         value={imageURLThree}
+                                        className="eventImgURLThree_input"
                                         onChange={(e) => setImageURLThree(e.target.value)}
                                     />
                                 </label>
-                            </div>}
+                            </div>
+                        }
                         {titleDescriptionView &&
-                            <div>
-                                <label>
-                                    <div>
-                                        Title:
-                                    </div>
-                                    <input
-                                        type="text"
-                                        name="eventTitle"
-                                        value={eventTitle}
-                                        onChange={(e) => setEventTitle(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    <div>
-                                        Description:
-                                    </div>
-                                    <textarea
-                                        type="text"
-                                        name="eventDescription"
-                                        value={eventDescription}
-                                        onChange={(e) => setEventDescription(e.target.value)}
-                                    />
-                                </label>
-                            </div>}
+                            <div className="createEvent_titleDescription_ctnr">
+                                <div className="createEvent_btns_ctnr">
+                                    <li className="createEvent_btn_back" onClick={() => {
+                                        setImageURLView(true);
+                                        setTitleDescriptionView(false);
+                                        setDateTimeView(false);
+                                    }} >
+                                        Back
+                                    </li>
+                                    <li className="createEvent_btn_save" onClick={() => {
+                                        setImageURLView(false);
+                                        setTitleDescriptionView(false);
+                                        setDateTimeView(true);
+                                        setEndOfForm(true);
+                                    }} >
+                                        Save
+                                    </li>
+                                </div>
+                                <div className="createEvent_inputs_ctnr">
+                                    <p className="eventDescription_instruction">
+                                        Add an Event Title and Description
+                                    </p>
+                                    <label className="createEventTitle_ctnr">
+                                        <div className="createEventTitle_label">
+                                            Title:
+                                        </div>
+                                        <input
+                                            type="text"
+                                            name="eventTitle"
+                                            value={eventTitle}
+                                            className="createEventTitle_input"
+                                            onChange={(e) => setEventTitle(e.target.value)}
+                                        />
+                                    </label>
+                                    <label className="createEventDescription_ctnr" >
+                                        <div className="createEventDescription_label" >
+                                            Description:
+                                        </div>
+                                        <textarea
+                                            type="text"
+                                            name="eventDescription"
+                                            value={eventDescription}
+                                            className="createEventDescription_input"
+                                            onChange={(e) => setEventDescription(e.target.value)}
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+                        }
                         {dateTimeView &&
-                            <div>
-                                <label>
-                                    <div>
-                                        Start Date:
+                            <div className="createEvent_datetime_ctnr">
+                                <div className="createEvent_btns_ctnr">
+                                    <li className="createEvent_btn_back" onClick={() => {
+                                        setImageURLView(false);
+                                        setTitleDescriptionView(true);
+                                        setDateTimeView(false);
+                                    }} >
+                                        Back
+                                    </li>
+                                </div>
+                                <p className="dateTime_instruction">
+                                    Add Event Date and Time
+                                </p>
+                                <div className="createEvent_input_ctnr" >
+                                    <label className="createEvent_startDate_wrapper" >
+                                        <div className="createEvent_startDate_label" >
+                                            Start Date:
+                                        </div>
+                                        <input
+                                            type="date"
+                                            name="eventStartDate"
+                                            value={eventStartDate}
+                                            className="createEvent_startDate_input"
+                                            onChange={(e) => setEventStartDate(e.target.value)}
+                                        />
+                                    </label>
+                                    <label className="createEvent_endDate_wrapper" >
+                                        <div className="createEvent_endDate_label" >
+                                            End Date:
+                                        </div>
+                                        <input
+                                            type="date"
+                                            name="eventEndDate"
+                                            value={eventEndDate}
+                                            className="createEvent_endDate_input"
+                                            onChange={(e) => setEventEndDate(e.target.value)}
+                                        />
+                                    </label>
+                                    <label className="createEvent_startTime_wrapper" >
+                                        <div className="createEvent_startTime_label" >
+                                            Start Time:
+                                        </div>
+                                        <input
+                                            type="time"
+                                            name="eventStartTime"
+                                            value={eventStartTime}
+                                            className="createEvent_startTime_input"
+                                            onChange={(e) => setEventStartTime(e.target.value)}
+                                        />
+                                    </label>
+                                    <label className="createEvent_endTime_wrapper" >
+                                        <div className="createEvent_endTime_label" >
+                                            End Time:
+                                        </div>
+                                        <input
+                                            type="time"
+                                            name="eventEndTime"
+                                            value={eventEndTime}
+                                            className="createEvent_endTime_input"
+                                            onChange={(e) => setEventEndTime(e.target.value)}
+                                        />
+                                    </label>
+                                </div>
+                                {endOfForm &&
+                                    <div className="eventForm_Btn_ctnr" >
+                                        <button type="submit" className="eventForm_Btn" disabled={validationErrors.length > 0} >
+                                            Submit
+                                        </button>
                                     </div>
-                                    <input
-                                        type="date"
-                                        name="eventStartDate"
-                                        value={eventStartDate}
-                                        onChange={(e) => setEventStartDate(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    <div>
-                                        End Date:
-                                    </div>
-                                    <input
-                                        type="date"
-                                        name="eventEndDate"
-                                        value={eventEndDate}
-                                        onChange={(e) => setEventEndDate(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    <div>
-                                        Start Time:
-                                    </div>
-                                    <input
-                                        type="time"
-                                        name="eventStartTime"
-                                        value={eventStartTime}
-                                        onChange={(e) => setEventStartTime(e.target.value)}
-                                    />
-                                </label>
-                                <label>
-                                    <div>
-                                        End Time:
-                                    </div>
-                                    <input
-                                        type="time"
-                                        name="eventEndTime"
-                                        value={eventEndTime}
-                                        onChange={(e) => setEventEndTime(e.target.value)}
-                                    />
-                                </label>
-                            </div>}
-
-                        <button type="submit" className="eventForm_Btn" disabled={validationErrors.length > 0} >
-                            Submit
-                        </button>
+                                }
+                            </div>
+                        }
                     </div>
                 </form>
             </div>
