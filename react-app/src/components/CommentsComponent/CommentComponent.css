@@ -1,11 +1,12 @@
 .comments_outmost_ctnr {
-    background-color: white;
+    background-color: #f1f5f7;
     /* border: 2px solid red; */
     height:100%;
 }
 
 .comments_inner_ctnr {
     border: 2px solid black;
+    background-color: white;
     position: sticky;
     top: 0px;
 }

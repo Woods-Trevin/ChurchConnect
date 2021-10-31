@@ -52,6 +52,10 @@ export default function CreateEventComponent() {
         history.push('/')
     }
 
+    let currentDateSlice;
+    let startDateSlice;
+    let endDateSlice;
+
     useEffect(() => {
         const errors = [];
 
@@ -67,23 +71,109 @@ export default function CreateEventComponent() {
         if (!eventStartTime) errors.push('Event must include a Start Time')
         if (!eventEndTime) errors.push('Event must include a End Time')
 
+        const currentDate = new Date()
+        const currentDateFormatted = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
+        console.log(currentDateFormatted)
+
+        // const currentDateTimeSlice = startTime.slice(0, -3)
+        // splitStartTimeStr = startTimeSlice.split(':')
+        currentDateSlice = currentDateFormatted.split('-')
+        startDateSlice = eventStartDate.split('-')
+        endDateSlice = eventEndDate.split('-')
+        console.log(currentDateSlice)
+        console.log(startDateSlice)
+        console.log(endDateSlice)
+        // (Number(currentDateSlice[2]) > Number(startDateSlice[2]) || Number(currentDateSlice[2]) > Number(endDateSlice[2]))
+        if ((Number(currentDateSlice[1]) > Number(startDateSlice[1]) || Number(currentDateSlice[1]) > Number(endDateSlice[1])) &&
+            (Number(currentDateSlice[0]) > Number(startDateSlice[0]) || Number(currentDateSlice[0]) > Number(endDateSlice[0]))) {
+            errors.push('Start/End Date cannot be behind the current date.')
+            console.log('base case')
+        }
+
+        if (Number(currentDateSlice[1]) === Number(startDateSlice[1])) {
+            if (Number(currentDateSlice[2]) > Number(startDateSlice[2])) {
+                errors.push('Start Date cannot be behind the current date.')
+                console.log('start date day case')
+            }
+        }
+        if (Number(currentDateSlice[1]) === Number(endDateSlice[1])) {
+            if (Number(currentDateSlice[2]) > Number(endDateSlice[2])) {
+                errors.push('Start Date cannot be behind the current date.')
+                console.log('start date day case2')
+            }
+        }
+
+        if (Number(currentDateSlice[1]) === Number(endDateSlice[1])) {
+            if (Number(currentDateSlice[2]) > Number(endDateSlice[2]) &&
+                (Number(currentDateSlice[0]) > Number(endDateSlice[0]))) {
+                errors.push('End Date cannot be behind the current date.')
+                console.log('start date day case3')
+            }
+        }
+        if (Number(currentDateSlice[1]) === Number(endDateSlice[1])) {
+            if (Number(endDateSlice[2]) < Number(currentDateSlice[2]) &&
+                (Number(endDateSlice[0]) < Number(currentDateSlice[0]))) {
+                errors.push('End Date cannot be behind the current date.')
+                console.log('end date day case')
+            }
+        }
+
+
+        if (Number(startDateSlice[1]) === Number(endDateSlice[1])) {
+            if (Number(startDateSlice[2]) > Number(endDateSlice[2]) &&
+                (Number(startDateSlice[0]) > Number(endDateSlice[0]))) {
+                errors.push('End Date cannot be behind the Start Date.')
+                console.log('4th case')
+            }
+        }
+
+        if ((Number(startDateSlice[1]) > Number(endDateSlice[1])) &&
+            (Number(startDateSlice[0]) > Number(endDateSlice[0]))) {
+
+            errors.push('End Date cannot be behind the Start Date.')
+
+        }
+
+        if (Number(currentDateSlice[1]) > Number(endDateSlice[1]) &&
+            (Number(startDateSlice[0]) === Number(endDateSlice[0]))) {
+            errors.push('End Date cannot be behind the Start Date.')
+        }
+
+        if (Number(startDateSlice[0]) > Number(endDateSlice[0])) {
+            errors.push('End Date Year cannot be behind the Start Date Year.')
+
+        }
+
+        if (Number(currentDateSlice[0]) > Number(endDateSlice[0])) {
+            errors.push('End Date Year cannot be behind the Current Year.')
+        }
+
+        if (Number(currentDateSlice[0]) > Number(startDateSlice[0])) {
+            errors.push('Start Date Year cannot be behind the Current Year.')
+        }
+
+
+
 
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const startDate = new Date(new Date(eventStartDate).setDate(new Date(eventStartDate).getDate() + 1)).toLocaleDateString(undefined, options)
         const endDate = new Date(new Date(eventEndDate).setDate(new Date(eventEndDate).getDate() + 1)).toLocaleDateString(undefined, options)
         console.log(startDate)
         console.log(endDate)
+
         const startTime = new Date('1970-01-01T' + eventStartTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })
         const endTime = new Date('1970-01-01T' + eventEndTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })
 
+        // console.log(startTime)
+        // console.log(startTime.length)
+        // console.log(startTime.slice(0, -3))
+        console.log(startTime.slice(5), 'slice 5')
 
-        console.log(startTime)
-        console.log(startTime.length)
-        console.log(startTime.slice(0, -3))
+        // console.log(endTime)
+        // console.log(endTime.length)
+        // console.log(endTime.slice(0, -2))
+        console.log(endTime.slice(5), 'slice 5')
 
-        console.log(endTime)
-        console.log(endTime.length)
-        console.log(endTime.slice(0, -2))
 
         let startTimeSlice = ""
         let splitStartTimeStr = ""
@@ -110,21 +200,27 @@ export default function CreateEventComponent() {
         }
 
         if (startDate === endDate) {
-            if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5) === 'PM' && endTime.slice(5) === 'AM') {
+            if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5).includes('PM') && endTime.slice(5).includes('AM')) {
                 errors.push('Start Time cannot be after End Time')
-                console.log("start time greater than end time case")
-            } else if (startTime.slice(5) === 'PM' && endTime.slice(5) === 'AM') {
+                // console.log("start time greater than end time case")
+            } else if (startTime.slice(5).includes('PM') && endTime.slice(5).includes('AM')) {
                 errors.push('Start Time cannot be after End Time')
-                console.log("PM AM Case")
+                // console.log("PM AM Case")
             } else if (Number(splitStartTimeStr[1]) > Number(splitEndTimeStr[1]) && Number(splitStartTimeStr[0]) === Number(splitEndTimeStr[0])) {
                 errors.push('Start Time cannot be after End Time')
-                console.log("minutes Case")
-            } else if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && !(startTime.slice(5) === 'AM' || endTime.slice(5) === 'PM')) {
+                // console.log("minutes Case")
+            } else if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && !(startTime.slice(5).includes('AM') || endTime.slice(5).includes('PM'))) {
                 errors.push('Start Time cannot be after End Time')
-                console.log('base error case')
+                // console.log('base error case')
             } else if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5) === endTime.slice(5)) {
                 errors.push('Start Time cannot be after End Time')
+                // console.log('second to last case')
 
+            } else if (Number(splitStartTimeStr[0]) < Number(splitEndTimeStr[0])) {
+                if (startTime.slice(5).includes('PM') && endTime.slice(5).includes('AM')) {
+                    errors.push('Start Time cannot be after End Time')
+                    // console.log('last case')
+                }
             }
         }
 
@@ -132,8 +228,7 @@ export default function CreateEventComponent() {
         setValidationErrors(errors)
 
 
-    }, [dispatch, imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime])
-
+    }, [dispatch, currentDateSlice, startDateSlice, endDateSlice, imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime])
     // console.log(imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime)
 
     return (
