@@ -59,6 +59,8 @@
 /*----------------------------------------------------------------*/
 
 .announcementDisplay_btn_ctnr {
+    /* border: 2px solid black; */
+    margin-top: 50px;
     display: flex;
     justify-content: space-between;
 }
@@ -73,7 +75,8 @@
 
 .announcementDisplay_btn {
     list-style: none;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;

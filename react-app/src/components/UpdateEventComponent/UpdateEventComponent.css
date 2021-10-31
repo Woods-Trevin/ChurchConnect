@@ -1,0 +1,39 @@
+.updateEvent_outer_ctnr {
+    /* height: 1000px; */
+}
+
+.updateEvent_inner_ctnr {
+    height: 1000px;
+}
+
+.updateEvent_errors {
+
+}
+
+/* =================================================================*/
+
+.updateEvent_form_wrapper {
+    border: 4px solid red;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.updateEvent_Footer {
+    position:relative;
+        left:0px;
+        bottom:0px;
+        right:0px;
+}

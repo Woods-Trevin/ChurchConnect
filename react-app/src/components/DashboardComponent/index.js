@@ -72,11 +72,13 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             <div className="Dashboard_event_title">
                                 {event?.title}
                             </div>
-                            {(event?.imageURL || event.imageURLTwo || event.imageURLThree) && <div className="eventImage_ctnr" >
-                                <img className="EventImage one" src={event?.imageURL ? event?.imageURL : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
-                                <img className="EventImage two" src={event?.imageURLTwo ? event?.imageURLTwo : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
-                                <img className="EventImage three" src={event?.imageURLThree ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
-                            </div>}
+                            {(event?.imageURL || event.imageURLTwo || event.imageURLThree) &&
+                                <div className="eventImage_ctnr" >
+                                    <img className="EventImage one" src={event?.imageURL ? event?.imageURL : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                    <img className="EventImage two" src={event?.imageURLTwo ? event?.imageURLTwo : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                    <img className="EventImage three" src={event?.imageURLThree ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                </div>
+                            }
                             <div className="DashboardEvent_items_ctnr">
                                 <div className="startDateTime_ctnr">
                                     <p>Event Starts: </p>

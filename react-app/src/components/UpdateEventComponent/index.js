@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as eventActions from '../../store/event'
 import './UpdateEventComponent.css';
+import Footer from '../Footer';
 
 
 export default function UpdateEventComponent({ setUpdateEvent }) {
@@ -66,121 +67,128 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
     }
 
     return (
-        <div>
-            <ul>
-                {validationErrors.map(error =>
-                    <li>{error}</li>
-                )}
-            </ul>
-            <div>
-                <form onSubmit={UpdateEventHandler}>
-                    <div>
+        <div className="updateEvent_outer_ctnr">
+            <div className="updateEvent_inner_ctnr">
+                <ul className="updateEvent_errors">
+                    {validationErrors.map(error =>
+                        <li>{error}</li>
+                    )}
+                </ul>
+                <div className="updateEvent_form_wrapper" >
+                    <form onSubmit={UpdateEventHandler}>
                         <div>
-                            <label>
-                                <div>
-                                    imageURL:
-                                </div>
-                                <input
-                                    type="text"
-                                    name="updateImageOne"
-                                    value={updateImageOne}
-                                    onChange={(e) => setUpdateImageOne(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    imageURLTwo:
-                                </div>
-                                <input
-                                    type="text"
-                                    name="updateImageTwo"
-                                    value={updateImageTwo}
-                                    onChange={(e) => setUpdateImageTwo(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    imageURLThree:
-                                </div>
-                                <input
-                                    type="text"
-                                    name="updateImageThree"
-                                    value={updateImageThree}
-                                    onChange={(e) => setUpdateImageThree(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    Title:
-                                </div>
-                                <input
-                                    type="text"
-                                    name="updateEventTitle"
-                                    value={updateEventTitle}
-                                    onChange={(e) => setUpdateEventTitle(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    Description:
-                                </div>
-                                <textarea
-                                    type="text"
-                                    name="updateEventDescription"
-                                    value={updateEventDescription}
-                                    onChange={(e) => setUpdateEventDescription(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    Start Date:
-                                </div>
-                                <input
-                                    type="date"
-                                    name="updateEventStartDate"
-                                    value={updateEventStartDate}
-                                    onChange={(e) => setUpdateEventStartDate(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    End Date:
-                                </div>
-                                <input
-                                    type="date"
-                                    name="updateEventEndDate"
-                                    value={updateEventEndDate}
-                                    onChange={(e) => setUpdateEventEndDate(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    Start Time:
-                                </div>
-                                <input
-                                    type="time"
-                                    name="updateEventStartTime"
-                                    value={updateEventStartTime}
-                                    onChange={(e) => setUpdateEventStartTime(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div>
-                                    End Time:
-                                </div>
-                                <input
-                                    type="time"
-                                    name="updateEventEndTime"
-                                    value={updateEventEndTime}
-                                    onChange={(e) => setUpdateEventEndTime(e.target.value)}
-                                />
-                            </label>
+                            <div>
+                                <label>
+                                    <div>
+                                        imageURL:
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="updateImageOne"
+                                        value={updateImageOne}
+                                        onChange={(e) => setUpdateImageOne(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        imageURLTwo:
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="updateImageTwo"
+                                        value={updateImageTwo}
+                                        onChange={(e) => setUpdateImageTwo(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        imageURLThree:
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="updateImageThree"
+                                        value={updateImageThree}
+                                        onChange={(e) => setUpdateImageThree(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        Title:
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="updateEventTitle"
+                                        value={updateEventTitle}
+                                        onChange={(e) => setUpdateEventTitle(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        Description:
+                                    </div>
+                                    <textarea
+                                        type="text"
+                                        name="updateEventDescription"
+                                        value={updateEventDescription}
+                                        onChange={(e) => setUpdateEventDescription(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        Start Date:
+                                    </div>
+                                    <input
+                                        type="date"
+                                        name="updateEventStartDate"
+                                        value={updateEventStartDate}
+                                        onChange={(e) => setUpdateEventStartDate(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        End Date:
+                                    </div>
+                                    <input
+                                        type="date"
+                                        name="updateEventEndDate"
+                                        value={updateEventEndDate}
+                                        onChange={(e) => setUpdateEventEndDate(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        Start Time:
+                                    </div>
+                                    <input
+                                        type="time"
+                                        name="updateEventStartTime"
+                                        value={updateEventStartTime}
+                                        onChange={(e) => setUpdateEventStartTime(e.target.value)}
+                                    />
+                                </label>
+                                <label>
+                                    <div>
+                                        End Time:
+                                    </div>
+                                    <input
+                                        type="time"
+                                        name="updateEventEndTime"
+                                        value={updateEventEndTime}
+                                        onChange={(e) => setUpdateEventEndTime(e.target.value)}
+                                    />
+                                </label>
+                            </div>
+                            <div className="updateEventForm_Btn_ctnr">
+                                <button type="submit" className="updateEventForm_Btn" disabled={validationErrors.length > 0}>
+                                    Submit
+                                </button>
+                            </div>
                         </div>
-                        <button type="submit" className="eventForm_Btn" disabled={validationErrors.length > 0}>
-                            Submit
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
+            </div>
+            <div className="updateEvent_Footer">
+                <Footer />
             </div>
         </div>
     )
