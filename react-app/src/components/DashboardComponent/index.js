@@ -13,6 +13,8 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
     const events = useSelector(state => state.event.events)
     console.log(announcements)
 
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
     // if (reload) {
     //     console.log('reloaded page')
     //     window.location.reload()
@@ -24,6 +26,9 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
         dispatch(announcementActions.GetAnnouncements())
         dispatch(eventActions.GetEvents())
     }, [dispatch]);
+
+    // function format
+
 
 
     return (
@@ -49,7 +54,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                     {announcements?.map((announcement) =>
                         <NavLink className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
                             <div className='DashboardAnnouncements_items_wrapper'>
-                                <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />
+                                {announcement?.imageURL && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />}
                                 <li className='DashboardAnnouncement_item title'>{announcement.title}</li>
                                 <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
                             </div>
@@ -66,20 +71,20 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                 {event?.title}
                             </div>
                             {(event?.imageURL || event.imageURLTwo || event.imageURLThree) && <div className="eventImage_ctnr" >
-                                <img className="EventImage one" src={event?.imageURL} alt="alt" />
-                                <img className="EventImage two" src={event?.imageURLTwo} alt="alt" />
-                                <img className="EventImage three" src={event?.imageURLThree} alt="alt" />
+                                <img className="EventImage one" src={event?.imageURL ? event?.imageURL : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                <img className="EventImage two" src={event?.imageURLTwo ? event?.imageURLTwo : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                <img className="EventImage three" src={event?.imageURLThree ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
                             </div>}
                             <div className="DashboardEvent_items_ctnr">
                                 <div className="startDateTime_ctnr">
                                     <p>Event Starts: </p>
-                                    <li className="DashboardEvent_items startDate" >{event?.startDate}</li>
-                                    <li className="DashboardEvent_items startTime" >{event?.startTime}</li>
+                                    <li className="DashboardEvent_items startDate" >{new Date(new Date(event?.startDate).setDate(new Date(event?.startDate).getDate() + 1)).toLocaleDateString(undefined, options)}</li>
+                                    <li className="DashboardEvent_items startTime" >{new Date('1970-01-01T' + event?.startTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })}</li>
                                 </div>
                                 <div className="endDateTime_ctnr">
                                     <p>Event Ends: </p>
-                                    <li className="DashboardEvent_items endDate" >{event?.endDate}</li>
-                                    <li className="DashboardEvent_items endTime" >{event?.endTime}</li>
+                                    <li className="DashboardEvent_items endDate" >{new Date(new Date(event?.endDate).setDate(new Date(event?.endDate).getDate() + 1)).toLocaleDateString(undefined, options)}</li>
+                                    <li className="DashboardEvent_items endTime" >{new Date('1970-01-01T' + event?.endTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })}</li>
                                 </div>
                             </div>
                         </NavLink>

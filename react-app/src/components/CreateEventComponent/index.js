@@ -67,12 +67,74 @@ export default function CreateEventComponent() {
         if (!eventStartTime) errors.push('Event must include a Start Time')
         if (!eventEndTime) errors.push('Event must include a End Time')
 
+
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const startDate = new Date(new Date(eventStartDate).setDate(new Date(eventStartDate).getDate() + 1)).toLocaleDateString(undefined, options)
+        const endDate = new Date(new Date(eventEndDate).setDate(new Date(eventEndDate).getDate() + 1)).toLocaleDateString(undefined, options)
+        console.log(startDate)
+        console.log(endDate)
+        const startTime = new Date('1970-01-01T' + eventStartTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })
+        const endTime = new Date('1970-01-01T' + eventEndTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })
+
+
+        console.log(startTime)
+        console.log(startTime.length)
+        console.log(startTime.slice(0, -3))
+
+        console.log(endTime)
+        console.log(endTime.length)
+        console.log(endTime.slice(0, -2))
+
+        let startTimeSlice = ""
+        let splitStartTimeStr = ""
+        if (startTime.length === 8) {
+            startTimeSlice = startTime.slice(0, -3)
+            splitStartTimeStr = startTimeSlice.split(':')
+            console.log(splitStartTimeStr)
+        } else {
+            startTimeSlice = startTime.slice(0, -2)
+            splitStartTimeStr = startTimeSlice.split(':')
+            console.log(splitStartTimeStr)
+        }
+
+        let endTimeSlice = ""
+        let splitEndTimeStr = ""
+        if (startTime.length === 8) {
+            endTimeSlice = endTime.slice(0, -3)
+            splitEndTimeStr = endTimeSlice.split(':')
+            console.log(splitEndTimeStr)
+        } else {
+            endTimeSlice = endTime.slice(0, -2)
+            splitEndTimeStr = endTimeSlice.split(':')
+            console.log(splitEndTimeStr)
+        }
+
+        if (startDate === endDate) {
+            if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5) === 'PM' && endTime.slice(5) === 'AM') {
+                errors.push('Start Time cannot be after End Time')
+                console.log("start time greater than end time case")
+            } else if (startTime.slice(5) === 'PM' && endTime.slice(5) === 'AM') {
+                errors.push('Start Time cannot be after End Time')
+                console.log("PM AM Case")
+            } else if (Number(splitStartTimeStr[1]) > Number(splitEndTimeStr[1]) && Number(splitStartTimeStr[0]) === Number(splitEndTimeStr[0])) {
+                errors.push('Start Time cannot be after End Time')
+                console.log("minutes Case")
+            } else if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && !(startTime.slice(5) === 'AM' || endTime.slice(5) === 'PM')) {
+                errors.push('Start Time cannot be after End Time')
+                console.log('base error case')
+            } else if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5) === endTime.slice(5)) {
+                errors.push('Start Time cannot be after End Time')
+
+            }
+        }
+
+
         setValidationErrors(errors)
 
 
     }, [dispatch, imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime])
 
-    console.log(imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime)
+    // console.log(imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime)
 
     return (
         <div className="createEvent_outmost_ctnr">
@@ -217,18 +279,6 @@ export default function CreateEventComponent() {
                                             onChange={(e) => setEventStartDate(e.target.value)}
                                         />
                                     </label>
-                                    <label className="createEvent_endDate_wrapper" >
-                                        <div className="createEvent_endDate_label" >
-                                            End Date:
-                                        </div>
-                                        <input
-                                            type="date"
-                                            name="eventEndDate"
-                                            value={eventEndDate}
-                                            className="createEvent_endDate_input"
-                                            onChange={(e) => setEventEndDate(e.target.value)}
-                                        />
-                                    </label>
                                     <label className="createEvent_startTime_wrapper" >
                                         <div className="createEvent_startTime_label" >
                                             Start Time:
@@ -239,6 +289,18 @@ export default function CreateEventComponent() {
                                             value={eventStartTime}
                                             className="createEvent_startTime_input"
                                             onChange={(e) => setEventStartTime(e.target.value)}
+                                        />
+                                    </label>
+                                    <label className="createEvent_endDate_wrapper" >
+                                        <div className="createEvent_endDate_label" >
+                                            End Date:
+                                        </div>
+                                        <input
+                                            type="date"
+                                            name="eventEndDate"
+                                            value={eventEndDate}
+                                            className="createEvent_endDate_input"
+                                            onChange={(e) => setEventEndDate(e.target.value)}
                                         />
                                     </label>
                                     <label className="createEvent_endTime_wrapper" >
