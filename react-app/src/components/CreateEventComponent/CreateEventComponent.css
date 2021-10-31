@@ -90,8 +90,8 @@ div {
 }
 
 .conditionalRender_save:hover {
-    background-color: rgb(84, 187, 228);
     cursor: pointer;
+    background-color: rgb(84, 187, 228);
     font-size: 30px;
 }
 

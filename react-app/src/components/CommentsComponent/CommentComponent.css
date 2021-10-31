@@ -21,6 +21,7 @@
     flex-direction: column;
     overflow-x: scroll;
     gap: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif;
 }
 
 .comments_in_view_ctnr {
