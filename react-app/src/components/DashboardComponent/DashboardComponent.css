@@ -170,6 +170,8 @@ body {
     display: flex;
     align-items: center;
     font-family: 'Didot', serif;
+    flex-direction: column;
+    justify-content: center;
     /* color: skyblue; */
     /* background-color: black; */
     
