@@ -81,6 +81,11 @@
     height: 50px;
     background-color: skyblue;
 }
+.announcementDisplay_btn:hover {
+    cursor: pointer;
+    background-color: rgb(84, 187, 228);
+    font-size: 20px;
+}
 
 /*----------------------------------------------------------------*/
 

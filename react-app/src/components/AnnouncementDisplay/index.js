@@ -72,8 +72,9 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
             <div className="announcementDisplay_outmost_ctnr" >
                 <div className="announcementDisplay_inner_ctnr" >
                     <div className="announcementDisplay_img_ctnr" >
-                        <img className="announcementDisplay_img" src={current_announcement?.imageURL} />
-                        {/* {current_announcement?.imageURL} */}
+                        {current_announcement?.imageURL &&
+                            <img className="announcementDisplay_img" src={current_announcement?.imageURL} />}
+
                     </div>
                     <div className="announcementDisplay_title" >
                         {current_announcement?.title}
@@ -81,18 +82,20 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
                     <div className="announcementDisplay_description" >
                         {current_announcement?.description}
                     </div>
-                    {((current_user?.id === current_announcement?.userId) && current_user) && <div className="announcementDisplay_btn_ctnr">
-                        <div className="announcementDisplay_update_btn" >
-                            <li className="announcementDisplay_btn" onClick={(e) => handleAnnouncementUpdate(e)} >
-                                Update
-                            </li>
+                    {((current_user?.id === current_announcement?.userId) && current_user) &&
+                        <div className="announcementDisplay_btn_ctnr">
+                            <div className="announcementDisplay_update_btn" >
+                                <li className="announcementDisplay_btn" onClick={(e) => handleAnnouncementUpdate(e)} >
+                                    Update
+                                </li>
+                            </div>
+                            <div className="announcementDisplay_delete_btn" >
+                                <li className="announcementDisplay_btn" onClick={(e) => handleAnnouncementDeletion(e)} >
+                                    Delete
+                                </li>
+                            </div>
                         </div>
-                        <div className="announcementDisplay_delete_btn" >
-                            <li className="announcementDisplay_btn" onClick={(e) => handleAnnouncementDeletion(e)} >
-                                Delete
-                            </li>
-                        </div>
-                    </div>}
+                    }
                 </div>
                 <div className="announcementDisplay_commentreplies_ctnr">
                     <CommentComponent announcementId={announcementId} />
