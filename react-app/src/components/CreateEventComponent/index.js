@@ -131,25 +131,35 @@ export default function CreateEventComponent() {
             (Number(startDateSlice[0]) > Number(endDateSlice[0]))) {
 
             errors.push('End Date cannot be behind the Start Date.')
+            console.log('5th case')
 
+        }
+
+        if (Number(currentDateSlice[1]) > Number(startDateSlice[1]) &&
+            (Number(startDateSlice[0]) === Number(startDateSlice[0]))) {
+            errors.push('Start Date cannot be behind the Current Date.')
+            console.log('5.5th case')
         }
 
         if (Number(currentDateSlice[1]) > Number(endDateSlice[1]) &&
             (Number(startDateSlice[0]) === Number(endDateSlice[0]))) {
-            errors.push('End Date cannot be behind the Start Date.')
+            errors.push('End Date cannot be behind the Current Date.')
+            console.log('6th case')
         }
 
         if (Number(startDateSlice[0]) > Number(endDateSlice[0])) {
             errors.push('End Date Year cannot be behind the Start Date Year.')
-
+            console.log('7th case')
         }
 
         if (Number(currentDateSlice[0]) > Number(endDateSlice[0])) {
             errors.push('End Date Year cannot be behind the Current Year.')
+            console.log('8th case')
         }
 
         if (Number(currentDateSlice[0]) > Number(startDateSlice[0])) {
             errors.push('Start Date Year cannot be behind the Current Year.')
+            console.log('9th case')
         }
 
 
@@ -203,25 +213,40 @@ export default function CreateEventComponent() {
             if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5).includes('PM') && endTime.slice(5).includes('AM')) {
                 errors.push('Start Time cannot be after End Time')
                 // console.log("start time greater than end time case")
-            } else if (startTime.slice(5).includes('PM') && endTime.slice(5).includes('AM')) {
+            }
+            if (startTime.slice(5).includes('PM') && endTime.slice(5).includes('AM')) {
                 errors.push('Start Time cannot be after End Time')
                 // console.log("PM AM Case")
-            } else if (Number(splitStartTimeStr[1]) > Number(splitEndTimeStr[1]) && Number(splitStartTimeStr[0]) === Number(splitEndTimeStr[0])) {
+            }
+            if (Number(splitStartTimeStr[1]) > Number(splitEndTimeStr[1]) && Number(splitStartTimeStr[0]) === Number(splitEndTimeStr[0])) {
                 errors.push('Start Time cannot be after End Time')
                 // console.log("minutes Case")
-            } else if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && !(startTime.slice(5).includes('AM') || endTime.slice(5).includes('PM'))) {
+            }
+            if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && !(startTime.slice(5).includes('AM') || endTime.slice(5).includes('PM'))) {
                 errors.push('Start Time cannot be after End Time')
                 // console.log('base error case')
-            } else if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5) === endTime.slice(5)) {
+            }
+            if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5) === endTime.slice(5)) {
                 errors.push('Start Time cannot be after End Time')
                 // console.log('second to last case')
 
-            } else if (Number(splitStartTimeStr[0]) < Number(splitEndTimeStr[0])) {
+            }
+            if (Number(splitStartTimeStr[0]) < Number(splitEndTimeStr[0])) {
                 if (startTime.slice(5).includes('PM') && endTime.slice(5).includes('AM')) {
                     errors.push('Start Time cannot be after End Time')
                     // console.log('last case')
                 }
             }
+
+            // if ((Number(splitStartTimeStr[0]) < Number(splitEndTimeStr[0]) && !(Number(splitStartTimeStr[0]) < Number(splitEndTimeStr[0]))) &&
+            //     startTime.slice(5).includes('AM') && endTime.slice(5).includes('AM')) {
+            //     errors.push('Start Time cannot be after End Time')
+            // }
+
+            // if (Number(splitStartTimeStr[0]) < Number(splitEndTimeStr[0]) &&
+            //     startTime.slice(5).includes('AM') && endTime.slice(5).includes('AM')) {
+            //     errors.push('Start Time cannot be after End Time')
+            // }
         }
 
 
