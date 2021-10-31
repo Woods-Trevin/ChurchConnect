@@ -50,6 +50,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                 <div className="Dashboard_announcement_ctnr">
                     <div>
                         <h2>Select an Announcement</h2>
+                        <p>Scroll to View More</p>
                     </div>
                     {announcements?.map((announcement) =>
                         <NavLink className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
@@ -63,6 +64,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                 </div>
                 <div className="Dashboard_event_ctnr_title">
                     <h2>Select an Event</h2>
+                    <p>Swipe to View More</p>
                 </div>
                 <div className="Dashboard_event_ctnr" >
                     {events?.map((event) =>

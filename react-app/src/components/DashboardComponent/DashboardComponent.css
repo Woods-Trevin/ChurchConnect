@@ -42,6 +42,7 @@ body {
     display: flex;
     justify-content: flex-end;
     font-family: 'Didot', serif;
+    margin-right: 25px;
     /* height: 200px; */
     
 }
