@@ -39,7 +39,8 @@ def post_announcements():
             )
             db.session.add(created_announcement)
             db.session.commit()
-            return jsonify('Created Announcement')
+            announcements = Announcement.query.all()
+            return {'announcements': [announcement.to_dict() for announcement in announcements]}
         else:
             return jsonify('Bad Data')
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
