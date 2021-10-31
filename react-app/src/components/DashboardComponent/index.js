@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import * as announcementActions from '../../store/announcement'
@@ -13,12 +13,17 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
     const events = useSelector(state => state.event.events)
     console.log(announcements)
 
+    // if (reload) {
+    //     console.log('reloaded page')
+    //     window.location.reload()
+
+    // }
+
 
     useEffect(() => {
         dispatch(announcementActions.GetAnnouncements())
         dispatch(eventActions.GetEvents())
-
-    }, [dispatch])
+    }, [dispatch]);
 
 
     return (

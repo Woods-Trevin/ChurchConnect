@@ -60,7 +60,7 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <Route exact path='/' >
           <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
           {/* <Footer /> */}
         </Route>

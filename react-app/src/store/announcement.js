@@ -50,7 +50,7 @@ export const CreateAnnouncement = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = response.json();
-        dispatch(create_announcement(data));
+        dispatch(create_announcement(data.announcements));
         return response;
     }
 }
@@ -114,7 +114,7 @@ export default function announcementReducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_ANNOUNCEMENT:
             newState = Object.assign({}, state);
-            newState = action.payload;
+            newState.announcements = action.payload;
             return newState;
         case GET_ANNOUNCEMENTS:
             newState = Object.assign({}, state);

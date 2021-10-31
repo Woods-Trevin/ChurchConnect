@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as announcementActions from '../../store/announcement'
 import * as commentActions from '../../store/comment'
 import * as replyActions from '../../store/reply'
+import { createBrowserHistory } from 'history'
 import './AnnouncementDisplay.css';
 import CommentComponent from '../CommentsComponent';
 
-
+// const history = createBrowserHistory()
 export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
     const { announcementId } = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
     useEffect(() => {
         dispatch(announcementActions.GetOneAnnouncement(announcementId))
         dispatch(commentActions.GetComments())
@@ -58,7 +60,7 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
             replies: currentAnnouncementCommentsReplies
         }
         dispatch(announcementActions.DeleteAnnouncement(payload));
-        // console.log('This Works!!!')
+        history.push('/')
     }
 
 
@@ -75,7 +77,7 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
                 <div className="announcementDisplay_description" >
                     {current_announcement?.description}
                 </div>
-                <div className="announcementDisplay_btn_ctnr">
+                {<div className="announcementDisplay_btn_ctnr">
                     <div className="announcementDisplay_update_btn" >
                         <li className="announcementDisplay_btn" onClick={(e) => handleAnnouncementUpdate(e)} >
                             Update
@@ -86,7 +88,7 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
                             Delete
                         </li>
                     </div>
-                </div>
+                </div>}
             </div>
             <div className="announcementDisplay_commentreplies_ctnr">
                 <CommentComponent announcementId={announcementId} />
