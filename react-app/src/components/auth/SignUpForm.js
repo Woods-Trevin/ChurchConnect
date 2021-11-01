@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignupFormComponent.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -49,7 +50,7 @@ const SignUpForm = () => {
     if (email.length > 255) errors.push('Email is too long.')
     if (!password) errors.push('Password must be included.')
     if (!repeatPassword) errors.push('Repeat password must be included.')
-    if (password !== repeatPassword) errors.push('Password fields are not the same.')
+    if (password !== repeatPassword) errors.push('Password and Repeat Password does not match.')
 
     setValidationErrors(errors)
 
@@ -62,57 +63,76 @@ const SignUpForm = () => {
 
 
   return (
-    <div>
-      <ul>
+    <div className="signupForm_outmost_ctnr">
+      <ul className="signupForm_errors">
         {validationErrors.map(error =>
           <li>{error}</li>
         )}
-      </ul>
-      <form onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <label>User Name</label>
-          <input
-            type='text'
-            name='username'
-            onChange={updateUsername}
-            value={username}
-          ></input>
+      </ul>
+      <div className="signupForm_outer_wrapper">
+        <div className="signup_label">
+          Sign Up
         </div>
-        <div>
-          <label>Email</label>
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-          ></input>
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-        </div>
-        <div>
-          <label>Repeat Password</label>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        </div>
-        <button type='submit' disabled={validationErrors.length > 0} >Sign Up</button>
-      </form>
+        <form className="signupForm_inner_wrapper" onSubmit={onSignUp}>
+          <div className="signupForm_username_ctnr" >
+            <label className="signupForm_username_label">
+              Username
+            </label>
+            <input
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              className="signupForm_username_input"
+              value={username}
+            ></input>
+          </div>
+          <div className="signupForm_email_ctnr" >
+            <label className="signupForm_email_label">
+              Email
+            </label>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              className="signupForm_email_input"
+              value={email}
+            ></input>
+          </div>
+          <div className="signupForm_password_ctnr" >
+            <label className="signupForm_password_label" >
+              Password
+            </label>
+            <input
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              className="signupForm_password_input"
+              value={password}
+            ></input>
+          </div>
+          <div className="signupForm_repeatpassword_ctnr" >
+            <label className="signupForm_repeatpassword_label" >
+              Repeat Password
+            </label>
+            <input
+              type='password'
+              name='repeat_password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              className="signupForm_repeatpassword_input"
+              required={true}
+            ></input>
+          </div>
+          <div className="signupForm_submitBtn_ctnr">
+            <button className="signupForm_submitBtn" type='submit' disabled={validationErrors.length > 0} >Sign Up</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

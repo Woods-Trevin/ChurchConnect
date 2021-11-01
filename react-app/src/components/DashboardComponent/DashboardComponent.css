@@ -254,10 +254,12 @@ body {
 
 .startDateTime_ctnr {
     margin-left: 40px;
+    margin-right: 10px;
 }
 
 .endDateTime_ctnr {
     margin-right: 40px;
+    margin-left: 10px;
 }
 
 .DashboardEvent_items {

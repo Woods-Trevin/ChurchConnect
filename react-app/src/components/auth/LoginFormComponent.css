@@ -1,0 +1,176 @@
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
+.loginForm_outmost_ctnr {
+    /* border: 4px solid red; */
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f5f7;
+    /* background-color: black; */
+    font-family: 'Didot', serif;
+}
+
+.ChurchConnect {
+    font-size: 50px;
+    color: rgb(86, 192, 233);
+    font-weight: 700;
+}
+
+.ChurchConnect_Login_Instruction {
+    color: rgb(78, 186, 228);
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.loginForm_inner_ctnr {
+    width: 500px;
+    height: 500px;
+    
+}
+
+.loginForm_wrapper {
+    /* border: 4px solid black; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 50px;
+    height: 100%;
+    /* background-color: white; */
+    background-color: black;
+}
+
+/* =================================================================*/
+
+.loginForm_errors {
+    font-size: 30px;
+}
+/* =================================================================*/
+
+.loginForm_email_ctnr {
+    /* border: 3px solid red; */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm_email_label {
+    color: skyblue;
+    font-size: 30px;
+}
+
+.loginForm_email_input {
+    width: 80%;
+    height: 50px;
+    font-size: 30px;
+    /* padding-left: 20px; */
+}
+
+/* =================================================================*/
+
+.loginForm_password_ctnr {
+    /* border: 3px solid red; */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm_password_label {
+    color: skyblue;
+    font-size: 30px;
+}
+
+.loginForm_password_input {
+    width: 80%;
+    height: 50px;
+    font: x-large;
+    /* font-size: 20px; */
+    /* font-family:Verdana,sans-serif;
+    height:28px;
+    font-size:19px;
+    width:223px;
+    padding:5px; */
+    /* padding-left: 20px; */
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type="password"] {
+       -webkit-text-stroke-width: 0.2em;
+       letter-spacing: 10px;
+       
+    }
+}
+
+
+
+/* =================================================================*/
+
+.loginForm_submitBtn_ctnr {
+    /* border: 3px solid blue; */
+    display: flex;
+    justify-content: center;
+    /* margin-top: 50px; */
+    margin-bottom: 20px;
+    width: 67%;
+    height: 200px;
+}
+
+.loginForm_submitBtn {
+    width: 100%;
+    height: 50px;
+    background-color: skyblue;
+    font-size: 20px;
+    font-family: 'Didot', serif;
+    font-weight: 700;
+}
+
+.loginForm_submitBtn:hover {
+    cursor: pointer;
+    background-color: rgb(84, 187, 228);
+    font-size: 30px;
+}
+
+/* =================================================================*/
+
+.loginForm_demoBtn_ctnr {
+    /* border: 3px solid blue; */
+    width: 100%;
+    height: 200px;
+}
+
+.demoBtn {
+    /* border: 3px solid blue; */
+    width: 100%;
+    height: 50px;
+    background-color: skyblue;
+    font-size: 20px;
+    font-family: 'Didot', serif;
+    font-weight: 700;
+}
+
+.demoBtn:hover {
+    cursor: pointer;
+    background-color: rgb(84, 187, 228);
+    font-size: 30px;
+}
+
+/* =================================================================*/
+
+
+
+
+
+
+
+
+
+
