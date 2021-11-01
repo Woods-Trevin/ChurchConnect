@@ -24,25 +24,46 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif;
 }
 
-.comments_in_view_ctnr {
-    /* border: 2px solid red; */
+.comments_in_view_outer_ctnr {
+    /* border: 2px solid blue; */
     /* display: flex; */
     /* align-items: center; */
     gap: 20px;
     margin-left: 20px;
+    
+}
+
+.comments_in_view_ctnr {
+    width: 200px;
+}
+
+.comments_username {
+    list-style: none;
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.comment_userIcon {
+    width: 20px;
+    height: 20px;
 }
 
 .comments_in_view {
     list-style: none;
-    /* border: 1px solid black; */
+    border: 1px solid grey;
     display: flex;
     justify-content:flex-start;
     align-items: center;
     background-color: white;
-    margin-top: 20px;
-    /* margin-bottom: 15px; */
-    width: 300px;
+    /* margin-top: 20px; */
+    /* margin-bottom: 20px; */
+    padding: 20px;
+    width: 100%;
     height: 100%;
+    border-radius: 50px
 
 }
 /*----------------------------------------------------------------*/
@@ -51,6 +72,8 @@
     margin-top: 10px;
     /* border: 2px solid red; */
     display: flex;
+    width: 200px;
+    margin-left: 10px;
 
 }
 
@@ -66,7 +89,7 @@
     color: grey;
     font-weight: 700;
     width: 100px;
-    gap: 14px;
+    gap: 10px;
 }
 
 .eventComment_delete_btn {
@@ -94,16 +117,13 @@
 }
 /*----------------------------------------------------------------*/
 
-.allowReply_ctnr {
-    list-style: none;
-    /* border: 1px solid black; */
-    /* color: grey; */
-}
-
 
 .replies_outmost_ctnr {
     /* border: 1px solid green; */
     width: 300px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
 }
 
 .viewRepliesLabel_ctnr {
@@ -131,15 +151,20 @@
     list-style: none;
     display: flex;
     flex-direction: column;
+    position: relative;
+    /* right: 50px; */
+    /* width: 100%; */
     margin-left: 50px;
+    margin-top: 20px;
     
 }
 
-.replyText_ctnr {
+.replyText_items_ctnr {
     /* border: 3px solid red; */
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 100%;
     margin-bottom: 10px;
     
 }
@@ -148,16 +173,45 @@
     /* border: 3px solid green; */
 }
 
+.replyText_text_ctnr {
+    /* border: 2px solid green;s */
+    /* height: 100px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+    width: 200px;
+    padding: 10px;
+
+}
+
 
 
 .replyText.text {
     /* border: 3px solid purple; */
+    height: 100%;
+    width: 100%;
+}
+
+.replyText_username {
+    /* border: 2px solid red; */
+    margin-top: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.replyText_userIcon {
+    height: 20px;
+    width: 20px;
+    background-color: white;
 }
 
 .replyBtns_ctnr {
     display: flex;
-    gap: 30px;
-    justify-content: flex-end;
+    gap: 5px;
+    justify-content: flex-start;
+    margin-left: 10px;
 }
 
 .replyText.delete {
@@ -179,6 +233,19 @@
 
 }
 
+.allowReply_ctnr {
+    list-style: none;
+    /* border: 1px solid blue; */
+    /* color: grey; */
+    margin-top: 20px;
+    display: flex;
+    
+}
+
+.allowReply_form_ctnr {
+    width: 100%;
+}
+
 .allowReply_text {
     /* border: 1px solid red; */
     display: flex;
@@ -186,6 +253,27 @@
     font-weight: 700;
     color: grey;
     width: 50px;
+    margin-bottom: 20px;
+}
+
+.replyTF_ctnr {
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.replyTF {
+    /* border: 1px solid green; */
+    display: flex;
+    height: 75px;
+    width: 90%;
+}
+
+.reply_submit_btn {
+    height: 30px;
+    width: 92.5%;
+    background-color: skyblue;
+    color: black;
+    font-size: 20px;
 }
 
 .hideReplies_text {
@@ -209,4 +297,12 @@
     /* border: 3px solid green; */
     height: 100%;
     width: 60px;
+    background-color: skyblue;
+    color: black;
+    font-size: 20px;
+}
+
+.post_comment_btn:hover {
+    /* border: 3px solid green; */
+    cursor: pointer;
 }

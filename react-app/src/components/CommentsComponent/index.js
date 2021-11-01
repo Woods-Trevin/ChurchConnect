@@ -22,6 +22,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
     const [viewReplies, setViewReplies] = useState(false)
 
     const [validationErrors, setValidationErrors] = useState([])
+    const [replyValidationErrors, setReplyValidationErrors] = useState([])
     // const [viewReplyLabel, setViewReplyLabel] = useState(true)
 
 
@@ -41,8 +42,8 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
     const replies = useSelector(state => state.reply.replies)
     // console.log(replies, "--------------------------------------------------------All Replies")
     const currentCommentReplies = replies?.filter(reply => reply.comment_id === replyCommentId)
-    console.log(currentCommentReplies, '---------------current comment replies')
-
+    // console.log(currentCommentReplies, '---------------current comment replies')
+    console.log(replyText.length, '--------------------')
 
 
 
@@ -98,13 +99,18 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
         setHideReplyModal(true)
 
         const errors = [];
+        const replyErrors = [];
 
         if (!commentTextFieldVal) errors.push('There was no entry. Please write your comment.')
         if (commentTextFieldVal.length > 400) errors.push('Comment is too long.')
 
         setValidationErrors(errors)
 
-    }, [dispatch, commentTextFieldVal])
+        if (replyText.length === 0) replyErrors.push('Cannot submit empty reply.')
+        if (replyText.length > 400) replyErrors.push('Reply is too long.')
+        setReplyValidationErrors(replyErrors)
+
+    }, [dispatch, commentTextFieldVal, replyText])
     // console.log(commentId)
     // console.log(commentText)
 
@@ -114,9 +120,13 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                 <div className="comments_view">
                     {eventId && currentEventComments?.map((comment, idx) =>
                         <div>
-                            <div key={idx} className="comments_in_view_ctnr">
-                                <div>
+                            <div key={idx} className="comments_in_view_outer_ctnr">
+                                <div className="comments_in_view_ctnr">
                                     <li className="comments_in_view" >{comment?.text}</li>
+                                    <li className="comments_username">
+                                        <img className="comment_userIcon" src='https://www.pngkey.com/png/full/202-2024792_user-profile-icon-png-download-fa-user-circle.png' alt="alt" />
+                                        {comment?.username}
+                                    </li>
                                 </div>
                                 <div className="accessory_btn_ctnr" >
                                     {
@@ -148,7 +158,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                             View Replies
                                         </li>
                                         <div className="repliesCount">
-                                            {`(${comment?.replies.length})`}
+                                            {`(${replies?.filter(reply => reply.comment_id === comment?.id).length})`}
                                         </div>
                                     </div>
 
@@ -156,10 +166,16 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                     {replyCommentId === comment?.id && <div>
                                         {viewReplies &&
                                             <div className="replies_inner_ctnr">
-                                                <div className="replyText_ctnr" >
+                                                <div className="replyText_items_ctnr" >
                                                     {currentCommentReplies?.map((reply, idx) =>
                                                         <div className="replyText_wrapper" key={idx}>
-                                                            <li className="replyText text"> {reply?.text} </li>
+                                                            <div className="replyText_text_ctnr">
+                                                                <li className="replyText text"> {reply?.text} </li>
+                                                                <li className="replyText_username">
+                                                                    <img className="replyText_userIcon" src='https://www.pngkey.com/png/full/202-2024792_user-profile-icon-png-download-fa-user-circle.png' alt="alt" />
+                                                                    {reply?.username}
+                                                                </li>
+                                                            </div>
                                                             <div className="replyBtns_ctnr">
                                                                 <li className="replyText delete" onClick={() => {
                                                                     dispatch(replyActions.DeleteReply(reply?.id))
@@ -178,19 +194,23 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                     )}
                                                 </div>
                                                 <div className="allowReply_ctnr">
-                                                    <div>
+                                                    <div className="allowReply_form_ctnr">
                                                         <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
                                                             Reply
                                                         </li>
                                                         {allowReply &&
-                                                            <form onSubmit={handleReplyCreation}>
-                                                                <input
+                                                            <form className="replyTF_ctnr" onSubmit={handleReplyCreation}>
+                                                                {replyValidationErrors.map(error =>
+                                                                    <li>{error}</li>
+                                                                )}
+                                                                <textarea
                                                                     type="text"
                                                                     name="reply_textField"
                                                                     value={replyText}
+                                                                    className="replyTF"
                                                                     onChange={(e) => { setReplyText(e.target.value) }}
                                                                 />
-                                                                <button type="submit" > submit </button>
+                                                                <button className="reply_submit_btn" type="submit" disabled={replyValidationErrors.length > 0}> Post </button>
                                                             </form>
                                                         }
                                                     </div>
@@ -212,9 +232,13 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                     )}
                     {announcementId && currentAnnouncementComments?.map((comment, idx) =>
                         <div>
-                            <div key={idx} className="comments_in_view_ctnr">
-                                <div>
+                            <div key={idx} className="comments_in_view_outer_ctnr">
+                                <div className="comments_in_view_ctnr">
                                     <li className="comments_in_view" >{comment?.text}</li>
+                                    <li className="comments_username">
+                                        <img className="comment_userIcon" src='https://www.pngkey.com/png/full/202-2024792_user-profile-icon-png-download-fa-user-circle.png' alt="alt" />
+                                        {comment?.username}
+                                    </li>
                                 </div>
                                 <div className="accessory_btn_ctnr" >
                                     {
@@ -246,7 +270,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                             View Replies
                                         </li>
                                         <div className="repliesCount">
-                                            {`(${comment?.replies.length})`}
+                                            {`(${replies?.filter(reply => reply.comment_id === comment?.id).length})`}
                                         </div>
                                     </div>
 
@@ -254,10 +278,16 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                     {replyCommentId === comment?.id && <div>
                                         {viewReplies &&
                                             <div className="replies_inner_ctnr">
-                                                <div className="replyText_ctnr" >
+                                                <div className="replyText_items_ctnr" >
                                                     {currentCommentReplies?.map((reply, idx) =>
                                                         <div className="replyText_wrapper" key={idx}>
-                                                            <li className="replyText text"> {reply?.text} </li>
+                                                            <div className="replyText_text_ctnr">
+                                                                <li className="replyText text"> {reply?.text} </li>
+                                                                <li className="replyText_username">
+                                                                    <img className="replyText_userIcon" src='https://www.pngkey.com/png/full/202-2024792_user-profile-icon-png-download-fa-user-circle.png' alt="alt" />
+                                                                    {reply?.username}
+                                                                </li>
+                                                            </div>
                                                             <div className="replyBtns_ctnr">
                                                                 <li className="replyText delete" onClick={() => {
                                                                     dispatch(replyActions.DeleteReply(reply?.id))
@@ -281,14 +311,18 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                             Reply
                                                         </li>
                                                         {allowReply &&
-                                                            <form onSubmit={handleReplyCreation}>
-                                                                <input
+                                                            <form className="replyTF_ctnr" onSubmit={handleReplyCreation}>
+                                                                {replyValidationErrors.map(error =>
+                                                                    <li>{error}</li>
+                                                                )}
+                                                                <textarea
                                                                     type="text"
                                                                     name="reply_textField"
                                                                     value={replyText}
+                                                                    className="replyTF"
                                                                     onChange={(e) => { setReplyText(e.target.value) }}
                                                                 />
-                                                                <button type="submit" > submit </button>
+                                                                <button type="submit" disabled={replyValidationErrors.length > 0}> submit </button>
                                                             </form>
                                                         }
                                                     </div>
@@ -305,6 +339,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
 
                                 </div>
                             </div>
+
                         </div>
                     )}
 
@@ -355,6 +390,6 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                     </form>
                 }
             </div>
-        </div>
+        </div >
     )
 }
