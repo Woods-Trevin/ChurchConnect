@@ -11,7 +11,6 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
     const announcements = useSelector(state => state.announcement.announcements)
     const events = useSelector(state => state.event.events)
-    console.log(announcements)
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -60,8 +59,8 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             Scroll to View More
                         </h3>
                     </div>
-                    {announcements?.map((announcement) =>
-                        <NavLink className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
+                    {announcements?.map((announcement, idx) =>
+                        <NavLink key={idx} className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
                             <div className='DashboardAnnouncements_items_wrapper'>
                                 {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />}
                                 <li className='DashboardAnnouncement_item title'>{announcement.title}</li>
@@ -79,8 +78,8 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                     </h3>
                 </div>
                 <div className="Dashboard_event_ctnr" >
-                    {events?.map((event) =>
-                        <NavLink className="NavLink_ctnr" to={`/event/${event?.id}`}>
+                    {events?.map((event, idx) =>
+                        <NavLink key={idx} className="NavLink_ctnr" to={`/event/${event?.id}`}>
                             <div className="Dashboard_event_title">
                                 {event?.title}
                             </div>

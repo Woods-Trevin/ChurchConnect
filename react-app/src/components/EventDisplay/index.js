@@ -21,7 +21,7 @@ export default function EventDisplay({ setUpdateEvent }) {
     }, [dispatch, eventId])
 
 
-    console.log(eventId, '---------------')
+    // console.log(eventId, '---------------')
     const user = useSelector(state => state.session.user)
     const event = useSelector(state => state.event.currentevent)
     // console.log(event?.comments, '---------------')
@@ -29,11 +29,11 @@ export default function EventDisplay({ setUpdateEvent }) {
 
     const replies = useSelector(state => state.reply.replies)
 
-    console.log(comments, '---------------COMMENTS')
-    console.log(replies, '---------------REPLIES')
+    // console.log(comments, '---------------COMMENTS')
+    // console.log(replies, '---------------REPLIES')
 
     const currentEventComments = comments?.filter(comment => comment?.eventId === event?.id)
-    console.log('current event comments---------', currentEventComments)
+    // console.log('current event comments---------', currentEventComments)
     // const currentEventReplies = replies?.filter(reply => reply.id === eventId)
 
     const currentEventCommentsReplies = [];
@@ -45,7 +45,7 @@ export default function EventDisplay({ setUpdateEvent }) {
             }
         }
     }
-    console.log(currentEventCommentsReplies);
+    // console.log(currentEventCommentsReplies);
 
     // const [currentEventComments, setCurrentEventComments] = useState([])
     // console.log(currentEventComments, '---------------CURRENT EVENT COMMENTS')
@@ -79,9 +79,9 @@ export default function EventDisplay({ setUpdateEvent }) {
                     <div className="EventDisplay_item_container" >
                         {(event?.imageURL || event?.imageURLTwo || event?.imageURLThree) && <div className="EventDisplay_image_container" >
                             {/* {event?.imageURL} */}
-                            <img className="eventDisplay_img_one" src={event?.imageURL} alt="alt" />
-                            <img className="eventDisplay_img_two" src={event?.imageURLTwo} alt="alt" />
-                            <img className="eventDisplay_img_three" src={event?.imageURLThree} alt="alt" />
+                            <img key={1} className="eventDisplay_img_one" src={event?.imageURL} alt="alt" />
+                            <img key={2} className="eventDisplay_img_two" src={event?.imageURLTwo} alt="alt" />
+                            <img key={3} className="eventDisplay_img_three" src={event?.imageURLThree} alt="alt" />
                         </div>}
                         <div className="eventDisplay_title" >
                             {event?.title}

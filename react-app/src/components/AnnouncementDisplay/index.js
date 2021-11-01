@@ -24,19 +24,19 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
 
 
     const current_announcement = useSelector(state => state.announcement.current_announcement)
-    console.log(current_announcement)
+    // console.log(current_announcement)
     const current_user = useSelector(state => state.session.user)
-    console.log(current_user, 'current user')
+    // console.log(current_user, 'current user')
 
     const comments = useSelector(state => state.comment.comments)
 
     const replies = useSelector(state => state.reply.replies)
 
-    console.log(comments, '---------------COMMENTS')
-    console.log(replies, '---------------REPLIES')
+    // console.log(comments, '---------------COMMENTS')
+    // console.log(replies, '---------------REPLIES')
 
     const currentAnnouncementComments = comments?.filter(comment => comment?.announcementId === current_announcement?.id)
-    console.log('current announcement comments---------', currentAnnouncementComments)
+    // console.log('current announcement comments---------', currentAnnouncementComments)
 
     const currentAnnouncementCommentsReplies = [];
     for (let i = 0; i < currentAnnouncementComments?.length; i++) {
@@ -47,7 +47,7 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
             }
         }
     }
-    console.log(currentAnnouncementCommentsReplies);
+    // console.log(currentAnnouncementCommentsReplies);
 
 
 

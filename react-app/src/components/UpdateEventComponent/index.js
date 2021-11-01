@@ -8,7 +8,7 @@ import Footer from '../Footer';
 
 export default function UpdateEventComponent({ setUpdateEvent }) {
     const { eventId } = useParams()
-    console.log(eventId, '---------------')
+    // console.log(eventId, '---------------')
     const event = useSelector(state => state.event.currentevent)
 
 
@@ -50,33 +50,33 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
 
         const currentDate = new Date()
         const currentDateFormatted = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
-        console.log(currentDateFormatted)
+        // console.log(currentDateFormatted)
 
         // const currentDateTimeSlice = startTime.slice(0, -3)
         // splitStartTimeStr = startTimeSlice.split(':')
         currentDateSlice = currentDateFormatted.split('-')
         startDateSlice = updateEventStartDate.split('-')
         endDateSlice = updateEventEndDate.split('-')
-        console.log(currentDateSlice)
-        console.log(startDateSlice)
-        console.log(endDateSlice)
+        // console.log(currentDateSlice)
+        // console.log(startDateSlice)
+        // console.log(endDateSlice)
         // (Number(currentDateSlice[2]) > Number(startDateSlice[2]) || Number(currentDateSlice[2]) > Number(endDateSlice[2]))
         if ((Number(currentDateSlice[1]) > Number(startDateSlice[1]) || Number(currentDateSlice[1]) > Number(endDateSlice[1])) &&
             (Number(currentDateSlice[0]) > Number(startDateSlice[0]) || Number(currentDateSlice[0]) > Number(endDateSlice[0]))) {
             errors.push('Start/End Date cannot be behind the current date.')
-            console.log('base case')
+            // console.log('base case')
         }
 
         if (Number(currentDateSlice[1]) === Number(startDateSlice[1])) {
             if (Number(currentDateSlice[2]) > Number(startDateSlice[2])) {
                 errors.push('Start Date cannot be behind the current date.')
-                console.log('start date day case')
+                // console.log('start date day case')
             }
         }
         if (Number(currentDateSlice[1]) === Number(endDateSlice[1])) {
             if (Number(currentDateSlice[2]) > Number(endDateSlice[2])) {
                 errors.push('End Date cannot be behind the current date.')
-                console.log('start date day case2')
+                // console.log('start date day case2')
             }
         }
 
@@ -84,14 +84,14 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
             if (Number(currentDateSlice[2]) > Number(endDateSlice[2]) &&
                 (Number(currentDateSlice[0]) > Number(endDateSlice[0]))) {
                 errors.push('End Date cannot be behind the current date.')
-                console.log('start date day case3')
+                // console.log('start date day case3')
             }
         }
         if (Number(currentDateSlice[1]) === Number(endDateSlice[1])) {
             if (Number(endDateSlice[2]) < Number(currentDateSlice[2]) &&
                 (Number(endDateSlice[0]) < Number(currentDateSlice[0]))) {
                 errors.push('End Date cannot be behind the current date.')
-                console.log('end date day case')
+                // console.log('end date day case')
             }
         }
 
@@ -100,7 +100,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
             if (Number(startDateSlice[2]) > Number(endDateSlice[2]) &&
                 (Number(startDateSlice[0]) > Number(endDateSlice[0]))) {
                 errors.push('End Date cannot be behind the Start Date.')
-                console.log('4th case')
+                // console.log('4th case')
             }
         }
 
@@ -108,43 +108,43 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
             (Number(startDateSlice[0]) > Number(endDateSlice[0]))) {
 
             errors.push('End Date cannot be behind the Start Date.')
-            console.log('5th case')
+            // console.log('5th case')
 
         }
 
         if (Number(currentDateSlice[1]) > Number(startDateSlice[1]) &&
             (Number(startDateSlice[0]) === Number(startDateSlice[0]))) {
             errors.push('Start Date cannot be behind the Current Date.')
-            console.log('5.5th case')
+            // console.log('5.5th case')
         }
 
         if (Number(currentDateSlice[1]) > Number(endDateSlice[1]) &&
             (Number(startDateSlice[0]) === Number(endDateSlice[0]))) {
             errors.push('End Date cannot be behind the Current Date.')
-            console.log('6th case')
+            // console.log('6th case')
         }
 
         if (Number(startDateSlice[0]) > Number(endDateSlice[0])) {
             errors.push('End Date Year cannot be behind the Start Date Year.')
-            console.log('7th case')
+            // console.log('7th case')
         }
 
         if (Number(currentDateSlice[0]) > Number(endDateSlice[0])) {
             errors.push('End Date Year cannot be behind the Current Year.')
-            console.log('8th case')
+            // console.log('8th case')
         }
 
         if (Number(currentDateSlice[0]) > Number(startDateSlice[0])) {
             errors.push('Start Date Year cannot be behind the Current Year.')
-            console.log('9th case')
+            // console.log('9th case')
         }
 
 
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const startDate = new Date(new Date(updateEventStartDate).setDate(new Date(updateEventStartDate).getDate() + 1)).toLocaleDateString(undefined, options)
         const endDate = new Date(new Date(updateEventEndDate).setDate(new Date(updateEventEndDate).getDate() + 1)).toLocaleDateString(undefined, options)
-        console.log(startDate)
-        console.log(endDate)
+        // console.log(startDate)
+        // console.log(endDate)
 
         const startTime = new Date('1970-01-01T' + updateEventStartTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })
         const endTime = new Date('1970-01-01T' + updateEventEndTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })
@@ -152,12 +152,12 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         // console.log(startTime)
         // console.log(startTime.length)
         // console.log(startTime.slice(0, -3))
-        console.log(startTime.slice(5), 'slice 5')
+        // console.log(startTime.slice(5), 'slice 5')
 
         // console.log(endTime)
         // console.log(endTime.length)
         // console.log(endTime.slice(0, -2))
-        console.log(endTime.slice(5), 'slice 5')
+        // console.log(endTime.slice(5), 'slice 5')
 
 
         let startTimeSlice = ""
@@ -165,11 +165,11 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         if (startTime.length === 8) {
             startTimeSlice = startTime.slice(0, -3)
             splitStartTimeStr = startTimeSlice.split(':')
-            console.log(splitStartTimeStr)
+            // console.log(splitStartTimeStr)
         } else {
             startTimeSlice = startTime.slice(0, -2)
             splitStartTimeStr = startTimeSlice.split(':')
-            console.log(splitStartTimeStr)
+            // console.log(splitStartTimeStr)
         }
 
         let endTimeSlice = ""
@@ -177,11 +177,11 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         if (startTime.length === 8) {
             endTimeSlice = endTime.slice(0, -3)
             splitEndTimeStr = endTimeSlice.split(':')
-            console.log(splitEndTimeStr)
+            // console.log(splitEndTimeStr)
         } else {
             endTimeSlice = endTime.slice(0, -2)
             splitEndTimeStr = endTimeSlice.split(':')
-            console.log(splitEndTimeStr)
+            // console.log(splitEndTimeStr)
         }
 
         if (startDate === endDate) {
@@ -246,8 +246,8 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         <div className="updateEvent_outer_ctnr">
             <div className="updateEvent_inner_ctnr">
                 <ul className="updateEvent_errors">
-                    {validationErrors.map(error =>
-                        <li>{error}</li>
+                    {validationErrors.map((error, idx) =>
+                        <li key={idx} >{error}</li>
                     )}
                 </ul>
                 <div className="updateEvent_form_wrapper" >
