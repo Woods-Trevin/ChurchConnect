@@ -201,7 +201,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
                 errors.push('Start Time cannot be after End Time')
                 // console.log('base error case')
             }
-            if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && startTime.slice(5) === endTime.slice(5)) {
+            if (Number(splitStartTimeStr[0]) > Number(splitEndTimeStr[0]) && (startTime.slice(5).includes('AM') && endTime.slice(5).includes('AM') || startTime.slice(5).includes('PM') && endTime.slice(5).includes('PM'))) {
                 errors.push('Start Time cannot be after End Time')
                 // console.log('second to last case')
 

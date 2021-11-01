@@ -107,10 +107,9 @@ body {
     text-decoration: none;
     /* border: 2px solid grey; */
     border-radius: 10px;
-    box-shadow: 0 0 10px black;
 }
 .DashboardAnnouncements_link:hover {
-    font-size: 20px;
+    box-shadow: 0 0 10px black;
 }
 
 .DashboardAnnouncements_items_wrapper {
