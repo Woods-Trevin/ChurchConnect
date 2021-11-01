@@ -48,7 +48,7 @@ export default function ReplyForm({ replyId, replyText, setHideReplyModal }) {
                             onChange={(e) => setUpdateReplyVal(e.target.value)}
                         />
                         <div>
-                            <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} >Update </button>
+                            <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} > Post </button>
                         </div>
                     </div>
                 </form>

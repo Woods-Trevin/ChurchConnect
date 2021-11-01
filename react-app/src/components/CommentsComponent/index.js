@@ -288,7 +288,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                                     {reply?.username}
                                                                 </li>
                                                             </div>
-                                                            <div className="replyBtns_ctnr">
+                                                            {user?.id === reply?.userId && <div className="replyBtns_ctnr">
                                                                 <li className="replyText delete" onClick={() => {
                                                                     dispatch(replyActions.DeleteReply(reply?.id))
                                                                 }}>
@@ -301,12 +301,12 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                                 }}>
                                                                     Edit
                                                                 </li>
-                                                            </div>
+                                                            </div>}
                                                         </div>
                                                     )}
                                                 </div>
                                                 <div className="allowReply_ctnr">
-                                                    <div>
+                                                    <div className="allowReply_form_ctnr">
                                                         <li className="allowReply_text" onClick={() => { setAllowReply(true) }}>
                                                             Reply
                                                         </li>
@@ -322,7 +322,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                                     className="replyTF"
                                                                     onChange={(e) => { setReplyText(e.target.value) }}
                                                                 />
-                                                                <button type="submit" disabled={replyValidationErrors.length > 0}> submit </button>
+                                                                <button className="reply_submit_btn" type="submit" disabled={replyValidationErrors.length > 0}> Post </button>
                                                             </form>
                                                         }
                                                     </div>
@@ -339,7 +339,6 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
 
                                 </div>
                             </div>
-
                         </div>
                     )}
 

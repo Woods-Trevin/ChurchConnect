@@ -301,6 +301,8 @@
     background-color: skyblue;
     color: black;
     font-size: 20px;
+    font-family: 'Didot', serif;
+    font-weight: 700;
 }
 
 .post_comment_btn:hover {
