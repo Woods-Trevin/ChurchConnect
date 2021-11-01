@@ -13,7 +13,7 @@
         background-color: #f1f5f7;
         display: flex;
         justify-content: center;
-        height: 1000px;
+        height: 100%;
     
     }
 
@@ -22,13 +22,14 @@
 .announcementDisplay_inner_ctnr {
     border: 2px solid black;
     width: 800px;
+    height: 100%;
     background-color: white;
 }
 
 /*----------------------------------------------------------------*/
 
 .announcementDisplay_img_ctnr {
-
+    /* border-bottom: 4px solid black; */
 }
 
 
@@ -41,10 +42,14 @@
 
 .announcementDisplay_title{
     font-size: 40px;
-    /* border-bottom: 2px solid black; */
-    margin-bottom: 30px;
+    /* margin-bottom: 50px; */
+    /* padding-bottom: 30px; */
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 30px;
     font-family: 'Didot', serif;
+    font-weight: 700;
+
     
 }
 
@@ -53,6 +58,7 @@
 .announcementDisplay_description {
     font-size: 50px;
     font-family: 'Didot', serif;
+    /* margin: 10px; */
     
 }
 
@@ -63,6 +69,7 @@
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
+    
 }
 
 .announcementDisplay_update_btn {

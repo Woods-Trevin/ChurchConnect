@@ -84,7 +84,7 @@ function App() {
         <Route path='/announcement/:announcementId' exact={true} >
           {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />}
           {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />}
-          {/* <Footer /> */}
+          <Footer />
         </Route>
       </Switch>
     </BrowserRouter>
