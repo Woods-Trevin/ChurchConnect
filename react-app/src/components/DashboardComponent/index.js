@@ -11,7 +11,6 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
     const announcements = useSelector(state => state.announcement.announcements)
     const events = useSelector(state => state.event.events)
-    // console.log(announcements)
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
