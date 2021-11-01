@@ -258,6 +258,8 @@ div {
 .createEventTitle_input {
     height: 50px;
     width: 100%;
+    font-size: 25px;
+    font-family: 'Didot', serif;
 }
 
 /* ================================================================= */
@@ -278,6 +280,8 @@ div {
 .createEventDescription_input {
     height: 250px;
     width: 100%;
+    font-size: 25px;
+    font-family: 'Didot', serif;
 }
 
 /* ================================================================= */
