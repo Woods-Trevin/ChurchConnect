@@ -71,17 +71,18 @@ export default function EventDisplay({ setUpdateEvent }) {
         setUpdateEvent(true)
     }
 
+    const imageURLRegex = /^((https?|ftp):)?\/\/.*(jpeg|jpg|png|gif|bmp)$/
 
     return (
         <div>
             <div className="EventDisplay_outmost_container">
                 <div className="EventDisplay_inner_container">
                     <div className="EventDisplay_item_container" >
-                        {(event?.imageURL || event?.imageURLTwo || event?.imageURLThree) && <div className="EventDisplay_image_container" >
+                        {(imageURLRegex.test(event?.imageURL) || imageURLRegex.test(event?.imageURLTwo) || imageURLRegex.test(event?.imageURLThree)) && <div className="EventDisplay_image_container" >
                             {/* {event?.imageURL} */}
-                            <img key={1} className="eventDisplay_img_one" src={event?.imageURL} alt="alt" />
-                            <img key={2} className="eventDisplay_img_two" src={event?.imageURLTwo} alt="alt" />
-                            <img key={3} className="eventDisplay_img_three" src={event?.imageURLThree} alt="alt" />
+                            <img key={1} className="eventDisplay_img_one" src={imageURLRegex.test(event?.imageURL) ? event?.imageURL : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                            <img key={2} className="eventDisplay_img_two" src={imageURLRegex.test(event?.imageURLTwo) ? event?.imageURLTwo : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                            <img key={3} className="eventDisplay_img_three" src={imageURLRegex.test(event?.imageURLThree) ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
                         </div>}
                         <div className="eventDisplay_title" >
                             {event?.title}
