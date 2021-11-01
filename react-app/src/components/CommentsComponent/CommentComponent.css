@@ -296,14 +296,14 @@
 }
 
 .comment_textField {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     width: 100%;
     height: 97%;
     font-size: 20px;
 }
 
 .reply_textField {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     width: 100%;
     height: 100%;
     font-size: 20px;
