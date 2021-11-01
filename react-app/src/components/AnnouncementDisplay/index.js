@@ -70,12 +70,14 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
 
     }
 
+    const imageURLRegex = /^((https?|ftp):)?\/\/.*(jpeg|jpg|png|gif|bmp)$/
+
 
     return (
         <div className="announcementDisplay_outmost_ctnr" >
             <div className="announcementDisplay_inner_ctnr" >
                 <div className="announcementDisplay_img_ctnr" >
-                    {current_announcement?.imageURL &&
+                    {imageURLRegex.test(current_announcement?.imageURL) &&
                         <img className="announcementDisplay_img" src={current_announcement?.imageURL} />}
 
                 </div>
