@@ -83,7 +83,9 @@
 
 .announcementURL_input {
     height: 50px;
-    width: 100%
+    width: 100%;
+    font-size: 30px;
+    font-family: 'Didot', serif;
 }
 /*-------------------------------------------*/
 
@@ -97,7 +99,9 @@
 
 .announcementTitle_input {
     height: 50px;
-    width: 100%
+    width: 100%;
+    font-size: 30px;
+    font-family: 'Didot', serif;
 }
 
 
@@ -112,7 +116,9 @@
 
 .announcementDescription_input {
     height: 300px;
-    width: 100%
+    width: 100%;
+    font-size: 30px;
+    font-family: 'Didot', serif;
 }
 
 /*-------------------------------------------*/
