@@ -48,25 +48,40 @@ body {
 .navbar_login_ctnr {
     list-style: none;
     position: absolute;
-    right: 15%;
+    right: 12%;
     font-size: 20px;
 
 }
 
 .navbar_Login {
+    /* border: 2px solid skyblue; */
     text-decoration: none;
     /* color: black; */
     color: skyblue;
     font-weight: 700;
+    display: flex;
+    height: 65px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar_Login:hover {
+    cursor: pointer;
+    background-color: skyblue;
+    color: white;
 }
 
 /*----------------------------------------------*/
 
 .navbar_signup_ctnr {
+    /* border: 2px solid skyblue; */
     list-style: none;
     position: absolute;
-    right: 3%;
+    right: 2%;
     font-size: 20px;
+    height: 66px;
+    width: 150px;
 
 }
 
@@ -75,4 +90,17 @@ body {
     /* color: black; */
     color: skyblue;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+    height: 100%;
+    width: 100%;
+    align-items: center;
+
+}
+
+.navbar_Signup:hover {
+    cursor: pointer;
+    background-color: skyblue;
+    color: white;
 }
