@@ -25,12 +25,18 @@ export default function CreateAnnouncementComponent() {
         }
         dispatch(announcementActions.CreateAnnouncement(payload))
         history.push('/')
+        history.go(0);
 
     }
 
     useEffect(() => {
         const errors = [];
         if (imageURL.length > 1000) errors.push('Image size is too big');
+
+        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+        if (!urlRegex.test(imageURL) && imageURL) errors.push('URL Entered is Not Valid.')
+
+
         if (!announcementTitle) errors.push('Announcement must include a Title');
         if (announcementTitle.length > 300) errors.push('Announcement Title is too long');
         if (!announcementDescription) errors.push('Announcement must include a Description');

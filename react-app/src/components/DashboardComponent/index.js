@@ -21,6 +21,10 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
     // }
 
+    // const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    const imageURLRegex = /^((https?|ftp):)?\/\/.*(jpeg|jpg|png|gif|bmp)$/
+
+
 
     useEffect(() => {
         dispatch(announcementActions.GetAnnouncements())
@@ -49,13 +53,17 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
             <div className="Dashboard_outmost_ctnr">
                 <div className="Dashboard_announcement_ctnr">
                     <div>
-                        <h2>Select an Announcement</h2>
-                        <p>Scroll to View More</p>
+                        <h3 className="selectAnnouncement_prompt" >
+                            Select an Announcement
+                        </h3>
+                        <h3 className="scrollAnnouncement_prompt">
+                            Scroll to View More
+                        </h3>
                     </div>
                     {announcements?.map((announcement) =>
                         <NavLink className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
                             <div className='DashboardAnnouncements_items_wrapper'>
-                                {announcement?.imageURL && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />}
+                                {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />}
                                 <li className='DashboardAnnouncement_item title'>{announcement.title}</li>
                                 <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
                             </div>
@@ -63,8 +71,12 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                     )}
                 </div>
                 <div className="Dashboard_event_ctnr_title">
-                    <h2>Select an Event</h2>
-                    <p>Swipe to View More</p>
+                    <h3 className="selectEvent_prompt" >
+                        Select an Event
+                    </h3>
+                    <h3 className="swipeEvent_prompt">
+                        Swipe to View More
+                    </h3>
                 </div>
                 <div className="Dashboard_event_ctnr" >
                     {events?.map((event) =>
@@ -72,11 +84,11 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             <div className="Dashboard_event_title">
                                 {event?.title}
                             </div>
-                            {(event?.imageURL || event.imageURLTwo || event.imageURLThree) &&
+                            {(imageURLRegex.test(event?.imageURL) || imageURLRegex.test(event.imageURLTwo) || imageURLRegex.test(event.imageURLThree)) &&
                                 <div className="eventImage_ctnr" >
-                                    <img className="EventImage one" src={event?.imageURL ? event?.imageURL : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
-                                    <img className="EventImage two" src={event?.imageURLTwo ? event?.imageURLTwo : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
-                                    <img className="EventImage three" src={event?.imageURLThree ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                    <img className="EventImage one" src={imageURLRegex.test(event?.imageURL) ? event?.imageURL : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                    <img className="EventImage two" src={imageURLRegex.test(event?.imageURLTwo) ? event?.imageURLTwo : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
+                                    <img className="EventImage three" src={imageURLRegex.test(event?.imageURLThree) ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
                                 </div>
                             }
                             <div className="DashboardEvent_items_ctnr">

@@ -51,7 +51,7 @@ function App() {
           <Footer />
         </Route>
         <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+          <SignUpForm setLoggedIn={setLoggedIn} />
           <Footer />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
@@ -72,10 +72,10 @@ function App() {
           <CreateAnnouncementComponent />
           {/* <Footer /> */}
         </ProtectedRoute>
-        <Route path='/profile' exact={true} >
+        {/* <Route path='/profile' exact={true} >
           <Profile />
-          {/* <Footer /> */}
-        </Route>
+          <Footer />
+        </Route> */}
         <Route path='/event/:eventId' exact={true} >
           {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} />}
           {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} />}

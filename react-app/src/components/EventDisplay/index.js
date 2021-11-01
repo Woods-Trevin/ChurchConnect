@@ -63,6 +63,7 @@ export default function EventDisplay({ setUpdateEvent }) {
         }
         dispatch(eventActions.DeleteEvent(payload))
         history.push('/')
+        history.go(0);
     }
 
     function handleUpdate(e) {
@@ -90,6 +91,9 @@ export default function EventDisplay({ setUpdateEvent }) {
                         </div>
                         <div className="eventDisplay_alldatetime_ctnr" >
                             <div className="eventDisplay_startDateTime_ctnr" >
+                                <p className="eventDisplay_start_label">
+                                    Start:
+                                </p>
                                 <div className="eventDisplay_startDate" >
                                     {new Date(new Date(event?.startDate).setDate(new Date(event?.startDate).getDate() + 1)).toLocaleDateString(undefined, options)}
                                 </div>
@@ -98,6 +102,9 @@ export default function EventDisplay({ setUpdateEvent }) {
                                 </div>
                             </div>
                             <div className="eventDisplay_endDateTime_ctnr" >
+                                <p className="eventDisplay_end_label">
+                                    End:
+                                </p>
                                 <div className="eventDisplay_endDate">
                                     {new Date(new Date(event?.endDate).setDate(new Date(event?.endDate).getDate() + 1)).toLocaleDateString(undefined, options)}
                                 </div>

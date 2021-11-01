@@ -6,3 +6,8 @@
     font-family: 'Didot', serif;
     font-size: 20px;
 }
+
+.logoutBtn:hover {
+    color: black;
+    background-color: skyblue;
+}

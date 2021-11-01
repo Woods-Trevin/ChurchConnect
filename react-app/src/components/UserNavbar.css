@@ -57,9 +57,21 @@ body {
 
 .userNav_CreateEvent {
     text-decoration: none;
+    /* border: 2px solid skyblue; */
     /* color: black; */
     color: skyblue;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    width:155px;
+
+}
+
+.userNav_CreateEvent:hover {
+    background-color: skyblue;
+    color: black;
 
 }
 
@@ -72,27 +84,53 @@ body {
     font-size: 20px;
 }
 
+
 .userNav_CreateAnnouncement {
+    /* border: 2px solid skyblue; */
     text-decoration: none;
     /* color: black; */
     color: skyblue;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    height: 65px;
 
+
+}
+
+.userNav_CreateAnnouncement:hover {
+    background-color: skyblue;
+    color: black;
 
 }
 
 /*-------------------------------------------------------*/
 
 .userNav_logout_ctnr {
+    /* border: 2px solid skyblue; */
     list-style: none;
     position: absolute;
-    right: 12%;
+    right: 3%;
+    height: 65px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
 
+    
+}
+
+.userNav_logout_ctnr:hover {
+    
+    background-color: skyblue;
     
 }
 
 .userNav_logout {
 
+}
+
+.userNav_logout:hover {
+    
 }
 
 /*------------------------------------------------------*/
