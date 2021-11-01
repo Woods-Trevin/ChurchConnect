@@ -54,7 +54,7 @@ export default function CommentForm({ commentId, commentText, setHideCommentModa
                         onChange={(e) => setUpdateCommentVal(e.target.value)}
                     />
                     <div>
-                        <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} >update</button>
+                        <button className="post_comment_btn" type="submit" disabled={validationErrors.length > 0} >Post</button>
                     </div>
                 </div>
             </form>
