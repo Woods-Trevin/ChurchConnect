@@ -170,6 +170,8 @@ body {
     display: flex;
     align-items: center;
     font-family: 'Didot', serif;
+    flex-direction: column;
+    justify-content: center;
     /* color: skyblue; */
     /* background-color: black; */
     
@@ -252,10 +254,12 @@ body {
 
 .startDateTime_ctnr {
     margin-left: 40px;
+    margin-right: 10px;
 }
 
 .endDateTime_ctnr {
     margin-right: 40px;
+    margin-left: 10px;
 }
 
 .DashboardEvent_items {

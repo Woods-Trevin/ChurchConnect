@@ -1,0 +1,275 @@
+.updateEvent_outer_ctnr {
+    /* height: 1000px; */
+    background-color: #f1f5f7;
+}
+
+.updateEvent_inner_ctnr {
+    height: 1100px;
+    
+}
+
+.updateEvent_errors {
+    /* border: 4px solid purple; */
+    float: left;
+    font-size: 30px;
+}
+
+/* =================================================================*/
+
+.updateEvent_form_wrapper {
+    /* border: 4px solid red; */
+    height: 100%;
+    display: flex;
+}
+
+.updateEvent_form_innerWrapper {
+    /* border: 4px solid green; */
+    width: 100%;
+    
+}
+
+.updateEvent_items_ctnr {
+    /* border: 4px solid blue; */
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* margin-bottom: 30px; */
+    
+}
+
+.updateEvent_instruction {
+    font-size: 40px;
+}
+
+/* =================================================================*/
+
+.updateEvent_imageURLOne_ctnr {
+    /* border: 4px solid yellow; */
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.updateEvent_imageURLOne_label {
+    font-size: 30px;
+}
+
+.updateEvent_imageURLOne_input {
+    width: 50%;
+    height: 50px;
+    font-size: 30px;
+    font-size: 20px;
+}
+
+
+
+/* =================================================================*/
+
+.updateEvent_imageURLTwo_ctnr {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateEvent_imageURLTwo_label {
+    font-size: 30px;
+}
+
+.updateEvent_imageURLTwo_input {
+    width: 50%;
+    height: 50px;
+    font-size: 20px;
+}
+
+/* =================================================================*/
+
+.updateEvent_imageURLThree_ctnr {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateEvent_imageURLThree_label {
+    font-size: 30px;
+}
+
+.updateEvent_imageURLThree_input {
+    width: 50%;
+    height: 50px;
+    font-size: 20px;
+}
+
+/* =================================================================*/
+
+.updateEvent_title_ctnr {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateEvent_title_label {
+    font-size: 30px;
+}
+
+.updateEvent_title_input {
+    width: 50%;
+    height: 50px;
+    font-size: 20px;
+}
+
+
+/* =================================================================*/
+
+.updateEvent_description_ctnr {
+    /* border: 4px solid yellow; */
+    width: 90%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.updateEvent_description_label {
+    font-size: 30px;
+}
+
+.updateEvent_description_input {
+    width: 50%;
+    height: 150px;
+    font-size: 20px;
+    padding-bottom: 100px;
+}
+
+/* =================================================================*/
+
+.updateEvent_startDate_ctnr {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateEvent_startDate_label {
+    font-size: 30px;
+}
+
+.updateEvent_startDate_input {
+    width: 40%;
+    height: 50px;
+    font-size: 30px;
+}
+
+
+/* =================================================================*/
+
+.updateEvent_startTime_ctnr {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateEvent_startTime_label {
+    font-size: 30px;
+}
+
+.updateEvent_startTime_input {
+    width: 40%;
+    height: 50px;
+    font-size: 30px;
+}
+
+/* =================================================================*/
+.updateEvent_endDate_ctnr {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateEvent_endDate_label {
+    font-size: 30px;
+}
+
+.updateEvent_endDate_input {
+    width: 40%;
+    height: 50px;
+    font-size: 30px;
+}
+
+/* =================================================================*/
+
+.updateEvent_endTime_ctnr {
+    width: 90%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.updateEvent_endTime_title {
+    font-size: 30px;
+}
+
+.updateEvent_endTime_input {
+    width: 40%;
+    height: 50px;
+    font-size: 30px;
+}
+
+/* =================================================================*/
+
+.updateEventForm_Btn_ctnr {
+ /* border: 2px solid red; */
+ width: 100%;
+ height: 100px;
+}
+
+.updateEventForm_Btn {
+    width: 100%;
+    height: 100%;
+    background-color: skyblue;
+    color: black;
+    font-size: 30px;
+}
+
+.updateEventForm_Btn:hover {
+    cursor: pointer;
+    background-color: rgb(84, 187, 228);
+    font-size: 35px;
+}
+
+/* =================================================================*/
+
+.updateEvent_Footer {
+    position:relative;
+        left:0px;
+        bottom:0px;
+        right:0px;
+}

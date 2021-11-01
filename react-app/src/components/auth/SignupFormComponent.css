@@ -1,0 +1,166 @@
+.signupForm_outmost_ctnr {
+    /* border: 2px solid red; */
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Didot', serif;
+    background-color: #f1f5f7;
+}
+
+.signupForm_errors {
+    /* border: 2px solid purple; */
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 30px;
+    
+}
+
+/*--------------------------------------*/
+
+.signupForm_outer_wrapper {
+    /* border: 2px solid black; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.signup_label {
+    font-size: 70px;
+    position: relative;
+    bottom: 100px;
+    font-weight: 700;
+    color: skyblue;
+}
+
+
+
+.signupForm_inner_wrapper {
+    border: 2px solid black;
+    /* margin-left: 50px */
+    width: 700px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black !important;
+    gap: 20px;
+    
+}
+
+
+
+/*--------------------------------------*/
+
+.signupForm_username_ctnr {
+    /* border: 4px solid yellow; */
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signupForm_username_label {
+    font-size: 30px;
+    color: skyblue;
+}
+
+.signupForm_username_input {
+    width: 70%;
+    height: 75px;
+    font-size: 30px;
+    font-family: 'Didot', serif;
+}
+
+/*--------------------------------------*/
+
+.signupForm_email_ctnr {
+    /* border: 4px solid yellow; */
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signupForm_email_label {
+    font-size: 30px;
+    color: skyblue;
+}
+
+.signupForm_email_input {
+    width: 70%;
+    height: 75px;
+    font-size: 30px;
+    font-family: 'Didot', serif;
+}
+
+/*--------------------------------------*/
+
+.signupForm_password_ctnr {
+    /* border: 4px solid yellow; */
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signupForm_password_label {
+    font-size: 30px;
+    color: skyblue;
+}
+
+.signupForm_password_input {
+    width: 70%;
+    height: 75px;
+}
+
+/*--------------------------------------*/
+
+.signupForm_repeatpassword_ctnr {
+    /* border: 4px solid yellow; */
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.signupForm_repeatpassword_label {
+    font-size: 30px;
+    color: skyblue;
+}
+
+.signupForm_repeatpassword_input {
+    width: 70%;
+    height: 75px;
+}
+
+/*--------------------------------------*/
+
+.signupForm_submitBtn_ctnr {
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.signupForm_submitBtn {
+    width: 100%;
+    background-color: skyblue;
+    color: black;
+    font-size: 30px;
+    font-family: 'Didot', serif;
+    font-weight: 700;
+}
+
+/*--------------------------------------*/

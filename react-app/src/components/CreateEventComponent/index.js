@@ -98,7 +98,7 @@ export default function CreateEventComponent() {
         }
         if (Number(currentDateSlice[1]) === Number(endDateSlice[1])) {
             if (Number(currentDateSlice[2]) > Number(endDateSlice[2])) {
-                errors.push('Start Date cannot be behind the current date.')
+                errors.push('End Date cannot be behind the current date.')
                 console.log('start date day case2')
             }
         }

@@ -3,10 +3,13 @@ import { useHistory, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import * as announcementActions from '../../store/announcement'
 import './UpdateAnnouncementComponent.css';
+import Footer from '../Footer';
 
 export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
     const current_announcement = useSelector(state => state.announcement.current_announcement)
     console.log(current_announcement)
+
+    const history = useHistory();
 
     const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState(current_announcement?.imageURL)
     const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
@@ -29,6 +32,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
         }
         dispatch(announcementActions.PatchAnnouncement(payload));
+        history.push('/')
     }
 
     useEffect(() => {
@@ -46,54 +50,67 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
 
     return (
-        <div>
-            <ul>
-                {validationErrors.map(error =>
-                    <li>{error}</li>
-                )}
-            </ul>
-            <form onSubmit={handleAnnouncementPatch}>
-                <div>
-                    <div>
-                        <label>
-                            <div>
-                                Image URL:
-                            </div>
-                            <input
-                                type='text'
-                                name='updateAnnouncementURL'
-                                value={updateAnnouncementURL}
-                                onChange={(e) => setUpdateAnnouncementURL(e.target.value)}
-                            />
-                        </label>
-                        <label>
-                            <div>
-                                Title:
-                            </div>
-                            <input
-                                type='text'
-                                name='updateAnnouncementTitle'
-                                value={updateAnnouncementTitle}
-                                onChange={(e) => setUpdateAnnouncementTitle(e.target.value)}
-                            />
-                        </label>
-                        <label>
-                            <div>
-                                Description:
-                            </div>
-                            <input
-                                type='text'
-                                name='updateAnnouncementDescription'
-                                value={updateAnnouncementDescription}
-                                onChange={(e) => setUpdateAnnouncementDescription(e.target.value)}
-                            />
-                        </label>
-                    </div>
-                    <button type="submit" disabled={validationErrors.length > 0} >
-                        Submit
-                    </button>
+        <div className="updateAnnouncement_outer_ctnr" >
+            <div className="updateAnnouncement_inner_ctnr">
+                <div className="updateAnnouncement_instruction">
+                    <h3> Edit Announcement</h3>
                 </div>
-            </form>
+                <div className="updateAnnouncement_items_ctnr">
+                    <ul className="updateAnnouncement_errors">
+                        {validationErrors.map(error =>
+                            <li>{error}</li>
+                        )}
+                    </ul>
+                    <form className="updateAnnouncement_form_outerwrapper" onSubmit={handleAnnouncementPatch}>
+                        <div className="updateAnnouncement_form_innerwrapper">
+                            <label className="updateAnnouncement_imageURL_ctnr">
+                                <div className="updateAnnouncement_imageURL_label">
+                                    Image URL:
+                                </div>
+                                <input
+                                    type='text'
+                                    name='updateAnnouncementURL'
+                                    value={updateAnnouncementURL}
+                                    className="updateAnnouncement_imageURL_input"
+                                    onChange={(e) => setUpdateAnnouncementURL(e.target.value)}
+                                />
+                            </label>
+                            <label className="updateAnnouncement_title_ctnr">
+                                <div className="updateAnnouncement_title_label">
+                                    Title:
+                                </div>
+                                <input
+                                    type='text'
+                                    name='updateAnnouncementTitle'
+                                    value={updateAnnouncementTitle}
+                                    className="updateAnnouncement_title_input"
+                                    onChange={(e) => setUpdateAnnouncementTitle(e.target.value)}
+                                />
+                            </label>
+                            <label className="updateAnnouncement_description_ctnr">
+                                <div className="updateAnnouncement_description_label">
+                                    Description:
+                                </div>
+                                <input
+                                    type='text'
+                                    name='updateAnnouncementDescription'
+                                    value={updateAnnouncementDescription}
+                                    className="updateAnnouncement_description_input"
+                                    onChange={(e) => setUpdateAnnouncementDescription(e.target.value)}
+                                />
+                            </label>
+                            <div className="updateAnnouncement_submitBtn_ctnr">
+                                <button className="updateAnnouncement_submitBtn" type="submit" disabled={validationErrors.length > 0} >
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div className="updateAnnouncement_Footer">
+                <Footer />
+            </div>
         </div>
     )
 }
