@@ -81,7 +81,7 @@
 }
 
 .eventDisplay_description {
-    font-size: 50px;
+    font-size: 35px;
     margin-bottom: 50px;
     font-family: 'Didot', serif;
 
@@ -98,6 +98,11 @@
     /* border: 2px solid blue; */
 }
 
+.eventDisplay_start_label {
+    font-size: 30px;
+    font-weight: 700;
+}
+
 .eventDisplay_startDate {
     font-size: 30px;
 }
@@ -108,6 +113,11 @@
 
 .eventDisplay_endDateTime_ctnr {
     /* border: 2px solid blue; */
+}
+
+.eventDisplay_end_label {
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .eventDisplay_endDate {

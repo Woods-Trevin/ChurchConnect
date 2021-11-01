@@ -33,6 +33,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         }
         dispatch(announcementActions.PatchAnnouncement(payload));
         history.push('/')
+        history.go(0);
     }
 
     useEffect(() => {

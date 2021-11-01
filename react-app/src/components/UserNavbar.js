@@ -35,11 +35,11 @@ const UserNavBar = ({ loggedIn, setLoggedIn }) => {
                         Create Announcement
                     </NavLink>
                 </li>
-                <li className="userNav_Profile_ctnr">
+                {/* <li className="userNav_Profile_ctnr">
                     <NavLink to='/profile' className='userNav_Profile' >
                         Profile
                     </NavLink>
-                </li>
+                </li> */}
                 <li className="userNav_logout_ctnr">
                     <LogoutButton setLoggedIn={setLoggedIn} className='userNav_logout' />
                 </li>

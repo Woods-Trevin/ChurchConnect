@@ -237,6 +237,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         dispatch(eventActions.PatchEvent(payload))
         setUpdateEvent(false)
         history.push('/')
+        history.go(0);
 
 
     }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as announcementActions from '../../store/announcement'
@@ -14,11 +14,13 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
     const { announcementId } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+
+
     useEffect(() => {
         dispatch(announcementActions.GetOneAnnouncement(announcementId))
         dispatch(commentActions.GetComments())
         dispatch(replyActions.GetReplies())
-    }, [dispatch, announcementId])
+    }, [dispatch, announcementId, history])
 
 
     const current_announcement = useSelector(state => state.announcement.current_announcement)
@@ -63,7 +65,9 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
             replies: currentAnnouncementCommentsReplies
         }
         dispatch(announcementActions.DeleteAnnouncement(payload));
-        history.push('/')
+        history.push('/');
+        history.go(0);
+
     }
 
 

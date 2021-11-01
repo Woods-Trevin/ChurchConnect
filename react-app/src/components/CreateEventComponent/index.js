@@ -50,6 +50,7 @@ export default function CreateEventComponent() {
         }
         dispatch(eventActions.CreateEvent(payload))
         history.push('/')
+        history.go(0);
     }
 
     let currentDateSlice;
@@ -62,6 +63,20 @@ export default function CreateEventComponent() {
         if (imageURLOne.length > 700) errors.push('Image url is too long');
         if (imageURLTwo.length > 700) errors.push('Image url is too long');
         if (imageURLThree.length > 700) errors.push('Image url is too long');
+
+        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+        if (!urlRegex.test(imageURLOne) && imageURLOne) {
+            errors.push('First URL entered is not valid.')
+        }
+        if (!urlRegex.test(imageURLTwo) && imageURLTwo) {
+            errors.push('Second URL entered is not valid.')
+        }
+        if (!urlRegex.test(imageURLThree) && imageURLThree) {
+            errors.push('Third URL entered is not valid.')
+        }
+
+
+
         if (!eventTitle) errors.push('Event must include a Title');
         if (eventTitle.length > 200) errors.push('Event title is too long');
         if (!eventDescription) errors.push('Event must include a Description');
@@ -298,7 +313,7 @@ export default function CreateEventComponent() {
                                 </label>
                                 <label className="eventImgURLTwo_ctnr" >
                                     <div className="eventImgURLTwo_label" >
-                                        imageURLTwo:
+                                        Image URL:
                                     </div>
                                     <input
                                         type="text"
@@ -310,7 +325,7 @@ export default function CreateEventComponent() {
                                 </label>
                                 <label className="eventImgURLThree_ctnr" >
                                     <div className="eventImgURLThree_label" >
-                                        imageURLThree:
+                                        Image URL:
                                     </div>
                                     <input
                                         type="text"

@@ -85,6 +85,15 @@ body {
 }
 
 
+.selectAnnouncement_prompt {
+    font-size: 30px;
+}
+
+.scrollAnnouncement_prompt {
+    font-size: 30px;
+}
+
+
 /*---------------------------------------------*/
 
 .Dashboard_announcement_ctnr {
@@ -136,7 +145,8 @@ body {
     font-size:20px;
     width: 100%;
     border-bottom: 2px solid black;
-    border-top: 2px solid black;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -175,6 +185,14 @@ body {
     /* background-color: black; */
     
     
+}
+
+.selectEvent_prompt {
+    font-size: 30px;
+}
+
+.swipeEvent_prompt {
+    font-size: 30px;
 }
 
 /*----------------------------------------------*/

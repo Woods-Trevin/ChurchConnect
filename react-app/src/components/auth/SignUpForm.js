@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignupFormComponent.css';
 
-const SignUpForm = () => {
+const SignUpForm = ({ setLoggedIn }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
+  const [history, setHistory] = useState(useHistory());
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -20,8 +21,13 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
+      } else {
+        setLoggedIn(true)
       }
     }
+    // history.push('/');
+    // setHistory({ ...history })
+
   };
 
   const updateUsername = (e) => {
@@ -52,9 +58,12 @@ const SignUpForm = () => {
     if (!repeatPassword) errors.push('Repeat password must be included.')
     if (password !== repeatPassword) errors.push('Password and Repeat Password does not match.')
 
+    let regexTwo = /\S+@\S+\.\S+/;
+    if (!regexTwo.test(email)) errors.push('Email is invalid.')
+
     setValidationErrors(errors)
 
-  }, [dispatch, username, email, password, repeatPassword]);
+  }, [dispatch, username, email, password, repeatPassword, history]);
 
 
   if (user) {
