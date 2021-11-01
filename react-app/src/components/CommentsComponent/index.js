@@ -176,7 +176,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                                     {reply?.username}
                                                                 </li>
                                                             </div>
-                                                            <div className="replyBtns_ctnr">
+                                                            {user?.id === reply?.userId && <div className="replyBtns_ctnr">
                                                                 <li className="replyText delete" onClick={() => {
                                                                     dispatch(replyActions.DeleteReply(reply?.id))
                                                                 }}>
@@ -189,7 +189,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                                 }}>
                                                                     Edit
                                                                 </li>
-                                                            </div>
+                                                            </div>}
                                                         </div>
                                                     )}
                                                 </div>
