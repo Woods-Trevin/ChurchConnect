@@ -7,7 +7,7 @@ export default function ReplyForm({ replyId, replyText, setHideReplyModal }) {
 
     const [updateReplyVal, setUpdateReplyVal] = useState(replyText)
     const [validationErrors, setValidationErrors] = useState([])
-    console.log(replyId, replyText)
+    // console.log(replyId, replyText)
 
     const dispatch = useDispatch();
 
@@ -33,8 +33,8 @@ export default function ReplyForm({ replyId, replyText, setHideReplyModal }) {
     return (
         <div>
             <div>
-                {validationErrors.map(error =>
-                    <li>{error}</li>
+                {validationErrors.map((error, idx) =>
+                    <li key={idx}>{error}</li>
                 )}
                 <form onSubmit={handleReplyPatch}>
                     <div className="comment_textField_wrapper">

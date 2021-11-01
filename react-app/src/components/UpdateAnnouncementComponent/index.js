@@ -7,7 +7,7 @@ import Footer from '../Footer';
 
 export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
     const current_announcement = useSelector(state => state.announcement.current_announcement)
-    console.log(current_announcement)
+    // console.log(current_announcement)
 
     const history = useHistory();
 
@@ -58,8 +58,8 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                 </div>
                 <div className="updateAnnouncement_items_ctnr">
                     <ul className="updateAnnouncement_errors">
-                        {validationErrors.map(error =>
-                            <li>{error}</li>
+                        {validationErrors.map((error, idx) =>
+                            <li key={idx} >{error}</li>
                         )}
                     </ul>
                     <form className="updateAnnouncement_form_outerwrapper" onSubmit={handleAnnouncementPatch}>

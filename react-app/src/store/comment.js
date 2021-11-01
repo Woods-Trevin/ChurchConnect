@@ -74,7 +74,7 @@ export const UpdateComment = (payload) => async (dispatch) => {
 }
 
 export const DeleteComment = (payload) => async (dispatch) => {
-    console.log(payload.id)
+    // console.log(payload.id)
     const response = await fetch(`/api/comment/${payload.id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -83,7 +83,7 @@ export const DeleteComment = (payload) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data.comments);
+        // console.log(data.comments);
         dispatch(delete_comment(data.comments));
         return response;
     }

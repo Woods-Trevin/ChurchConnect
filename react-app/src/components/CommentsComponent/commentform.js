@@ -38,8 +38,8 @@ export default function CommentForm({ commentId, commentText, setHideCommentModa
     return (
         <div>
             <ul>
-                {validationErrors.map(error =>
-                    <li>{error}</li>
+                {validationErrors.map((error, idx) =>
+                    <li key={idx}>{error}</li>
                 )}
             </ul>
             <form className="comment_form_wrapper" onSubmit={handleCommentPatch}>

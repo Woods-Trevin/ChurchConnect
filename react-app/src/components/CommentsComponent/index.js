@@ -43,7 +43,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
     // console.log(replies, "--------------------------------------------------------All Replies")
     const currentCommentReplies = replies?.filter(reply => reply.comment_id === replyCommentId)
     // console.log(currentCommentReplies, '---------------current comment replies')
-    console.log(replyText.length, '--------------------')
+    // console.log(replyText.length, '--------------------')
 
 
 
@@ -58,7 +58,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
             announcementId: null,
             userId: user?.id,
         }
-        console.log(payload, "CREATE ACTION")
+        // console.log(payload, "CREATE ACTION")
         dispatch(commentActions.CreateComment(payload))
         setCommentTextFieldVal("")
 
@@ -74,7 +74,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
             announcementId: announcementId,
             userId: user?.id,
         }
-        console.log(payload, "CREATE ACTION")
+        // console.log(payload, "CREATE ACTION")
         dispatch(commentActions.CreateComment(payload))
         setCommentTextFieldVal("")
     }
@@ -119,8 +119,8 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
             <div className="comments_inner_ctnr">
                 <div className="comments_view">
                     {eventId && currentEventComments?.map((comment, idx) =>
-                        <div>
-                            <div key={idx} className="comments_in_view_outer_ctnr">
+                        <div key={idx}>
+                            <div key={idx + 1} className="comments_in_view_outer_ctnr">
                                 <div className="comments_in_view_ctnr">
                                     <li className="comments_in_view" >{comment?.text}</li>
                                     <li className="comments_username">
@@ -168,7 +168,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                             <div className="replies_inner_ctnr">
                                                 <div className="replyText_items_ctnr" >
                                                     {currentCommentReplies?.map((reply, idx) =>
-                                                        <div className="replyText_wrapper" key={idx}>
+                                                        <div key={idx} className="replyText_wrapper" key={idx}>
                                                             <div className="replyText_text_ctnr">
                                                                 <li className="replyText text"> {reply?.text} </li>
                                                                 <li className="replyText_username">
@@ -200,8 +200,8 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                         </li>
                                                         {allowReply &&
                                                             <form className="replyTF_ctnr" onSubmit={handleReplyCreation}>
-                                                                {replyValidationErrors.map(error =>
-                                                                    <li>{error}</li>
+                                                                {replyValidationErrors.map((error, idx) =>
+                                                                    <li key={idx} >{error}</li>
                                                                 )}
                                                                 <textarea
                                                                     type="text"
@@ -231,8 +231,8 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                         </div>
                     )}
                     {announcementId && currentAnnouncementComments?.map((comment, idx) =>
-                        <div>
-                            <div key={idx} className="comments_in_view_outer_ctnr">
+                        <div key={idx}>
+                            <div key={idx + 1} className="comments_in_view_outer_ctnr">
                                 <div className="comments_in_view_ctnr">
                                     <li className="comments_in_view" >{comment?.text}</li>
                                     <li className="comments_username">
@@ -312,8 +312,8 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                                                         </li>
                                                         {allowReply &&
                                                             <form className="replyTF_ctnr" onSubmit={handleReplyCreation}>
-                                                                {replyValidationErrors.map(error =>
-                                                                    <li>{error}</li>
+                                                                {replyValidationErrors.map((error, idx) =>
+                                                                    <li key={idx} >{error}</li>
                                                                 )}
                                                                 <textarea
                                                                     type="text"

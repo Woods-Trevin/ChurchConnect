@@ -56,8 +56,8 @@ export default function CreateAnnouncementComponent() {
                 </div>
                 <div className="announcement_inner_ctnr">
                     <ul className="announcement_errors_ctnr">
-                        {validationErrors.map(error =>
-                            <li>{error}</li>
+                        {validationErrors.map((error, idx) =>
+                            <li key={idx}>{error}</li>
                         )}
                     </ul>
                     <form className="announcementForm_outer_ctnr" onSubmit={handleAnnouncementCreation}>
