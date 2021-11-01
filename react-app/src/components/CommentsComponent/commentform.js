@@ -42,7 +42,7 @@ export default function CommentForm({ commentId, commentText, setHideCommentModa
                     <li>{error}</li>
                 )}
             </ul>
-            <form onSubmit={handleCommentPatch}>
+            <form className="comment_form_wrapper" onSubmit={handleCommentPatch}>
                 <div className="comment_textField_wrapper">
                     <textarea
                         name='updateCommentVal'

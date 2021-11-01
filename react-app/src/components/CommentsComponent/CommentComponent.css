@@ -283,21 +283,36 @@
 
 /*----------------------------------------------------------------*/
 
+.comment_form_wrapper {
+    width: 400px;
+    height: 200px;
+}
+
 .comment_textField_wrapper {
     /* border: 2px solid green; */
     display: flex;
-    height: 100%;
-}
-
-.comment_textField {
     width: 100%;
     height: 100%;
 }
 
+.comment_textField {
+    border: 2px solid green;
+    width: 100%;
+    height: 97%;
+    font-size: 20px;
+}
+
+.reply_textField {
+    border: 2px solid green;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+}
+
 .post_comment_btn {
     /* border: 3px solid green; */
-    height: 100%;
-    width: 60px;
+    height: 101%;
+    width: 80px;
     background-color: skyblue;
     color: black;
     font-size: 20px;
