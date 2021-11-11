@@ -68,11 +68,11 @@ export const GetOneEvent = (id) => async (dispatch) => {
 
 };
 
-export const CreateEvent = (payload) => async (dispatch) => {
+export const CreateEvent = (formData) => async (dispatch) => {
     const response = await fetch('/api/event/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        // headers: { 'Content-Type': 'application/json' },
+        body: formData
     });
 
     if (response.ok) {
