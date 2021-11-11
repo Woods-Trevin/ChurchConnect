@@ -1,6 +1,55 @@
-# Flask React Project
+## Heroku Link
+https://churchconnect.herokuapp.com/
 
-This is the starter for the Flask React project.
+## ChurchConnect at a Glance
+
+ChurchConnect is a fullstack Postgres, Flask, React.js, and Node.js app that lets a user from a church community communicate with other members that log onto the website through the creation of Events and Announcements
+
+Users can also comment on Events and Announcements with additional functionality to reply to those comments on Events and Announcements adding a higher level of communication between users.
+
+## Application Architecture
+
+As stated previous, ChurchConnect is a fullstack Postgres, Flask, React.js, and Node.js application. The backend interacts with the frontend by responding to frontend requests, and fetching data from the Postgres database. The frontend displays this information to the user for their use.
+
+## Frontend Overview
+ChurchConnect has alot going on in the front end that help to make it such a useful app. It makes extensive use of the backend I designed with Flask to create a dynamic experience.
+
+### Frontend Tech Used:
+
+#### React
+ChurchConnect pushes React to its fullest capability. I made use of React Hooks to store data from the frontend to send to the backend. As well as using React useEffects to trigger rerenders when there is a change to the DOM or a variable in each component's flow.
+
+
+#### Redux
+The ReactRedux library was used to manage this applications state as the users perform the actions they are allowed, make fetch requests to the server for data, and to change the state to create a seemlessly updated view when a user makes any core actions (create, update, delete).
+
+Redux contains information about all Events and Announcements, as well as the comments and replies users may make as they explore this site. By managing this state in Redux, it provides easy access to information from the database across all components on this application. There were so many components in the application that Redux helps to bring my vision across smoothly with little to no headache. The examples of redux being very useful starts when the user logs in and sees all events and announcements that other users made that is requested from the backend and stored in state, and extend to the many components and conditional renders implemented to give the user a more dynamic experience. Redux provided an intuitive method to manage all the complexity of this application.
+
+## Backend Overview
+
+ChurchConnect uses Flask for its backend interacting with Postgres as database for persisting and storing data. The backend of ChurchConnect is fairly straightforward. The server sends the data requested to the front end and the frontend serves that data to the frontend where the user can read and manipulate the information.
+
+### Backend Tech Used
+
+#### Flask
+Flask was an easy choice for the backend part of my application. The associations are straightforward and you can include those associations on the models you are querying and sending back to the backend. The class structure for models and forms were a nice change of pace since most of what I have done before was in Express using functional programming.
+Querying the database was easier than with Express.
+
+#### Postgres
+Postgres was an easy choice for ChurchConnect server-side framework. Postgres allows easy communication between database and the backend server. I found it very straightforward to use.
+
+## Conclusion and Possible Next Steps
+ChurchConnect was a pleasure to build. I grew up in the church and there were many churches that went above and beyond to ensure my family was well. I have always wanted to give back in some way but never knew how I would do it until this project came to mind.
+
+This is the first time that I've built a fullstack web application where the idea was an original and there was some kind of personal meaning too all the work I put in. ChurchConnect has been a pleaure to design and create.
+
+In the process of making ChurchConnect, I was able to practice with a lot of new methods of carrying out react frontend implementations. I also recieved alot of experience dealing with redux state, understanding what actually causes a rerender, and how I should design my databases to bring my visions to life. I've come out of this project stronger than ever in both my understanding of frontend and backend work. I am confident in my abilities to work as a programmer in the future.
+
+#### Possible Next Steps
+I have 3 more features I want to implement. Profile Page, Bookings Page for users to book the priest for baptisms or the like, and a service view for users that could not make it to service that day who may want to catch up on what they missed by watching the service from the comfort of their home.
+
+
+
 
 ## Getting started
 
@@ -53,82 +102,3 @@ This is the starter for the Flask React project.
    psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
-
-## Deploy to Heroku
-
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
-
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
