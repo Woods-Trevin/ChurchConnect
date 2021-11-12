@@ -41,11 +41,11 @@ const delete_announcement = (announcement) => {
 }
 
 
-export const CreateAnnouncement = (payload) => async (dispatch) => {
+export const CreateAnnouncement = (formData) => async (dispatch) => {
     const response = await fetch('/api/announcement/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        // headers: { 'Content-Type': 'application/json' },
+        body: formData
     })
 
     if (response.ok) {
@@ -77,18 +77,18 @@ export const GetOneAnnouncement = (id) => async (dispatch) => {
     }
 }
 
-export const PatchAnnouncement = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/announcement/${payload.idx}`, {
+export const PatchAnnouncement = (formData, announcementId) => async (dispatch) => {
+    const response = await fetch(`/api/announcement/${announcementId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        // headers: { 'Content-Type': 'application/json' },
+        body: formData
     })
 
 
     if (response.ok) {
         const data = await response.json();
         // console.log(data.announcements);
-        dispatch(patch_announcement(data));
+        dispatch(patch_announcement(data.announcements));
         return response;
     }
 }
@@ -125,7 +125,9 @@ export default function announcementReducer(state = initialState, action) {
             newState.current_announcement = action.payload;
             return newState;
         case PATCH_ANNOUNCEMENT:
-            return state;
+            newState = Object.assign({}, state);
+            newState.announcements = action.payload;
+            return newState;
         case DELETE_ANNOUNCEMENT:
             return state;
         default:

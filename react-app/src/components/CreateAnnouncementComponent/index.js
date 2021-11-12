@@ -11,19 +11,28 @@ export default function CreateAnnouncementComponent() {
     const [announcementDescription, setAnnouncementDescription] = useState("")
     const [validationErrors, setValidationErrors] = useState([])
 
+    console.log(imageURL)
+
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const history = useHistory()
 
     function handleAnnouncementCreation(e) {
         e.preventDefault()
-        const payload = {
-            imageURL: imageURL,
-            title: announcementTitle,
-            description: announcementDescription,
-            idx: user.id
-        }
-        dispatch(announcementActions.CreateAnnouncement(payload))
+
+        const formData = new FormData();
+        formData.append("image", imageURL)
+        formData.append("title", announcementTitle)
+        formData.append("description", announcementDescription)
+        formData.append("idx", user?.id)
+
+        // const payload = {
+        //     imageURL: imageURL,
+        //     title: announcementTitle,
+        //     description: announcementDescription,
+        //     idx: user?.id
+        // }
+        dispatch(announcementActions.CreateAnnouncement(formData))
         history.push('/')
         history.go(0);
 
@@ -31,10 +40,10 @@ export default function CreateAnnouncementComponent() {
 
     useEffect(() => {
         const errors = [];
-        if (imageURL.length > 1000) errors.push('Image size is too big');
+        // if (imageURL.length > 1000) errors.push('Image size is too big');
 
-        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-        if (!urlRegex.test(imageURL) && imageURL) errors.push('URL Entered is Not Valid.')
+        // const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+        // if (!urlRegex.test(imageURL) && imageURL) errors.push('URL Entered is Not Valid.')
 
 
         if (!announcementTitle) errors.push('Announcement must include a Title');
@@ -44,6 +53,12 @@ export default function CreateAnnouncementComponent() {
 
         setValidationErrors(errors);
     }, [dispatch, imageURL, announcementTitle, announcementDescription])
+
+    const handleCreateImage = (e) => {
+        const currentFile = e.target.files[0];
+        setImageURL(currentFile);
+    }
+
 
 
     return (
@@ -67,11 +82,11 @@ export default function CreateAnnouncementComponent() {
                                     Image URL:
                                 </div>
                                 <input
-                                    type='text'
+                                    type="file"
+                                    accept="image/*"
                                     name='imageURL'
-                                    value={imageURL}
                                     className='announcementURL_input'
-                                    onChange={(e) => setImageURL(e.target.value)}
+                                    onChange={handleCreateImage}
                                 />
                             </label>
                             <label className="announcementTitle_ctnr" >

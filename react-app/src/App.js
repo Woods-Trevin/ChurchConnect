@@ -24,6 +24,14 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [updateEvent, setUpdateEvent] = useState(false);
   const [updateAnnouncement, setUpdateAnnouncement] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  setTimeout(
+    function () {
+      setIsLoading(false);
+    }.bind(this),
+    1000
+  );
 
   const dispatch = useDispatch();
 
@@ -42,51 +50,59 @@ function App() {
 
 
   return (
+
     <BrowserRouter>
       {!loggedIn && <NavBar setLoggedIn={setLoggedIn} />}
       {loggedIn && <UserNavbar setLoggedIn={setLoggedIn} />}
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm setLoggedIn={setLoggedIn} />
-          <Footer />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm setLoggedIn={setLoggedIn} />
-          <Footer />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <Route exact path='/' >
-          <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
-          {/* <Footer /> */}
-        </Route>
-        <ProtectedRoute path='/event' exact={true} >
-          <CreateEventComponent />
-          {/* <Footer /> */}
-        </ProtectedRoute>
-        <ProtectedRoute path='/announcement' exact={true} >
-          <CreateAnnouncementComponent />
-          {/* <Footer /> */}
-        </ProtectedRoute>
-        {/* <Route path='/profile' exact={true} >
+      {isLoading ?
+        (
+          <div className="App">
+            <h1>Loading...</h1>
+          </div>
+        ) :
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm setLoggedIn={setLoggedIn} />
+            <Footer />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm setLoggedIn={setLoggedIn} />
+            <Footer />
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList />
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+          <Route exact path='/' >
+            <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
+            {/* <Footer /> */}
+          </Route>
+          <ProtectedRoute path='/event' exact={true} >
+            <CreateEventComponent />
+            {/* <Footer /> */}
+          </ProtectedRoute>
+          <ProtectedRoute path='/announcement' exact={true} >
+            <CreateAnnouncementComponent />
+            {/* <Footer /> */}
+          </ProtectedRoute>
+          {/* <Route path='/profile' exact={true} >
           <Profile />
           <Footer />
         </Route> */}
-        <Route path='/event/:eventId' exact={true} >
-          {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} />}
-          {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} />}
-          {/* <Footer /> */}
-        </Route>
-        <Route path='/announcement/:announcementId' exact={true} >
-          {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />}
-          {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />}
-          <Footer />
-        </Route>
-      </Switch>
+          <Route path='/event/:eventId' exact={true} >
+            {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} />}
+            {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} />}
+            {/* <Footer /> */}
+          </Route>
+          <Route path='/announcement/:announcementId' exact={true} >
+            {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />}
+            {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />}
+            <Footer />
+          </Route>
+        </Switch>
+      }
     </BrowserRouter>
   );
 }

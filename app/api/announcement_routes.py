@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Announcement, Reply, Comment, db
 from app.forms import AnnouncementForm
+from app.awsupload import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 announcement_routes = Blueprint('announcements', __name__)
 
@@ -29,13 +31,40 @@ def get_announcements():
 def post_announcements():
     form = AnnouncementForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    # print(request.files['image'], "IMAGE------------------------------------")
+    print(form.data['title'], "TITLE--------------------------------")
+    print(form.data['description'], "DESCRIPTION--------------------------------")
+    print(request.form['idx'], "IDX--------------------------------")
+
+    soloImage = " "
+    if "image" in request.files:
+        image = request.files["image"]
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+        url = upload["url"]
+        soloImage = url
+        # print(url)
+        # print(upload["url"])
+        # firstImage = urlOne
+
+    awsImage = soloImage if soloImage else None
+    print(awsImage)
+
     if request.method == 'POST':
         if form.validate_on_submit():
             created_announcement = Announcement(
-                imageURL=form.data['imageURL'],
+                imageURL=awsImage,
                 title=form.data['title'],
                 description=form.data['description'],
-                user_id=request.json['idx']
+                user_id=request.form['idx']
             )
             db.session.add(created_announcement)
             db.session.commit()
@@ -62,18 +91,40 @@ def update_announcement(id):
     form = AnnouncementForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    # print(form.data['imageURL'],'--------------------------')
+    # print(request.files['image'],'--------------------------')
     # print(form.data['title'],'--------------------------')
     # print(form.data['description'],'--------------------------')
+
+    updateImage = " "
+    if "image" in request.files:
+        image = request.files["image"]
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+        url = upload["url"]
+        updateImage = url
+        # print(url)
+        # print(upload["url"])
+        # firstImage = urlOne
+
+    awsImage = updateImage if updateImage else None
+    print(awsImage)
 
     announcement_to_patch = Announcement.query.get(id)
     if request.method == 'PATCH':
         if form.validate_on_submit():
-            announcement_to_patch.imageURL = form.data['imageURL']
+            announcement_to_patch.imageURL = awsImage
             announcement_to_patch.title = form.data['title']
             announcement_to_patch.description = form.data['description']
             db.session.commit()
-            return jsonify('announcement patched')
+            announcements = Announcement.query.all()
+            return {"announcements": [announcement.to_dict() for announcement in announcements]}
     else:
         return jsonify('Bad Data')
     

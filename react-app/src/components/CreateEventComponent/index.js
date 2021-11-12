@@ -6,15 +6,17 @@ import Footer from '../Footer'
 import './CreateEventComponent.css'
 
 export default function CreateEventComponent() {
-    const [imageURLOne, setImageURLOne] = useState('')
-    const [imageURLTwo, setImageURLTwo] = useState('')
-    const [imageURLThree, setImageURLThree] = useState('')
+    const [imageURLOne, setImageURLOne] = useState(null)
+    const [imageURLTwo, setImageURLTwo] = useState(null)
+    const [imageURLThree, setImageURLThree] = useState(null)
     const [eventTitle, setEventTitle] = useState('')
     const [eventDescription, setEventDescription] = useState('')
     const [eventStartDate, setEventStartDate] = useState('')
     const [eventEndDate, setEventEndDate] = useState('')
     const [eventStartTime, setEventStartTime] = useState('')
     const [eventEndTime, setEventEndTime] = useState('')
+
+    console.log(imageURLOne, imageURLTwo, imageURLThree)
 
     const [validationErrors, setValidationErrors] = useState([])
 
@@ -34,21 +36,29 @@ export default function CreateEventComponent() {
 
     function handleEventSubmit(e) {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append("imageOne", imageURLOne)
+        formData.append("imageTwo", imageURLTwo)
+        formData.append("imageThree", imageURLThree)
+        formData.append("title", eventTitle)
+        formData.append("description", eventDescription)
+        formData.append("startDate", eventStartDate)
+        formData.append("endDate", eventEndDate)
+        formData.append("startTime", eventStartTime)
+        formData.append("endTime", eventEndTime)
+        formData.append("id", user?.id)
 
-        const payload = {
-            imageURL: imageURLOne,
-            imageURLTwo: imageURLTwo,
-            imageURLThree: imageURLThree,
-            title: eventTitle,
-            description: eventDescription,
-            startDate: eventStartDate,
-            endDate: eventEndDate,
-            startTime: eventStartTime,
-            endTime: eventEndTime,
-            idx: user.id
+        // const payload = {
+        //     title: eventTitle,
+        //     description: eventDescription,
+        //     startDate: eventStartDate,
+        //     endDate: eventEndDate,
+        //     startTime: eventStartTime,
+        //     endTime: eventEndTime,
+        //     idx: user.id
 
-        }
-        dispatch(eventActions.CreateEvent(payload))
+        // }
+        dispatch(eventActions.CreateEvent(formData))
         history.push('/')
         history.go(0);
     }
@@ -60,20 +70,20 @@ export default function CreateEventComponent() {
     useEffect(() => {
         const errors = [];
 
-        if (imageURLOne.length > 700) errors.push('Image url is too long');
-        if (imageURLTwo.length > 700) errors.push('Image url is too long');
-        if (imageURLThree.length > 700) errors.push('Image url is too long');
+        // if (imageURLOne.length > 700) errors.push('Image url is too long');
+        // if (imageURLTwo.length > 700) errors.push('Image url is too long');
+        // if (imageURLThree.length > 700) errors.push('Image url is too long');
 
-        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-        if (!urlRegex.test(imageURLOne) && imageURLOne) {
-            errors.push('First URL entered is not valid.')
-        }
-        if (!urlRegex.test(imageURLTwo) && imageURLTwo) {
-            errors.push('Second URL entered is not valid.')
-        }
-        if (!urlRegex.test(imageURLThree) && imageURLThree) {
-            errors.push('Third URL entered is not valid.')
-        }
+        // const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+        // if (!urlRegex.test(imageURLOne) && imageURLOne) {
+        //     errors.push('First URL entered is not valid.')
+        // }
+        // if (!urlRegex.test(imageURLTwo) && imageURLTwo) {
+        //     errors.push('Second URL entered is not valid.')
+        // }
+        // if (!urlRegex.test(imageURLThree) && imageURLThree) {
+        //     errors.push('Third URL entered is not valid.')
+        // }
 
 
 
@@ -271,6 +281,23 @@ export default function CreateEventComponent() {
     }, [dispatch, currentDateSlice, startDateSlice, endDateSlice, imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime])
     // console.log(imageURLOne, imageURLTwo, imageURLThree, eventTitle, eventDescription, eventStartDate, eventEndDate, eventStartTime, eventEndTime)
 
+
+    const handleUpdateImageOne = (e) => {
+        const currentFile = e.target.files[0];
+        setImageURLOne(currentFile);
+    }
+
+    const handleUpdateImageTwo = (e) => {
+        const currentFile = e.target.files[0];
+        setImageURLTwo(currentFile);
+    }
+
+    const handleUpdateImageThree = (e) => {
+        const currentFile = e.target.files[0];
+        setImageURLThree(currentFile);
+    }
+
+
     return (
         <div className="createEvent_outmost_ctnr">
             <div className="createEvent_instructions">
@@ -304,11 +331,12 @@ export default function CreateEventComponent() {
                                         Image URL:
                                     </div>
                                     <input
-                                        type="text"
-                                        name="imageURLOne"
-                                        value={imageURLOne}
+                                        type="file"
+                                        accept="image/*"
+                                        name="imageOne"
+                                        // value={imageURLOne}
                                         className="eventImgURLOne_input"
-                                        onChange={(e) => setImageURLOne(e.target.value)}
+                                        onChange={handleUpdateImageOne}
                                     />
                                 </label>
                                 <label className="eventImgURLTwo_ctnr" >
@@ -316,11 +344,12 @@ export default function CreateEventComponent() {
                                         Image URL:
                                     </div>
                                     <input
-                                        type="text"
-                                        name="imageURLTwo"
-                                        value={imageURLTwo}
+                                        type="file"
+                                        accept="image/*"
+                                        name="imageTwo"
+                                        // value={imageURLTwo}
                                         className="eventImgURLTwo_input"
-                                        onChange={(e) => setImageURLTwo(e.target.value)}
+                                        onChange={handleUpdateImageTwo}
                                     />
                                 </label>
                                 <label className="eventImgURLThree_ctnr" >
@@ -328,11 +357,12 @@ export default function CreateEventComponent() {
                                         Image URL:
                                     </div>
                                     <input
-                                        type="text"
-                                        name="imageURLThree"
-                                        value={imageURLThree}
+                                        type="file"
+                                        accept="image/*"
+                                        name="imageThree"
+                                        // value={imageURLThree}
                                         className="eventImgURLThree_input"
-                                        onChange={(e) => setImageURLThree(e.target.value)}
+                                        onChange={handleUpdateImageThree}
                                     />
                                 </label>
                             </div>

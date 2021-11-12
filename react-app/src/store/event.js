@@ -68,26 +68,26 @@ export const GetOneEvent = (id) => async (dispatch) => {
 
 };
 
-export const CreateEvent = (payload) => async (dispatch) => {
+export const CreateEvent = (formData) => async (dispatch) => {
     const response = await fetch('/api/event/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        // headers: { 'Content-Type': 'application/json' },
+        body: formData
     });
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(create_event(data));
+        dispatch(create_event(data.events));
         return response
     }
 
 };
 
-export const PatchEvent = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/event/${payload.idx}`, {
+export const PatchEvent = (formData, eventId) => async (dispatch) => {
+    const response = await fetch(`/api/event/${eventId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        // headers: { 'Content-Type': 'application/json' },
+        body: formData
     });
 
     if (response.ok) {
@@ -120,7 +120,7 @@ export default function eventReducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_EVENT:
             newState = Object.assign({}, state);
-            newState = action.payload;
+            newState.events = action.payload;
             return newState;
         case GET_EVENTS:
             newState = Object.assign({}, state);

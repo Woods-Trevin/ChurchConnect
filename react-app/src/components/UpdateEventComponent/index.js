@@ -222,24 +222,52 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
 
     function UpdateEventHandler(e) {
         e.preventDefault()
-        const payload = {
-            imageURL: updateImageOne,
-            imageURLTwo: updateImageTwo,
-            imageURLThree: updateImageThree,
-            title: updateEventTitle,
-            description: updateEventDescription,
-            startDate: updateEventStartDate,
-            endDate: updateEventEndDate,
-            startTime: updateEventStartTime,
-            endTime: updateEventEndTime,
-            idx: eventId
-        }
-        dispatch(eventActions.PatchEvent(payload))
-        setUpdateEvent(false)
-        history.push('/')
+        const formData = new FormData();
+        formData.append("imageOne", updateImageOne)
+        formData.append("imageTwo", updateImageTwo)
+        formData.append("imageThree", updateImageThree)
+        formData.append("title", updateEventTitle)
+        formData.append("description", updateEventDescription)
+        formData.append("startDate", updateEventStartDate)
+        formData.append("endDate", updateEventEndDate)
+        formData.append("startTime", updateEventStartTime)
+        formData.append("endTime", updateEventEndTime)
+        // formData.append("idx", eventId)
+
+
+        // const payload = {
+        //     imageURL: updateImageOne,
+        //     imageURLTwo: updateImageTwo,
+        //     imageURLThree: updateImageThree,
+        //     title: updateEventTitle,
+        //     description: updateEventDescription,
+        //     startDate: updateEventStartDate,
+        //     endDate: updateEventEndDate,
+        //     startTime: updateEventStartTime,
+        //     endTime: updateEventEndTime,
+        //     idx: eventId
+        // }
+        dispatch(eventActions.PatchEvent(formData, eventId))
+        // setUpdateEvent(false)
+        history.push(`/`)
         history.go(0);
 
 
+    }
+
+    const handleUpdateImageOne = (e) => {
+        const currentFile = e.target.files[0];
+        setUpdateImageOne(currentFile);
+    }
+
+    const handleUpdateImageTwo = (e) => {
+        const currentFile = e.target.files[0];
+        setUpdateImageTwo(currentFile);
+    }
+
+    const handleUpdateImageThree = (e) => {
+        const currentFile = e.target.files[0];
+        setUpdateImageThree(currentFile);
     }
 
     return (
@@ -261,11 +289,11 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
                                     Image URL:
                                 </div>
                                 <input
-                                    type="text"
+                                    type="file"
+                                    accept="image/*"
                                     name="updateImageOne"
-                                    value={updateImageOne}
                                     className="updateEvent_imageURLOne_input"
-                                    onChange={(e) => setUpdateImageOne(e.target.value)}
+                                    onChange={handleUpdateImageOne}
                                 />
                             </label>
                             <label className="updateEvent_imageURLTwo_ctnr" >
@@ -273,11 +301,11 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
                                     imageURLTwo:
                                 </div>
                                 <input
-                                    type="text"
+                                    type="file"
+                                    accept="image/*"
                                     name="updateImageTwo"
-                                    value={updateImageTwo}
                                     className="updateEvent_imageURLTwo_input"
-                                    onChange={(e) => setUpdateImageTwo(e.target.value)}
+                                    onChange={handleUpdateImageTwo}
                                 />
                             </label>
                             <label className="updateEvent_imageURLThree_ctnr" >
@@ -285,11 +313,11 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
                                     imageURLThree:
                                 </div>
                                 <input
-                                    type="text"
+                                    type="file"
+                                    accept="image/*"
                                     name="updateImageThree"
-                                    value={updateImageThree}
                                     className="updateEvent_imageURLThree_input"
-                                    onChange={(e) => setUpdateImageThree(e.target.value)}
+                                    onChange={handleUpdateImageThree}
                                 />
                             </label>
                             <label className="updateEvent_title_ctnr" >
