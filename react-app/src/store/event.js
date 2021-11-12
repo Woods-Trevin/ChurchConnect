@@ -83,11 +83,11 @@ export const CreateEvent = (formData) => async (dispatch) => {
 
 };
 
-export const PatchEvent = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/event/${payload.idx}`, {
+export const PatchEvent = (formData, eventId) => async (dispatch) => {
+    const response = await fetch(`/api/event/${eventId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        // headers: { 'Content-Type': 'application/json' },
+        body: formData
     });
 
     if (response.ok) {

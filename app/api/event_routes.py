@@ -30,70 +30,138 @@ def get_events():
 def post_events():
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    firstImage = " "
+    secondImage = " "
+    thirdImage = " "
+    if len(request.files) > 0:
+        if "imageOne" in request.files:
+            imageOne = request.files["imageOne"]
+            if not allowed_file(imageOne.filename):
+                return {"errors": "file type not permitted"}, 400
+            imageOne.filename = get_unique_filename(imageOne.filename)
+            uploadOne = upload_file_to_s3(imageOne)
+            if "url" not in uploadOne:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                return uploadOne, 400
+            urlOne = uploadOne["url"]
+            # print(uploadOne["url"])
+            firstImage = urlOne
+        
+        
+        if "imageTwo" in request.files:
+            imageTwo = request.files["imageTwo"]
+            if not allowed_file(imageTwo.filename):
+                return {"errors": "file type not permitted"}, 400
+            imageTwo.filename = get_unique_filename(imageTwo.filename)
+            uploadTwo = upload_file_to_s3(imageTwo)
+            if "url" not in uploadTwo:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                return uploadTwo, 400
+            urlTwo = uploadTwo["url"]
+            # print(uploadTwo["url"])
+            secondImage = urlTwo
+        
+        if "imageThree" in request.files:
+            imageThree = request.files["imageThree"]
+            if not allowed_file(imageThree.filename):
+                return {"errors": "file type not permitted"}, 400
+            imageThree.filename = get_unique_filename(imageThree.filename)
+            uploadThree = upload_file_to_s3(imageThree)
+            if "url" not in uploadThree:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                return uploadThree, 400
+            urlThree = uploadThree["url"]
+            # print(uploadThree["url"])
+            thirdImage = urlThree
 
-    if "imageOne" not in request.files:
-        return {"errors": "image required"}, 400
-    if "imageTwo" not in request.files:
-        return {"errors": "image required"}, 400
-    if "imageThree" not in request.files:
-        return {"errors": "image required"}, 400
-    print([request for request in request.files])
 
-    imageOne = request.files["imageOne"]
-    # print(imageOne, "IMAGE----------------------------------------------------------")
-    imageTwo = request.files["imageTwo"]
-    # print(imageTwo, "IMAGE----------------------------------------------------------")
-    imageThree = request.files["imageThree"]
-    # print(imageThree, "IMAGE----------------------------------------------------------")
-    # idx = request["idx"]
-    # print(idx, "IDX----------------------------------------------------------")
-    if not allowed_file(imageOne.filename):
-        return {"errors": "file type not permitted"}, 400
-    if not allowed_file(imageTwo.filename):
-        return {"errors": "file type not permitted"}, 400
-    if not allowed_file(imageThree.filename):
-        return {"errors": "file type not permitted"}, 400
+            # if len(request.files) > 0:
+            #     if "imageOne" in request.files:
+            #         firstImage = urlOne
+            #     if "imageTwo" in request.files:
+            #         secondImage = urlTwo
+            #     if "imageThree" in request.files:
+            #         thirdImage = urlThree
+
+            
+
+    # if "imageOne" not in request.files:
+    #     return {"errors": "image required"}, 400
+    # if "imageTwo" not in request.files:
+    #     return {"errors": "image required"}, 400
+    # if "imageThree" not in request.files:
+    #     return {"errors": "image required"}, 400
+    # print([request for request in request.files])
+
+    # imageOne = request.files["imageOne"]
+    # # print(imageOne, "IMAGE----------------------------------------------------------")
+    # imageTwo = request.files["imageTwo"]
+    # # print(imageTwo, "IMAGE----------------------------------------------------------")
+    # imageThree = request.files["imageThree"]
+    # # print(imageThree, "IMAGE----------------------------------------------------------")
+    # # idx = request["idx"]
+    # # print(idx, "IDX----------------------------------------------------------")
+    # if not allowed_file(imageOne.filename):
+    #     return {"errors": "file type not permitted"}, 400
+    # if not allowed_file(imageTwo.filename):
+    #     return {"errors": "file type not permitted"}, 400
+    # if not allowed_file(imageThree.filename):
+    #     return {"errors": "file type not permitted"}, 400
     
-    imageOne.filename = get_unique_filename(imageOne.filename)
-    imageTwo.filename = get_unique_filename(imageTwo.filename)
-    imageThree.filename = get_unique_filename(imageThree.filename)
+    # imageOne.filename = get_unique_filename(imageOne.filename)
+    # imageTwo.filename = get_unique_filename(imageTwo.filename)
+    # imageThree.filename = get_unique_filename(imageThree.filename)
 
-    uploadOne = upload_file_to_s3(imageOne)
-    uploadTwo = upload_file_to_s3(imageTwo)
-    uploadThree = upload_file_to_s3(imageThree)
+    # uploadOne = upload_file_to_s3(imageOne)
+    # uploadTwo = upload_file_to_s3(imageTwo)
+    # uploadThree = upload_file_to_s3(imageThree)
 
-    if "url" not in uploadOne:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return uploadOne, 400
+    # if "url" not in uploadOne:
+    #     # if the dictionary doesn't have a url key
+    #     # it means that there was an error when we tried to upload
+    #     # so we send back that error message
+    #     return uploadOne, 400
 
-    if "url" not in uploadTwo:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return uploadTwo, 400
+    # if "url" not in uploadTwo:
+    #     # if the dictionary doesn't have a url key
+    #     # it means that there was an error when we tried to upload
+    #     # so we send back that error message
+    #     return uploadTwo, 400
 
-    if "url" not in uploadThree:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return uploadThree, 400
+    # if "url" not in uploadThree:
+    #     # if the dictionary doesn't have a url key
+    #     # it means that there was an error when we tried to upload
+    #     # so we send back that error message
+    #     return uploadThree, 400
 
-    urlOne = uploadOne["url"]
-    print(uploadOne["url"])
-    urlTwo = uploadTwo["url"]
-    print(uploadTwo["url"])
-    urlThree = uploadThree["url"]
-    print(uploadThree["url"])
-    print(request.form["id"])
+    # urlOne = uploadOne["url"]
+    # print(uploadOne["url"])
+    # urlTwo = uploadTwo["url"]
+    # print(uploadTwo["url"])
+    # urlThree = uploadThree["url"]
+    # print(uploadThree["url"])
+    # print(request.form["id"])
+   
+    awsOne = firstImage if firstImage else None
+    print(awsOne)
+    awsTwo = secondImage if secondImage else None
+    print(awsTwo)
+    awsThree = thirdImage if thirdImage else None
+    print(awsThree)
+
     
     if request.method == 'POST':
         if form.validate_on_submit():
             created_event = Event(
-                imageURL=urlOne,
-                imageURLTwo = urlTwo,
-                imageURLThree = urlThree,
+                imageURL= awsOne,
+                imageURLTwo = awsTwo,
+                imageURLThree = awsThree,
                 title=form.data['title'],
                 description=form.data['description'],
                 startDate=form.data['startDate'],
@@ -122,28 +190,67 @@ def update_event(id):
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print(form.data['imageURL'], '--------------------------')
-    print(form.data['imageURLTwo'], '--------------------------')
-    print(form.data['imageURLThree'], '--------------------------')
-    print(form.data['title'], '--------------------------')
-    print(form.data['description'], '--------------------------')
-    print(form.data['startDate'], '--------------------------')
-    print(form.data['endDate'], '--------------------------')
-    print(request.json['startTime'], '--------------------------')
-    print(request.json['endTime'], '--------------------------')
+    if len(request.files) > 0:
+        if "imageOne" in request.files:
+            imageOne = request.files["imageOne"]
+            if not allowed_file(imageOne.filename):
+                return {"errors": "file type not permitted"}, 400
+            imageOne.filename = get_unique_filename(imageOne.filename)
+            uploadOne = upload_file_to_s3(imageOne)
+            if "url" not in uploadOne:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                return uploadOne, 400
+            urlOne = uploadOne["url"]
+            # print(uploadOne["url"])
+        
+        
+        if "imageTwo" in request.files:
+            imageTwo = request.files["imageTwo"]
+            if not allowed_file(imageTwo.filename):
+                return {"errors": "file type not permitted"}, 400
+            imageTwo.filename = get_unique_filename(imageTwo.filename)
+            uploadTwo = upload_file_to_s3(imageTwo)
+            if "url" not in uploadTwo:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                return uploadTwo, 400
+            urlTwo = uploadTwo["url"]
+            # print(uploadTwo["url"])
+        
+        if "imageThree" in request.files:
+            imageThree = request.files["imageThree"]
+            if not allowed_file(imageThree.filename):
+                return {"errors": "file type not permitted"}, 400
+            imageThree.filename = get_unique_filename(imageThree.filename)
+            uploadThree = upload_file_to_s3(imageThree)
+            if "url" not in uploadThree:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                return uploadThree, 400
+            urlThree = uploadThree["url"]
+            # print(uploadThree["url"])
+
 
     event_to_change = Event.query.get(id)
 
     if request.method == 'PATCH':
-        event_to_change.imageURL = form.data['imageURL']
-        event_to_change.imageURLTwo = form.data['imageURLTwo']
-        event_to_change.imageURLThree = form.data['imageURLThree']
+        if len(request.files) > 0:
+            if "imageOne" in request.files:
+                event_to_change.imageURL = urlOne
+            if "imageTwo" in request.files:
+                event_to_change.imageURLTwo = urlTwo
+            if "imageThree" in request.files:
+                event_to_change.imageURLThree = urlThree
         event_to_change.title = form.data['title']
         event_to_change.description = form.data['description']
         event_to_change.startDate = form.data['startDate']
         event_to_change.endDate = form.data['endDate']
-        event_to_change.startTime = request.json['startTime']
-        event_to_change.endTime = request.json['endTime']
+        event_to_change.startTime = request.form['startTime']
+        event_to_change.endTime = request.form['endTime']
         db.session.commit()
         currentEvents = Event.query.all()
         return {"events": [event.to_dict() for event in currentEvents]}
