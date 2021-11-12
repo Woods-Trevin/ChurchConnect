@@ -31,7 +31,7 @@ function App() {
     function () {
       setIsLoading(false);
     },
-    1500
+    2000
   );
 
   const dispatch = useDispatch();
