@@ -29,7 +29,7 @@ function App() {
   setTimeout(
     function () {
       setIsLoading(false);
-    }.bind(this),
+    },
     1000
   );
 
