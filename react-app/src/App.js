@@ -18,6 +18,7 @@ import EventDisplay from './components/EventDisplay';
 import AnnouncementDisplay from './components/AnnouncementDisplay';
 import UpdateEventComponent from './components/UpdateEventComponent';
 import UpdateAnnouncementComponent from './components/UpdateAnnouncementComponent';
+import './index.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,7 +31,7 @@ function App() {
     function () {
       setIsLoading(false);
     },
-    1000
+    1500
   );
 
   const dispatch = useDispatch();
@@ -56,8 +57,8 @@ function App() {
       {loggedIn && <UserNavbar setLoggedIn={setLoggedIn} />}
       {isLoading ?
         (
-          <div className="App">
-            <h1>Loading...</h1>
+          <div className="App_Loading_Ctnr">
+            <h1 className="App_Loading_Label">Loading...</h1>
           </div>
         ) :
         <Switch>

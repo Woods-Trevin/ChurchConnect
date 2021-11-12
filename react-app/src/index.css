@@ -1,1 +1,17 @@
 /* TODO Add site wide styles */
+
+.App_Loading_Ctnr {
+    /* border: 2px solid red; */
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+.App_Loading_Label {
+    margin-top: 150px;
+    font-size: 60px;
+    font-family: 'Didot', serif;
+}
