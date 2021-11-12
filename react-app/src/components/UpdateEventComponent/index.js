@@ -249,8 +249,8 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         // }
         dispatch(eventActions.PatchEvent(formData, eventId))
         // setUpdateEvent(false)
-        // history.push('/')
-        // history.go(0);
+        history.push(`/`)
+        history.go(0);
 
 
     }

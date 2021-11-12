@@ -11,26 +11,24 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
     const announcements = useSelector(state => state.announcement.announcements)
     const events = useSelector(state => state.event.events)
+    const eventsLength = events?.length
+    console.log(eventsLength)
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-    // if (reload) {
-    //     console.log('reloaded page')
-    //     window.location.reload()
-
-    // }
 
     // const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     const imageURLRegex = /^((https?|ftp):)?\/\/.*(jpeg|jpg|png|gif|bmp)$/
 
 
 
+
     useEffect(() => {
         dispatch(announcementActions.GetAnnouncements())
         dispatch(eventActions.GetEvents())
-    }, [dispatch]);
 
-    // function format
+    }, [dispatch, eventsLength]);
+
 
 
 

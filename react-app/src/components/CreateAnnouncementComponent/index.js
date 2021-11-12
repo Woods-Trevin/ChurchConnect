@@ -17,13 +17,20 @@ export default function CreateAnnouncementComponent() {
 
     function handleAnnouncementCreation(e) {
         e.preventDefault()
-        const payload = {
-            imageURL: imageURL,
-            title: announcementTitle,
-            description: announcementDescription,
-            idx: user.id
-        }
-        dispatch(announcementActions.CreateAnnouncement(payload))
+
+        const formData = new FormData();
+        formData.append("image", imageURL)
+        formData.append("title", announcementTitle)
+        formData.append("description", announcementDescription)
+        formData.append("idx", user?.id)
+
+        // const payload = {
+        //     imageURL: imageURL,
+        //     title: announcementTitle,
+        //     description: announcementDescription,
+        //     idx: user?.id
+        // }
+        dispatch(announcementActions.CreateAnnouncement(formData))
         history.push('/')
         history.go(0);
 

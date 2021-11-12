@@ -77,7 +77,7 @@ export const CreateEvent = (formData) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(create_event(data));
+        dispatch(create_event(data.events));
         return response
     }
 
@@ -120,7 +120,7 @@ export default function eventReducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_EVENT:
             newState = Object.assign({}, state);
-            newState = action.payload;
+            newState.events = action.payload;
             return newState;
         case GET_EVENTS:
             newState = Object.assign({}, state);
