@@ -11,6 +11,8 @@ export default function CreateAnnouncementComponent() {
     const [announcementDescription, setAnnouncementDescription] = useState("")
     const [validationErrors, setValidationErrors] = useState([])
 
+    console.log(imageURL)
+
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -38,10 +40,10 @@ export default function CreateAnnouncementComponent() {
 
     useEffect(() => {
         const errors = [];
-        if (imageURL.length > 1000) errors.push('Image size is too big');
+        // if (imageURL.length > 1000) errors.push('Image size is too big');
 
-        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-        if (!urlRegex.test(imageURL) && imageURL) errors.push('URL Entered is Not Valid.')
+        // const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+        // if (!urlRegex.test(imageURL) && imageURL) errors.push('URL Entered is Not Valid.')
 
 
         if (!announcementTitle) errors.push('Announcement must include a Title');
@@ -51,6 +53,12 @@ export default function CreateAnnouncementComponent() {
 
         setValidationErrors(errors);
     }, [dispatch, imageURL, announcementTitle, announcementDescription])
+
+    const handleCreateImage = (e) => {
+        const currentFile = e.target.files[0];
+        setImageURL(currentFile);
+    }
+
 
 
     return (
@@ -74,11 +82,11 @@ export default function CreateAnnouncementComponent() {
                                     Image URL:
                                 </div>
                                 <input
-                                    type='text'
+                                    type="file"
+                                    accept="image/*"
                                     name='imageURL'
-                                    value={imageURL}
                                     className='announcementURL_input'
-                                    onChange={(e) => setImageURL(e.target.value)}
+                                    onChange={handleCreateImage}
                                 />
                             </label>
                             <label className="announcementTitle_ctnr" >

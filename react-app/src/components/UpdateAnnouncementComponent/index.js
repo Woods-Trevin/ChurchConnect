@@ -11,27 +11,34 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
     const history = useHistory();
 
-    const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState(current_announcement?.imageURL)
+    const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState("")
     const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
     const [updateAnnouncementDescription, setUpdateAnnouncementDescription] = useState(current_announcement?.description)
 
+    console.log(updateAnnouncementURL)
     const [validationErrors, setValidationErrors] = useState([])
 
 
     const dispatch = useDispatch()
 
     const { announcementId } = useParams();
+    console.log(announcementId)
 
     function handleAnnouncementPatch(e) {
         e.preventDefault()
-        const payload = {
-            imageURL: updateAnnouncementURL,
-            title: updateAnnouncementTitle,
-            description: updateAnnouncementDescription,
-            idx: announcementId
+        const formData = new FormData();
+        formData.append("image", updateAnnouncementURL)
+        formData.append("title", updateAnnouncementTitle)
+        formData.append("description", updateAnnouncementDescription)
 
-        }
-        dispatch(announcementActions.PatchAnnouncement(payload));
+        // const payload = {
+        //     imageURL: updateAnnouncementURL,
+        //     title: updateAnnouncementTitle,
+        //     description: updateAnnouncementDescription,
+        //     idx: announcementId
+
+        // }
+        dispatch(announcementActions.PatchAnnouncement(formData, announcementId));
         history.push('/')
         history.go(0);
     }
@@ -49,6 +56,11 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         setValidationErrors(errors);
     }, [dispatch, updateAnnouncementURL, updateAnnouncementTitle, updateAnnouncementDescription])
 
+
+    const handleUpdateImage = (e) => {
+        const currentFile = e.target.files[0];
+        setUpdateAnnouncementURL(currentFile);
+    }
 
     return (
         <div className="updateAnnouncement_outer_ctnr" >
@@ -69,11 +81,11 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                                     Image URL:
                                 </div>
                                 <input
-                                    type='text'
+                                    type="file"
+                                    accept="image/*"
                                     name='updateAnnouncementURL'
-                                    value={updateAnnouncementURL}
                                     className="updateAnnouncement_imageURL_input"
-                                    onChange={(e) => setUpdateAnnouncementURL(e.target.value)}
+                                    onChange={handleUpdateImage}
                                 />
                             </label>
                             <label className="updateAnnouncement_title_ctnr">
