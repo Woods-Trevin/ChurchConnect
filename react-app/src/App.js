@@ -30,7 +30,7 @@ function App() {
     function () {
       setIsLoading(false);
     }.bind(this),
-    2000
+    1000
   );
 
   const dispatch = useDispatch();
