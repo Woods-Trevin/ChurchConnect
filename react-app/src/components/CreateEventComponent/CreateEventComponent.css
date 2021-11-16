@@ -198,7 +198,6 @@ div {
 .createEvent_btns_ctnr {
     /* border: 2px solid red; */
     position: relative;
-    /* top: 55px; */
     width: 100%;
     height: 50px;
     display: flex;
