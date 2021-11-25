@@ -24,6 +24,8 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
     useEffect(() => {
+
+
         dispatch(announcementActions.GetAnnouncements())
         dispatch(eventActions.GetEvents())
 
