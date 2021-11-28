@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import * as announcementActions from '../../store/announcement'
 import * as eventActions from '../../store/event'
 import Footer from '../Footer'
 import './DashboardComponent.css';
+import './eventImageAnimation.js';
+
+
+
+
 
 export default function DashboardComponent({ setUpdateAnnouncement }) {
     const dispatch = useDispatch()
@@ -24,12 +29,20 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
     useEffect(() => {
+        // const script = document.createElement('script');
         dispatch(announcementActions.GetAnnouncements())
         dispatch(eventActions.GetEvents())
+        // script.type = 'text/javascript';
+        // script.src = '../DashboardComponent/eventImageAnimation.js';
+        // script.async = true;
+        // document.body.appendChild(script);
+
+        // const eventImageCtnr = document.querySelector('.eventImage_ctnr')
+        // console.log(eventImageCtnr.children)
+        // const slidesSize = eventImageCtnr[0].getBoundingClientRect().width;
+        // console.log(slidesSize)
 
     }, [dispatch, eventsLength]);
-
-
 
 
     return (

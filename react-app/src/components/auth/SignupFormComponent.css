@@ -30,13 +30,27 @@
 }
 
 .signup_label {
-    font-size: 70px;
-    position: relative;
-    bottom: 100px;
+    /* border: 2px solid red; */
+    width: 600px;
+    height: 150px;
+    font-size: 50px;
+    position: relative; 
+    bottom: 40px;
     font-weight: 700;
     color: skyblue;
 }
 
+.blinking-cursor:after {
+    content: "|";
+    font-weight: bolder;
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
 
 
 .signupForm_inner_wrapper {
@@ -164,3 +178,4 @@
 }
 
 /*--------------------------------------*/
+

@@ -233,12 +233,25 @@ body {
     -webkit-overflow-scrolling: touch;
     
 }
+/* .eventImage_ctnr {
+    display: flex;
+    border: 2px solid green;
+    height: 400px;
+    flex-direction: row;
+    overflow-x: auto;
+    /* scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    
+} 
+*/
 
 .eventImage_ctnr > img {
     scroll-snap-align: start;
     flex-shrink: 0;
     background: #eee;
     transform-origin: center center;
+    object-fit: cover;
     transform: scale(1);
     transition: transform 0.5s;
     position: relative;
