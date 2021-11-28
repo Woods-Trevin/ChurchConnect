@@ -6,8 +6,7 @@ import * as eventActions from '../../store/event'
 import Footer from '../Footer'
 import './DashboardComponent.css';
 import './eventImageAnimation.js';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 
 

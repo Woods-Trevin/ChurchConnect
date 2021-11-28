@@ -15,6 +15,8 @@ const SignUpForm = ({ setLoggedIn }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const [typedCallToAction, setTypedCallToAction] = useState('');
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
@@ -46,6 +48,7 @@ const SignUpForm = ({ setLoggedIn }) => {
     setRepeatPassword(e.target.value);
   };
 
+  const callToActionText = "Connect With Your Church. Sign Up Now!!"
 
   useEffect(() => {
     const errors = [];
@@ -63,7 +66,17 @@ const SignUpForm = ({ setLoggedIn }) => {
 
     setValidationErrors(errors)
 
-  }, [dispatch, username, email, password, repeatPassword, history]);
+    const nextTypedCallToAction = callToActionText.slice(0, typedCallToAction.length + 1)
+
+    if (nextTypedCallToAction === typedCallToAction) return;
+
+    const timeout = setTimeout(() => {
+      setTypedCallToAction(callToActionText.slice(0, typedCallToAction.length + 1))
+    }, 150)
+
+    return () => clearTimeout(timeout)
+
+  }, [dispatch, username, email, password, repeatPassword, history, typedCallToAction]);
 
 
   if (user) {
@@ -84,8 +97,8 @@ const SignUpForm = ({ setLoggedIn }) => {
         </div>
       </ul>
       <div className="signupForm_outer_wrapper">
-        <div className="signup_label">
-          Sign Up
+        <div className="signup_label blinking-cursor">
+          {typedCallToAction}
         </div>
         <form className="signupForm_inner_wrapper" onSubmit={onSignUp}>
           <div className="signupForm_username_ctnr" >
