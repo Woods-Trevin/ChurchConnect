@@ -31,7 +31,8 @@
 
 .signup_label {
     /* border: 2px solid red; */
-    width: 500px;
+    width: 600px;
+    height: 150px;
     font-size: 50px;
     position: relative; 
     bottom: 40px;

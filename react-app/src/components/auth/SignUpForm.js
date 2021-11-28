@@ -15,7 +15,14 @@ const SignUpForm = ({ setLoggedIn }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const Phase = {
+    Typing: "Typing",
+    Pausing: "Pausing",
+    Deleting: "Deleting",
+  }
+
   const [typedCallToAction, setTypedCallToAction] = useState('');
+  const [phase, setPhase] = useState(Phase.Typing)
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -48,7 +55,8 @@ const SignUpForm = ({ setLoggedIn }) => {
     setRepeatPassword(e.target.value);
   };
 
-  const callToActionText = "Connect With Your Church. Sign Up Now!!"
+  const callToActionText = "Connect With Your Church. Sign Up Now!!!"
+
 
   useEffect(() => {
     const errors = [];
@@ -66,17 +74,59 @@ const SignUpForm = ({ setLoggedIn }) => {
 
     setValidationErrors(errors)
 
-    const nextTypedCallToAction = callToActionText.slice(0, typedCallToAction.length + 1)
 
-    if (nextTypedCallToAction === typedCallToAction) return;
+    const TYPING_INTERVAL = 150;
+    const PAUSE_DELAY = 5000;
+    const DELETING_INTERVAL = 50;
 
-    const timeout = setTimeout(() => {
-      setTypedCallToAction(callToActionText.slice(0, typedCallToAction.length + 1))
-    }, 150)
+    switch (phase) {
+      case Phase.Typing:
+        {
+          const nextTypedCallToAction = callToActionText.slice(0, typedCallToAction.length + 1)
+          if (nextTypedCallToAction === typedCallToAction) {
+            setPhase(Phase.Pausing)
+            return;
+          }
 
-    return () => clearTimeout(timeout)
+          const timeout = setTimeout(() => {
+            setTypedCallToAction(nextTypedCallToAction)
+          }, TYPING_INTERVAL)
 
-  }, [dispatch, username, email, password, repeatPassword, history, typedCallToAction]);
+          return () => clearTimeout(timeout)
+        }
+      case Phase.Deleting:
+        {
+          if (!typedCallToAction) {
+            setPhase(Phase.Typing)
+            return;
+          }
+          const nextDeletedText = callToActionText.slice(0, typedCallToAction.length - 1)
+
+          const timeout = setTimeout(() => {
+            setTypedCallToAction(nextDeletedText)
+          }, DELETING_INTERVAL)
+
+          return () => clearTimeout(timeout)
+        }
+      case Phase.Pausing:
+      default:
+        const timeout = setTimeout(() => {
+          setPhase(Phase.Deleting)
+        }, PAUSE_DELAY)
+
+        return () => clearTimeout(timeout)
+    }
+
+
+    if (phase === Phase.Pausing) return;
+
+
+
+
+
+
+
+  }, [dispatch, username, email, password, repeatPassword, history, typedCallToAction, phase]);
 
 
   if (user) {
