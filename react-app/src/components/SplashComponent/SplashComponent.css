@@ -1,0 +1,95 @@
+.Splash_outmost_ctnr {
+    border: 2px solid red;
+    height: 700px;
+}
+
+
+
+
+.splashImg_One {
+    /* border: 10px solid red; */
+    /* width: 100%;
+    height: 700px; */
+    width: 200px;
+    height: 200px;
+    right: 400px;
+    background-color: #f1f5f7;
+    background-image: url('../../image/splash4.png');
+    /* background-image: url('../../image/splash3.jpeg'); */
+    object-fit:cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    position: absolute;
+    display: block;
+    /* z-index: -1; */
+    
+}
+
+.splashImg_Two {
+    /* width: 100%;
+    height: 700px; */
+    width: 200px;
+    height: 200px;
+    right: 1px;
+    background-color: #f1f5f7;
+    background-image: url('../../image/splash3.jpeg');
+    object-fit:cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: block;
+    /* z-index: -1; */
+}
+
+.splashImg_Three {
+    /* width: 100%;
+    height: 700px; */
+    width: 200px;
+    height: 200px;
+    right: 200px;
+    background-color: #f1f5f7;
+    background-image: url('../../image/splash2.jpeg');
+    object-fit:cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: block;
+    /* z-index: -1; */
+}
+
+
+
+
+
+
+
+.splash--hidden {
+    animation: fadeOut 1s forwards ease-in-out;
+    opacity: 0;
+    /* display: none; */
+}
+
+.splash--visible {
+    animation: fadeIn 1s forwards ease-in-out;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

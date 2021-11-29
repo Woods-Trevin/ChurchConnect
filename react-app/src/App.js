@@ -19,6 +19,7 @@ import AnnouncementDisplay from './components/AnnouncementDisplay';
 import UpdateEventComponent from './components/UpdateEventComponent';
 import UpdateAnnouncementComponent from './components/UpdateAnnouncementComponent';
 import './index.css'
+import SplashComponent from './components/SplashComponent';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,8 +54,12 @@ function App() {
   return (
 
     <BrowserRouter>
-      {!loggedIn && <NavBar setLoggedIn={setLoggedIn} />}
-      {loggedIn && <UserNavbar setLoggedIn={setLoggedIn} />}
+      {!loggedIn &&
+        <NavBar setLoggedIn={setLoggedIn} />
+      }
+      {loggedIn &&
+        <UserNavbar setLoggedIn={setLoggedIn} />
+      }
       {isLoading ?
         (
           <div className="App_Loading_Ctnr">
@@ -62,6 +67,12 @@ function App() {
           </div>
         ) :
         <Switch>
+
+          {!loggedIn &&
+            <Route path='/' exact={true}>
+              <SplashComponent />
+            </Route>
+          }
           <Route path='/login' exact={true}>
             <LoginForm setLoggedIn={setLoggedIn} />
             <Footer />
@@ -76,10 +87,10 @@ function App() {
           <ProtectedRoute path='/users/:userId' exact={true} >
             <User />
           </ProtectedRoute>
-          <Route exact path='/' >
+          <ProtectedRoute exact path='/' >
             <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
             {/* <Footer /> */}
-          </Route>
+          </ProtectedRoute>
           <ProtectedRoute path='/event' exact={true} >
             <CreateEventComponent />
             {/* <Footer /> */}

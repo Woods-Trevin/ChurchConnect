@@ -16,8 +16,9 @@ const LoginForm = ({ setLoggedIn }) => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      setLoggedIn(true);
     }
-    setLoggedIn(true);
 
   };
 
