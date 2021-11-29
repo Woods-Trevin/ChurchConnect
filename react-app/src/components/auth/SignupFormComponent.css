@@ -4,7 +4,39 @@
     display: flex;
     justify-content: center;
     font-family: 'Didot', serif;
+    /* background-color: #f1f5f7; */
+    /* background-image: url('../../image/splash1.jpeg');
+    object-fit: center;
+    background-size: cover; */
+    
+    
+}
+
+.splashImg_One {
+    /* border: 10px solid red; */
+    width: 100%;
+    height: 1000px;
     background-color: #f1f5f7;
+    background-image: url('../../image/splash4.png');
+    /* background-image: url('../../image/splash3.jpeg'); */
+    object-fit:cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: -1;
+    
+}
+
+.splashImg_Two {
+    width: 100%;
+    height: 1000px;
+    background-color: #f1f5f7;
+    background-image: url('../../image/splash3.jpeg');
+    object-fit:cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: -1;
 }
 
 .signupForm_errors {

@@ -136,6 +136,12 @@ const SignUpForm = ({ setLoggedIn }) => {
 
   return (
     <div className="signupForm_outmost_ctnr">
+      <div>
+        {/* className="splashImg_One" */}
+        <img className="splashImg_Two" />
+        <img className="splashImg_One" />
+        <img className="splashImg_Three" />
+      </div>
       <ul className="signupForm_errors">
         {validationErrors.map(error =>
           <li>{error}</li>
