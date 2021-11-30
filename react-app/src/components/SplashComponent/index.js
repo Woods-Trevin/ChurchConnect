@@ -9,13 +9,13 @@ export default function SplashComponent() {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            if (splash_to_animate < 4) {
+            if (splash_to_animate < 3) {
                 set_splash_to_animate(splash_to_animate + 1)
                 console.log(splash_to_animate)
             } else {
                 set_splash_to_animate(1)
             }
-        }, 3000)
+        }, 6000)
 
         return () => clearTimeout(timeout)
 
@@ -24,8 +24,11 @@ export default function SplashComponent() {
     return (
         <div className="Splash_outmost_ctnr">
             <div className={`splashImg_Three ${splash_to_animate === 3 && "splash--visible"} ${splash_to_animate != 3 && "splash--hidden"}`} />
-            <div className={`splashImg_Two ${splash_to_animate === 2 ? "splash--visible" : "splash-hidden"}`} />
-            <div className={`splashImg_One ${splash_to_animate === 1 ? "splash--visible" : "splash-hidden"}`} />
+            <div className={`splashImg_Two ${splash_to_animate === 2 && "splash--visible"} ${splash_to_animate != 2 && "splash--hidden"}`} />
+            <div className={`splashImg_One ${splash_to_animate === 1 ? "splash--visible" : "splash--hidden"}`} />
+            <div className={`signupNewUser_btn_ctnr`} >
+                <li className={`signupNewUser_btn`} >Start Your Journey</li>
+            </div>
         </div>
     )
 }
