@@ -4,8 +4,14 @@
     display: flex;
     justify-content: center;
     font-family: 'Didot', serif;
-    background-color: #f1f5f7;
+    /* background-color: #f1f5f7; */
+    /* background-image: url('../../image/splash1.jpeg');
+    object-fit: center;
+    background-size: cover; */
+    
+    
 }
+
 
 .signupForm_errors {
     /* border: 2px solid purple; */

@@ -57,6 +57,7 @@ const SignUpForm = ({ setLoggedIn }) => {
 
   const callToActionText = "Connect With Your Church. Sign Up Now!!!"
 
+  var splash_to_animate = 1;
 
   useEffect(() => {
     const errors = [];
@@ -134,11 +135,16 @@ const SignUpForm = ({ setLoggedIn }) => {
   }
 
 
+
+
+
+
+
   return (
     <div className="signupForm_outmost_ctnr">
       <ul className="signupForm_errors">
-        {validationErrors.map(error =>
-          <li>{error}</li>
+        {validationErrors.map((error, idx) =>
+          <li key={idx}>{error}</li>
         )}
         <div>
           {errors.map((error, ind) => (
