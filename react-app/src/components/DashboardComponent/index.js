@@ -61,33 +61,38 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                 </div>
             </div>
             <div className="Dashboard_outmost_ctnr">
-                <div className="Dashboard_announcement_ctnr">
-                    <div>
+                <div className="Dashboard_pr_ctnr">
+                    {/* <div>
                         <h3 className="selectAnnouncement_prompt" >
                             Select an Announcement
                         </h3>
                         <h3 className="scrollAnnouncement_prompt">
                             Scroll to View More
                         </h3>
+                    </div> */}
+                    <div className="Dashboard_pr_view">
+                        {
+                            announcements?.map((announcement, idx) =>
+                                <NavLink key={idx} className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
+                                    <div className='DashboardAnnouncements_items_wrapper'>
+                                        {/* {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />} */}
+                                        {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
+                                        <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
+                                    </div>
+                                </NavLink>
+                            )
+                        }
+
                     </div>
-                    {announcements?.map((announcement, idx) =>
-                        <NavLink key={idx} className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
-                            <div className='DashboardAnnouncements_items_wrapper'>
-                                {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />}
-                                <li className='DashboardAnnouncement_item title'>{announcement.title}</li>
-                                <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
-                            </div>
-                        </NavLink>
-                    )}
-                </div>
-                <div className="Dashboard_event_ctnr_title">
+                </div >
+                {/* <div className="Dashboard_event_ctnr_title">
                     <h3 className="selectEvent_prompt" >
                         Select an Event
                     </h3>
                     <h3 className="swipeEvent_prompt">
                         Swipe to View More
                     </h3>
-                </div>
+                </div> */}
                 <div className="Dashboard_event_ctnr" >
                     {events?.map((event, idx) =>
                         <NavLink key={idx} className="NavLink_ctnr" to={`/event/${event?.id}`}>
@@ -115,12 +120,10 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             </div>
                         </NavLink>
 
-                    )}
-                </div>
-            </div>
-            <div className="Footer_ctnr">
-                <Footer />
-            </div>
-        </div>
+                    )
+                    }
+                </div >
+            </div >
+        </div >
     )
 }

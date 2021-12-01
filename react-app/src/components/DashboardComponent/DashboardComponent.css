@@ -6,7 +6,7 @@ body {
 
 .Dashboard {
     /* border: 5px solid red; */
-    height: 900px;
+    height: 100%
 }
 
 .Dashboard_intro_ctnr {
@@ -66,23 +66,20 @@ body {
 /*---------------------------------------------*/
 
 .Dashboard_outmost_ctnr {
-    /* height: 700px; */
-    /* border-bottom: 5px solid red; */
-    /* background-color: #f1f5f7; */
-    /* display: flex; */
-    /* gap: 20px; */
+    border: 5px solid pink;
 }
 
 
-@media only screen and (min-height: 601px) {
+/* @media only screen and (min-height: 601px) {
     .Dashboard_outmost_ctnr {
         height: 1000px;
-        /* border-bottom: 2px solid black; */
+        border: 5px solid pink;
         background-color: #f1f5f7;
         display: flex;
+        flex-direction: column;
         gap: 20px;
     }
-}
+} */
 
 
 .selectAnnouncement_prompt {
@@ -96,26 +93,52 @@ body {
 
 /*---------------------------------------------*/
 
-.Dashboard_announcement_ctnr {
-    /* border: 2px solid orange; */
-    
+.Dashboard_pr_ctnr {
+    border: 2px solid orange;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    margin-bottom: 100px;
+    margin-top: 100px;
+    overflow: hidden;
+    /* gap: 100px; */
+    
+}
+
+.Dashboard_pr_view {
+    /* border: 10px solid red; */
+    /* margin-right: 200px; */
+    display: flex;
+    flex-direction: row;
     position: relative;
-    gap: 20px;
-    width: 600px;
-    /* height: 1000px; */
-    overflow: scroll;
-    font-family: 'Didot', serif;
-    border-right: 1px solid black;
-    padding-right: 10px;
-    padding-left: 10px;
+    gap: 200px;
+    /* width: 400px; */
+    /* transform: translate(0, -50%) */
+    animation: nasdaq 30s linear infinite;
+}
+
+@keyframes nasdaq {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: -300%
+    }
+}
+
+.Dashboard_pr_view:hover {
+    animation-play-state: paused;
 }
 
 .DashboardAnnouncements_link {
+    border: 2px solid grey;
     text-decoration: none;
-    /* border: 2px solid grey; */
     border-radius: 10px;
+    height: 200px;
+    width: 300px;
 }
 .DashboardAnnouncements_link:hover {
     box-shadow: 0 0 10px black;
@@ -123,31 +146,20 @@ body {
 
 .DashboardAnnouncements_items_wrapper {
     /* border: 2px solid black; */
-    width: 100%;
-    color: black;
-    background-color: white;
-    border-radius: 10px;
+    
     
 }
 
-.DashboardAnnouncement_item.img {
-    margin: 0 auto;
-    height: 200px;
-    width: 100%;
-    display: block;
-    background-clip: content-box;
-    border-radius: 10px 10px 0px 0px;
-    /* border: 5px solid red; */
-}
 
-.DashboardAnnouncement_item.title {
+
+/* .DashboardAnnouncement_item.title {
     list-style: none;
     font-size:20px;
     width: 100%;
     border-bottom: 2px solid black;
     display: flex;
     justify-content: center;
-}
+} */
 
 
 
@@ -171,7 +183,7 @@ body {
     align-items: center;
     width: 100%;
     gap: 50px;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 
 .Dashboard_event_ctnr_title {

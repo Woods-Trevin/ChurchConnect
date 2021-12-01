@@ -95,10 +95,13 @@
     top: 50%;
     left: 40%;
     background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
     border-radius: 50px;
+}
+
+.signupNewUser_btn_ctnr:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 
@@ -108,6 +111,12 @@
     color: skyblue;
     font-size: 20px;
     font-weight: bolder;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     
     
 }

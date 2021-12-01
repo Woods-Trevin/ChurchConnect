@@ -89,7 +89,7 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path='/' >
             <DashboardComponent setUpdateAnnouncement={setUpdateAnnouncement} />
-            {/* <Footer /> */}
+            <Footer className='Footer_ctnr' />
           </ProtectedRoute>
           <ProtectedRoute path='/event' exact={true} >
             <CreateEventComponent />
