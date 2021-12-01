@@ -103,21 +103,22 @@ body {
     width: 100%;
     margin-bottom: 100px;
     margin-top: 100px;
-    overflow: hidden;
+    overflow: scroll;
     /* gap: 100px; */
     
 }
 
 .Dashboard_pr_view {
     /* border: 10px solid red; */
-    /* margin-right: 200px; */
+    margin-right: 100px;
     display: flex;
     flex-direction: row;
     position: relative;
-    gap: 200px;
+    gap: 300px;
+    /* overflow: scroll; */
     /* width: 400px; */
     /* transform: translate(0, -50%) */
-    animation: nasdaq 30s linear infinite;
+    animation: nasdaq 20s linear infinite;
 }
 
 @keyframes nasdaq {
@@ -125,13 +126,14 @@ body {
         left: 100%;
     }
     100% {
-        left: -300%
+        /* left: -450% */
+        left: -320%;
     }
 }
 
-.Dashboard_pr_view:hover {
+/* .Dashboard_pr_view:hover {
     animation-play-state: paused;
-}
+} */
 
 .DashboardAnnouncements_link {
     border: 2px solid grey;
@@ -183,7 +185,7 @@ body {
     align-items: center;
     width: 100%;
     gap: 50px;
-    /* overflow-x: scroll; */
+    overflow-x: scroll;
 }
 
 .Dashboard_event_ctnr_title {

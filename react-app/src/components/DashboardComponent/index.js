@@ -84,6 +84,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                         }
 
                     </div>
+
                 </div >
                 {/* <div className="Dashboard_event_ctnr_title">
                     <h3 className="selectEvent_prompt" >
