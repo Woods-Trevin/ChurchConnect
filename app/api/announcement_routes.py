@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Announcement, Reply, Comment, db
+from app.models import PrayerRequest, Reply, Comment, db
 from app.forms import AnnouncementForm
 from app.awsupload import (
     upload_file_to_s3, allowed_file, get_unique_filename)

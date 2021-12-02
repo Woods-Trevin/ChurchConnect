@@ -11,7 +11,6 @@ class Comment(db.Model):
 
     #Foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    announcement_id = db.Column(db.Integer, db.ForeignKey('announcements.id'), nullable=True)
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'), nullable=True)
 
     #relationship

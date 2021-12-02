@@ -6,3 +6,4 @@ from .comment import Comment
 from .reply import Reply
 from .profile import Profile
 from .service import Service
+from .booking import Booking
