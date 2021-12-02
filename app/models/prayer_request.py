@@ -1,8 +1,8 @@
 from .db import db
 from datetime import datetime
 
-class Announcement(db.Model):
-    __tablename__ = 'announcements'
+class PrayerRequest(db.Model):
+    __tablename__ = 'prayer_requests'
 
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(1000), nullable=False)
@@ -11,17 +11,16 @@ class Announcement(db.Model):
 
     #Foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    
+
 
     #Relationships
-    user = db.relationship('User', back_populates='announcements')
-    comments = db.relationship('Comment', back_populates='announcements')
+    user = db.relationship('User', back_populates='prayer_request')
+    prayer = db.relationship('Prayer', back_populates='prayer_request')
+
 
     def to_dict(self):
         return {
             'id': self.id,
-            'imageURL':self.imageURL,
-            'title':self.title,
             'description':self.description,
             'userId':self.user_id,
         }

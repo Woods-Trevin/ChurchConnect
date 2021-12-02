@@ -16,7 +16,6 @@ class Comment(db.Model):
 
     #relationship
     user = db.relationship('User', back_populates='comments')
-    announcements = db.relationship('Announcement', back_populates='comments')
     events = db.relationship('Event', back_populates='comments')
     replies = db.relationship('Reply', back_populates='comments')
 
