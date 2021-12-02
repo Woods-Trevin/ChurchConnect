@@ -7,3 +7,5 @@ from .reply import Reply
 from .profile import Profile
 from .service import Service
 from .booking import Booking
+from .prayer import Prayer
+from .priest import Priest

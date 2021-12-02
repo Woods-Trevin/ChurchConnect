@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     replies = db.relationship('Reply', back_populates='user')
     profile = db.relationship('Profile', back_populates='user')
     booking = db.relationship('Booking', back_populates='user')
+    priest = db.relationship('Priest', back_populates='user')
 
     @property
     def password(self):

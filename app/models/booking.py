@@ -16,10 +16,10 @@ class Booking(db.Model):
 
     #foreign Keys
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    priest_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     #Relationships
     user = db.relationship('User', back_populates='booking')
+    priest = db.relationship('Priest', back_populates='booking')
 
     def to_dict(self):
         return {
