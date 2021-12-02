@@ -50,7 +50,7 @@ export const CreateAnnouncement = (formData) => async (dispatch) => {
 
     if (response.ok) {
         const data = response.json();
-        dispatch(create_announcement(data.announcements));
+        dispatch(create_announcement(data.prayer_requests));
         return response;
     }
 }
@@ -61,7 +61,7 @@ export const GetAnnouncements = () => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         // console.log(data.announcements);
-        dispatch(get_announcement(data.announcements));
+        dispatch(get_announcement(data.prayer_requests));
         return response;
     }
 }

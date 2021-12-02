@@ -47,9 +47,9 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         setUpdateAnnouncement(true);
         const errors = [];
 
-        if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
-        if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
-        if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
+        // if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
+        // if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
+        // if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
         if (!updateAnnouncementDescription) errors.push('Announcement must include a Description');
         if (updateAnnouncementDescription.length > 1000) errors.push('Announcement Description is too long');
 
