@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import * as announcementActions from '../../store/announcement'
+import * as announcementActions from '../../store/prayer_request'
 import Footer from '../Footer'
 import './CreateAnnouncementComponent.css'
 
@@ -32,7 +32,7 @@ export default function CreateAnnouncementComponent() {
         //     description: announcementDescription,
         //     idx: user?.id
         // }
-        dispatch(announcementActions.CreateAnnouncement(formData))
+        dispatch(announcementActions.CreatePrayer(formData))
         history.push('/')
         history.go(0);
 

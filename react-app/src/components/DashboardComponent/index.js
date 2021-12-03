@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
-import * as announcementActions from '../../store/announcement'
+import * as prayerRequestActions from '../../store/prayer_request'
 import * as eventActions from '../../store/event'
 import Footer from '../Footer'
 import './DashboardComponent.css';
@@ -14,7 +14,7 @@ import './eventImageAnimation.js';
 export default function DashboardComponent({ setUpdateAnnouncement }) {
     const dispatch = useDispatch()
 
-    const announcements = useSelector(state => state.announcement.announcements)
+    const announcements = useSelector(state => state.prayer_request.prayers)
     const events = useSelector(state => state.event.events)
     const eventsLength = events?.length
     console.log(eventsLength)
@@ -30,7 +30,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
     useEffect(() => {
         // const script = document.createElement('script');
-        dispatch(announcementActions.GetAnnouncements())
+        dispatch(prayerRequestActions.GetPrayers())
         dispatch(eventActions.GetEvents())
         // script.type = 'text/javascript';
         // script.src = '../DashboardComponent/eventImageAnimation.js';
@@ -78,6 +78,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                         {/* {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />} */}
                                         {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
                                         <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
+                                        <li className='DashboardAnnouncement_item'>{announcement.user?.username}</li>
                                     </div>
                                 </NavLink>
                             )

@@ -24,7 +24,6 @@ class Comment(db.Model):
             'text': self.text,
             'userId': self.user_id,
             'eventId': self.event_id,
-            'announcementId': self.announcement_id,
             'replies': [reply.to_dict() for reply in self.replies],
             'username': self.user.username,
         }

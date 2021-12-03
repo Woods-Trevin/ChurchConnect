@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import * as announcementActions from '../../store/announcement'
+import * as prayerRequestActions from '../../store/prayer_request'
 import * as commentActions from '../../store/comment'
 import * as replyActions from '../../store/reply'
 import { createBrowserHistory } from 'history'
@@ -17,13 +17,13 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
 
 
     useEffect(() => {
-        dispatch(announcementActions.GetOneAnnouncement(announcementId))
+        dispatch(prayerRequestActions.GetOnePrayer(announcementId))
         dispatch(commentActions.GetComments())
         dispatch(replyActions.GetReplies())
     }, [dispatch, announcementId, history])
 
 
-    const current_announcement = useSelector(state => state.announcement.current_announcement)
+    const current_announcement = useSelector(state => state.prayer_request.current_prayer)
     // console.log(current_announcement)
     const current_user = useSelector(state => state.session.user)
     // console.log(current_user, 'current user')
@@ -64,7 +64,7 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
             comments: currentAnnouncementComments,
             replies: currentAnnouncementCommentsReplies
         }
-        dispatch(announcementActions.DeleteAnnouncement(payload));
+        dispatch(prayerRequestActions.DeletePrayer(payload));
         history.push('/');
         history.go(0);
 
@@ -102,9 +102,11 @@ export default function AnnouncementDisplay({ setUpdateAnnouncement }) {
                     </div>
                 }
             </div>
-            <div className="announcementDisplay_commentreplies_ctnr">
-                <CommentComponent announcementId={announcementId} />
-            </div>
+            {/* 
+                <div className="announcementDisplay_commentreplies_ctnr">
+                    <CommentComponent announcementId={announcementId} />
+                </div> 
+            */}
         </div>
     )
 }

@@ -5,7 +5,7 @@ from app.forms import PrayerRequestForm
 from app.awsupload import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
-announcement_routes = Blueprint('announcements', __name__)
+prayer_request_routes = Blueprint('announcements', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -17,7 +17,7 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@announcement_routes.route('/', methods=['GET'])
+@prayer_request_routes.route('/', methods=['GET'])
 def get_prayer_requests():
     if request.method == "GET":
         allPrayerRequests = PrayerRequest.query.all()
@@ -26,7 +26,7 @@ def get_prayer_requests():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@announcement_routes.route('/', methods=['POST'])
+@prayer_request_routes.route('/', methods=['POST'])
 @login_required
 def post_prayer_request():
     form = PrayerRequestForm()
@@ -74,20 +74,20 @@ def post_prayer_request():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@announcement_routes.route('/<int:id>', methods=['GET'])
+@prayer_request_routes.route('/<int:id>', methods=['GET'])
 def get_one_prayer_request(id):
     current_prayer_request = PrayerRequest.query.get(id)
     print(current_prayer_request.to_dict())
-    return {'announcement': current_prayer_request.to_dict()}
+    return {'prayer_request': current_prayer_request.to_dict()}
 
 
 
 
 
-@announcement_routes.route('/<int:id>', methods=['PATCH'])
+@prayer_request_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
 def update_prayer_request(id):
-    form = AnnouncementForm()
+    form = PrayerRequestForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     # print(request.files['image'],'--------------------------')
@@ -128,7 +128,7 @@ def update_prayer_request(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@announcement_routes.route('/<int:id>', methods=['DELETE'])
+@prayer_request_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_prayer_request(id):
     print('current comments for event-------------------', request.json['comments'])

@@ -23,4 +23,5 @@ class PrayerRequest(db.Model):
             'id': self.id,
             'description':self.description,
             'userId':self.user_id,
+            'user': self.user.to_dict()
         }
