@@ -130,9 +130,9 @@ body {
     }
 }
 
-/* .Dashboard_pr_view:hover {
+.Dashboard_pr_view:hover {
     animation-play-state: paused;
-} */
+}
 
 .DashboardAnnouncements_link {
     border: 2px solid grey;
