@@ -15,12 +15,15 @@ import './eventImageAnimation.js';
 export default function DashboardComponent({ setUpdateAnnouncement }) {
     const dispatch = useDispatch()
 
-    const announcements = useSelector(state => state.prayer_request.prayer_requests)
+    const prayer_requests = useSelector(state => state.prayer_request.prayer_requests)
+    const pr_length = prayer_requests?.length
     const events = useSelector(state => state.event.events)
     const eventsLength = events?.length
     // console.log(eventsLength)
     const currentUserId = useSelector(state => state.session.user?.id)
     console.log(currentUserId)
+    const prayers = useSelector(state => state.prayer.prayers)
+    console.log(prayers)
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -31,6 +34,34 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
 
+
+
+    function handlePrayerCreateDelete(announcementId, userId) {
+        // console.log(announcementId)
+        // console.log(userId)
+        // const prayerWithPRIdExist = prayers.find(pr => pr.prayer_request_id === announcementId)
+        // const prayerWithUserIdExist = prayers.find(pr => pr.userId === currentUserId)
+        const currentPrayer = prayers?.find(pr => pr.userId === currentUserId && pr.prayer_request_id === announcementId)
+
+        console.log(currentPrayer)
+
+        if (currentPrayer) {
+            // console.log("delete should trigger")
+            dispatch(prayerActions.DeletePrayer(currentPrayer.id))
+        } else {
+            dispatch(prayerActions.GivePrayer({ user_id: currentUserId, pr_id: announcementId }))
+            // console.log("creation should trigger")
+        }
+
+
+    }
+
+
+    function handlePrayerCtn(pr_id) {
+        const prayers = prayers?.find(prayer => prayer.prayer_request_id === pr_id)
+        // console.log(prayers.length)
+    }
+
     useEffect(() => {
         dispatch(prayerRequestActions.GetPrayerRequests())
         dispatch(prayerActions.GetPrayers())
@@ -38,12 +69,6 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
     }, [dispatch, eventsLength]);
-
-
-    function handlePrayerCreateDelete(announcementId) {
-        console.log(announcementId)
-        dispatch(prayerActions.GivePrayer({ user_id: currentUserId, pr_id: announcementId }))
-    }
 
 
     return (
@@ -73,14 +98,17 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                     </div> */}
                     <div className="Dashboard_pr_view">
                         {
-                            announcements?.map((announcement, idx) =>
-                                <li key={idx} className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
+                            prayer_requests?.map((prayer_request, idx) =>
+                                <li key={idx} className='DashboardAnnouncements_link' to={`/announcement/${prayer_request.id}`} onClick={() => setUpdateAnnouncement(false)}>
                                     <div className='DashboardAnnouncements_items_wrapper'>
                                         {/* {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />} */}
                                         {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
-                                        <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
-                                        <li className='DashboardAnnouncement_item'>{announcement.user?.username}</li>
-                                        <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(announcement.id)}>Prayer</li>
+                                        <li className='DashboardAnnouncement_item description'>{prayer_request.description}</li>
+                                        <li className='DashboardAnnouncement_item username'>~ {prayer_request.user?.username}</li>
+                                        <div className='prayer_ctnr'>
+                                            <li className='prayer_ctn'>{`(${prayers?.filter(prayer => prayer.prayer_request_id === prayer_request.id).length})`}</li>
+                                            <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(prayer_request.id)} />
+                                        </div>
                                     </div>
                                 </li>
                             )
