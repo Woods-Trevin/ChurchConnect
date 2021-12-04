@@ -108,25 +108,25 @@ export const DeletePrayer = (payload) => async (dispatch) => {
     }
 }
 
-const initialState = { prayer: null }
+const initialState = { prayer_requests: null }
 export default function prayerRequestReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case CREATE_PRAYER_REQUEST:
             newState = Object.assign({}, state);
-            newState.prayers = action.payload;
+            newState.prayer_requests = action.payload;
             return newState;
         case GET_PRAYERS:
             newState = Object.assign({}, state);
-            newState.prayers = action.payload;
+            newState.prayer_requests = action.payload;
             return newState;
         case GET_ONE_PRAYER:
             newState = Object.assign({}, state);
-            newState.current_prayer = action.payload;
+            newState.current_prayer_request = action.payload;
             return newState;
         case PATCH_PRAYER:
             newState = Object.assign({}, state);
-            newState.prayers = action.payload;
+            newState.prayer_requests = action.payload;
             return newState;
         case DELETE_PRAYER:
             return state;

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import * as prayerRequestActions from '../../store/prayer_request'
 import * as eventActions from '../../store/event'
+import * as prayerActions from '../../store/prayer'
 import Footer from '../Footer'
 import './DashboardComponent.css';
 import './eventImageAnimation.js';
@@ -14,10 +15,12 @@ import './eventImageAnimation.js';
 export default function DashboardComponent({ setUpdateAnnouncement }) {
     const dispatch = useDispatch()
 
-    const announcements = useSelector(state => state.prayer_request.prayers)
+    const announcements = useSelector(state => state.prayer_request.prayer_requests)
     const events = useSelector(state => state.event.events)
     const eventsLength = events?.length
-    console.log(eventsLength)
+    // console.log(eventsLength)
+    const currentUserId = useSelector(state => state.session.user?.id)
+    console.log(currentUserId)
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -32,6 +35,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
         // const script = document.createElement('script');
         dispatch(prayerRequestActions.GetPrayers())
         dispatch(eventActions.GetEvents())
+        dispatch(prayerActions.GetPrayers())
         // script.type = 'text/javascript';
         // script.src = '../DashboardComponent/eventImageAnimation.js';
         // script.async = true;
@@ -73,14 +77,15 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                     <div className="Dashboard_pr_view">
                         {
                             announcements?.map((announcement, idx) =>
-                                <NavLink key={idx} className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
+                                <li key={idx} className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
                                     <div className='DashboardAnnouncements_items_wrapper'>
                                         {/* {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />} */}
                                         {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
                                         <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
                                         <li className='DashboardAnnouncement_item'>{announcement.user?.username}</li>
+                                        <li className="prayer_btn" onClick={() => dispatch(prayerActions.GivePrayer({ user_id: currentUserId, pr_id: announcement.id }))}>Prayer</li>
                                     </div>
-                                </NavLink>
+                                </li>
                             )
                         }
 

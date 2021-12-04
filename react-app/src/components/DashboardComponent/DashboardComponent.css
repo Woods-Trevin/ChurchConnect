@@ -118,7 +118,7 @@ body {
     /* overflow: scroll; */
     /* width: 400px; */
     /* transform: translate(0, -50%) */
-    animation: nasdaq 20s linear infinite;
+    /* animation: nasdaq 30s linear infinite; */
 }
 
 @keyframes nasdaq {
@@ -127,7 +127,7 @@ body {
     }
     100% {
         /* left: -450% */
-        left: -320%;
+        left: -100%;
     }
 }
 
@@ -141,6 +141,7 @@ body {
     border-radius: 10px;
     height: 200px;
     width: 300px;
+    list-style: none;
 }
 .DashboardAnnouncements_link:hover {
     box-shadow: 0 0 10px black;
