@@ -21,6 +21,8 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
     // console.log(eventsLength)
     const currentUserId = useSelector(state => state.session.user?.id)
     console.log(currentUserId)
+    const prayers = useSelector(state => state.prayer.prayers)
+    console.log(prayers)
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -31,6 +33,33 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
 
+
+
+    function handlePrayerCreateDelete(announcementId, userId) {
+        // console.log(announcementId)
+        // console.log(userId)
+        // const prayerWithPRIdExist = prayers.find(pr => pr.prayer_request_id === announcementId)
+        // const prayerWithUserIdExist = prayers.find(pr => pr.userId === currentUserId)
+        const currentPrayer = prayers?.find(pr => pr.userId === currentUserId && pr.prayer_request_id === announcementId)
+
+        console.log(currentPrayer)
+
+        if (currentPrayer) {
+            // console.log("delete should trigger")
+            dispatch(prayerActions.DeletePrayer(currentPrayer.id))
+        } else {
+            dispatch(prayerActions.GivePrayer({ user_id: currentUserId, pr_id: announcementId }))
+            // console.log("creation should trigger")
+        }
+
+
+    }
+
+
+    function handlePrayerCtn() {
+
+    }
+
     useEffect(() => {
         dispatch(prayerRequestActions.GetPrayerRequests())
         dispatch(prayerActions.GetPrayers())
@@ -38,12 +67,6 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
     }, [dispatch, eventsLength]);
-
-
-    function handlePrayerCreateDelete(announcementId) {
-        console.log(announcementId)
-        dispatch(prayerActions.GivePrayer({ user_id: currentUserId, pr_id: announcementId }))
-    }
 
 
     return (
@@ -79,8 +102,11 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                         {/* {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />} */}
                                         {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
                                         <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
-                                        <li className='DashboardAnnouncement_item'>{announcement.user?.username}</li>
-                                        <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(announcement.id)}>Prayer</li>
+                                        <li className='DashboardAnnouncement_item username'>{announcement.user?.username}</li>
+                                        <div>
+                                            <li className='prayer_ctn'>{handlePrayerCtn(announcement.id)}</li>
+                                            <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(announcement.id)} />
+                                        </div>
                                     </div>
                                 </li>
                             )
