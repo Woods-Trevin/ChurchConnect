@@ -32,7 +32,7 @@ export default function CreateAnnouncementComponent() {
         //     description: announcementDescription,
         //     idx: user?.id
         // }
-        dispatch(announcementActions.CreatePrayer(formData))
+        dispatch(announcementActions.CreatePrayerRequest(formData))
         history.push('/')
         history.go(0);
 

@@ -131,10 +131,10 @@ def update_prayer_request(id):
 @prayer_request_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_prayer_request(id):
-    print('current comments for event-------------------', request.json['comments'])
-    print('current replies for event comments-------------------', request.json['replies'])
-    replies = request.json['replies']
-    comments = request.json['comments']
+    # print('current comments for event-------------------', request.json['comments'])
+    # print('current replies for event comments-------------------', request.json['replies'])
+    # replies = request.json['replies']
+    # comments = request.json['comments']
 
     current_prayer_request = PrayerRequest.query.filter(PrayerRequest.id == id).delete()
     db.session.commit()

@@ -32,21 +32,18 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
 
     useEffect(() => {
-        // const script = document.createElement('script');
-        dispatch(prayerRequestActions.GetPrayers())
-        dispatch(eventActions.GetEvents())
+        dispatch(prayerRequestActions.GetPrayerRequests())
         dispatch(prayerActions.GetPrayers())
-        // script.type = 'text/javascript';
-        // script.src = '../DashboardComponent/eventImageAnimation.js';
-        // script.async = true;
-        // document.body.appendChild(script);
+        dispatch(eventActions.GetEvents())
 
-        // const eventImageCtnr = document.querySelector('.eventImage_ctnr')
-        // console.log(eventImageCtnr.children)
-        // const slidesSize = eventImageCtnr[0].getBoundingClientRect().width;
-        // console.log(slidesSize)
 
     }, [dispatch, eventsLength]);
+
+
+    function handlePrayerCreateDelete(announcementId) {
+        console.log(announcementId)
+        dispatch(prayerActions.GivePrayer({ user_id: currentUserId, pr_id: announcementId }))
+    }
 
 
     return (
@@ -83,7 +80,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                         {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
                                         <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
                                         <li className='DashboardAnnouncement_item'>{announcement.user?.username}</li>
-                                        <li className="prayer_btn" onClick={() => dispatch(prayerActions.GivePrayer({ user_id: currentUserId, pr_id: announcement.id }))}>Prayer</li>
+                                        <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(announcement.id)}>Prayer</li>
                                     </div>
                                 </li>
                             )

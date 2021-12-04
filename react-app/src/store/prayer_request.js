@@ -1,20 +1,20 @@
 const CREATE_PRAYER_REQUEST = 'prayer/CREATE_PRAYER_REQUEST';
-const GET_PRAYERS = 'prayer/GET_PRAYERS';
+const GET_PRAYER_REQUEST = 'prayer/GET_PRAYER_REQUEST';
 const GET_ONE_PRAYER = 'prayer/GET_ONE_PRAYER';
 const PATCH_PRAYER = 'prayer/PATCH_PRAYER';
 const DELETE_PRAYER = 'prayer/DELETE_PRAYER';
 
 
-const create_prayer = (prayer) => {
+const create_prayer_request = (prayer) => {
     return {
         type: CREATE_PRAYER_REQUEST,
         payload: prayer
     }
 }
 
-const get_prayers = (prayers) => {
+const get_prayer_request = (prayers) => {
     return {
-        type: GET_PRAYERS,
+        type: GET_PRAYER_REQUEST,
         payload: prayers
     }
 }
@@ -41,7 +41,7 @@ const delete_prayer = (prayer) => {
 }
 
 
-export const CreatePrayer = (formData) => async (dispatch) => {
+export const CreatePrayerRequest = (formData) => async (dispatch) => {
     const response = await fetch('/api/pr/', {
         method: 'POST',
         // headers: { 'Content-Type': 'application/json' },
@@ -50,18 +50,18 @@ export const CreatePrayer = (formData) => async (dispatch) => {
 
     if (response.ok) {
         const data = response.json();
-        dispatch(create_prayer(data.prayer_requests));
+        dispatch(create_prayer_request(data.prayer_requests));
         return response;
     }
 }
 
-export const GetPrayers = () => async (dispatch) => {
+export const GetPrayerRequests = () => async (dispatch) => {
     const response = await fetch('/api/pr/')
 
     if (response.ok) {
         const data = await response.json();
         // console.log(data.announcements);
-        dispatch(get_prayers(data.prayer_requests));
+        dispatch(get_prayer_request(data.prayer_requests));
         return response;
     }
 }
@@ -116,7 +116,7 @@ export default function prayerRequestReducer(state = initialState, action) {
             newState = Object.assign({}, state);
             newState.prayer_requests = action.payload;
             return newState;
-        case GET_PRAYERS:
+        case GET_PRAYER_REQUEST:
             newState = Object.assign({}, state);
             newState.prayer_requests = action.payload;
             return newState;
