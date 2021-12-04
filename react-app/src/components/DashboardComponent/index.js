@@ -15,7 +15,8 @@ import './eventImageAnimation.js';
 export default function DashboardComponent({ setUpdateAnnouncement }) {
     const dispatch = useDispatch()
 
-    const announcements = useSelector(state => state.prayer_request.prayer_requests)
+    const prayer_requests = useSelector(state => state.prayer_request.prayer_requests)
+    const pr_length = prayer_requests?.length
     const events = useSelector(state => state.event.events)
     const eventsLength = events?.length
     // console.log(eventsLength)
@@ -56,8 +57,9 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
     }
 
 
-    function handlePrayerCtn() {
-
+    function handlePrayerCtn(pr_id) {
+        const prayers = prayers?.find(prayer => prayer.prayer_request_id === pr_id)
+        // console.log(prayers.length)
     }
 
     useEffect(() => {
@@ -96,16 +98,16 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                     </div> */}
                     <div className="Dashboard_pr_view">
                         {
-                            announcements?.map((announcement, idx) =>
-                                <li key={idx} className='DashboardAnnouncements_link' to={`/announcement/${announcement.id}`} onClick={() => setUpdateAnnouncement(false)}>
+                            prayer_requests?.map((prayer_request, idx) =>
+                                <li key={idx} className='DashboardAnnouncements_link' to={`/announcement/${prayer_request.id}`} onClick={() => setUpdateAnnouncement(false)}>
                                     <div className='DashboardAnnouncements_items_wrapper'>
                                         {/* {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />} */}
                                         {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
-                                        <li className='DashboardAnnouncement_item description'>{announcement.description}</li>
-                                        <li className='DashboardAnnouncement_item username'>{announcement.user?.username}</li>
-                                        <div>
-                                            <li className='prayer_ctn'>{handlePrayerCtn(announcement.id)}</li>
-                                            <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(announcement.id)} />
+                                        <li className='DashboardAnnouncement_item description'>{prayer_request.description}</li>
+                                        <li className='DashboardAnnouncement_item username'>~ {prayer_request.user?.username}</li>
+                                        <div className='prayer_ctnr'>
+                                            <li className='prayer_ctn'>{`(${prayers?.filter(prayer => prayer.prayer_request_id === prayer_request.id).length})`}</li>
+                                            <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(prayer_request.id)} />
                                         </div>
                                     </div>
                                 </li>
