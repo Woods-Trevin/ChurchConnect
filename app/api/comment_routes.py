@@ -36,7 +36,6 @@ def create_comment():
             created_comment = Comment(
                 text=form.data['text'],
                 user_id=request.json['userId'],
-                announcement_id=request.json['announcementId'],
                 event_id=request.json['eventId']
             )
             db.session.add(created_comment)

@@ -1,17 +1,19 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
-import announcementReducer from './announcement';
+import prayerRequestReducer from './prayer_request';
 import eventReducer from './event';
 import commentReducer from './comment';
 import replyReducer from './reply';
+import prayerReducer from './prayer'
 
 const rootReducer = combineReducers({
   session,
-  announcement: announcementReducer,
+  prayer_request: prayerRequestReducer,
   event: eventReducer,
   comment: commentReducer,
   reply: replyReducer,
+  prayer: prayerReducer,
 
 });
 

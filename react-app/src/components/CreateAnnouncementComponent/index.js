@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import * as announcementActions from '../../store/announcement'
+import * as announcementActions from '../../store/prayer_request'
 import Footer from '../Footer'
 import './CreateAnnouncementComponent.css'
 
 export default function CreateAnnouncementComponent() {
     const [imageURL, setImageURL] = useState("")
     const [announcementTitle, setAnnouncementTitle] = useState("")
-    const [announcementDescription, setAnnouncementDescription] = useState("")
+    const [prayerDescription, setPrayerDescription] = useState("")
     const [validationErrors, setValidationErrors] = useState([])
 
     console.log(imageURL)
@@ -21,9 +21,9 @@ export default function CreateAnnouncementComponent() {
         e.preventDefault()
 
         const formData = new FormData();
-        formData.append("image", imageURL)
-        formData.append("title", announcementTitle)
-        formData.append("description", announcementDescription)
+        // formData.append("image", imageURL)
+        // formData.append("title", announcementTitle)
+        formData.append("description", prayerDescription)
         formData.append("idx", user?.id)
 
         // const payload = {
@@ -32,7 +32,7 @@ export default function CreateAnnouncementComponent() {
         //     description: announcementDescription,
         //     idx: user?.id
         // }
-        dispatch(announcementActions.CreateAnnouncement(formData))
+        dispatch(announcementActions.CreatePrayerRequest(formData))
         history.push('/')
         history.go(0);
 
@@ -46,13 +46,13 @@ export default function CreateAnnouncementComponent() {
         // if (!urlRegex.test(imageURL) && imageURL) errors.push('URL Entered is Not Valid.')
 
 
-        if (!announcementTitle) errors.push('Announcement must include a Title');
-        if (announcementTitle.length > 300) errors.push('Announcement Title is too long');
-        if (!announcementDescription) errors.push('Announcement must include a Description');
-        if (announcementDescription.length > 1000) errors.push('Announcement Description is too long');
+        // if (!announcementTitle) errors.push('Announcement must include a Title');
+        // if (announcementTitle.length > 300) errors.push('Announcement Title is too long');
+        if (!prayerDescription) errors.push('Prayer must include a Description');
+        if (prayerDescription.length > 1000) errors.push('Prayer Description is too long');
 
         setValidationErrors(errors);
-    }, [dispatch, imageURL, announcementTitle, announcementDescription])
+    }, [dispatch, imageURL, prayerDescription])
 
     const handleCreateImage = (e) => {
         const currentFile = e.target.files[0];
@@ -66,8 +66,12 @@ export default function CreateAnnouncementComponent() {
 
             <div className="outmost_ctnr">
                 <div className="createAnnouncement_instructions">
-                    <h3 className="createAnnouncement_text_label" >Create an Announcement</h3>
-                    <p>Announcements are integral for leaders to communicate with the congregation. Choose your words wisely.</p>
+                    <h3 className="createAnnouncement_text_label" >Create a Prayer Request</h3>
+                    <p>Have you ever needed prayer for something but did not know
+                        how to pray? Maybe you arent a part of a church? Enter
+                        anything you need prayer for and church followers everywhere
+                        will put a word in with the man upstairs.
+                    </p>
                 </div>
                 <div className="announcement_inner_ctnr">
                     <ul className="announcement_errors_ctnr">
@@ -77,7 +81,7 @@ export default function CreateAnnouncementComponent() {
                     </ul>
                     <form className="announcementForm_outer_ctnr" onSubmit={handleAnnouncementCreation}>
                         <div className="announcementForm_ctnr">
-                            <label className="announcementImageURL_ctnr">
+                            {/* <label className="announcementImageURL_ctnr">
                                 <div className="announcementImageURL_label">
                                     Image URL:
                                 </div>
@@ -88,8 +92,8 @@ export default function CreateAnnouncementComponent() {
                                     className='announcementURL_input'
                                     onChange={handleCreateImage}
                                 />
-                            </label>
-                            <label className="announcementTitle_ctnr" >
+                            </label> */}
+                            {/* <label className="announcementTitle_ctnr" >
                                 <div className="announcementTitle_label" >
                                     Title:
                                 </div>
@@ -100,18 +104,18 @@ export default function CreateAnnouncementComponent() {
                                     className="announcementTitle_input"
                                     onChange={(e) => setAnnouncementTitle(e.target.value)}
                                 />
-                            </label>
+                            </label> */}
                             <label className="announcementDescription_ctnr">
                                 <div className="announcementDescription_label" >
-                                    Description:
+                                    Prayer:
                                 </div>
                                 <textarea
                                     name='announcementDescription'
-                                    value={announcementDescription}
+                                    value={prayerDescription}
                                     rows="10"
                                     cols="50"
                                     className="announcementDescription_input"
-                                    onChange={(e) => setAnnouncementDescription(e.target.value)}
+                                    onChange={(e) => setPrayerDescription(e.target.value)}
                                 />
                             </label>
                         </div>

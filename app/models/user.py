@@ -13,10 +13,13 @@ class User(db.Model, UserMixin):
 
     #Relationships
     events = db.relationship('Event', back_populates='user')
-    announcements = db.relationship('Announcement', back_populates='user')
+    prayer_request = db.relationship('PrayerRequest', back_populates='user')
+    prayer = db.relationship('Prayer', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
     replies = db.relationship('Reply', back_populates='user')
     profile = db.relationship('Profile', back_populates='user')
+    booking = db.relationship('Booking', back_populates='user')
+    priest = db.relationship('Priest', back_populates='user')
 
     @property
     def password(self):

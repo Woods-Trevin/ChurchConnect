@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import * as announcementActions from '../../store/announcement'
+import * as prayerRequestActions from '../../store/prayer_request'
 import './UpdateAnnouncementComponent.css';
 import Footer from '../Footer';
 
@@ -11,11 +11,11 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
     const history = useHistory();
 
-    const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState("")
-    const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
-    const [updateAnnouncementDescription, setUpdateAnnouncementDescription] = useState(current_announcement?.description)
+    // const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState("")
+    // const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
+    const [updatePrayerDescription, setUpdatePrayerDescription] = useState(current_announcement?.description)
 
-    console.log(updateAnnouncementURL)
+    // console.log(updateAnnouncementURL) 
     const [validationErrors, setValidationErrors] = useState([])
 
 
@@ -27,9 +27,9 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
     function handleAnnouncementPatch(e) {
         e.preventDefault()
         const formData = new FormData();
-        formData.append("image", updateAnnouncementURL)
-        formData.append("title", updateAnnouncementTitle)
-        formData.append("description", updateAnnouncementDescription)
+        // formData.append("image", updateAnnouncementURL)
+        // formData.append("title", updateAnnouncementTitle)
+        formData.append("description", updatePrayerDescription)
 
         // const payload = {
         //     imageURL: updateAnnouncementURL,
@@ -38,7 +38,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         //     idx: announcementId
 
         // }
-        dispatch(announcementActions.PatchAnnouncement(formData, announcementId));
+        dispatch(prayerRequestActions.PatchPrayer(formData, announcementId));
         history.push('/')
         history.go(0);
     }
@@ -47,20 +47,20 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         setUpdateAnnouncement(true);
         const errors = [];
 
-        if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
-        if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
-        if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
-        if (!updateAnnouncementDescription) errors.push('Announcement must include a Description');
-        if (updateAnnouncementDescription.length > 1000) errors.push('Announcement Description is too long');
+        // if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
+        // if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
+        // if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
+        if (!updatePrayerDescription) errors.push('Announcement must include a Description');
+        if (updatePrayerDescription.length > 1000) errors.push('Announcement Description is too long');
 
         setValidationErrors(errors);
-    }, [dispatch, updateAnnouncementURL, updateAnnouncementTitle, updateAnnouncementDescription])
+    }, [dispatch, updatePrayerDescription])
 
 
-    const handleUpdateImage = (e) => {
-        const currentFile = e.target.files[0];
-        setUpdateAnnouncementURL(currentFile);
-    }
+    // const handleUpdateImage = (e) => {
+    //     const currentFile = e.target.files[0];
+    //     setUpdateAnnouncementURL(currentFile);
+    // }
 
     return (
         <div className="updateAnnouncement_outer_ctnr" >
@@ -76,7 +76,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                     </ul>
                     <form className="updateAnnouncement_form_outerwrapper" onSubmit={handleAnnouncementPatch}>
                         <div className="updateAnnouncement_form_innerwrapper">
-                            <label className="updateAnnouncement_imageURL_ctnr">
+                            {/* <label className="updateAnnouncement_imageURL_ctnr">
                                 <div className="updateAnnouncement_imageURL_label">
                                     Image URL:
                                 </div>
@@ -99,7 +99,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                                     className="updateAnnouncement_title_input"
                                     onChange={(e) => setUpdateAnnouncementTitle(e.target.value)}
                                 />
-                            </label>
+                            </label> */}
                             <label className="updateAnnouncement_description_ctnr">
                                 <div className="updateAnnouncement_description_label">
                                     Description:
@@ -107,9 +107,9 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                                 <input
                                     type='text'
                                     name='updateAnnouncementDescription'
-                                    value={updateAnnouncementDescription}
+                                    value={updatePrayerDescription}
                                     className="updateAnnouncement_description_input"
-                                    onChange={(e) => setUpdateAnnouncementDescription(e.target.value)}
+                                    onChange={(e) => setUpdatePrayerDescription(e.target.value)}
                                 />
                             </label>
                             <div className="updateAnnouncement_submitBtn_ctnr">

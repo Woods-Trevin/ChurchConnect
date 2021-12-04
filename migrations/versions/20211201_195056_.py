@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: ce2ed53977db
-Revises: ffdc0a98111c
-Create Date: 2021-10-21 10:30:11.749956
+Revision ID: d20143f655b1
+Revises: 
+Create Date: 2021-12-01 19:50:56.440720
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ce2ed53977db'
-down_revision = 'ffdc0a98111c'
+revision = 'd20143f655b1'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -24,15 +24,14 @@ def upgrade():
     sa.Column('serviceDay', sa.String(length=25), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('announcements',
+    op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('imageURL', sa.String(length=500), nullable=True),
-    sa.Column('title', sa.String(length=300), nullable=False),
-    sa.Column('description', sa.String(length=1000), nullable=False),
-    sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('username', sa.String(length=40), nullable=False),
+    sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email'),
+    sa.UniqueConstraint('username')
     )
     op.create_table('events',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -45,6 +44,14 @@ def upgrade():
     sa.Column('endDate', sa.Date(), nullable=False),
     sa.Column('startTime', sa.Time(), nullable=False),
     sa.Column('endTime', sa.Time(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('prayer_requests',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('description', sa.String(length=1000), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
@@ -66,9 +73,7 @@ def upgrade():
     sa.Column('text', sa.String(length=400), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('announcement_id', sa.Integer(), nullable=True),
     sa.Column('event_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['announcement_id'], ['announcements.id'], ),
     sa.ForeignKeyConstraint(['event_id'], ['events.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -91,7 +96,8 @@ def downgrade():
     op.drop_table('replies')
     op.drop_table('comments')
     op.drop_table('profiles')
+    op.drop_table('prayer_requests')
     op.drop_table('events')
-    op.drop_table('announcements')
+    op.drop_table('users')
     op.drop_table('services')
     # ### end Alembic commands ###

@@ -2,7 +2,5 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
 
-class AnnouncementForm(FlaskForm):
-    imageURL = StringField('imageURL')
-    title = StringField('title', validators=[DataRequired()])
+class PrayerRequestForm(FlaskForm):
     description = StringField('description', validators=[DataRequired()])

@@ -29,7 +29,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
     // console.log(eventId, '---------------EVENT ID----------')
     // console.log(announcementId, '---------------Announcement ID----------')
     const currentEvent = useSelector(state => state.event.currentevent)
-    const currentAnnouncement = useSelector(state => state.announcement.current_announcement)
+    const currentAnnouncement = useSelector(state => state.prayer_request.current_prayer);
     // console.log(currentAnnouncement.id, '---------------Announcement')
 
     const comments = useSelector(state => state.comment.comments)
@@ -55,7 +55,6 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
         const payload = {
             text: commentTextFieldVal,
             eventId: eventId,
-            announcementId: null,
             userId: user?.id,
         }
         // console.log(payload, "CREATE ACTION")
@@ -370,7 +369,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                         </form>
                     </div>
                 }
-                {announcementId &&
+                {/* {announcementId &&
                     <form onSubmit={handleAnnouncementCommentCreation}>
                         <div className="comment_textField_wrapper">
                             <textarea
@@ -387,7 +386,7 @@ export default function CommentComponent({ eventId, announcementId, setCurrentEv
                             </div>
                         </div>
                     </form>
-                }
+                } */}
             </div>
         </div >
     )
