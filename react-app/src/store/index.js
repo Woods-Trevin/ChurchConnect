@@ -5,7 +5,8 @@ import prayerRequestReducer from './prayer_request';
 import eventReducer from './event';
 import commentReducer from './comment';
 import replyReducer from './reply';
-import prayerReducer from './prayer'
+import prayerReducer from './prayer';
+import profileReducer from './profile';
 
 const rootReducer = combineReducers({
   session,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   comment: commentReducer,
   reply: replyReducer,
   prayer: prayerReducer,
+  profile: profileReducer,
 
 });
 

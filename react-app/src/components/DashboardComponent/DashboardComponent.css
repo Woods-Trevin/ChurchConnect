@@ -118,7 +118,7 @@ body {
     /* overflow: scroll; */
     /* width: 400px; */
     /* transform: translate(0, -50%) */
-    animation: nasdaq 10s linear infinite;
+    animation: nasdaq 40s linear infinite;
 }
 
 @keyframes nasdaq {

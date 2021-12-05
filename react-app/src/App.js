@@ -99,10 +99,10 @@ function App() {
             <CreateAnnouncementComponent />
             {/* <Footer /> */}
           </ProtectedRoute>
-          {/* <Route path='/profile' exact={true} >
-          <Profile />
-          <Footer />
-        </Route> */}
+          <Route path='/profile' exact={true} >
+            <Profile />
+            <Footer />
+          </Route>
           <Route path='/event/:eventId' exact={true} >
             {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} />}
             {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} />}
