@@ -47,8 +47,8 @@ export const CreateProfile = (payload) => async (dispatch) => {
     }
 }
 
-export const GetProfile = (payload) => async (dispatch) => {
-    const response = await fetch('')
+export const GetProfile = (id) => async (dispatch) => {
+    const response = await fetch(`/api/profile/${id}`)
 
     if (response.ok) {
         const data = await response.json()
@@ -58,7 +58,11 @@ export const GetProfile = (payload) => async (dispatch) => {
 }
 
 export const UpdateProfile = (payload) => async (dispatch) => {
-    const response = await fetch('')
+    const response = await fetch(`/api/profile/${payload.idx}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
 
     if (response.ok) {
         const data = await response.json()

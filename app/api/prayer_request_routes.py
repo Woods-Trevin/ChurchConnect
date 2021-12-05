@@ -94,27 +94,6 @@ def update_prayer_request(id):
     # print(form.data['title'],'--------------------------')
     # print(form.data['description'],'--------------------------')
 
-    # updateImage = " "
-    # if "image" in request.files:
-    #     image = request.files["image"]
-    #     if not allowed_file(image.filename):
-    #         return {"errors": "file type not permitted"}, 400
-    #     image.filename = get_unique_filename(image.filename)
-    #     upload = upload_file_to_s3(image)
-    #     if "url" not in upload:
-    #         # if the dictionary doesn't have a url key
-    #         # it means that there was an error when we tried to upload
-    #         # so we send back that error message
-    #         return upload, 400
-    #     url = upload["url"]
-    #     updateImage = url
-    #     # print(url)
-    #     # print(upload["url"])
-    #     # firstImage = urlOne
-
-    # awsImage = updateImage if updateImage else None
-    # print(awsImage)
-
     prayer_request_to_patch = PrayerRequest.query.get(id)
     if request.method == 'PATCH':
         if form.validate_on_submit():

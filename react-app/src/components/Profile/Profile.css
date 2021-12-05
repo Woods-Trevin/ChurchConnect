@@ -5,3 +5,16 @@
 .profile_inner_ctnr {
     
 }
+
+
+
+
+
+/*----------------------------------------------------------------*/
+
+
+.profile_ctnr {
+    border: 2px solid red;
+    height: 730px;
+    /* width: 90%; */
+}
