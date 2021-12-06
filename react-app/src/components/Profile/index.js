@@ -22,8 +22,8 @@ export default function Profile() {
     const [address, setAddress] = useState(currentUserProfile?.location)
     const [homeChurch, setHomeChurch] = useState(currentUserProfile?.homeChurch)
     const [bio, setBio] = useState(currentUserProfile?.bio)
-    console.log(currentUserProfile?.homeChurch)
-    console.log(currentUserProfile?.bio)
+    // console.log(currentUserProfile?.homeChurch)
+    // console.log(currentUserProfile?.bio)
 
     useEffect(() => {
         dispatch(profileActions.GetProfile(currentUser?.id))
@@ -39,12 +39,18 @@ export default function Profile() {
 
     function handleFormSubmit(e) {
         e.preventDefault();
+        console.log(profileImage)
+        console.log(address)
+        console.log(bio)
+        console.log(homeChurch)
+
 
         const formData = new FormData();
         formData.append("image", profileImage)
         formData.append("location", address)
         formData.append("homeChurch", homeChurch)
         formData.append("bio", bio)
+        console.log(formData)
 
         dispatch(profileActions.UpdateProfile(formData, currentUserProfile?.id))
 
@@ -59,10 +65,10 @@ export default function Profile() {
                     <form className="profileForm_ctnr" onSubmit={handleFormSubmit}>
                         <div className="profile_ctnr">
                             <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
-                            {/* <li className="update_profile_btn" onClick={() => {
+                            <li className="update_profile_btn" onClick={() => {
                                 setRenderProfileView(false);
                                 setRenderProfileUpdateView(true);
-                            }}>Update Profile</li> */}
+                            }}>Cancel</li>
                             <div className="update_location_ctnr">
                                 <label className="address_ctnr">
                                     <div className="address_label">
@@ -126,6 +132,9 @@ export default function Profile() {
                                         </label>
                                     </div>
                                 </div>
+                            </div>
+                            <div className="update_btn_ctnr">
+                                <button type="submit" className="submit_form_btn">Submit Change</button>
                             </div>
                         </div>
                     </form>

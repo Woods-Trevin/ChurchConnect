@@ -23,6 +23,11 @@ def edit_profile(id):
     form = ProfileForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    print(request.files['image'], "CURRENT IMAGE FOR AWS UPLOAD-------------------")
+    print(form.data['location'], "DATA----------------------------------------------------")
+    print(form.data['bio'], "DATA----------------------------------------------------")
+    print(request.form["homeChurch"], "DATA----------------------------------------------------")
+
     updateImage = " "
     if "image" in request.files:
         image = request.files["image"]
@@ -44,9 +49,18 @@ def edit_profile(id):
     awsImage = updateImage if updateImage else None
     print(awsImage)
 
+    profile_to_change = Profile.query.get(id)
     if request.method == 'PATCH':
         if form.validate_on_submit():
-            pass
+            if len(request.files) > 0:
+                if "image" in request.files:
+                    profile_to_change.profilePicture = awsImage
+            profile_to_change.location = form.data['location']
+            profile_to_change.home_church = request.form["homeChurch"]
+            profile_to_change.bio = form.data['bio']
+            db.session.commit()
+            updatedProfile = Profile.query.get(id)
+            return {"profile": updatedProfile.to_dict()}
 
 
 
