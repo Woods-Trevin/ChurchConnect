@@ -1,0 +1,258 @@
+.profile_outmost_ctnr {
+    height: 1500px;
+}
+
+.profile_inner_ctnr {
+    height: 100%
+}
+
+
+
+
+
+/*----------------------------------------------------------------*/
+
+
+.profile_ctnr {
+    /* border: 2px solid red; */
+    height: 100%;
+    /* width: 90%; */
+    display: flex;
+    flex-direction: column;
+
+    
+}
+.profile_pic_wide {
+    height: 400px;
+    
+}
+
+.update_profile_btn {
+    list-style: none;
+    position: absolute;
+    /* border: 2px solid green; */
+    background-color: skyblue;
+    color: black;
+    border-radius: 50px;
+    padding: 20px;
+    right: 50px;
+    top: 370px;
+    font-size: 20px;
+}
+
+.update_profile_btn:hover {
+    cursor: pointer;
+    background-color: rgb(56, 185, 236);
+}
+
+
+.user_username {
+    /* border: 2px solid red; */
+    position: absolute;
+    color: white;
+    /* bottom: 20px; */
+    top: 370px;
+    left: 400px;
+    list-style: none;
+    font-size: 30px;
+}
+
+.user_location {
+    position: absolute;
+    color: white;
+    /* bottom: 20px; */
+    top: 400px;
+    left: 400px;
+    list-style: none;
+    font-size: 30px;
+}
+
+.update_location_ctnr {
+    /* border: 2px solid red; */
+    width: 400px;
+    height: 100px;
+    position: absolute;
+    top: 360px;
+    left: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    
+}
+
+.address_ctnr {
+    /* border: 2px solid yellow; */
+    
+}
+
+.address_label {
+    color: white;
+    font-size: 20px;
+}
+
+.profileAddress_input {
+    width: 80%;
+    height: 30px;
+}
+
+.cityState_ctnr {
+    
+}
+
+.cityState_label {
+    color: white;
+    font-size: 20px;
+}
+
+.profileCityState_input {
+    width: 80%;
+    height: 30px;
+}
+
+.zipcode_ctnr {
+   
+}
+
+.zipcode_label {
+    color: white;
+    font-size: 20px;
+    
+}
+
+.profileZipcode_input {
+    width: 80%;
+    height: 30px;
+}
+
+
+.profile_contents_ctnr {
+    /* border: 2px solid yellow; */
+    display: flex;
+    gap: 100px;
+    height:300px;
+    border-bottom: 2px solid black;
+
+}
+
+.profile_pic_ctnr {
+    /* border: 2px solid lightgrey; */
+    box-shadow: 0px 0px 20px black;
+    background-color: white;
+    width: 300px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 100px; */
+    position: relative;
+    bottom: 350px;
+    left: 50px;
+    gap: 20px;
+}
+
+.profile_pic {
+    height: 400px;
+    width: 100%;
+    /* border-radius: 70%; */
+    object-fit: cover;
+    position: relative;
+    
+    /* left: 100px;
+    top: 100px */
+}
+
+.profileImg_ctnr{
+    height: 400px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 80px;
+    align-items: center;
+    gap: 100px;
+
+}
+
+.profile_about_ctnr{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.profile_about_label {
+    /* border: 2px solid yellow; */
+    font-size: 20px;
+}
+
+.profile_about {
+    /* border: 2px solid brown; */
+    width: 100%;
+}
+
+.about_input_ctnr {
+    /* width: 100%; */
+}
+
+.homeChurch_ctnr {
+    /* border: 2px solid green; */
+    height: 200px;
+    width: 800px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+}
+
+.homeChurch_label {
+    font-size: 30px;
+}
+
+.homeChurch_box {
+    /* border: 2px solid black; */
+    box-shadow: 0px 0px 20px black;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 60%;
+    height: 100px;
+}
+
+.homeChurch {
+    list-style: none;
+    font-size: 30px;
+}
+
+.homeChurch_input_ctnr {
+    
+}
+
+.profileHomeChurch_input {
+    width: 450px;
+    height: 50px;
+    font-size: 30px;
+}
+
+
+.update_btn_ctnr {
+    /* border: 2px solid red; */
+    border-radius: 50px;
+    width: 200px;
+    position: absolute;
+    right: 150px;
+    top: 370px;
+}
+
+.submit_form_btn {
+    border-radius: 50px;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: skyblue;
+    color: black;
+    font-size: 20px;
+}

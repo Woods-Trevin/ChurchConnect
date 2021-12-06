@@ -13,6 +13,7 @@ from .api.prayer_request_routes import prayer_request_routes
 from .api.comment_routes import comment_routes
 from .api.reply_routes import reply_routes
 from .api.prayer_routes import prayer_routes
+from .api.profile_routes import profile_routes
 
 from .seeds import seed_commands
 
@@ -41,6 +42,7 @@ app.register_blueprint(prayer_request_routes, url_prefix='/api/pr')
 app.register_blueprint(comment_routes, url_prefix='/api/comment')
 app.register_blueprint(reply_routes, url_prefix='/api/reply')
 app.register_blueprint(prayer_routes, url_prefix='/api/prayer')
+app.register_blueprint(profile_routes, url_prefix='/api/profile')
 db.init_app(app)
 Migrate(app, db)
 

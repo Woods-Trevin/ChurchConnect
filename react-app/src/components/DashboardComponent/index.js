@@ -106,7 +106,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                         <li className='DashboardAnnouncement_item description'>{prayer_request.description}</li>
                                         <li className='DashboardAnnouncement_item username'>~ {prayer_request.user?.username}</li>
                                         <div className='prayer_ctnr'>
-                                            <li className='prayer_ctn'>{`(${prayers?.filter(prayer => prayer.prayer_request_id === prayer_request.id).length})`}</li>
+                                            <li className='prayer_ctn'>{`${prayers?.filter(prayer => prayer.prayer_request_id === prayer_request.id).length}`}</li>
                                             <li className="prayer_btn" onClick={() => handlePrayerCreateDelete(prayer_request.id)} />
                                         </div>
                                     </div>
