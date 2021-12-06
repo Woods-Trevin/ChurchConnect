@@ -58,9 +58,9 @@ def seed_events():
         
     )
     eventFive = Event(
-        imageURL='https://donorbox.org/nonprofit-blog/wp-content/uploads/2017/11/Auction-fundraising.jpg',
-        imageURLTwo='https://images.template.net/wp-content/uploads/2019/08/church-event-planning-checklist-image.jpg',
-        imageURLThree='https://www.churchplaza.com/wp-content/uploads/2019/10/Webp.net-resizeimage-19-1200x900.jpg',
+        imageURL='https://www.signupgenius.com/cms/images/nonprofit/creative-food-drive-slogan-ideas-600x400.jpg',
+        imageURLTwo='https://eastside-online.org/wp-content/uploads/2021/01/011619b-Inline.jpg',
+        imageURLThree='https://donovancatholichs.org/wp-content/uploads/2019/12/canned-foodrive-720x380.jpg',
         title="New Covenant Fellowship Canned Food Drive",
         description="As we do twice a year we will be holding our bi-annual 3 day canned food drive. Please come by and spare any canned food that you can so we can feed those in need. ",
         startDate=date(2021, 12, 20),
