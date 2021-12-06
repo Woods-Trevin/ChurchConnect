@@ -19,7 +19,7 @@ export default function Profile() {
     console.log(userLocationSplit)
 
     const [profileImage, setProfileImage] = useState("")
-    const [address, setAddress] = useState(currentUserProfile && currentUserProfile?.location)
+    const [address, setAddress] = useState(currentUserProfile?.location)
     const [homeChurch, setHomeChurch] = useState(currentUserProfile?.homeChurch)
     const [bio, setBio] = useState(currentUserProfile?.bio)
     // console.log(currentUserProfile?.homeChurch)
@@ -27,6 +27,9 @@ export default function Profile() {
 
     useEffect(() => {
         dispatch(profileActions.GetProfile(currentUser?.id))
+        setAddress(currentUserProfile?.location)
+        setHomeChurch(currentUserProfile?.homeChurch)
+        setBio(currentUserProfile?.bio)
     }, [profileImage, address, homeChurch, bio, renderProfileView, renderProfileUpdateView])
 
     // console.log(address)
