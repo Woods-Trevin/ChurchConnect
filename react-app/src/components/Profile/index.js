@@ -19,9 +19,9 @@ export default function Profile() {
     console.log(userLocationSplit)
 
     const [profileImage, setProfileImage] = useState("")
-    const [address, setAddress] = useState(currentUserProfile?.location)
-    const [homeChurch, setHomeChurch] = useState(currentUserProfile?.homeChurch)
-    const [bio, setBio] = useState(currentUserProfile?.bio)
+    const [address, setAddress] = useState()
+    const [homeChurch, setHomeChurch] = useState()
+    const [bio, setBio] = useState()
     // console.log(currentUserProfile?.homeChurch)
     // console.log(currentUserProfile?.bio)
 
@@ -30,7 +30,7 @@ export default function Profile() {
         setAddress(currentUserProfile?.location)
         setHomeChurch(currentUserProfile?.homeChurch)
         setBio(currentUserProfile?.bio)
-    }, [profileImage, address, homeChurch, bio, renderProfileView, renderProfileUpdateView])
+    }, [profileImage, renderProfileView, renderProfileUpdateView])
 
     // console.log(address)
 
@@ -109,9 +109,6 @@ export default function Profile() {
                                     <div className="profile_about_ctnr">
                                         <li className="profile_about_label">About</li>
                                         <label className="about_input_ctnr">
-                                            <div className="bio_label">
-                                                Bio
-                                            </div>
                                             <textarea
                                                 name="bio"
                                                 value={bio}

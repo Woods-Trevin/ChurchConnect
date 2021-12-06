@@ -23,10 +23,10 @@ def edit_profile(id):
     form = ProfileForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print(request.files['image'], "CURRENT IMAGE FOR AWS UPLOAD-------------------")
-    print(form.data['location'], "DATA----------------------------------------------------")
-    print(form.data['bio'], "DATA----------------------------------------------------")
-    print(request.form["homeChurch"], "DATA----------------------------------------------------")
+    # print(request.files['image'], "CURRENT IMAGE FOR AWS UPLOAD-------------------")
+    # print(form.data['location'], "DATA----------------------------------------------------")
+    # print(form.data['bio'], "DATA----------------------------------------------------")
+    # print(request.form["homeChurch"], "DATA----------------------------------------------------")
 
     updateImage = " "
     if "image" in request.files:
