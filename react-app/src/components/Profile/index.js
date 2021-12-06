@@ -6,13 +6,6 @@ import './Profile.css'
 export default function Profile() {
     const dispatch = useDispatch()
 
-    const [profileImage, setProfileImage] = useState(null)
-    const [address, setAddress] = useState("")
-    const [cityState, setCityState] = useState("")
-    const [zipcode, setZipcode] = useState("")
-    const [homeChurch, setHomeChurch] = useState("")
-    const [bio, setBio] = useState("")
-
     const [renderProfileView, setRenderProfileView] = useState(true)
     const [renderProfileUpdateView, setRenderProfileUpdateView] = useState(false)
 
@@ -21,13 +14,13 @@ export default function Profile() {
 
     const currentUserProfile = useSelector(state => state.currentUserProfile?.profile)
     // console.log(currentUserProfile)
-    const userLocation = currentUserProfile?.location
 
-    const userLocationSplit = userLocation.split(',')
-
-    const userCityState = userLocationSplit[1] + ',' + userLocationSplit[2]
-
-
+    const [profileImage, setProfileImage] = useState(null)
+    const [address, setAddress] = useState("")
+    const [cityState, setCityState] = useState("")
+    const [zipcode, setZipcode] = useState("")
+    const [homeChurch, setHomeChurch] = useState("")
+    const [bio, setBio] = useState(currentUserProfile?.bio)
 
     // console.log(address)
 
@@ -48,25 +41,68 @@ export default function Profile() {
 
     // console.log(profileImage)
 
+    const userLocation = currentUserProfile?.location
+
+    const userLocationSplit = userLocation?.split(',')
+
+    const userCityState = userLocationSplit[1] + ',' + userLocationSplit[2]
+
     return (
         <div className="profile_outmost_ctnr">
             <div className="profile_inner_ctnr">
                 {renderProfileUpdateView &&
-                    <div className="profile_ctnr">
-                        <form className="profileForm_ctnr" onSubmit={handleFormSubmit}>
-                            <label className="profileImg_ctnr">
-                                <div className="profileImg_label">
-                                    Image URL:
+                    <form className="profileForm_ctnr" onSubmit={handleFormSubmit}>
+                        <div className="profile_ctnr">
+                            <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
+                            <li className="update_profile_btn" onClick={() => {
+                                setRenderProfileView(false);
+                                setRenderProfileUpdateView(true);
+                            }}>Update Profile</li>
+                            <li className="user_username">{currentUser?.username}</li>
+                            <li className="user_location">{userCityState}</li>
+                            <div className="profile_contents_ctnr">
+                                <div className="profile_pic_ctnr">
+                                    {/* <img className="profile_pic" src={currentUserProfile?.profilePicture} /> */}
+                                    <label className="profileImg_ctnr">
+                                        <div className="profileImg_label">
+                                            Choose a New Profile Image:
+                                        </div>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            name="profileImg"
+                                            // value={imageURLOne}
+                                            className="profileImg_input"
+                                            onChange={handleUpdateProfileImage}
+                                        />
+                                    </label>
+                                    <div className="profile_about_ctnr">
+                                        <li className="profile_about_label">About</li>
+                                        <label className="about_input_ctnr">
+                                            <div className="bio_label">
+                                                Bio
+                                            </div>
+                                            <textarea
+                                                name="bio"
+                                                value={bio}
+                                                className="profileBio_input"
+                                                onChange={(e) => setBio(e.target.value)}
+                                                rows="10" cols="30"
+                                            />
+                                        </label>
+                                    </div>
                                 </div>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    name="profileImg"
-                                    // value={imageURLOne}
-                                    className="profileImg_input"
-                                    onChange={handleUpdateProfileImage}
-                                />
-                            </label>
+                                <div className="homeChurch_ctnr">
+                                    <li className="homeChurch_label">Home Church:</li>
+                                    <div className="homeChurch_box">
+                                        <li className="homeChurch">{currentUserProfile?.homeChurch}</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                }
+                {/* <form className="profileForm_ctnr" onSubmit={handleFormSubmit}>
                             <label>
                                 <div className="userAddress_label">
                                     Address
@@ -127,12 +163,14 @@ export default function Profile() {
                                     rows="10" cols="50"
                                 />
                             </label>
-                        </form>
-                    </div>
-                }
+                        </form> */}
                 {renderProfileView &&
                     <div className="profile_ctnr">
                         <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
+                        <li className="update_profile_btn" onClick={() => {
+                            setRenderProfileView(false);
+                            setRenderProfileUpdateView(true);
+                        }}>Update Profile</li>
                         <li className="user_username">{currentUser?.username}</li>
                         <li className="user_location">{userCityState}</li>
                         <div className="profile_contents_ctnr">
@@ -144,6 +182,7 @@ export default function Profile() {
                                 </div>
                             </div>
                             <div className="homeChurch_ctnr">
+                                <li className="homeChurch_label">Home Church:</li>
                                 <div className="homeChurch_box">
                                     <li className="homeChurch">{currentUserProfile?.homeChurch}</li>
                                 </div>
