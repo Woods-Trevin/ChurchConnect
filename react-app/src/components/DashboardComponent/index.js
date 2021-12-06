@@ -6,7 +6,7 @@ import * as eventActions from '../../store/event'
 import * as prayerActions from '../../store/prayer'
 import Footer from '../Footer'
 import './DashboardComponent.css';
-import './eventImageAnimation.js';
+
 
 
 

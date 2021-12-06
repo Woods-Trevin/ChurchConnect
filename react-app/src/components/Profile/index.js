@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as profileActions from '../../store/profile'
+import * as prayerRequestActions from '../../store/prayer_request'
+import * as eventActions from '../../store/event'
 import './Profile.css'
 
 export default function Profile() {
@@ -30,6 +32,8 @@ export default function Profile() {
         setAddress(currentUserProfile?.location)
         setHomeChurch(currentUserProfile?.homeChurch)
         setBio(currentUserProfile?.bio)
+        dispatch(eventActions.GetEvents())
+        dispatch(prayerRequestActions.GetPrayerRequests())
     }, [profileImage, renderProfileView, renderProfileUpdateView])
 
     // console.log(address)
@@ -165,7 +169,9 @@ export default function Profile() {
                                 </div>
                             </div>
                         </div>
+                        <div className="profile_second_half">
 
+                        </div>
                     </div>
                 }
             </div>
