@@ -36,9 +36,9 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         dispatch(eventActions.GetOneEvent(eventId))
         const errors = [];
 
-        if (updateImageOne.length > 700) errors.push('Image url is too long');
-        if (updateImageTwo.length > 700) errors.push('Image url is too long');
-        if (updateImageThree.length > 700) errors.push('Image url is too long');
+        // if (updateImageOne.length > 700) errors.push('Image url is too long');
+        // if (updateImageTwo.length > 700) errors.push('Image url is too long');
+        // if (updateImageThree.length > 700) errors.push('Image url is too long');
         if (!updateEventTitle) errors.push('Event must include a Title');
         if (updateEventTitle.length > 200) errors.push('Event title is too long');
         if (!updateEventDescription) errors.push('Event must include a Description');
@@ -57,9 +57,9 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         currentDateSlice = currentDateFormatted.split('-')
         startDateSlice = updateEventStartDate.split('-')
         endDateSlice = updateEventEndDate.split('-')
-        // console.log(currentDateSlice)
-        // console.log(startDateSlice)
-        // console.log(endDateSlice)
+        console.log(currentDateSlice)
+        console.log(startDateSlice)
+        console.log(endDateSlice)
         // (Number(currentDateSlice[2]) > Number(startDateSlice[2]) || Number(currentDateSlice[2]) > Number(endDateSlice[2]))
         if ((Number(currentDateSlice[1]) > Number(startDateSlice[1]) || Number(currentDateSlice[1]) > Number(endDateSlice[1])) &&
             (Number(currentDateSlice[0]) > Number(startDateSlice[0]) || Number(currentDateSlice[0]) > Number(endDateSlice[0]))) {
@@ -105,7 +105,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         }
 
         if ((Number(startDateSlice[1]) > Number(endDateSlice[1])) &&
-            (Number(startDateSlice[0]) > Number(endDateSlice[0]))) {
+            (Number(startDateSlice[0]) > Number(endDateSlice[0]) || Number(startDateSlice[0]) === Number(endDateSlice[0]))) {
 
             errors.push('End Date cannot be behind the Start Date.')
             // console.log('5th case')
@@ -113,13 +113,13 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
         }
 
         if (Number(currentDateSlice[1]) > Number(startDateSlice[1]) &&
-            (Number(startDateSlice[0]) === Number(startDateSlice[0]))) {
+            (Number(currentDateSlice[0]) === Number(startDateSlice[0]))) {
             errors.push('Start Date cannot be behind the Current Date.')
             // console.log('5.5th case')
         }
 
         if (Number(currentDateSlice[1]) > Number(endDateSlice[1]) &&
-            (Number(startDateSlice[0]) === Number(endDateSlice[0]))) {
+            (Number(currentDateSlice[0]) === Number(endDateSlice[0]))) {
             errors.push('End Date cannot be behind the Current Date.')
             // console.log('6th case')
         }

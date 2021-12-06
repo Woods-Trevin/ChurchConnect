@@ -153,7 +153,7 @@ export default function CreateEventComponent() {
         }
 
         if ((Number(startDateSlice[1]) > Number(endDateSlice[1])) &&
-            (Number(startDateSlice[0]) > Number(endDateSlice[0]))) {
+            (Number(startDateSlice[0]) > Number(endDateSlice[0]) || Number(startDateSlice[0]) === Number(endDateSlice[0]))) {
 
             errors.push('End Date cannot be behind the Start Date.')
             // console.log('5th case')
@@ -161,7 +161,7 @@ export default function CreateEventComponent() {
         }
 
         if (Number(currentDateSlice[1]) > Number(startDateSlice[1]) &&
-            (Number(startDateSlice[0]) === Number(startDateSlice[0]))) {
+            (Number(currentDateSlice[0]) === Number(startDateSlice[0]))) {
             errors.push('Start Date cannot be behind the Current Date.')
             // console.log('5.5th case')
         }
