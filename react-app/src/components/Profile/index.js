@@ -15,12 +15,19 @@ export default function Profile() {
     const currentUserProfile = useSelector(state => state.currentUserProfile?.profile)
     // console.log(currentUserProfile)
 
+    const userLocationSplit = currentUserProfile?.location?.split(',')
+    console.log(userLocationSplit)
+
     const [profileImage, setProfileImage] = useState(null)
-    const [address, setAddress] = useState("")
-    const [cityState, setCityState] = useState("")
-    const [zipcode, setZipcode] = useState("")
-    const [homeChurch, setHomeChurch] = useState("")
+    const [address, setAddress] = useState(currentUserProfile?.location)
+    const [homeChurch, setHomeChurch] = useState(currentUserProfile?.homeChurch)
     const [bio, setBio] = useState(currentUserProfile?.bio)
+    console.log(currentUserProfile?.homeChurch)
+    console.log(currentUserProfile?.bio)
+
+    useEffect(() => {
+        dispatch(profileActions.GetProfile(currentUser?.id))
+    }, [profileImage, address, homeChurch, bio, renderProfileView, renderProfileUpdateView])
 
     // console.log(address)
 
@@ -33,19 +40,17 @@ export default function Profile() {
     function handleFormSubmit(e) {
         e.preventDefault();
 
+        const formData = new FormData();
+        formData.append("image", profileImage)
+        formData.append("location", address)
+        formData.append("homeChurch", homeChurch)
+        formData.append("bio", bio)
+
+        dispatch(profileActions.UpdateProfile(formData, currentUserProfile?.id))
+
+
+
     }
-
-    useEffect(() => {
-        dispatch(profileActions.GetProfile(currentUser?.id))
-    }, [profileImage, address])
-
-    // console.log(profileImage)
-
-    const userLocation = currentUserProfile?.location
-
-    const userLocationSplit = userLocation?.split(',')
-
-    const userCityState = userLocationSplit[1] + ',' + userLocationSplit[2]
 
     return (
         <div className="profile_outmost_ctnr">
@@ -54,12 +59,26 @@ export default function Profile() {
                     <form className="profileForm_ctnr" onSubmit={handleFormSubmit}>
                         <div className="profile_ctnr">
                             <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
-                            <li className="update_profile_btn" onClick={() => {
+                            {/* <li className="update_profile_btn" onClick={() => {
                                 setRenderProfileView(false);
                                 setRenderProfileUpdateView(true);
-                            }}>Update Profile</li>
-                            <li className="user_username">{currentUser?.username}</li>
-                            <li className="user_location">{userCityState}</li>
+                            }}>Update Profile</li> */}
+                            <div className="update_location_ctnr">
+                                <label className="address_ctnr">
+                                    <div className="address_label">
+                                        Address
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        value={address}
+                                        className="profileAddress_input"
+                                        placeholder={"Enter New Address"}
+                                        onChange={(e) => setAddress(e.target.value)}
+                                    />
+                                </label>
+                            </div>
+
                             <div className="profile_contents_ctnr">
                                 <div className="profile_pic_ctnr">
                                     {/* <img className="profile_pic" src={currentUserProfile?.profilePicture} /> */}
@@ -95,75 +114,22 @@ export default function Profile() {
                                 <div className="homeChurch_ctnr">
                                     <li className="homeChurch_label">Home Church:</li>
                                     <div className="homeChurch_box">
-                                        <li className="homeChurch">{currentUserProfile?.homeChurch}</li>
+                                        {/* <li className="homeChurch">{currentUserProfile?.homeChurch}</li> */}
+                                        <label className="homeChurch_input_ctnr">
+                                            <input
+                                                type="text"
+                                                name="homechurch"
+                                                value={homeChurch}
+                                                className="profileHomeChurch_input"
+                                                onChange={(e) => setHomeChurch(e.target.value)}
+                                            />
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
                 }
-                {/* <form className="profileForm_ctnr" onSubmit={handleFormSubmit}>
-                            <label>
-                                <div className="userAddress_label">
-                                    Address
-                                </div>
-                                <input
-                                    type="text"
-                                    name="address"
-                                    value={address}
-                                    className="profileAddress_input"
-                                    onChange={(e) => setAddress(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div className="cityState_label">
-                                    {"City & State"}
-                                </div>
-                                <input
-                                    type="text"
-                                    name="cityState"
-                                    value={cityState}
-                                    className="profileCityState_input"
-                                    onChange={(e) => setCityState(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div className="zipcode_label">
-                                    Address
-                                </div>
-                                <input
-                                    type="text"
-                                    name="zipcode"
-                                    value={zipcode}
-                                    className="profileZipcode_input"
-                                    onChange={(e) => setZipcode(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div className="homeChurch_label">
-                                    Home Church
-                                </div>
-                                <input
-                                    type="text"
-                                    name="homechurch"
-                                    value={homeChurch}
-                                    className="profileHomeChurch_input"
-                                    onChange={(e) => setHomeChurch(e.target.value)}
-                                />
-                            </label>
-                            <label>
-                                <div className="bio_label">
-                                    Bio
-                                </div>
-                                <textarea
-                                    name="bio"
-                                    value={bio}
-                                    className="profileBio_input"
-                                    onChange={(e) => setBio(e.target.value)}
-                                    rows="10" cols="50"
-                                />
-                            </label>
-                        </form> */}
                 {renderProfileView &&
                     <div className="profile_ctnr">
                         <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
@@ -172,7 +138,7 @@ export default function Profile() {
                             setRenderProfileUpdateView(true);
                         }}>Update Profile</li>
                         <li className="user_username">{currentUser?.username}</li>
-                        <li className="user_location">{userCityState}</li>
+                        {/* <li className="user_location">{userCityState}</li> */}
                         <div className="profile_contents_ctnr">
                             <div className="profile_pic_ctnr">
                                 <img className="profile_pic" src={currentUserProfile?.profilePicture} />

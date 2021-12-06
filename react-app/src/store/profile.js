@@ -57,11 +57,10 @@ export const GetProfile = (id) => async (dispatch) => {
     }
 }
 
-export const UpdateProfile = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/profile/${payload.idx}`, {
+export const UpdateProfile = (formData, id) => async (dispatch) => {
+    const response = await fetch(`/api/profile/${id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: formData
     })
 
     if (response.ok) {

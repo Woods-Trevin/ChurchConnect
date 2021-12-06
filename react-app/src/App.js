@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import UserNavbar from './components/UserNavbar';
 import { authenticate } from './store/session';
+import { GetProfile } from './store/profile';
 import DashboardComponent from './components/DashboardComponent';
 import Footer from './components/Footer';
 import CreateEventComponent from './components/CreateEventComponent';
@@ -28,6 +29,8 @@ function App() {
   const [updateAnnouncement, setUpdateAnnouncement] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const currentUser = useSelector(state => state.session.user)
+
   setTimeout(
     function () {
       setIsLoading(false);
@@ -40,6 +43,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      // await dispatch(GetProfile(currentUser?.id))
       setLoaded(true);
     })();
 
