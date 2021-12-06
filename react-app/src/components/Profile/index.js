@@ -9,17 +9,17 @@ export default function Profile() {
     const [renderProfileView, setRenderProfileView] = useState(true)
     const [renderProfileUpdateView, setRenderProfileUpdateView] = useState(false)
 
-    const currentUser = useSelector(state => state.session?.user)
+    const currentUser = useSelector(state => state.session.user)
     // console.log(currentUser?.id)
 
-    const currentUserProfile = useSelector(state => state.currentUserProfile?.profile)
+    const currentUserProfile = useSelector(state => state.currentUserProfile.profile)
     // console.log(currentUserProfile)
 
     const userLocationSplit = currentUserProfile?.location?.split(',')
     console.log(userLocationSplit)
 
-    const [profileImage, setProfileImage] = useState(null)
-    const [address, setAddress] = useState(currentUserProfile?.location)
+    const [profileImage, setProfileImage] = useState("")
+    const [address, setAddress] = useState(currentUserProfile && currentUserProfile?.location)
     const [homeChurch, setHomeChurch] = useState(currentUserProfile?.homeChurch)
     const [bio, setBio] = useState(currentUserProfile?.bio)
     // console.log(currentUserProfile?.homeChurch)
@@ -53,6 +53,8 @@ export default function Profile() {
         console.log(formData)
 
         dispatch(profileActions.UpdateProfile(formData, currentUserProfile?.id))
+        setRenderProfileView(true);
+        setRenderProfileUpdateView(false);
 
 
 
@@ -66,8 +68,8 @@ export default function Profile() {
                         <div className="profile_ctnr">
                             <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
                             <li className="update_profile_btn" onClick={() => {
-                                setRenderProfileView(false);
-                                setRenderProfileUpdateView(true);
+                                setRenderProfileView(true);
+                                setRenderProfileUpdateView(false);
                             }}>Cancel</li>
                             <div className="update_location_ctnr">
                                 <label className="address_ctnr">
@@ -147,7 +149,7 @@ export default function Profile() {
                             setRenderProfileUpdateView(true);
                         }}>Update Profile</li>
                         <li className="user_username">{currentUser?.username}</li>
-                        {/* <li className="user_location">{userCityState}</li> */}
+                        {/* <li className="user_location">{}</li> */}
                         <div className="profile_contents_ctnr">
                             <div className="profile_pic_ctnr">
                                 <img className="profile_pic" src={currentUserProfile?.profilePicture} />
