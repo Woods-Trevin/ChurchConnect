@@ -1,6 +1,8 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .profile import seed_profiles, undo_profiles
+from .events import seed_events, undo_events
+from .prayer_requests import seed_prayer_requests, undo_prayer_requests
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -12,6 +14,8 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     seed_profiles()
+    seed_events()
+    seed_prayer_requests()
     # Add other seed functions here
 
 
@@ -20,4 +24,6 @@ def seed():
 def undo():
     undo_users()
     undo_profiles()
+    undo_events()
+    undo_prayer_requests()
     # Add other undo functions here

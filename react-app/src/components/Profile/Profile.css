@@ -3,6 +3,7 @@
 }
 
 .profile_inner_ctnr {
+    /* border: 2px solid red; */
     height: 100%
 }
 
@@ -136,7 +137,7 @@
 }
 
 .profile_pic_ctnr {
-    /* border: 2px solid lightgrey; */
+    border: 2px solid lightgrey;
     box-shadow: 0px 0px 20px black;
     background-color: white;
     width: 300px;
@@ -213,7 +214,7 @@
 }
 
 .homeChurch_box {
-    /* border: 2px solid black; */
+    /* border: 2px solid yellow; */
     box-shadow: 0px 0px 20px black;
     display: flex;
     justify-content:center;
@@ -239,7 +240,7 @@
 
 
 .update_btn_ctnr {
-    /* border: 2px solid red; */
+    /* border: 2px solid purple; */
     border-radius: 50px;
     width: 200px;
     position: absolute;
@@ -255,4 +256,10 @@
     background-color: skyblue;
     color: black;
     font-size: 20px;
+}
+
+.profile_second_half{
+    border: 2px solid orange;
+    height: 800px;
+    width: 100%;
 }
