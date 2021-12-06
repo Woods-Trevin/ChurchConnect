@@ -17,12 +17,19 @@ export default function Profile() {
     const [renderProfileUpdateView, setRenderProfileUpdateView] = useState(false)
 
     const currentUser = useSelector(state => state.session?.user)
-    console.log(currentUser?.id)
+    // console.log(currentUser?.id)
 
-    const
+    const currentUserProfile = useSelector(state => state.currentUserProfile?.profile)
+    // console.log(currentUserProfile)
+    const userLocation = currentUserProfile?.location
+
+    const userLocationSplit = userLocation.split(',')
+
+    const userCityState = userLocationSplit[1] + ',' + userLocationSplit[2]
 
 
-        console.log(address)
+
+    // console.log(address)
 
     const handleUpdateProfileImage = (e) => {
         const currentFile = e.target.files[0];
@@ -43,9 +50,6 @@ export default function Profile() {
 
     return (
         <div className="profile_outmost_ctnr">
-            <h1>
-                Profile Component
-            </h1>
             <div className="profile_inner_ctnr">
                 {renderProfileUpdateView &&
                     <div className="profile_ctnr">
@@ -128,7 +132,23 @@ export default function Profile() {
                 }
                 {renderProfileView &&
                     <div className="profile_ctnr">
-                        <img src={ } />
+                        <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
+                        <li className="user_username">{currentUser?.username}</li>
+                        <li className="user_location">{userCityState}</li>
+                        <div className="profile_contents_ctnr">
+                            <div className="profile_pic_ctnr">
+                                <img className="profile_pic" src={currentUserProfile?.profilePicture} />
+                                <div className="profile_about_ctnr">
+                                    <li className="profile_about_label">About</li>
+                                    <li className="profile_about">{currentUserProfile?.bio}</li>
+                                </div>
+                            </div>
+                            <div className="homeChurch_ctnr">
+                                <div className="homeChurch_box">
+                                    <li className="homeChurch">{currentUserProfile?.homeChurch}</li>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 }

@@ -1,9 +1,9 @@
 .profile_outmost_ctnr {
-    height: 800px;
+    height: 1500px;
 }
 
 .profile_inner_ctnr {
-    
+    height: 100%
 }
 
 
@@ -14,7 +14,106 @@
 
 
 .profile_ctnr {
-    border: 2px solid red;
-    height: 730px;
+    /* border: 2px solid red; */
+    height: 100%;
     /* width: 90%; */
+    display: flex;
+    flex-direction: column;
+
+    
+}
+.profile_pic_wide {
+    height: 400px;
+    
+}
+
+
+.user_username {
+    /* border: 2px solid red; */
+    position: absolute;
+    color: white;
+    /* bottom: 20px; */
+    top: 370px;
+    left: 400px;
+    list-style: none;
+    font-size: 30px;
+}
+
+.user_location {
+    position: absolute;
+    color: white;
+    /* bottom: 20px; */
+    top: 400px;
+    left: 400px;
+    list-style: none;
+    font-size: 30px;
+}
+
+.profile_contents_ctnr {
+    border: 2px solid purple;
+    display: flex;
+    gap: 100px;
+
+}
+
+.profile_pic_ctnr {
+    /* border: 2px solid lightgrey; */
+    box-shadow: 0px 0px 20px black;
+    width: 300px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 100px; */
+    position: relative;
+    bottom: 350px;
+    left: 50px;
+    gap: 20px;
+}
+
+.profile_pic {
+    height: 400px;
+    width: 100%;
+    /* border-radius: 70%; */
+    object-fit: cover;
+    position: relative;
+    
+    /* left: 100px;
+    top: 100px */
+}
+
+.profile_about_ctnr{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.profile_about_label {
+    /* border: 2px solid yellow; */
+    font-size: 20px;
+}
+
+.profile_about {
+    /* border: 2px solid brown; */
+    width: 100%;
+}
+
+.homeChurch_ctnr {
+    border: 2px solid green;
+    height: 100px;
+    width: 800px;
+    margin-top: 30px;;
+}
+
+.homeChurch_box {
+    border: 2px solid red;
+    display: flex;
+    justify-content:center;
+    width: 90%;
+}
+
+.homeChurch {
+    list-style: none;
+    
 }

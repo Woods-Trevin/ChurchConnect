@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   comment: commentReducer,
   reply: replyReducer,
   prayer: prayerReducer,
-  profile: profileReducer,
+  currentUserProfile: profileReducer,
 
 });
 
