@@ -86,7 +86,7 @@ export default function prayerReducer(state = initialState, action) {
             newState.prayers = action.payload
             return newState;
         default:
-            console.log("Nothing triggered in prayers reducer")
+            // console.log("Nothing triggered in prayers reducer")
             return state;
     }
 

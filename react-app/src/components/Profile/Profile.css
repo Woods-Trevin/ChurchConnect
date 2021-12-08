@@ -4,7 +4,7 @@
 
 .profile_inner_ctnr {
     /* border: 2px solid red; */
-    height: 100%
+    height: 100%;
 }
 
 
@@ -258,8 +258,141 @@
     font-size: 20px;
 }
 
-.profile_second_half{
-    border: 2px solid orange;
+/*----------------------------------------------------------------*/
+
+.prompts_ctnr {
+    display: flex;
+    border: 2px solid green;
+    justify-content: space-between;
+}
+
+.profileEvents_prompt {
+    position: relative;
+    left: 11%;
+}
+
+.profileAnnouncements_prompt {
+    position: relative;
+    right: 11%;
+}
+
+
+/*----------------------------------------------------------------*/
+
+.userCreations_ctnr {
+    display: flex;
+}
+
+
+.profileEvents_ctnr {
+    border: 2px solid red;
+    width: 50%;
     height: 800px;
-    width: 100%;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.profileEvent_navlink {
+    /* border: 2px solid green; */
+    text-decoration: none;
+    color: black;
+}
+
+.profileEvent_ctnr {
+    border: 2px solid green;
+    height: 400px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+    
+}
+
+.profileEvent_title {
+    list-style: none;
+    
+}
+
+.profileEvent_img_ctnr {
+    /* border: 2px solid red; */
+    display: flex;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.profileEvent_img_ctnr > img {
+    transform-origin: center center;
+    object-fit: cover;
+}
+
+.profileEventImage.one {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    
+}
+
+.profileEventImage.two {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    right: 300px;
+}
+
+.profileEventImage.three {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    right: 600px;
+}
+
+.image--hidden {
+    animation: fadeOut 3s forwards ease-in-out;
+    opacity: 0;
+    /* display: none; */
+}
+
+.image--visible {
+    animation: fadeIn 3s forwards ease-in-out;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.profileEvent_description {
+    list-style: none;
+    padding: 10px;
+    
+}
+
+/*----------------------------------------------------------------*/
+
+
+.pr_outmost_ctnr {
+    border: 2px solid purple;
+    height: 800px;
+    width: 50%;
 }
