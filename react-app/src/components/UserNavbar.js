@@ -32,7 +32,7 @@ const UserNavBar = ({ loggedIn, setLoggedIn }) => {
                 </li>
                 <li className="userNav_CreateAnnouncement_ctnr">
                     <NavLink to='/announcement' className='userNav_CreateAnnouncement' >
-                        Create Announcement
+                        Create Prayer Request
                     </NavLink>
                 </li>
                 <li className="userNav_Profile_ctnr">

@@ -282,18 +282,6 @@ body {
     -webkit-overflow-scrolling: touch;
     
 }
-/* .eventImage_ctnr {
-    display: flex;
-    border: 2px solid green;
-    height: 400px;
-    flex-direction: row;
-    overflow-x: auto;
-    /* scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    
-} 
-*/
 
 .eventImage_ctnr > img {
     scroll-snap-align: start;

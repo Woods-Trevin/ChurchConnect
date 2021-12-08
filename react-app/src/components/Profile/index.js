@@ -4,6 +4,7 @@ import * as profileActions from '../../store/profile'
 import * as prayerRequestActions from '../../store/prayer_request'
 import * as eventActions from '../../store/event'
 import './Profile.css'
+import { NavLink } from 'react-router-dom'
 
 export default function Profile() {
     const dispatch = useDispatch()
@@ -17,8 +18,13 @@ export default function Profile() {
     const currentUserProfile = useSelector(state => state.currentUserProfile.profile)
     // console.log(currentUserProfile)
 
+    const prayerRequests = useSelector(state => state.prayer_request.prayer_requests)
+    console.log(prayerRequests)
+    const userPR = prayerRequests?.filter(pr => pr.userId === currentUser?.id)
+    console.log(userPR)
+
     const userLocationSplit = currentUserProfile?.location?.split(',')
-    console.log(userLocationSplit)
+    // console.log(userLocationSplit)
 
     const [profileImage, setProfileImage] = useState("")
     const [address, setAddress] = useState()
@@ -27,6 +33,8 @@ export default function Profile() {
     // console.log(currentUserProfile?.homeChurch)
     // console.log(currentUserProfile?.bio)
 
+    const [image_to_animate, set_image_to_animate] = useState(1)
+
     useEffect(() => {
         dispatch(profileActions.GetProfile(currentUser?.id))
         setAddress(currentUserProfile?.location)
@@ -34,7 +42,25 @@ export default function Profile() {
         setBio(currentUserProfile?.bio)
         dispatch(eventActions.GetEvents())
         dispatch(prayerRequestActions.GetPrayerRequests())
-    }, [profileImage, renderProfileView, renderProfileUpdateView])
+
+        const timeout = setTimeout(() => {
+            if (image_to_animate < 3) {
+                set_image_to_animate(image_to_animate + 1)
+                console.log(image_to_animate)
+            } else {
+                set_image_to_animate(1)
+            }
+        }, 6000)
+
+        return () => clearTimeout(timeout)
+
+    }, [profileImage, renderProfileView, renderProfileUpdateView, image_to_animate])
+
+    const events = useSelector(state => state.event.events)
+    // console.log(events)
+    const userEvents = events?.filter(event => event?.userId === currentUser?.id)
+
+    // console.log(userEvents)
 
     // console.log(address)
 
@@ -66,6 +92,8 @@ export default function Profile() {
 
 
     }
+
+    const imageURLRegex = /^((https?|ftp):)?\/\/.*(jpeg|jpg|png|gif|bmp)$/
 
     return (
         <div className="profile_outmost_ctnr">
@@ -169,9 +197,55 @@ export default function Profile() {
                                 </div>
                             </div>
                         </div>
-                        <div className="profile_second_half">
+                        {currentUser?.id === currentUserProfile?.id &&
+                            <div className="prompts_ctnr">
+                                <div className="profileEvents_prompt">
+                                    <h1> View Your Events </h1>
+                                </div>
+                                <div className="profileAnnouncements_prompt">
+                                    <h1> View Your Prayer Requests </h1>
+                                </div>
+                            </div>
+                        }
+                        {currentUser?.id === currentUserProfile?.id &&
+                            <div className="userCreations_ctnr">
+                                <div className="profileEvents_ctnr">
+                                    {userEvents?.map((event, idx) =>
+                                        <NavLink className="profileEvent_navlink" to={`/event/${event?.id}`}>
+                                            <div className="profileEvent_ctnr">
+                                                <li className="profileEvent_title" >{event?.title}</li>
+                                                <div className="profileEvent_img_ctnr">
+                                                    <div className={`imageOne_ctnr ${image_to_animate === 1 && "image--visible"} ${image_to_animate != 1 && "image--hidden"}`}>
+                                                        <img className="profileEventImage one" src={event?.imageURL} />
+                                                    </div>
+                                                    <div className={`imageTwo_ctnr ${image_to_animate === 2 && "image--visible"} ${image_to_animate != 2 && "image--hidden"}`}>
+                                                        <img className="profileEventImage two" src={event?.imageURLTwo} />
+                                                    </div>
+                                                    <div className={`imageThree_ctnr ${image_to_animate === 3 && "image--visible"} ${image_to_animate != 3 && "image--hidden"}`}>
+                                                        <img className="profileEventImage three" src={event?.imageURLThree} />
+                                                    </div>
+                                                </div>
+                                                <li className="profileEvent_description">{event?.description}</li>
+                                            </div>
+                                        </NavLink>
+                                    )
 
-                        </div>
+                                    }
+
+                                </div>
+                                <div className="pr_outmost_ctnr">
+                                    {
+                                        userPR?.map((pr, idx) =>
+                                            <div className="pr_ctnr">
+                                                <li className="pr_description">{pr?.description}</li>
+                                            </div>
+
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        }
+
                     </div>
                 }
             </div>
