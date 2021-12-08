@@ -18,6 +18,11 @@ export default function Profile() {
     const currentUserProfile = useSelector(state => state.currentUserProfile.profile)
     // console.log(currentUserProfile)
 
+    const prayerRequests = useSelector(state => state.prayer_request.prayer_requests)
+    console.log(prayerRequests)
+    const userPR = prayerRequests?.filter(pr => pr.userId === currentUser?.id)
+    console.log(userPR)
+
     const userLocationSplit = currentUserProfile?.location?.split(',')
     // console.log(userLocationSplit)
 
@@ -53,12 +58,8 @@ export default function Profile() {
 
     const events = useSelector(state => state.event.events)
     // console.log(events)
-    const userEvents = []
-    for (let i = 0; i < events?.length; i++) {
-        if (events[i].userId === currentUser?.id) {
-            userEvents.push(events[i])
-        }
-    }
+    const userEvents = events?.filter(event => event?.userId === currentUser?.id)
+
     // console.log(userEvents)
 
     // console.log(address)
@@ -196,43 +197,54 @@ export default function Profile() {
                                 </div>
                             </div>
                         </div>
-                        <div className="prompts_ctnr">
-                            <div className="profileEvents_prompt">
-                                <h1> View Events You Created </h1>
+                        {currentUser?.id === currentUserProfile?.id &&
+                            <div className="prompts_ctnr">
+                                <div className="profileEvents_prompt">
+                                    <h1> View Your Events </h1>
+                                </div>
+                                <div className="profileAnnouncements_prompt">
+                                    <h1> View Your Prayer Requests </h1>
+                                </div>
                             </div>
-                            <div className="profileAnnouncements_prompt">
-                                <h1> View Prayer Requests You Created </h1>
-                            </div>
-                        </div>
-                        <div className="userCreations_ctnr">
-                            <div className="profileEvents_ctnr">
-                                {userEvents?.map((event, idx) =>
-                                    <NavLink className="profileEvent_navlink" to={`/event/${event?.id}`}>
-                                        <div className="profileEvent_ctnr">
-                                            <li className="profileEvent_title" >{event?.title}</li>
-                                            <div className="profileEvent_img_ctnr">
-                                                <div className={`imageOne_ctnr ${image_to_animate === 1 && "image--visible"} ${image_to_animate != 1 && "image--hidden"}`}>
-                                                    <img className="profileEventImage one" src={event?.imageURL} />
+                        }
+                        {currentUser?.id === currentUserProfile?.id &&
+                            <div className="userCreations_ctnr">
+                                <div className="profileEvents_ctnr">
+                                    {userEvents?.map((event, idx) =>
+                                        <NavLink className="profileEvent_navlink" to={`/event/${event?.id}`}>
+                                            <div className="profileEvent_ctnr">
+                                                <li className="profileEvent_title" >{event?.title}</li>
+                                                <div className="profileEvent_img_ctnr">
+                                                    <div className={`imageOne_ctnr ${image_to_animate === 1 && "image--visible"} ${image_to_animate != 1 && "image--hidden"}`}>
+                                                        <img className="profileEventImage one" src={event?.imageURL} />
+                                                    </div>
+                                                    <div className={`imageTwo_ctnr ${image_to_animate === 2 && "image--visible"} ${image_to_animate != 2 && "image--hidden"}`}>
+                                                        <img className="profileEventImage two" src={event?.imageURLTwo} />
+                                                    </div>
+                                                    <div className={`imageThree_ctnr ${image_to_animate === 3 && "image--visible"} ${image_to_animate != 3 && "image--hidden"}`}>
+                                                        <img className="profileEventImage three" src={event?.imageURLThree} />
+                                                    </div>
                                                 </div>
-                                                <div className={`imageTwo_ctnr ${image_to_animate === 2 && "image--visible"} ${image_to_animate != 2 && "image--hidden"}`}>
-                                                    <img className="profileEventImage two" src={event?.imageURLTwo} />
-                                                </div>
-                                                <div className={`imageThree_ctnr ${image_to_animate === 3 && "image--visible"} ${image_to_animate != 3 && "image--hidden"}`}>
-                                                    <img className="profileEventImage three" src={event?.imageURLThree} />
-                                                </div>
+                                                <li className="profileEvent_description">{event?.description}</li>
                                             </div>
-                                            <li className="profileEvent_description">{event?.description}</li>
-                                        </div>
-                                    </NavLink>
-                                )
+                                        </NavLink>
+                                    )
 
-                                }
+                                    }
 
+                                </div>
+                                <div className="pr_outmost_ctnr">
+                                    {
+                                        userPR?.map((pr, idx) =>
+                                            <div className="pr_ctnr">
+                                                <li className="pr_description">{pr?.description}</li>
+                                            </div>
+
+                                        )
+                                    }
+                                </div>
                             </div>
-                            <div className="pr_outmost_ctnr">
-
-                            </div>
-                        </div>
+                        }
 
                     </div>
                 }
