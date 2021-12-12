@@ -241,7 +241,7 @@ export default function Profile() {
                                         {
                                             userPR?.map((pr, idx) =>
                                                 <div className="pr_ctnr">
-                                                    <li className="pr_description">{pr?.description}</li>
+                                                    <li className="pr_description">~{pr?.description}</li>
                                                     <div className="pr_prayers_ctnr">
                                                         <li>Prayers Recieved: {pr.prayers.length}</li>
                                                     </div>
@@ -249,7 +249,7 @@ export default function Profile() {
                                                         <NavLink className="pr_update_btn" to={`/announcement/${pr?.id}`}>
                                                             Update
                                                         </NavLink>
-                                                        <li className="pr_delete_btn">
+                                                        <li className="pr_delete_btn" onClick={() => dispatch(prayerRequestActions.DeletePrayer(pr?.id))} >
                                                             Delete
                                                         </li>
                                                     </div>

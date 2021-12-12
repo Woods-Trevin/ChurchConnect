@@ -33,10 +33,10 @@ const patch_prayer = (prayer) => {
     }
 }
 
-const delete_prayer = (prayer) => {
+const delete_prayer = (prayers) => {
     return {
         type: DELETE_PRAYER,
-        payload: prayer
+        payload: prayers
     }
 }
 
@@ -93,17 +93,17 @@ export const PatchPrayer = (formData, announcementId) => async (dispatch) => {
     }
 }
 
-export const DeletePrayer = (payload) => async (dispatch) => {
-    const response = await fetch(`/api/pr/${payload.announcementId}`, {
+export const DeletePrayer = (id) => async (dispatch) => {
+    const response = await fetch(`/api/pr/${id}`, {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        // headers: { 'Content-Type': 'application/json' },
+        // body: JSON.stringify(payload)
     })
 
     if (response.ok) {
         const data = await response.json();
         // console.log(data.announcements);
-        dispatch(delete_prayer(data));
+        dispatch(delete_prayer(data.prayer_requests));
         return response;
     }
 }
@@ -129,7 +129,9 @@ export default function prayerRequestReducer(state = initialState, action) {
             newState.prayer_requests = action.payload;
             return newState;
         case DELETE_PRAYER:
-            return state;
+            newState = Object.assign({}, state);
+            newState.prayer_requests = action.payload;
+            return newState;
         default:
             return state;
     }

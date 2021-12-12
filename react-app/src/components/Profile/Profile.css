@@ -493,6 +493,11 @@
     color: black;
 }
 
+.pr_update_btn:hover {
+    cursor: pointer;
+    background-color: rgb(64, 186, 234);
+}
+
 .pr_delete_btn {
     /* border: 2px solid black; */
     width: 75px;
@@ -501,5 +506,12 @@
     align-items: center;
     background-color: skyblue;
     border-radius: 50px;
+    
+}
+
+.pr_delete_btn:hover {
+    cursor: pointer;
+    background-color: rgb(64, 186, 234);
+    
     
 }
