@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import * as profileActions from '../../store/profile'
 import * as prayerRequestActions from '../../store/prayer_request'
 import * as eventActions from '../../store/event'
@@ -8,6 +9,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function Profile() {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [renderProfileView, setRenderProfileView] = useState(true)
     const [renderProfileUpdateView, setRenderProfileUpdateView] = useState(false)
@@ -20,6 +22,7 @@ export default function Profile() {
 
     const prayerRequests = useSelector(state => state.prayer_request.prayer_requests)
     console.log(prayerRequests)
+
     const userPR = prayerRequests?.filter(pr => pr.userId === currentUser?.id)
     console.log(userPR)
 
@@ -234,14 +237,27 @@ export default function Profile() {
 
                                 </div>
                                 <div className="pr_outmost_ctnr">
-                                    {
-                                        userPR?.map((pr, idx) =>
-                                            <div className="pr_ctnr">
-                                                <li className="pr_description">{pr?.description}</li>
-                                            </div>
+                                    <div className="pr_inner_ctnr">
+                                        {
+                                            userPR?.map((pr, idx) =>
+                                                <div className="pr_ctnr">
+                                                    <li className="pr_description">{pr?.description}</li>
+                                                    <div className="pr_prayers_ctnr">
+                                                        <li>Prayers Recieved: {pr.prayers.length}</li>
+                                                    </div>
+                                                    <div className="pr_updatedelete_ctnr">
+                                                        <NavLink className="pr_update_btn" to={`/announcement/${pr?.id}`}>
+                                                            Update
+                                                        </NavLink>
+                                                        <li className="pr_delete_btn">
+                                                            Delete
+                                                        </li>
+                                                    </div>
+                                                </div>
 
-                                        )
-                                    }
+                                            )
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         }
