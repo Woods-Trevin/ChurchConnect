@@ -113,8 +113,9 @@ function App() {
             {/* <Footer /> */}
           </Route>
           <Route path='/announcement/:announcementId' exact={true} >
-            {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />}
-            {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />}
+            {/* {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />} */}
+            {/* {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />} */}
+            <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />
             <Footer />
           </Route>
         </Switch>

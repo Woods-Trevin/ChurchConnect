@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import PrayerRequest, Reply, Comment, db
+from app.models import PrayerRequest, db
 from app.forms import PrayerRequestForm
 from app.awsupload import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -117,9 +117,10 @@ def delete_prayer_request(id):
 
     current_prayer_request = PrayerRequest.query.filter(PrayerRequest.id == id).delete()
     db.session.commit()
+    allPR = PrayerRequest.query.all()
     
-    if current_announcement:
-        return jsonify('Successfully Deleted Announcement')
+    if current_prayer_request:
+        return {"prayer_requests": [prayer.to_dict() for prayer in allPR]}
     else:
         return jsonify('Invalid ID')
 

@@ -81,33 +81,9 @@ export default function CreateAnnouncementComponent() {
                     </ul>
                     <form className="announcementForm_outer_ctnr" onSubmit={handleAnnouncementCreation}>
                         <div className="announcementForm_ctnr">
-                            {/* <label className="announcementImageURL_ctnr">
-                                <div className="announcementImageURL_label">
-                                    Image URL:
-                                </div>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    name='imageURL'
-                                    className='announcementURL_input'
-                                    onChange={handleCreateImage}
-                                />
-                            </label> */}
-                            {/* <label className="announcementTitle_ctnr" >
-                                <div className="announcementTitle_label" >
-                                    Title:
-                                </div>
-                                <input
-                                    type='text'
-                                    name='announcementTitle'
-                                    value={announcementTitle}
-                                    className="announcementTitle_input"
-                                    onChange={(e) => setAnnouncementTitle(e.target.value)}
-                                />
-                            </label> */}
                             <label className="announcementDescription_ctnr">
                                 <div className="announcementDescription_label" >
-                                    Prayer:
+                                    Prayer Request:
                                 </div>
                                 <textarea
                                     name='announcementDescription'

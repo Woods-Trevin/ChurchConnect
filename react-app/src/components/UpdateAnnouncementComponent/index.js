@@ -6,7 +6,7 @@ import './UpdateAnnouncementComponent.css';
 import Footer from '../Footer';
 
 export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
-    const current_announcement = useSelector(state => state.announcement.current_announcement)
+    const current_announcement = useSelector(state => state.prayer_request.current_prayer_request)
     // console.log(current_announcement)
 
     const history = useHistory();
@@ -44,7 +44,8 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
     }
 
     useEffect(() => {
-        setUpdateAnnouncement(true);
+        // setUpdateAnnouncement(true);
+        dispatch(prayerRequestActions.GetOnePrayer(announcementId))
         const errors = [];
 
         // if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
