@@ -75,7 +75,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                 // console.log(image_to_animate, "WHEN REACHING 5");
             }
 
-        }, 3000)
+        }, 5000)
 
         return () => clearInterval(interval)
 
