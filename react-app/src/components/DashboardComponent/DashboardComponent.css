@@ -6,7 +6,8 @@ body {
 
 .Dashboard {
     /* border: 5px solid red; */
-    height: 100%
+    height: 100%;
+    /* font-family: 'Didot', serif; */
 }
 
 .Dashboard_intro_ctnr {
@@ -15,24 +16,285 @@ body {
     
 }
 
-.splashPage_img {
+.animated_images_ctnr {
+    border: 2px solid orange;
+    height: 400px;
+    
+}
+
+.animated_images_inner_ctnr {
+    border: 2px solid red;
+    position: absolute;
     width: 100%;
-    height: 600px;
+    height: 400px;
+    z-index: 2;
+}
+
+/*-----------------------------------------------------------*/
+
+.animated_images_rowOne {
+    border: 2px solid purple;
+    height: 24%;
+    display: flex;
+}
+
+.rowOne.imageOne{
+    /* border: 2px solid green; */
+    background-image: url('../../imagesTwo/animated-foreground-image2.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+.rowOne.imageTwo{
+    background-image: url('../../imagesTwo/animated-foreground-image3.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+.rowOne.imageThree{
+    background-image: url('../../imagesTwo/animated-foreground-image4.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+.rowOne.imageFour{
+    background-image: url('../../imagesTwo/animated-foreground-image5.webp');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+.rowOne.imageFive{
+    background-image: url('../../imagesTwo/animated-foreground-image6.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowOne.imageSix{
+    background-image: url('../../imagesTwo/animated-foreground-image7.webp');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowOne.imageSeven{
+    background-image: url('../../imagesTwo/animated-foreground-image8.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowOne.imageEight{
+    background-image: url('../../imagesTwo/animated-foreground-image9.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowOne.imageNine{
+    background-image: url('../../imagesTwo/animated-foreground-image10.png');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowOne.imageTen{
+    background-image: url('../../imagesTwo/animated-foreground-image11.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+/*-----------------------------------------------------------*/
+
+.animated_images_rowTwo {
+    border: 2px solid purple;
+    height: 24%;
+    display: flex;
+    
+}
+
+.rowTwo.imageOne {
+    background-image: url('../../imagesTwo/animated-foreground-image12.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageTwo {
+    background-image: url('../../imagesTwo/animated-foreground-image13.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageThree {
+    background-image: url('../../imagesTwo/animated-foreground-image14.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageFour {
+    background-image: url('../../imagesTwo/animated-foreground-image15.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageFive {
+    background-image: url('../../imagesTwo/animated-foreground-image16.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageSix {
+    background-image: url('../../imagesTwo/animated-foreground-image17.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageSeven {
+    background-image: url('../../imagesTwo/animated-foreground-image18.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageEight {
+    background-image: url('../../imagesTwo/animated-foreground-image19.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageNine {
+    background-image: url('../../imagesTwo/animated-foreground-image20.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+.rowTwo.imageTen {
+    background-image: url('../../imagesTwo/animated-foreground-image21.jpeg');
+    height: 100%;
+    width:10%;
+    object-fit:fill;
+    background-size: 100% 100%;
+}
+
+/*-----------------------------------------------------------*/
+
+
+.animated_images_rowThree {
+    border: 2px solid purple;
+    height: 24%;
+    display: flex;
+    
+}
+
+.rowThree.imageOne{
+
+}
+
+.rowThree.imageTwo{
+
+}
+
+.rowThree.imageThree{
+
+}
+
+.rowThree.imageFour{
+
+}
+
+.rowThree.imageFive{
+
+}
+
+.rowThree.imageSix{
+
+}
+
+.rowThree.imageSeven{
+
+}
+
+.rowThree.imageEight{
+
+}
+
+.rowThree.imageNine{
+
+}
+
+.rowThree.imageTen{
+
+}
+
+
+
+/*-----------------------------------------------------------*/
+
+.animated_images_rowFour {
+    border: 2px solid purple;
+    height: 24%;
+    display: flex;
+
+}
+
+
+.CC_intro_text {
+    margin: 0;
+    font-size: 80px;
+    position: relative;
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    z-index: 1;
+    
+    
 }
 
 .CCBlurb_ctnr {
     /* border: 2px solid red; */
+    margin: 0;
     height: 100%;
     font-family: 'Didot', serif;
-    margin: 20px;
-
-    /* float: left; */
-    /* display: flex; */
+    padding: 20px;
+    display: flex;
+    align-items: center;
     
 }
 
 .CCBlurb {
-    font-size: 50px;
+    font-size: 30px;
     
 
 }

@@ -74,16 +74,62 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
     return (
         <div className="Dashboard">
             <div className="Dashboard_intro_ctnr">
-                <img src="https://community-impact-website.s3.amazonaws.com/uploads/wpengine/uploads/2019/01/concert-photo.jpg" alt="alt" className="splashPage_img" />
+                <div className="animated_images_ctnr">
+                    <div className="animated_images_inner_ctnr">
+                        <div className="animated_images_rowOne">
+                            <div className="rowOne imageOne"></div>
+                            <div className="rowOne imageTwo"></div>
+                            <div className="rowOne imageThree"></div>
+                            <div className="rowOne imageFour"></div>
+                            <div className="rowOne imageFive"></div>
+                            <div className="rowOne imageSix"></div>
+                            <div className="rowOne imageSeven"></div>
+                            <div className="rowOne imageEight"></div>
+                            <div className="rowOne imageNine"></div>
+                            <div className="rowOne imageTen"></div>
+                        </div>
+                        <div className="animated_images_rowTwo">
+                            <div className="rowTwo imageOne"></div>
+                            <div className="rowTwo imageTwo"></div>
+                            <div className="rowTwo imageThree"></div>
+                            <div className="rowTwo imageFour"></div>
+                            <div className="rowTwo imageFive"></div>
+                            <div className="rowTwo imageSix"></div>
+                            <div className="rowTwo imageSeven"></div>
+                            <div className="rowTwo imageEight"></div>
+                            <div className="rowTwo imageNine"></div>
+                            <div className="rowTwo imageTen"></div>
+                        </div>
+                        <div className="animated_images_rowThree">
+                            <div className="rowThree imageOne"></div>
+                            <div className="rowThree imageTwo"></div>
+                            <div className="rowThree imageThree"></div>
+                            <div className="rowThree imageFour"></div>
+                            <div className="rowThree imageFive"></div>
+                            <div className="rowThree imageSix"></div>
+                            <div className="rowThree imageSeven"></div>
+                            <div className="rowThree imageEight"></div>
+                            <div className="rowThree imageNine"></div>
+                            <div className="rowThree imageTen"></div>
+                        </div>
+                        <div className="animated_images_rowFour">
+                            animated_images_rowFour
+                        </div>
+                    </div>
+                    <p className="CC_intro_text">
+                        Church Connect
+                    </p>
+
+                </div>
                 <div className="CCBlurb_ctnr" >
                     <p className="CCBlurb">
                         ChurchConnect was made to bring members of a church community together by allowing communication between one another through the creation of Events and Announcements...
                     </p>
-                </div>
-                <div className="CCStarter_btn_ctnr" >
-                    <Link to="/event" className="CCStarter_btn" >
-                        Start By Creating an Event
-                    </Link>
+                    <div className="CCStarter_btn_ctnr" >
+                        <Link to="/event" className="CCStarter_btn" >
+                            Start By Creating an Event
+                        </Link>
+                    </div>
                 </div>
             </div>
             <div className="Dashboard_outmost_ctnr">
