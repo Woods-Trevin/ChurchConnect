@@ -27,7 +27,17 @@ body {
     position: absolute;
     width: 100%;
     height: 400px;
-    /* z-index: 2; */
+    z-index: 2;
+}
+
+.image--hidden {
+    animation: fadeOut 3s forwards ease-in-out;
+    opacity: 0;
+    /* display: none; */
+}
+
+.image--visible {
+    animation: fadeIn 3s forwards ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -53,7 +63,7 @@ body {
 
 .animated_images_rowOne {
     /* border: 2px solid purple; */
-    height: 24%;
+    height: 25%;
     display: flex;
 }
 
@@ -138,7 +148,7 @@ body {
 
 .animated_images_rowTwo {
     /* border: 2px solid purple; */
-    height: 24%;
+    height: 25%;
     display: flex;
     
 }
@@ -228,7 +238,7 @@ body {
 
 .animated_images_rowThree {
     /* border: 2px solid purple; */
-    height: 24%;
+    height: 25%;
     display: flex;
     
 }
@@ -319,7 +329,7 @@ body {
 
 .animated_images_rowFour {
     /* border: 2px solid purple; */
-    height: 24%;
+    height: 25.5%;
     display: flex;
     
 }
@@ -401,7 +411,7 @@ body {
     margin: 0;
     font-size: 80px;
     position: relative;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
     height: 100%;
     display: flex;

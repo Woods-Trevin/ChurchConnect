@@ -56,9 +56,9 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
     }
 
-    // const [image_to_animate, set_image_to_animate] = useState(1)
-    let image_to_animate = 0;
+    const [current_image_to_animate, set_current_image_to_animate] = useState(0)
 
+    let image_to_animate = 1;
     useEffect(() => {
         dispatch(prayerRequestActions.GetPrayerRequests())
         dispatch(prayerActions.GetPrayers())
@@ -67,19 +67,22 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
         const interval = setInterval(() => {
             if (image_to_animate < 4) {
                 image_to_animate += 1
-                console.log(image_to_animate, "WHEN BELOW 5");
+                set_current_image_to_animate(image_to_animate)
+                // console.log(image_to_animate, "WHEN BELOW 5");
             } else {
-                image_to_animate = 1
-                console.log(image_to_animate, "WHEN REACHING 5");
+                image_to_animate = 0
+                set_current_image_to_animate(image_to_animate)
+                // console.log(image_to_animate, "WHEN REACHING 5");
             }
 
-        }, 2000)
+        }, 3000)
 
         return () => clearInterval(interval)
 
 
     }, [dispatch]);
 
+    console.log(current_image_to_animate)
 
     return (
         <div className="Dashboard">
@@ -87,52 +90,52 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                 <div className="animated_images_ctnr">
                     <div className="animated_images_inner_ctnr">
                         <div className="animated_images_rowOne">
-                            <div className="rowOne imageOne"></div>
-                            <div className="rowOne imageTwo"></div>
-                            <div className="rowOne imageThree"></div>
-                            <div className="rowOne imageFour"></div>
-                            <div className="rowOne imageFive"></div>
-                            <div className="rowOne imageSix"></div>
-                            <div className="rowOne imageSeven"></div>
-                            <div className="rowOne imageEight"></div>
-                            <div className="rowOne imageNine"></div>
-                            <div className="rowOne imageTen"></div>
+                            <div className={`rowOne imageOne ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageTwo ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageThree ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageFour ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageFive ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageSix ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageSeven ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageEight ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageNine ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageTen ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
                         </div>
                         <div className="animated_images_rowTwo">
-                            <div className="rowTwo imageOne"></div>
-                            <div className="rowTwo imageTwo"></div>
-                            <div className="rowTwo imageThree"></div>
-                            <div className="rowTwo imageFour"></div>
-                            <div className="rowTwo imageFive"></div>
-                            <div className="rowTwo imageSix"></div>
-                            <div className="rowTwo imageSeven"></div>
-                            <div className="rowTwo imageEight"></div>
-                            <div className="rowTwo imageNine"></div>
-                            <div className="rowTwo imageTen"></div>
+                            <div className={`rowTwo imageOne ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageTwo ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageThree ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageFour ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageFive ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageSix ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageSeven ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageEight ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageNine ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageTen ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
                         </div>
                         <div className="animated_images_rowThree">
-                            <div className="rowThree imageOne"></div>
-                            <div className="rowThree imageTwo"></div>
-                            <div className="rowThree imageThree"></div>
-                            <div className="rowThree imageFour"></div>
-                            <div className="rowThree imageFive"></div>
-                            <div className="rowThree imageSix"></div>
-                            <div className="rowThree imageSeven"></div>
-                            <div className="rowThree imageEight"></div>
-                            <div className="rowThree imageNine"></div>
-                            <div className="rowThree imageTen"></div>
+                            <div className={`rowThree imageOne ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageTwo ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageThree ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageFour ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageFive ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageSix ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageSeven ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageEight ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageNine ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageTen ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
                         </div>
                         <div className="animated_images_rowFour">
-                            <div className="rowFour imageOne"></div>
-                            <div className="rowFour imageTwo"></div>
-                            <div className="rowFour imageThree"></div>
-                            <div className="rowFour imageFour"></div>
-                            <div className="rowFour imageFive"></div>
-                            <div className="rowFour imageSix"></div>
-                            <div className="rowFour imageSeven"></div>
-                            <div className="rowFour imageEight"></div>
-                            <div className="rowFour imageNine"></div>
-                            <div className="rowFour imageTen"></div>
+                            <div className={`rowFour imageOne ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageTwo ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageThree ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageFour ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageFive ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageSix ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageSeven ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageEight ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 3 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageNine ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 2 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageTen ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate != 1 && "image--hidden"}`}></div>
                         </div>
                     </div>
                     <p className="CC_intro_text">
