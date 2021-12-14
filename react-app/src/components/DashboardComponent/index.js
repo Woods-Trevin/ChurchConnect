@@ -21,9 +21,9 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
     const eventsLength = events?.length
     // console.log(eventsLength)
     const currentUserId = useSelector(state => state.session.user?.id)
-    console.log(currentUserId)
+    // console.log(currentUserId)
     const prayers = useSelector(state => state.prayer.prayers)
-    console.log(prayers)
+    // console.log(prayers)
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -56,19 +56,29 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
 
     }
 
-
-    function handlePrayerCtn(pr_id) {
-        const prayers = prayers?.find(prayer => prayer.prayer_request_id === pr_id)
-        // console.log(prayers.length)
-    }
+    // const [image_to_animate, set_image_to_animate] = useState(1)
+    let image_to_animate = 0;
 
     useEffect(() => {
         dispatch(prayerRequestActions.GetPrayerRequests())
         dispatch(prayerActions.GetPrayers())
         dispatch(eventActions.GetEvents())
 
+        const interval = setInterval(() => {
+            if (image_to_animate < 4) {
+                image_to_animate += 1
+                console.log(image_to_animate, "WHEN BELOW 5");
+            } else {
+                image_to_animate = 1
+                console.log(image_to_animate, "WHEN REACHING 5");
+            }
 
-    }, [dispatch, eventsLength]);
+        }, 2000)
+
+        return () => clearInterval(interval)
+
+
+    }, [dispatch]);
 
 
     return (
@@ -113,7 +123,16 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             <div className="rowThree imageTen"></div>
                         </div>
                         <div className="animated_images_rowFour">
-                            animated_images_rowFour
+                            <div className="rowFour imageOne"></div>
+                            <div className="rowFour imageTwo"></div>
+                            <div className="rowFour imageThree"></div>
+                            <div className="rowFour imageFour"></div>
+                            <div className="rowFour imageFive"></div>
+                            <div className="rowFour imageSix"></div>
+                            <div className="rowFour imageSeven"></div>
+                            <div className="rowFour imageEight"></div>
+                            <div className="rowFour imageNine"></div>
+                            <div className="rowFour imageTen"></div>
                         </div>
                     </div>
                     <p className="CC_intro_text">
