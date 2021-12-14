@@ -25,8 +25,8 @@
     
 }
 .profile_pic_wide {
-    height: 400px;
-    
+    height: 500px;
+    /* object-fit:contain; */
 }
 
 .update_profile_btn {
@@ -74,12 +74,11 @@
     width: 400px;
     height: 100px;
     position: absolute;
-    top: 360px;
+    top: 420px;
     left: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
     
 }
 
@@ -98,33 +97,10 @@
     height: 30px;
 }
 
-.cityState_ctnr {
-    
-}
-
-.cityState_label {
+.address_prompt {
     color: white;
     font-size: 20px;
-}
-
-.profileCityState_input {
-    width: 80%;
-    height: 30px;
-}
-
-.zipcode_ctnr {
-   
-}
-
-.zipcode_label {
-    color: white;
-    font-size: 20px;
-    
-}
-
-.profileZipcode_input {
-    width: 80%;
-    height: 30px;
+    font-weight: 700;
 }
 
 
@@ -147,7 +123,7 @@
     flex-direction: column;
     /* gap: 100px; */
     position: relative;
-    bottom: 350px;
+    bottom: 430px;
     left: 50px;
     gap: 20px;
 }

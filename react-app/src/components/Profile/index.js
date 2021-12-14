@@ -123,6 +123,7 @@ export default function Profile() {
                                         onChange={(e) => setAddress(e.target.value)}
                                     />
                                 </label>
+                                <p className="address_prompt">Must include Address, City, State, Zipcode seperated by a comma</p>
                             </div>
 
                             <div className="profile_contents_ctnr">
