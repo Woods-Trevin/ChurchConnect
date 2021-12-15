@@ -2,6 +2,7 @@ const CREATE_PROFILE = 'profile/CREATE_PROFILE';
 const GET_PROFILE = 'profile/GET_PROFILE';
 const UPDATE_PROFILE = 'profile/UPDATE_PROFILE';
 const DELETE_PROFILE = 'profile/DELETE_PROFILE';
+const GET_ALL_PROFILES = 'profile/GET_ALL_PROFILES';
 
 
 export const create_profile = (profile) => {
@@ -29,6 +30,13 @@ export const delete_profile = (profile) => {
     return {
         type: DELETE_PROFILE,
         payload: profile
+    }
+}
+
+export const get_all_profiles = (profiles) => {
+    return {
+        type: GET_ALL_PROFILES,
+        payload: profiles
     }
 }
 
@@ -80,6 +88,16 @@ export const DeleteProfile = (payload) => async (dispatch) => {
     }
 }
 
+export const GetAllProfiles = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/profile/`)
+
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(get_all_profiles(data.profiles))
+        return response
+    }
+}
+
 
 const initialState = { profile: null }
 export default function profileReducer(state = initialState, action) {
@@ -96,6 +114,10 @@ export default function profileReducer(state = initialState, action) {
         case UPDATE_PROFILE:
             newState = Object.assign({}, state)
             newState.profile = action.payload
+            return newState;
+        case GET_ALL_PROFILES:
+            newState = Object.assign({}, state)
+            newState.profiles = action.payload
             return newState;
         case DELETE_PROFILE:
             return state

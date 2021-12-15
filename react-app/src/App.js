@@ -118,6 +118,10 @@ function App() {
             <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />
             <Footer />
           </Route>
+          <Route path='/profile/:profileId' exact={true} >
+            <Profile />
+            <Footer />
+          </Route>
         </Switch>
       }
     </BrowserRouter>

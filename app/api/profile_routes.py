@@ -16,6 +16,15 @@ def get_profile(id):
         return {"profile": currentUserProfile.to_dict()}
     return jsonify("Bad Data")
 
+@profile_routes.route('/', methods=['GET'])
+@login_required
+def get_all_profiles():
+
+    if request.method == 'GET':
+        userProfiles = Profile.query.all()
+        return {"profiles": [profile.to_dict() for profile in userProfiles]}
+    return jsonify("Bad Data")
+
 
 @profile_routes.route('/<int:id>', methods=['PATCH'])
 @login_required
