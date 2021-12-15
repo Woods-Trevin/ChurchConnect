@@ -149,7 +149,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                 </div>
                 <div className="CCBlurb_ctnr" >
                     <p className="CCBlurb">
-                        ChurchConnect was made to bring members of a church community together by allowing communication between one another through the creation of Events and Announcements...
+                        ChurchConnect was made to bring members of a church community together by allowing communication between one another through the creation of Events and Prayer Requests...
                     </p>
                     <div className="CCStarter_btn_ctnr" >
                         <Link to="/event" className="CCStarter_btn" >
