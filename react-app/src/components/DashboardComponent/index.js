@@ -175,7 +175,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                     <div className='DashboardAnnouncements_items_wrapper'>
                                         {/* {imageURLRegex.test(announcement?.imageURL) && <img className='DashboardAnnouncement_item img' src={announcement?.imageURL} />} */}
                                         {/* <li className='DashboardAnnouncement_item title'>{announcement.title}</li> */}
-                                        <li className='DashboardAnnouncement_item description'>{prayer_request.description}</li>
+                                        <li className='DashboardAnnouncement_item description'>~ {prayer_request.description}</li>
                                         <NavLink to={`/profile/${prayer_request?.user.id}`} className='DashboardAnnouncement_item username'>
                                             <img className="DashboardAnnouncement_user_img" src={userProfiles?.find(profile => profile?.userId === prayer_request?.user.id).profilePicture} />
                                             {prayer_request.user?.username}
