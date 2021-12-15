@@ -18,7 +18,7 @@ body {
 
 .animated_images_ctnr {
     /* border: 2px solid orange; */
-    height: 400px;
+    height: 500px;
     
 }
 
@@ -26,7 +26,7 @@ body {
     /* border: 2px solid red; */
     position: absolute;
     width: 100%;
-    height: 400px;
+    height: 500px;
     z-index: 2;
 }
 
@@ -431,11 +431,13 @@ body {
     padding: 20px;
     display: flex;
     align-items: center;
+    gap: 10px;
     
 }
 
 .CCBlurb {
     font-size: 30px;
+    /* border: 2px solid green; */
     
 
 }
@@ -521,7 +523,7 @@ body {
     /* overflow: scroll; */
     /* width: 400px; */
     /* transform: translate(0, -50%) */
-    animation: nasdaq 40s linear infinite;
+    animation: nasdaq 50s linear infinite;
 }
 
 @keyframes nasdaq {
@@ -529,7 +531,7 @@ body {
         left: 100%;
     }
     100% {
-        left: -215%;
+        left: -380%;
     }
 }
 
@@ -578,7 +580,25 @@ body {
 
 .DashboardAnnouncement_item.username {
     /* border: 2px solid blue; */
-    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.DashboardAnnouncement_item.username:hover {
+    color: skyblue;
+}
+
+.DashboardAnnouncement_user_img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    
 }
 
 .prayer_ctnr {
@@ -588,8 +608,8 @@ body {
     justify-content: flex-end;
     align-items: center;
     position: relative;
-    top: 15px;
     gap: 10px;
+    right: 15px;
    
 }
 

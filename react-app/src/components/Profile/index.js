@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import * as profileActions from '../../store/profile'
 import * as prayerRequestActions from '../../store/prayer_request'
 import * as eventActions from '../../store/event'
@@ -10,6 +10,8 @@ import { NavLink } from 'react-router-dom'
 export default function Profile() {
     const dispatch = useDispatch()
     const history = useHistory()
+
+    const { profileId } = useParams()
 
     const [renderProfileView, setRenderProfileView] = useState(true)
     const [renderProfileUpdateView, setRenderProfileUpdateView] = useState(false)
@@ -21,10 +23,8 @@ export default function Profile() {
     // console.log(currentUserProfile)
 
     const prayerRequests = useSelector(state => state.prayer_request.prayer_requests)
-    console.log(prayerRequests)
 
     const userPR = prayerRequests?.filter(pr => pr.userId === currentUser?.id)
-    console.log(userPR)
 
     const userLocationSplit = currentUserProfile?.location?.split(',')
     // console.log(userLocationSplit)
@@ -39,7 +39,11 @@ export default function Profile() {
     const [image_to_animate, set_image_to_animate] = useState(1)
 
     useEffect(() => {
-        dispatch(profileActions.GetProfile(currentUser?.id))
+        if (profileId) {
+            dispatch(profileActions.GetProfile(profileId))
+        } else {
+            dispatch(profileActions.GetProfile(currentUser?.id))
+        }
         setAddress(currentUserProfile?.location)
         setHomeChurch(currentUserProfile?.homeChurch)
         setBio(currentUserProfile?.bio)
@@ -57,7 +61,7 @@ export default function Profile() {
 
         return () => clearTimeout(timeout)
 
-    }, [profileImage, renderProfileView, renderProfileUpdateView, image_to_animate])
+    }, [profileImage, renderProfileView, renderProfileUpdateView, image_to_animate, profileId])
 
     const events = useSelector(state => state.event.events)
     // console.log(events)
@@ -180,10 +184,10 @@ export default function Profile() {
                 {renderProfileView &&
                     <div className="profile_ctnr">
                         <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
-                        <li className="update_profile_btn" onClick={() => {
+                        {currentUser?.id === currentUserProfile.userId && <li className="update_profile_btn" onClick={() => {
                             setRenderProfileView(false);
                             setRenderProfileUpdateView(true);
-                        }}>Update Profile</li>
+                        }}>Update Profile</li>}
                         <li className="user_username">{currentUser?.username}</li>
                         {/* <li className="user_location">{}</li> */}
                         <div className="profile_contents_ctnr">
