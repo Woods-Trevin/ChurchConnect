@@ -69,20 +69,20 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
         dispatch(eventActions.GetEvents())
         dispatch(profileActions.GetAllProfiles())
 
-        const interval = setInterval(() => {
-            if (image_to_animate < 4) {
-                image_to_animate += 1
-                set_current_image_to_animate(image_to_animate)
-                // console.log(image_to_animate, "WHEN BELOW 5");
-            } else {
-                image_to_animate = 0
-                set_current_image_to_animate(image_to_animate)
-                // console.log(image_to_animate, "WHEN REACHING 5");
-            }
+        // const interval = setInterval(() => {
+        //     if (image_to_animate < 4) {
+        //         image_to_animate += 1
+        //         set_current_image_to_animate(image_to_animate)
+        //         // console.log(image_to_animate, "WHEN BELOW 5");
+        //     } else {
+        //         image_to_animate = 0
+        //         set_current_image_to_animate(image_to_animate)
+        //         // console.log(image_to_animate, "WHEN REACHING 5");
+        //     }
 
-        }, 5000)
+        // }, 5000)
 
-        return () => clearInterval(interval)
+        // return () => clearInterval(interval)
 
 
     }, [dispatch]);
@@ -97,7 +97,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             <div className={`rowOne imageOne ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"}`}></div>
                             <div className={`rowOne imageTwo ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
                             <div className={`rowOne imageThree ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"}`}></div>
-                            <div className={`rowOne imageFour ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
+                            <div className={`rowOne imageFour ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
                             <div className={`rowOne imageFive ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"}`}></div>
                             <div className={`rowOne imageSix ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"}`}></div>
                             <div className={`rowOne imageSeven ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
@@ -113,9 +113,9 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             <div className={`rowTwo imageFive ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
                             <div className={`rowTwo imageSix ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
                             <div className={`rowTwo imageSeven ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
-                            <div className={`rowTwo imageEight ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageEight ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
                             <div className={`rowTwo imageNine ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"}`}></div>
-                            <div className={`rowTwo imageTen ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
+                            <div className={`rowTwo imageTen ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"}`}></div>
                         </div>
                         <div className="animated_images_rowThree">
                             <div className={`rowThree imageOne ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
@@ -123,11 +123,11 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             <div className={`rowThree imageThree ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
                             <div className={`rowThree imageFour ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
                             <div className={`rowThree imageFive ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
-                            <div className={`rowThree imageSix ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageSix ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
                             <div className={`rowThree imageSeven ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
                             <div className={`rowThree imageEight ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"} ${current_image_to_animate === 4 && "image--hidden"}`}></div>
                             <div className={`rowThree imageNine ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"}`}></div>
-                            <div className={`rowThree imageTen ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"}`}></div>
+                            <div className={`rowThree imageTen ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
                         </div>
                         <div className="animated_images_rowFour">
                             <div className={`rowFour imageOne ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"}`}></div>
@@ -139,7 +139,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             <div className={`rowFour imageSeven ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"}`}></div>
                             <div className={`rowFour imageEight ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 3 && "image--hidden"}`}></div>
                             <div className={`rowFour imageNine ${current_image_to_animate === 2 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 2 && "image--hidden"}`}></div>
-                            <div className={`rowFour imageTen ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"}`}></div>
+                            <div className={`rowFour imageTen ${current_image_to_animate === 1 && "image--visible"} ${current_image_to_animate === 3 && "image--visible"} ${current_image_to_animate === 0 && "image--visible"} ${current_image_to_animate === 4 && "image--visible"} ${current_image_to_animate !== 1 && "image--hidden"} ${current_image_to_animate !== 3 && "image--hidden"}`}></div>
                         </div>
                     </div>
                     <p className="CC_intro_text">
