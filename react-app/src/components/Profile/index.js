@@ -184,7 +184,7 @@ export default function Profile() {
                 {renderProfileView &&
                     <div className="profile_ctnr">
                         <img className="profile_pic_wide" src={currentUserProfile?.profilePicture} />
-                        {currentUser?.id === currentUserProfile.userId && <li className="update_profile_btn" onClick={() => {
+                        {currentUser?.id === currentUserProfile?.userId && <li className="update_profile_btn" onClick={() => {
                             setRenderProfileView(false);
                             setRenderProfileUpdateView(true);
                         }}>Update Profile</li>}
