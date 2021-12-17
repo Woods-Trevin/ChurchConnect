@@ -26,5 +26,6 @@ class Profile(db.Model):
             'homeChurch':self.home_church,
             'bio':self.bio,
             'userId':self.user_id,
+            'user': self.user.to_dict()
         }
 

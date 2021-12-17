@@ -53,10 +53,10 @@
     position: absolute;
     color: white;
     /* bottom: 20px; */
-    top: 370px;
-    left: 400px;
+    top: 150px;
+    right: 100px;
     list-style: none;
-    font-size: 30px;
+    font-size: 50px;
 }
 
 .user_location {
@@ -184,10 +184,12 @@
     align-items: center;
     list-style: none;
     gap: 20px;
+
 }
 
 .homeChurch_label {
     font-size: 30px;
+    
 }
 
 .homeChurch_box {
@@ -198,6 +200,7 @@
     align-items: center;
     width: 60%;
     height: 100px;
+    padding-left: 30px;
 }
 
 .homeChurch {

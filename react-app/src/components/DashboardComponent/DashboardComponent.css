@@ -537,6 +537,7 @@ body {
 
 .Dashboard_pr_view:hover {
     animation-play-state: paused;
+    
 }
 
 .DashboardAnnouncements_link {
@@ -549,6 +550,8 @@ body {
 }
 .DashboardAnnouncements_link:hover {
     box-shadow: 0 0 10px black;
+    cursor: pointer;
+    
 }
 
 .DashboardAnnouncements_items_wrapper {
@@ -585,7 +588,6 @@ body {
     text-decoration: none;
     color: black;
     font-size: 20px;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
