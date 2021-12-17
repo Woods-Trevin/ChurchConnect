@@ -21,6 +21,7 @@ export default function Profile() {
 
     const currentUserProfile = useSelector(state => state.currentUserProfile.profile)
     // console.log(currentUserProfile)
+    const currentUserUsername = currentUserProfile?.user?.username
 
     const prayerRequests = useSelector(state => state.prayer_request.prayer_requests)
 
@@ -188,7 +189,7 @@ export default function Profile() {
                             setRenderProfileView(false);
                             setRenderProfileUpdateView(true);
                         }}>Update Profile</li>}
-                        <li className="user_username">{currentUser?.username}</li>
+                        <li className="user_username">{currentUserUsername}</li>
                         {/* <li className="user_location">{}</li> */}
                         <div className="profile_contents_ctnr">
                             <div className="profile_pic_ctnr">
