@@ -8,17 +8,18 @@ import './EventDisplay.css';
 import CommentComponent from '../CommentsComponent';
 import Footer from '../Footer';
 
-export default function EventDisplay({ setUpdateEvent }) {
+export default function EventDisplay({ setUpdateEvent, updateEvent }) {
     const { eventId } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
 
+    console.log(updateEvent)
 
     useEffect(() => {
         dispatch(eventActions.GetOneEvent(eventId))
         dispatch(commentActions.GetComments())
         dispatch(replyActions.GetReplies())
-    }, [dispatch, eventId])
+    }, [dispatch, eventId, history])
 
 
     // console.log(eventId, '---------------')

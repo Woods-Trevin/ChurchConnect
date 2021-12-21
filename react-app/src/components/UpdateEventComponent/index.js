@@ -6,11 +6,12 @@ import './UpdateEventComponent.css';
 import Footer from '../Footer';
 
 
-export default function UpdateEventComponent({ setUpdateEvent }) {
+export default function UpdateEventComponent({ updateEvent, setUpdateEvent }) {
     const { eventId } = useParams()
     // console.log(eventId, '---------------')
     const event = useSelector(state => state.event.currentevent)
 
+    console.log(updateEvent)
 
     const [updateImageOne, setUpdateImageOne] = useState(event?.imageURL)
     const [updateImageTwo, setUpdateImageTwo] = useState(event?.imageURLTwo)
@@ -27,6 +28,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
 
     const dispatch = useDispatch()
     const history = useHistory()
+
 
     let currentDateSlice;
     let startDateSlice;
@@ -217,6 +219,7 @@ export default function UpdateEventComponent({ setUpdateEvent }) {
 
 
         setValidationErrors(errors)
+        return () => setUpdateEvent(false)
     }, [dispatch, eventId, updateImageOne, updateImageTwo, updateImageThree, updateEventTitle, updateEventDescription, updateEventStartDate, updateEventEndDate, updateEventStartTime, updateEventEndTime])
 
 

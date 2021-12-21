@@ -47,7 +47,7 @@ function App() {
       setLoaded(true);
     })();
 
-  }, [dispatch]);
+  }, [dispatch, updateEvent]);
 
 
   if (!loaded) {
@@ -108,8 +108,8 @@ function App() {
             <Footer />
           </Route>
           <Route path='/event/:eventId' exact={true} >
-            {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} />}
-            {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} />}
+            {!updateEvent && <EventDisplay setUpdateEvent={setUpdateEvent} updateEvent={updateEvent} />}
+            {updateEvent && <UpdateEventComponent setUpdateEvent={setUpdateEvent} updateEvent={updateEvent} />}
             {/* <Footer /> */}
           </Route>
           <Route path='/announcement/:announcementId' exact={true} >
