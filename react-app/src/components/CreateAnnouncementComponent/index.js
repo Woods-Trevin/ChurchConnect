@@ -54,10 +54,10 @@ export default function CreateAnnouncementComponent() {
         setValidationErrors(errors);
     }, [dispatch, imageURL, prayerDescription])
 
-    const handleCreateImage = (e) => {
-        const currentFile = e.target.files[0];
-        setImageURL(currentFile);
-    }
+    // const handleCreateImage = (e) => {
+    //     const currentFile = e.target.files[0];
+    //     setImageURL(currentFile);
+    // }
 
 
 
