@@ -133,7 +133,7 @@
 
 .eventDisplay_btn_ctnr {
     /* border: 6px solid green; */
-    margin-top: 40px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     gap: 50px;

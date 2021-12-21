@@ -85,6 +85,12 @@ export default function EventDisplay({ setUpdateEvent, updateEvent }) {
                             <img key={2} className="eventDisplay_img_two" src={imageURLRegex.test(event?.imageURLTwo) ? event?.imageURLTwo : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
                             <img key={3} className="eventDisplay_img_three" src={imageURLRegex.test(event?.imageURLThree) ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
                         </div>}
+                        {((user?.id === event?.userId) && user) &&
+                            <div className="eventDisplay_btn_ctnr">
+                                <li className="eventDisplay_delete_btn" onClick={(e) => handleDelete(e)}>Delete</li>
+                                <li className="eventDisplay_update_btn" onClick={(e) => handleUpdate(e)}>Update</li>
+                            </div>
+                        }
                         <div className="eventDisplay_title" >
                             {event?.title}
                         </div>
@@ -116,10 +122,6 @@ export default function EventDisplay({ setUpdateEvent, updateEvent }) {
                             </div>
                         </div>
                     </div>
-                    {((user?.id === event?.userId) && user) && <div className="eventDisplay_btn_ctnr">
-                        <li className="eventDisplay_delete_btn" onClick={(e) => handleDelete(e)}>Delete</li>
-                        <li className="eventDisplay_update_btn" onClick={(e) => handleUpdate(e)}>Update</li>
-                    </div>}
                 </div>
                 <div className="eventDisplay_commentreply_ctnr">
                     <CommentComponent eventId={eventId} />

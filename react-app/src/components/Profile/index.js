@@ -62,7 +62,7 @@ export default function Profile() {
 
         return () => clearTimeout(timeout)
 
-    }, [profileImage, renderProfileView, renderProfileUpdateView, image_to_animate, profileId])
+    }, [profileImage, renderProfileView, renderProfileUpdateView, profileId])
 
     const events = useSelector(state => state.event.events)
     // console.log(events)

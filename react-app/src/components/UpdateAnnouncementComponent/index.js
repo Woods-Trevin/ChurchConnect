@@ -6,14 +6,14 @@ import './UpdateAnnouncementComponent.css';
 import Footer from '../Footer';
 
 export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
-    const current_announcement = useSelector(state => state.prayer_request.current_prayer_request)
-    // console.log(current_announcement)
+    const current_prayer_request = useSelector(state => state.prayer_request?.current_prayer_request)
+    console.log(current_prayer_request)
 
     const history = useHistory();
 
     // const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState("")
     // const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
-    const [updatePrayerDescription, setUpdatePrayerDescription] = useState(current_announcement?.description)
+    const [updatePrayerDescription, setUpdatePrayerDescription] = useState(current_prayer_request?.description)
 
     // console.log(updateAnnouncementURL) 
     const [validationErrors, setValidationErrors] = useState([])
@@ -46,13 +46,19 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
     useEffect(() => {
         // setUpdateAnnouncement(true);
         dispatch(prayerRequestActions.GetOnePrayer(announcementId))
+        // setUpdatePrayerDescription(current_prayer_request?.description)
+
+        setUpdatePrayerDescription(current_prayer_request?.description)
+
+
+
         const errors = [];
 
         // if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
         // if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
         // if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
         if (!updatePrayerDescription) errors.push('Announcement must include a Description');
-        if (updatePrayerDescription.length > 1000) errors.push('Announcement Description is too long');
+        if (updatePrayerDescription?.length > 1000) errors.push('Announcement Description is too long');
 
         setValidationErrors(errors);
     }, [dispatch, updatePrayerDescription])
@@ -106,9 +112,9 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                                     Description:
                                 </div>
                                 <input
-                                    type='text'
+                                    type="text"
                                     name='updateAnnouncementDescription'
-                                    value={updatePrayerDescription}
+                                    defaultValue={updatePrayerDescription}
                                     className="updateAnnouncement_description_input"
                                     onChange={(e) => setUpdatePrayerDescription(e.target.value)}
                                 />
