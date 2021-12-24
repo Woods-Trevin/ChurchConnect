@@ -219,7 +219,6 @@ export default function UpdateEventComponent({ updateEvent, setUpdateEvent }) {
 
 
         setValidationErrors(errors)
-        return () => setUpdateEvent(false)
     }, [dispatch, eventId, updateImageOne, updateImageTwo, updateImageThree, updateEventTitle, updateEventDescription, updateEventStartDate, updateEventEndDate, updateEventStartTime, updateEventEndTime])
 
 

@@ -19,6 +19,8 @@ def validation_errors_to_error_messages(validation_errors):
 
 @event_routes.route('/', methods=['GET'])
 def get_events():
+    form = EventForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if request.method == 'GET':
         events = Event.query.all()
         return {'events': [event.to_dict() for event in events]}
