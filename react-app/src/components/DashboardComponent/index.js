@@ -160,14 +160,14 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
             </div>
             <div className="Dashboard_outmost_ctnr">
                 <div className="Dashboard_pr_ctnr">
-                    {/* <div>
-                        <h3 className="selectAnnouncement_prompt" >
-                            Select an Announcement
-                        </h3>
-                        <h3 className="scrollAnnouncement_prompt">
-                            Scroll to View More
-                        </h3>
-                    </div> */}
+                    <div className="pr_blurb_ctnr">
+                        <div className="prayer_request_prompt" >
+                            Global Prayer Requests
+                        </div>
+                        <div className="prayer_request_info" >
+                            Prayer Requests change each day. Come back tomorrow to view more prayers from people outside your church.
+                        </div>
+                    </div>
                     <div className="Dashboard_pr_view">
                         {
                             prayer_requests?.map((prayer_request, idx) =>
