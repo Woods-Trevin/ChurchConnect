@@ -472,6 +472,7 @@ body {
 
 .Dashboard_outmost_ctnr {
     /* border: 5px solid pink; */
+    background-color: #f1f5f7;
 }
 
 
@@ -640,7 +641,8 @@ body {
 /*----------------------------------------------*/
 
 .Dashboard_event_ctnr {
-    border: 6px solid yellow;
+    border-top: 1px solid black;
+    /* border: 6px solid yellow; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     /* grid-auto-flow: row; */
@@ -656,21 +658,21 @@ body {
 /*----------------------------------------------*/
 
 .NavLink_ctnr {
-    border: 2px solid black;
-    background-color: white;
+    border: 2px solid rgba(0, 0, 0, 0.555);
+    background-color: black;
     border-radius: 10px;
     /* box-shadow: 0 0 10px black; */
     height: 450px;
     width: 350px;
     /* margin-left: 20%; */
     text-decoration: none;
-    color: black;
+    color: rgb(127, 204, 235);
     font-family: 'Didot', serif;
 }
 
 .NavLink_ctnr:hover {
     box-shadow: 0 0 10px black;
-
+    
     
 }
 
@@ -679,12 +681,13 @@ body {
     display: flex;
     justify-content: center;
     font-size:24px;
+    padding: 10px;
     /* font-family: 'Comic Sans MS', cursive;  */
     font-family: 'Didot', serif;
 }
 
 .eventImage_ctnr {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     height: 200px;
     width: 100%;
     display: flex;
