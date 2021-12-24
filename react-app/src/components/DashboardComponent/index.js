@@ -213,7 +213,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                     <img className="EventImage three" src={imageURLRegex.test(event?.imageURLThree) ? event?.imageURLThree : 'https://icon2.cleanpng.com/20180605/ijl/kisspng-computer-icons-image-file-formats-no-image-5b16ff0d2414b5.0787389815282337411478.jpg'} alt="alt" />
                                 </div>
                             }
-                            <div className="DashboardEvent_items_ctnr">
+                            {/* <div className="DashboardEvent_items_ctnr">
                                 <div className="startDateTime_ctnr">
                                     <p>Event Starts: </p>
                                     <li className="DashboardEvent_items startDate" >{new Date(new Date(event?.startDate).setDate(new Date(event?.startDate).getDate() + 1)).toLocaleDateString(undefined, options)}</li>
@@ -224,7 +224,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                                     <li className="DashboardEvent_items endDate" >{new Date(new Date(event?.endDate).setDate(new Date(event?.endDate).getDate() + 1)).toLocaleDateString(undefined, options)}</li>
                                     <li className="DashboardEvent_items endTime" >{new Date('1970-01-01T' + event?.endTime + 'Z').toLocaleTimeString('en-US', { timeZone: 'UTC', hour12: true, hour: 'numeric', minute: 'numeric' })}</li>
                                 </div>
-                            </div>
+                            </div> */}
                         </NavLink>
 
                     )

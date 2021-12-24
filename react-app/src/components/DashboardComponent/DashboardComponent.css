@@ -641,26 +641,28 @@ body {
 
 .Dashboard_event_ctnr {
     border: 6px solid yellow;
-    display: flex;
-    /* background-color:white; */
-    /* flex-direction: column; */
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-auto-flow: row; */
     width: 100%;
-    gap: 50px;
-    overflow-x: scroll;
+    height: 100%;
+    padding: 50px;
+    /* column-gap: 200px; */
+    row-gap: 100px;
+    /* overflow-x: scroll; */
 }
 
 
 /*----------------------------------------------*/
 
 .NavLink_ctnr {
-    border: 2px solid red;
+    border: 2px solid black;
     background-color: white;
     border-radius: 10px;
     /* box-shadow: 0 0 10px black; */
-    height: 550px;
-    margin-left: 10px;
-    width: 700px;
+    height: 450px;
+    width: 350px;
+    /* margin-left: 20%; */
     text-decoration: none;
     color: black;
     font-family: 'Didot', serif;
@@ -682,6 +684,9 @@ body {
 }
 
 .eventImage_ctnr {
+    border: 1px solid green;
+    height: 200px;
+    width: 100%;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -706,18 +711,18 @@ body {
 }
 
 .EventImage.one {
-    width: 700px;
-    height: 400px;
+    width:100%;
+    height:100%;
 }
 
 .EventImage.two {
-    width: 700px;
-    height: 400px;
+    width:100%;
+    height:100%;
 }
 
 .EventImage.three {
-    width: 700px;
-    height: 400px;
+    width:100%;
+    height:100%;
 }
 
 .DashboardEvent_items_ctnr {
