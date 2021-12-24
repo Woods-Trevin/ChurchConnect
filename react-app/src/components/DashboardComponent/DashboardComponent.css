@@ -12,7 +12,7 @@ body {
 
 .Dashboard_intro_ctnr {
     background-color: #f1f5f7;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     
 }
 
@@ -471,29 +471,32 @@ body {
 /*---------------------------------------------*/
 
 .Dashboard_outmost_ctnr {
-    /* border: 5px solid pink; */
+    border-top: 1px solid black;
     background-color: #f1f5f7;
 }
 
 
-/* @media only screen and (min-height: 601px) {
-    .Dashboard_outmost_ctnr {
-        height: 1000px;
-        border: 5px solid pink;
-        background-color: #f1f5f7;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-} */
+.pr_blurb_ctnr {
+    /* border: 2px solid green; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 50px;
+}
 
 
-.selectAnnouncement_prompt {
+.prayer_request_prompt {
+    /* border: 2px solid red; */
     font-size: 30px;
 }
 
-.scrollAnnouncement_prompt {
+.prayer_request_info {
+    /* border: 2px solid rgb(3, 3, 243); */
     font-size: 25px;
+    width: 35%;
 }
 
 
@@ -502,13 +505,13 @@ body {
 .Dashboard_pr_ctnr {
     /* border: 2px solid orange; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     height: 400px;
     width: 100%;
-    margin-bottom: 100px;
-    margin-top: 100px;
+    /* margin-bottom: 100px; */
+    /* margin-top: 100px; */
     overflow: scroll;
     /* gap: 100px; */
     
@@ -516,11 +519,11 @@ body {
 
 .Dashboard_pr_view {
     /* border: 10px solid red; */
-    margin-right: 100px;
+    /* margin-right: 100px; */
     display: flex;
     flex-direction: row;
     position: relative;
-    gap: 300px;
+    gap: 150px;
     /* overflow: scroll; */
     /* width: 400px; */
     /* transform: translate(0, -50%) */
@@ -529,10 +532,10 @@ body {
 
 @keyframes nasdaq {
     0% {
-        left: 100%;
+        left: 200%;
     }
     100% {
-        left: -380%;
+        left: -200%;
     }
 }
 
@@ -544,6 +547,7 @@ body {
 .DashboardAnnouncements_link {
     border: 2px solid grey;
     text-decoration: none;
+    background-color: white;
     border-radius: 10px;
     height: 200px;
     width: 300px;
@@ -580,7 +584,7 @@ body {
     justify-content: center;
     align-items: center;
     font-style: italic;
-    color: grey;
+    color: rgb(133, 209, 240);
     
 }
 
