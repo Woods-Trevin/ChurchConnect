@@ -640,7 +640,7 @@ body {
 /*----------------------------------------------*/
 
 .Dashboard_event_ctnr {
-    /* border: 6px solid yellow; */
+    border: 6px solid yellow;
     display: flex;
     /* background-color:white; */
     /* flex-direction: column; */
@@ -650,31 +650,11 @@ body {
     overflow-x: scroll;
 }
 
-.Dashboard_event_ctnr_title {
-    /* border: 2px solid red; */
-    display: flex;
-    align-items: center;
-    font-family: 'Didot', serif;
-    flex-direction: column;
-    justify-content: center;
-    /* color: skyblue; */
-    /* background-color: black; */
-    
-    
-}
-
-.selectEvent_prompt {
-    font-size: 30px;
-}
-
-.swipeEvent_prompt {
-    font-size: 20px;
-}
 
 /*----------------------------------------------*/
 
 .NavLink_ctnr {
-    border: 2px solid grey;
+    border: 2px solid red;
     background-color: white;
     border-radius: 10px;
     /* box-shadow: 0 0 10px black; */
