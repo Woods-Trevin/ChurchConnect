@@ -60,8 +60,13 @@ export default function CreateEventComponent() {
         // }
         const response = await dispatch(eventActions.CreateEvent(formData))
         if (response.events) {
+            let pos = validationErrors.indexOf("Something was wrong with the information given in this form")
+            validationErrors.splice(pos, 1)
             history.push('/')
             history.go(0);
+
+        } else {
+            validationErrors.push("Something was wrong with the information given in this form")
         }
     }
 
