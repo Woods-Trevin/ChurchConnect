@@ -81,65 +81,7 @@ def post_events():
             urlThree = uploadThree["url"]
             # print(uploadThree["url"])
             thirdImage = urlThree
-
             
-
-    # if "imageOne" not in request.files:
-    #     return {"errors": "image required"}, 400
-    # if "imageTwo" not in request.files:
-    #     return {"errors": "image required"}, 400
-    # if "imageThree" not in request.files:
-    #     return {"errors": "image required"}, 400
-    # print([request for request in request.files])
-
-    # imageOne = request.files["imageOne"]
-    # # print(imageOne, "IMAGE----------------------------------------------------------")
-    # imageTwo = request.files["imageTwo"]
-    # # print(imageTwo, "IMAGE----------------------------------------------------------")
-    # imageThree = request.files["imageThree"]
-    # # print(imageThree, "IMAGE----------------------------------------------------------")
-    # # idx = request["idx"]
-    # # print(idx, "IDX----------------------------------------------------------")
-    # if not allowed_file(imageOne.filename):
-    #     return {"errors": "file type not permitted"}, 400
-    # if not allowed_file(imageTwo.filename):
-    #     return {"errors": "file type not permitted"}, 400
-    # if not allowed_file(imageThree.filename):
-    #     return {"errors": "file type not permitted"}, 400
-    
-    # imageOne.filename = get_unique_filename(imageOne.filename)
-    # imageTwo.filename = get_unique_filename(imageTwo.filename)
-    # imageThree.filename = get_unique_filename(imageThree.filename)
-
-    # uploadOne = upload_file_to_s3(imageOne)
-    # uploadTwo = upload_file_to_s3(imageTwo)
-    # uploadThree = upload_file_to_s3(imageThree)
-
-    # if "url" not in uploadOne:
-    #     # if the dictionary doesn't have a url key
-    #     # it means that there was an error when we tried to upload
-    #     # so we send back that error message
-    #     return uploadOne, 400
-
-    # if "url" not in uploadTwo:
-    #     # if the dictionary doesn't have a url key
-    #     # it means that there was an error when we tried to upload
-    #     # so we send back that error message
-    #     return uploadTwo, 400
-
-    # if "url" not in uploadThree:
-    #     # if the dictionary doesn't have a url key
-    #     # it means that there was an error when we tried to upload
-    #     # so we send back that error message
-    #     return uploadThree, 400
-
-    # urlOne = uploadOne["url"]
-    # print(uploadOne["url"])
-    # urlTwo = uploadTwo["url"]
-    # print(uploadTwo["url"])
-    # urlThree = uploadThree["url"]
-    # print(uploadThree["url"])
-    # print(request.form["id"])
    
     awsOne = firstImage if firstImage else None
     print(awsOne)
@@ -166,7 +108,7 @@ def post_events():
             db.session.add(created_event)
             db.session.commit()
             events = Event.query.all()
-            return {events: [event.to_dict() for event in events]}
+            return {'events': [event.to_dict() for event in events]}
         else:
             return jsonify('Bad Data')
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

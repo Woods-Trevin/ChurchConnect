@@ -59,8 +59,8 @@ export default function CreateEventComponent() {
 
         // }
         dispatch(eventActions.CreateEvent(formData))
-        history.push('/')
-        history.go(0);
+        // history.push('/')
+        // history.go(0);
     }
 
     let currentDateSlice;
