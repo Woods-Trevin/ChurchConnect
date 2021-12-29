@@ -78,7 +78,7 @@ export const CreateEvent = (formData) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(create_event(data.events));
-        return response
+        return data;
     }
 
 };
