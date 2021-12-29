@@ -34,7 +34,7 @@ export default function CreateEventComponent() {
 
 
 
-    function handleEventSubmit(e) {
+    const handleEventSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("imageOne", imageURLOne)
@@ -58,9 +58,16 @@ export default function CreateEventComponent() {
         //     idx: user.id
 
         // }
-        dispatch(eventActions.CreateEvent(formData))
-        // history.push('/')
-        // history.go(0);
+        const response = await dispatch(eventActions.CreateEvent(formData))
+        if (response.events) {
+            let pos = validationErrors.indexOf("Something was wrong with the information given in this form")
+            validationErrors.splice(pos, 1)
+            history.push('/')
+            history.go(0);
+
+        } else {
+            validationErrors.push("Something was wrong with the information given in this form")
+        }
     }
 
     let currentDateSlice;
