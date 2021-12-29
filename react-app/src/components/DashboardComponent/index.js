@@ -165,7 +165,7 @@ export default function DashboardComponent({ setUpdateAnnouncement }) {
                             Global Prayer Requests
                         </div>
                         <div className="prayer_request_info" >
-                            Prayer Requests change each day. Come back tomorrow to view more prayers from people outside your church.
+                            Prayer Requests change each day. Come back tomorrow to view more prayers from people around the world.
                         </div>
                     </div>
                     <div className="Dashboard_pr_view">
