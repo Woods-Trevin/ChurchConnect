@@ -5,15 +5,17 @@ import * as prayerRequestActions from '../../store/prayer_request'
 import './UpdateAnnouncementComponent.css';
 import Footer from '../Footer';
 
-export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
-    const current_prayer_request = useSelector(state => state.prayer_request?.current_prayer_request)
+export default function UpdateAnnouncementComponent() {
+    const { announcementId } = useParams();
+
+    let current_prayer_request = useSelector(state => state.prayer_request?.current_prayer_request?.description)
     console.log(current_prayer_request)
 
     const history = useHistory();
 
     // const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState("")
     // const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
-    const [updatePrayerDescription, setUpdatePrayerDescription] = useState(current_prayer_request?.description)
+    const [updatePrayerDescription, setUpdatePrayerDescription] = useState("")
 
     // console.log(updateAnnouncementURL) 
     const [validationErrors, setValidationErrors] = useState([])
@@ -21,10 +23,9 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
     const dispatch = useDispatch()
 
-    const { announcementId } = useParams();
-    console.log(announcementId)
+    // console.log(announcementId)
 
-    function handleAnnouncementPatch(e) {
+    const handleAnnouncementPatch = async (e) => {
         e.preventDefault()
         const formData = new FormData();
         // formData.append("image", updateAnnouncementURL)
@@ -38,17 +39,21 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         //     idx: announcementId
 
         // }
-        dispatch(prayerRequestActions.PatchPrayer(formData, announcementId));
-        history.push('/')
-        history.go(0);
+        const response = await dispatch(prayerRequestActions.PatchPrayer(formData, announcementId));
+        if (response.prayer_requests) {
+            history.push('/')
+            history.go(0);
+        } else {
+            validationErrors.push("Update was not possible. Please view the information given in the form.")
+        }
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         // setUpdateAnnouncement(true);
-        dispatch(prayerRequestActions.GetOnePrayer(announcementId))
+        const response = await dispatch(prayerRequestActions.GetOnePrayer(announcementId))
+        setUpdatePrayerDescription(response?.prayer_request.description)
         // setUpdatePrayerDescription(current_prayer_request?.description)
 
-        setUpdatePrayerDescription(current_prayer_request?.description)
 
 
 
@@ -57,11 +62,12 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         // if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
         // if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
         // if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
-        if (!updatePrayerDescription) errors.push('Announcement must include a Description');
-        if (updatePrayerDescription?.length > 1000) errors.push('Announcement Description is too long');
+        if (!updatePrayerDescription) errors.push('Prayer Request must include a Description');
+        if (updatePrayerDescription?.length > 1000) errors.push('Prayer Request Description is too long');
 
         setValidationErrors(errors);
-    }, [dispatch, updatePrayerDescription])
+
+    }, [dispatch, updatePrayerDescription, current_prayer_request])
 
 
     // const handleUpdateImage = (e) => {
@@ -114,7 +120,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
                                 <input
                                     type="text"
                                     name='updateAnnouncementDescription'
-                                    defaultValue={updatePrayerDescription}
+                                    value={updatePrayerDescription}
                                     className="updateAnnouncement_description_input"
                                     onChange={(e) => setUpdatePrayerDescription(e.target.value)}
                                 />

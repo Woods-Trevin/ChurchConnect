@@ -16,7 +16,7 @@ import CreateEventComponent from './components/CreateEventComponent';
 import CreateAnnouncementComponent from './components/CreateAnnouncementComponent';
 import Profile from './components/Profile';
 import EventDisplay from './components/EventDisplay';
-import AnnouncementDisplay from './components/AnnouncementDisplay';
+// import AnnouncementDisplay from './components/AnnouncementDisplay';
 import UpdateEventComponent from './components/UpdateEventComponent';
 import UpdateAnnouncementComponent from './components/UpdateAnnouncementComponent';
 import './index.css'
@@ -113,9 +113,7 @@ function App() {
             {/* <Footer /> */}
           </Route>
           <Route path='/announcement/:announcementId' exact={true} >
-            {/* {!updateAnnouncement && <AnnouncementDisplay setUpdateAnnouncement={setUpdateAnnouncement} />} */}
-            {/* {updateAnnouncement && <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />} */}
-            <UpdateAnnouncementComponent setUpdateAnnouncement={setUpdateAnnouncement} />
+            <UpdateAnnouncementComponent />
             <Footer />
           </Route>
           <Route path='/profile/:profileId' exact={true} >
