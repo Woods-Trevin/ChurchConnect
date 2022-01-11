@@ -51,7 +51,7 @@ export const CreatePrayerRequest = (formData) => async (dispatch) => {
     if (response.ok) {
         const data = response.json();
         dispatch(create_prayer_request(data.prayer_requests));
-        return response;
+        return data;
     }
 }
 
