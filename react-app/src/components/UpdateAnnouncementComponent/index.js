@@ -5,10 +5,10 @@ import * as prayerRequestActions from '../../store/prayer_request'
 import './UpdateAnnouncementComponent.css';
 import Footer from '../Footer';
 
-export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
+export default function UpdateAnnouncementComponent() {
     const { announcementId } = useParams();
 
-    const current_prayer_request = useSelector(state => state.prayer_request?.current_prayer_request?.description)
+    let current_prayer_request = useSelector(state => state.prayer_request?.current_prayer_request?.description)
     console.log(current_prayer_request)
 
     const history = useHistory();
@@ -23,7 +23,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
     const dispatch = useDispatch()
 
-    console.log(announcementId)
+    // console.log(announcementId)
 
     const handleAnnouncementPatch = async (e) => {
         e.preventDefault()
@@ -53,7 +53,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         dispatch(prayerRequestActions.GetOnePrayer(announcementId))
         // setUpdatePrayerDescription(current_prayer_request?.description)
 
-        // setUpdatePrayerDescription()
+        setUpdatePrayerDescription(current_prayer_request)
 
 
 
@@ -62,11 +62,11 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         // if (updateAnnouncementURL.length > 1000) errors.push('Image size is too big');
         // if (!updateAnnouncementTitle) errors.push('Announcement must include a Title');
         // if (updateAnnouncementTitle.length > 300) errors.push('Announcement Title is too long');
-        if (!updatePrayerDescription) errors.push('Announcement must include a Description');
-        if (updatePrayerDescription?.length > 1000) errors.push('Announcement Description is too long');
+        if (!updatePrayerDescription) errors.push('Prayer Request must include a Description');
+        if (updatePrayerDescription?.length > 1000) errors.push('Prayer Request Description is too long');
 
         setValidationErrors(errors);
-    }, [dispatch, updatePrayerDescription])
+    }, [dispatch, updatePrayerDescription, current_prayer_request])
 
 
     // const handleUpdateImage = (e) => {
