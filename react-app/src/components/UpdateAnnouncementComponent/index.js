@@ -15,7 +15,7 @@ export default function UpdateAnnouncementComponent() {
 
     // const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState("")
     // const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
-    const [updatePrayerDescription, setUpdatePrayerDescription] = useState(current_prayer_request)
+    const [updatePrayerDescription, setUpdatePrayerDescription] = useState("")
 
     // console.log(updateAnnouncementURL) 
     const [validationErrors, setValidationErrors] = useState([])
@@ -48,12 +48,12 @@ export default function UpdateAnnouncementComponent() {
         }
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         // setUpdateAnnouncement(true);
-        dispatch(prayerRequestActions.GetOnePrayer(announcementId))
+        const response = await dispatch(prayerRequestActions.GetOnePrayer(announcementId))
+        setUpdatePrayerDescription(response?.prayer_request.description)
         // setUpdatePrayerDescription(current_prayer_request?.description)
 
-        setUpdatePrayerDescription(current_prayer_request)
 
 
 
@@ -66,6 +66,7 @@ export default function UpdateAnnouncementComponent() {
         if (updatePrayerDescription?.length > 1000) errors.push('Prayer Request Description is too long');
 
         setValidationErrors(errors);
+
     }, [dispatch, updatePrayerDescription, current_prayer_request])
 
 
@@ -119,7 +120,7 @@ export default function UpdateAnnouncementComponent() {
                                 <input
                                     type="text"
                                     name='updateAnnouncementDescription'
-                                    defaultValue={updatePrayerDescription}
+                                    value={updatePrayerDescription}
                                     className="updateAnnouncement_description_input"
                                     onChange={(e) => setUpdatePrayerDescription(e.target.value)}
                                 />

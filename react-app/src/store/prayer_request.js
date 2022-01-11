@@ -73,7 +73,7 @@ export const GetOnePrayer = (id) => async (dispatch) => {
         const data = await response.json();
         // console.log(data.announcements);
         dispatch(get_one_prayer(data.prayer_request));
-        return response;
+        return data;
     }
 }
 
