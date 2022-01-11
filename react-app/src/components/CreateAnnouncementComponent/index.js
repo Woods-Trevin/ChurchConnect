@@ -17,7 +17,7 @@ export default function CreateAnnouncementComponent() {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    function handleAnnouncementCreation(e) {
+    const handleAnnouncementCreation = async (e) => {
         e.preventDefault()
 
         const formData = new FormData();
@@ -32,9 +32,13 @@ export default function CreateAnnouncementComponent() {
         //     description: announcementDescription,
         //     idx: user?.id
         // }
-        dispatch(announcementActions.CreatePrayerRequest(formData))
-        history.push('/')
-        history.go(0);
+        const response = await dispatch(announcementActions.CreatePrayerRequest(formData))
+        if (response.prayer_requests) {
+            history.push('/')
+            history.go(0);
+        } else {
+            validationErrors.push("The prayer request could not be made. Please check your prayer request information.")
+        }
 
     }
 
