@@ -6,14 +6,16 @@ import './UpdateAnnouncementComponent.css';
 import Footer from '../Footer';
 
 export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
-    const current_prayer_request = useSelector(state => state.prayer_request?.current_prayer_request)
+    const { announcementId } = useParams();
+
+    const current_prayer_request = useSelector(state => state.prayer_request?.current_prayer_request?.description)
     console.log(current_prayer_request)
 
     const history = useHistory();
 
     // const [updateAnnouncementURL, setUpdateAnnouncementURL] = useState("")
     // const [updateAnnouncementTitle, setUpdateAnnouncementTitle] = useState(current_announcement?.title)
-    const [updatePrayerDescription, setUpdatePrayerDescription] = useState(current_prayer_request?.description)
+    const [updatePrayerDescription, setUpdatePrayerDescription] = useState(current_prayer_request)
 
     // console.log(updateAnnouncementURL) 
     const [validationErrors, setValidationErrors] = useState([])
@@ -21,10 +23,9 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
 
     const dispatch = useDispatch()
 
-    const { announcementId } = useParams();
     console.log(announcementId)
 
-    function handleAnnouncementPatch(e) {
+    const handleAnnouncementPatch = async (e) => {
         e.preventDefault()
         const formData = new FormData();
         // formData.append("image", updateAnnouncementURL)
@@ -38,9 +39,13 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         //     idx: announcementId
 
         // }
-        dispatch(prayerRequestActions.PatchPrayer(formData, announcementId));
-        history.push('/')
-        history.go(0);
+        const response = await dispatch(prayerRequestActions.PatchPrayer(formData, announcementId));
+        if (response.prayer_requests) {
+            history.push('/')
+            history.go(0);
+        } else {
+            validationErrors.push("Update was not possible. Please view the information given in the form.")
+        }
     }
 
     useEffect(() => {
@@ -48,7 +53,7 @@ export default function UpdateAnnouncementComponent({ setUpdateAnnouncement }) {
         dispatch(prayerRequestActions.GetOnePrayer(announcementId))
         // setUpdatePrayerDescription(current_prayer_request?.description)
 
-        setUpdatePrayerDescription(current_prayer_request?.description)
+        // setUpdatePrayerDescription()
 
 
 
