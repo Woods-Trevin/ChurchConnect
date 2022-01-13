@@ -89,30 +89,6 @@ export default function UpdateAnnouncementComponent() {
                     </ul>
                     <form className="updateAnnouncement_form_outerwrapper" onSubmit={handleAnnouncementPatch}>
                         <div className="updateAnnouncement_form_innerwrapper">
-                            {/* <label className="updateAnnouncement_imageURL_ctnr">
-                                <div className="updateAnnouncement_imageURL_label">
-                                    Image URL:
-                                </div>
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    name='updateAnnouncementURL'
-                                    className="updateAnnouncement_imageURL_input"
-                                    onChange={handleUpdateImage}
-                                />
-                            </label>
-                            <label className="updateAnnouncement_title_ctnr">
-                                <div className="updateAnnouncement_title_label">
-                                    Title:
-                                </div>
-                                <input
-                                    type='text'
-                                    name='updateAnnouncementTitle'
-                                    value={updateAnnouncementTitle}
-                                    className="updateAnnouncement_title_input"
-                                    onChange={(e) => setUpdateAnnouncementTitle(e.target.value)}
-                                />
-                            </label> */}
                             <label className="updateAnnouncement_description_ctnr">
                                 <div className="updateAnnouncement_description_label">
                                     Description:
