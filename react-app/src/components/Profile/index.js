@@ -32,12 +32,6 @@ export default function Profile() {
 
     const [profileImage, setProfileImage] = useState("")
     const [address, setAddress] = useState()
-    let addressSplit = address.split(',')
-    console.log(addressSplit)
-    let churchAddress = address[0]
-    let cityState = address[1] + ',' + address[2]
-    let zipcode = address[3];
-
     const [homeChurch, setHomeChurch] = useState()
     const [bio, setBio] = useState()
     // console.log(currentUserProfile?.homeChurch)
@@ -64,7 +58,7 @@ export default function Profile() {
             } else {
                 set_image_to_animate(1)
             }
-        }, 6000)
+        }, 5000)
 
         return () => clearTimeout(timeout)
 
